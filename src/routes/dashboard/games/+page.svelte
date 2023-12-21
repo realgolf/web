@@ -65,9 +65,15 @@
         redirect("/dashboard/modi/4Winning/Three-Players");
       } else if (teams == "4winning_4_teams") {
         redirect("/dashboard/modi/4Winning/Four-Players");
+      } else if (teams == "exact_2_teams") {
+        redirect("/dashboard/modi/Exact/Two-Players");
+      } else if ((teams = "exact_3_teams")) {
+        redirect("/dashboard/modi/Exact/Three-Players");
+      } else if ((teams = "exact_4_teams")) {
+        redirect("/dashboard/modi/Exact/Four-Players");
       }
     } else {
-      alert("You have still a game in the localStorage.");
+      alert("You still have a game in the localStorage.");
     }
   }
 
