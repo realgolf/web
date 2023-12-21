@@ -17,7 +17,7 @@
 
   function saveToDatabaseAndSubmitForm() {
     // Extract data from localStorage
-    const localStorageData = localStorage.getItem("exact_4_data");
+    const localStorageData = localStorage.getItem("exact_4_teams");
 
     if (localStorageData) {
       teams = JSON.parse(localStorageData);
@@ -39,7 +39,7 @@
   function saveToLS() {
     let gameData = document.getElementById("game") as HTMLInputElement;
 
-    localStorage.setItem("exact_4_data", gameData.value);
+    localStorage.setItem("exact_4_teams", gameData.value);
 
     location.reload();
   }

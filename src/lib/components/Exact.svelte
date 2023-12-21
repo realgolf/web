@@ -46,7 +46,7 @@
   });
 
   onMount(() => {
-    const storedData = localStorage.getItem(`exact_${teams.length}_data`);
+    const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
     if (storedData !== null) {
       const parsedData = JSON.parse(storedData);
       teams.forEach((team) => {
@@ -81,7 +81,7 @@
     if (display) {
       let displayContent = teams
         .map((team) => {
-          const storedData = localStorage.getItem(`exact_${teams.length}_data`);
+          const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
           const parsedData = storedData ? JSON.parse(storedData) : {};
           const points = parsedData[team.color]
             ? parsedData[team.color].points
@@ -153,13 +153,13 @@
             lastRowNumbers[color] = rowNumber; // Setze lastRowNumber nach der Verarbeitung
 
             const storedData = localStorage.getItem(
-              `exact_${teams.length}_data`
+              `exact_${teams.length}_teams`
             );
             let parsedData = storedData ? JSON.parse(storedData) : {};
 
             parsedData[color] = { points: newPoints, shots: clickedCellsCount };
             localStorage.setItem(
-              `exact_${teams.length}_data`,
+              `exact_${teams.length}_teams`,
               JSON.stringify(parsedData)
             ); // Im localStorage speichern
             return newPoints;
@@ -192,7 +192,7 @@
   }
 
   function resetGame() {
-    localStorage.removeItem(`exact_${teams.length}_data`);
+    localStorage.removeItem(`exact_${teams.length}_teams`);
     for (let team of teams) {
       team.data = [];
       team.points = 0;
