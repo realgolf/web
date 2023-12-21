@@ -49,14 +49,26 @@
 
   let copyStatus: string | null = null;
 
-  function openGame(gameData: string, team: string) {
-    let local_storage_game = localStorage.getItem("team");
+  function redirect(path: string) {
+    window.location.href = path;
+  }
+
+  function openGame(gameData: string, teams: string) {
+    console.log(teams);
+    let local_storage_game = localStorage.getItem(teams);
 
     if (local_storage_game == null) {
-      localStorage.setItem(team, JSON.stringify({ data: gameData }));
+      localStorage.setItem(teams, gameData);
+      if (teams == "4winning_2_teams") {
+        redirect("/dashboard/modi/4Winning/Two-Players");
+      } else if (teams == "4winning_3_teams") {
+        redirect("/dashboard/modi/4Winning/Three-Players");
+      } else if (teams == "4winning_4_teams") {
+        redirect("/dashboard/modi/4Winning/Four-Players");
+      }
+    } else {
+      alert("You have still a game in the localStorage.");
     }
-
-    console.log(local_storage_game);
   }
 
   let showMessage = true;
@@ -135,7 +147,8 @@
         ><Fa icon={faEye} /></button
       >
       <p class="error">Please only paste the data in {game.teams}!</p>
-      <button on:click={() => openGame(game.data, game.team)}>Copy Data</button>
+      <button on:click={() => openGame(game.data, game.teams)}>Copy Data</button
+      >
       <form action="?/delete_game" method="POST" autocomplete="off">
         <input class="hidden" type="text" name="id" value={game.id} />
         <button>Delete Game</button>
