@@ -342,7 +342,7 @@
       input.value = "";
     }
 
-    localStorage.removeItem(`4winning_team_${teams.length}`);
+    localStorage.removeItem(`4winning_${teams.length}_teams`);
 
     teams.forEach((team) => {
       team.data = [];
@@ -369,7 +369,7 @@
       input.value = "";
     }
 
-    localStorage.removeItem(`4winning_team_${teams.length}`);
+    localStorage.removeItem(`4winning_${teams.length}_teams`);
 
     teams.forEach((team) => {
       team.data = [];
@@ -411,7 +411,7 @@
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
-                `4winning_team_${teams.length}`,
+                `4winning_${teams.length}_teams`,
                 JSON.stringify(teams)
               );
 
@@ -427,7 +427,7 @@
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
-                `4winning_team_${teams.length}`,
+                `4winning_${teams.length}_teams`,
                 JSON.stringify(teams)
               );
 
@@ -443,7 +443,7 @@
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
-                `4winning_team_${teams.length}`,
+                `4winning_${teams.length}_teams`,
                 JSON.stringify(teams)
               );
 
@@ -459,7 +459,7 @@
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
-                `4winning_team_${teams.length}`,
+                `4winning_${teams.length}_teams`,
                 JSON.stringify(teams)
               );
 
@@ -475,7 +475,7 @@
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
-                `4winning_team_${teams.length}`,
+                `4winning_${teams.length}_teams`,
                 JSON.stringify(teams)
               );
 
@@ -491,7 +491,7 @@
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
-                `4winning_team_${teams.length}`,
+                `4winning_${teams.length}_teams`,
                 JSON.stringify(teams)
               );
 
@@ -507,7 +507,7 @@
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
-                `4winning_team_${teams.length}`,
+                `4winning_${teams.length}_teams`,
                 JSON.stringify(teams)
               );
 
@@ -523,7 +523,7 @@
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
-                `4winning_team_${teams.length}`,
+                `4winning_${teams.length}_teams`,
                 JSON.stringify(teams)
               );
 
@@ -546,12 +546,14 @@
 
   onMount(() => {
     if (!isMounted) {
-      const storedTeams = localStorage.getItem(`4winning_team_${teams.length}`);
+      const storedTeams = localStorage.getItem(
+        `4winning_${teams.length}_teams`
+      );
 
       if (!storedTeams) {
         // Speichere die teams-Variable im Local Storage
         localStorage.setItem(
-          `4winning_team_${teams.length}`,
+          `4winning_${teams.length}_teams`,
           JSON.stringify(teams)
         );
 
