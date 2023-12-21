@@ -4,6 +4,7 @@
 
   export let data: any;
   let measurement_unit = data.measurement_unit;
+  let team = "4winning_team_3";
 
   interface Team {
     color: string;
@@ -82,7 +83,7 @@
   }
 </script>
 
-<FourWinning {teams} {measurement_unit} />
+<FourWinning {teams} {team} {measurement_unit} />
 
 <div class="ls">
   <p>Paste the data you got from <a href="/dashboard/games">Games</a> here:</p>

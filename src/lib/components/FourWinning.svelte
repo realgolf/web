@@ -8,6 +8,7 @@
 
   export let teams: Team[];
   export let measurement_unit: string;
+  export let team: string;
   let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_unit);
 
   interface Team {
@@ -124,7 +125,7 @@
         teams[currentTeamIndex].data = [...currentTeam.data]; // Make sure to update the data array
 
         // Update teams in local storage
-        localStorage.setItem("teams", JSON.stringify(teams));
+        localStorage.setItem(team, JSON.stringify(teams));
 
         FieldClickedFourTimes(outerIndex, innerIndex);
         checkWin();

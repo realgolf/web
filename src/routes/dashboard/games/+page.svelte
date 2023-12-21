@@ -49,19 +49,14 @@
 
   let copyStatus: string | null = null;
 
-  function copyData(gameData: string) {
-    navigator.clipboard
-      .writeText(gameData)
-      .then(() => {
-        copyStatus = "success";
-      })
-      .catch((error) => {
-        copyStatus = "error";
-        console.error("Error copying data:", error);
-      });
-    setTimeout(() => {
-      copyStatus = "";
-    }, 2000);
+  function openGame(gameData: string, team: string) {
+    let local_storage_game = localStorage.getItem("team");
+
+    if (local_storage_game == null) {
+      localStorage.setItem(team, JSON.stringify({ data: gameData }));
+    }
+
+    console.log(local_storage_game);
   }
 
   let showMessage = true;
@@ -140,7 +135,7 @@
         ><Fa icon={faEye} /></button
       >
       <p class="error">Please only paste the data in {game.teams}!</p>
-      <button on:click={() => copyData(game.data)}>Copy Data</button>
+      <button on:click={() => openGame(game.data, game.team)}>Copy Data</button>
       <form action="?/delete_game" method="POST" autocomplete="off">
         <input class="hidden" type="text" name="id" value={game.id} />
         <button>Delete Game</button>

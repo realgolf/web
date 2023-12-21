@@ -17,6 +17,8 @@
     { color: "orange", data: [] },
   ];
 
+  let team = "4winning_team_4";
+
   function saveToDatabaseAndSubmitForm(event: any) {
     event.preventDefault();
     let localStorageData = localStorage.getItem("4winning_team_4");
@@ -91,7 +93,7 @@
   }
 </script>
 
-<FourWinning {teams} {measurement_unit} />
+<FourWinning {teams} {team} {measurement_unit} />
 
 <div class="ls">
   <p>Paste the data you got from <a href="/dashboard/games">Games</a> here:</p>
