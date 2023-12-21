@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { faEye } from "@fortawesome/free-regular-svg-icons";
   import { afterUpdate, onMount } from "svelte";
+  import Fa from "svelte-fa";
   import type { ActionData } from "./$types.js";
   import { teams } from "./teams";
   export let data;
@@ -67,6 +69,15 @@
   setTimeout(() => {
     showMessage = false;
   }, 20000);
+
+  function hideData() {
+    const data_display = document.getElementById(
+      "game_data_string"
+    ) as HTMLElement;
+
+    data_display.style.display =
+      data_display?.style.display === "none" ? "block" : "none";
+  }
 </script>
 
 <svelte:head>
@@ -124,7 +135,10 @@
         <button>Update Name</button>
       </form>
       <p>Created at the {new Date(game.date).toLocaleDateString()}</p>
-      <p>{game.data}</p>
+      <p id="game_data_string" style="display: none;">{game.data}</p>
+      <button title="Toggle Game Data" on:click={hideData}
+        ><Fa icon={faEye} /></button
+      >
       <p class="error">Please only paste the data in {game.teams}!</p>
       <button on:click={() => copyData(game.data)}>Copy Data</button>
       <form action="?/delete_game" method="POST" autocomplete="off">
