@@ -1,9 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
   import Exact from "$lib/components/Exact.svelte";
-  import type { ActionData } from "./$types";
-
-  let form: ActionData;
 
   interface Team {
     color: string;
@@ -18,7 +15,7 @@
 
   function saveToDatabaseAndSubmitForm() {
     // Extract data from localStorage
-    const localStorageData = localStorage.getItem("exact_2_teams!");
+    const localStorageData = localStorage.getItem("exact_2_teams");
 
     if (localStorageData) {
       teams = JSON.parse(localStorageData);
@@ -40,7 +37,7 @@
   function saveToLS() {
     let gameData = document.getElementById("game") as HTMLInputElement;
 
-    localStorage.setItem("exact_2_teams!", gameData.value);
+    localStorage.setItem("exact_2_teams", gameData.value);
 
     location.reload();
   }
