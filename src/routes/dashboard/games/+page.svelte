@@ -5,18 +5,29 @@
   import Fa from "svelte-fa";
   import type { ActionData } from "./$types.js";
   import { teams } from "./teams";
+
+  /**
+   * REACTIVE DATA
+   */
   export let data;
   export let form: ActionData;
 
+  /**
+   * STATE
+   */
   let selectedTeam = "";
   let searchTerm = "";
   let filteredGames: string | any[] = [];
 
+  // ON COMPONENT MOUNT
   onMount(() => {
     filteredGames = data.games;
   });
 
-  // Funktion zum Filtern von Spielen basierend auf Suchbegriff und ausgewähltem Team
+  /**
+   * APPLY FILTERS TO GAMES
+   * @param searchTerm
+   */
   function applyFilters(searchTerm: string) {
     if (searchTerm !== "") {
       filteredGames = data.games.filter(
@@ -34,53 +45,42 @@
         (game: { teams: string }) => game.teams === selectedTeam
       );
     } else {
-      filteredGames = data.games; // Keine Filter, zeige alle Spiele
+      filteredGames = data.games;
     }
   }
 
-  // Ereignishandler für die Änderung des ausgewählten Teams
+  /**
+   * HANDLE TEAM CHANGE
+   */
   function handleTeamChange() {
-    applyFilters(searchTerm); // Filter zurücksetzen
+    applyFilters(searchTerm);
   }
 
-  // Nach dem Update, die Filter anwenden
+  /**
+   * APPLY FILTERS ON EVERY UPDATE
+   */
   afterUpdate(() => {
     applyFilters(searchTerm);
   });
 
+  /**
+   * COPY STATUS
+   */
   let copyStatus: string | null = null;
 
+  /**
+   * REDIRECT FUNCTION
+   * @param path
+   */
   function redirect(path: string) {
     window.location.href = path;
   }
 
-  function openGame(gameData: string, teams: string) {
-    let local_storage_game = localStorage.getItem(teams);
-
-    if (local_storage_game == null) {
-      fillLocalStorageAndRedirectUser(teams, gameData);
-    } else {
-      const decision = confirm(
-        "Do you want to delete your current localStorage?"
-      );
-
-      if (decision == true) {
-        localStorage.removeItem(teams);
-        fillLocalStorageAndRedirectUser(teams, gameData);
-      } else {
-        const decision2 = confirm(
-          "Do you want to proceed without saving the game?"
-        );
-
-        if (decision2 == true) {
-          saveLocalStorageGameInDB(teams);
-          fillLocalStorageAndRedirectUser(teams, gameData);
-        } else {
-        }
-      }
-    }
-  }
-
+  /**
+   * REDIRECT USER BASED ON TEAMS SELECTED
+   * @param teams
+   * @param gameData
+   */
   function fillLocalStorageAndRedirectUser(teams: string, gameData: string) {
     localStorage.setItem(teams, gameData);
     if (teams == "4winning_2_teams") {
@@ -98,6 +98,10 @@
     }
   }
 
+  /**
+   * ASIGNS THE CORRECT NAME FOR EACH TEAME
+   * @param teams
+   */
   function asignNameToTeam(teams: string) {
     let name: string;
 
@@ -120,6 +124,10 @@
     return name;
   }
 
+  /**
+   * SAVE'S A GAME FROM THE LOCAL STORGAE IN THE DATABASE
+   * @param teams
+   */
   function saveLocalStorageGameInDB(teams: string) {
     const name = document.getElementById("name_LStoDB") as HTMLInputElement;
     const team = document.getElementById("team_LStoDB") as HTMLInputElement;
@@ -143,12 +151,104 @@
     form.submit();
   }
 
+  /**
+   * RECIEVE THE GAME FROM THE DATABASE AND OPEN IT IN THE CORRECT GAME
+   * @params {string} gameData - The data of the game.
+   * @params {string} teams - The team of the game.
+   */
+  function openGame(gameData: string, teams: string) {
+    let local_storage_game = localStorage.getItem(teams);
+
+    if (local_storage_game == null) {
+      fillLocalStorageAndRedirectUser(teams, gameData);
+    } else {
+      showModal(
+        "<b>Oops!</b> Looks like your Storage is full. <br> Do you want to delete it?",
+        () => {
+          // Yes button callback
+          localStorage.removeItem(teams);
+          fillLocalStorageAndRedirectUser(teams, gameData);
+        },
+        () => {
+          // Save the Game in the Database button callback
+          saveLocalStorageGameInDB(teams);
+          setTimeout(() => {
+            fillLocalStorageAndRedirectUser(teams, gameData);
+          }, 100);
+        },
+        () => {
+          // No button callback
+          // No further action
+        }
+      );
+    }
+  }
+
+  /**
+   * DISPLAY A CONFIRMATION MODAL
+   * @param message
+   * @param yesCallback
+   * @param saveCallback
+   * @param noCallback
+   */
+  function showModal(
+    message: string,
+    yesCallback: () => void,
+    saveCallback: () => void,
+    noCallback: () => void
+  ) {
+    const modal = document.getElementById("confirmationModal");
+    const textElement = document.getElementById("confirmationText");
+    const yesBtn = document.getElementById("yesBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    if (modal && textElement && yesBtn && saveBtn && noBtn) {
+      textElement.innerHTML = message;
+
+      modal.style.display = "block";
+
+      yesBtn.onclick = () => {
+        modal.style.display = "none";
+        yesCallback();
+      };
+
+      saveBtn.onclick = () => {
+        modal.style.display = "none";
+        saveCallback();
+      };
+
+      noBtn.onclick = () => {
+        modal.style.display = "none";
+        noCallback();
+      };
+    }
+  }
+
+  /**
+   * HIDE THE CONFIRMATION MODAL WHEN CLICKING OUTSIDE
+   */
+  onMount(() => {
+    window.onclick = (event) => {
+      const modal = document.getElementById("confirmationModal");
+      if (modal && event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  });
+
   let showMessage = true;
 
+  /**
+   * AUTOMATICALLY HIDE THE MESSAGE AFTER 20 SECONDS
+   */
   setTimeout(() => {
     showMessage = false;
   }, 20000);
 
+  /**
+   * TOGGLE THE VISIBILITY OF THE GAME DATA
+   */
   function hideData() {
     const dataDisplays = document.getElementsByClassName("game_data_string");
 
@@ -174,6 +274,15 @@
 </form>
 <button title="Toggle Game Data" on:click={hideData}><Fa icon={faEye} /></button
 >
+
+<div id="confirmationModal" class="modal">
+  <div class="modal-content">
+    <p class="success" id="confirmationText" />
+    <button id="yesBtn">Yes</button>
+    <button id="saveBtn">Save the Game in the Database</button>
+    <button id="noBtn">No</button>
+  </div>
+</div>
 
 {#if showMessage == true && form?.message}
   <p class="success">{form?.message}</p>
@@ -205,7 +314,7 @@
     <p class="error">Copy failed</p>
   {/if}
   {#each filteredGames as game (game.id)}
-    <div>
+    <div class="game">
       <form action="?/rename" method="POST">
         <input
           type="text"
@@ -245,7 +354,7 @@
 </form>
 
 <style lang="scss">
-  div {
+  .game {
     background-color: var(--nav-color);
     width: 90vw;
     padding: 50px 50px;
@@ -296,6 +405,17 @@
     &:focus {
       outline: 0.1rem solid var(--font-color);
       outline-offset: 0.2rem;
+    }
+  }
+
+  .modal {
+    display: none;
+    margin: 15px 0;
+
+    .modal-content {
+      background-color: var(--nav-color);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
     }
   }
 </style>
