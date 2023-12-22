@@ -1,5 +1,6 @@
 import { User_Model } from "$lib/server/models";
 import type { Actions } from "@sveltejs/kit";
+import { v4 as uuidv4 } from "uuid";
 
 export async function load(event): Promise<any> {
   const email = event.cookies.get("email");
@@ -76,6 +77,61 @@ export const actions: Actions = {
         game.name = name;
         await user.save();
       }
+    }
+  },
+  saveLocalStorageGameInDB: async (event) => {
+    const email = event.cookies.get("email");
+    const data = await event.request.formData();
+    const name = data.get("name") as string;
+    const team = data.get("team") as string;
+    const local_storage_data = data.get("localStorageData") as string;
+
+    console.log(data);
+
+    try {
+      // Find the user
+      const user = await User_Model.findOne({ "user.email": email });
+
+      if (!user) {
+        return {
+          status: 404,
+          body: JSON.stringify({ error: "User not found" }),
+        };
+      }
+
+      // Generate a unique ID for the game
+      const gameId = uuidv4();
+
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth() + 1).toString().padStart(2, "0");
+      const day = today.getDate().toString().padStart(2, "0");
+      const formattedDate = `${year}-${month}-${day}`;
+
+      // Add the game to the user
+      if (user.games) {
+        user.games.push({
+          id: gameId,
+          name: name,
+          teams: team,
+          date: formattedDate,
+          data: JSON.stringify(local_storage_data),
+        });
+      }
+
+      // Save the user with the new game
+      await user.save();
+
+      return {
+        status: 200,
+        body: JSON.stringify({ message: "Game saved successfully" }),
+      };
+    } catch (error) {
+      console.error(error);
+      return {
+        status: 500,
+        body: JSON.stringify({ error: "Error saving game" }),
+      };
     }
   },
 };

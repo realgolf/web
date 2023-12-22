@@ -17,9 +17,11 @@
     { color: "orange", data: [] },
   ];
 
+  let team = "4winning_4_teams";
+
   function saveToDatabaseAndSubmitForm(event: any) {
     event.preventDefault();
-    let localStorageData = localStorage.getItem("4winning_team_4");
+    let localStorageData = localStorage.getItem("4winning_4_teams");
 
     if (localStorageData) {
       const parsedData = JSON.parse(localStorageData);
@@ -85,13 +87,13 @@
     alert("Please note, that the website will reload after the submit");
     let gameData = document.getElementById("game") as HTMLInputElement;
 
-    localStorage.setItem("4winning_team_4", gameData.value);
+    localStorage.setItem("4winning_4_teams", gameData.value);
 
     location.reload();
   }
 </script>
 
-<FourWinning {teams} {measurement_unit} />
+<FourWinning {teams} {team} {measurement_unit} />
 
 <div class="ls">
   <p>Paste the data you got from <a href="/dashboard/games">Games</a> here:</p>

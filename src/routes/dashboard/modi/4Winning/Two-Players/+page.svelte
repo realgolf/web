@@ -4,6 +4,7 @@
 
   export let data: any;
   let measurement_unit = data.measurement_unit;
+  let team = "4winning_2_teams";
   interface Team {
     color: string;
     data: string[];
@@ -16,7 +17,7 @@
 
   function saveToDatabaseAndSubmitForm(event: any) {
     event.preventDefault();
-    let localStorageData = localStorage.getItem("4winning_team_2");
+    let localStorageData = localStorage.getItem("4winning_2_teams");
 
     if (localStorageData) {
       const parsedData = JSON.parse(localStorageData);
@@ -65,13 +66,13 @@
   function saveToLS() {
     let gameData = document.getElementById("game") as HTMLInputElement;
 
-    localStorage.setItem("4winning_team_2", gameData.value);
+    localStorage.setItem("4winning_2_teams", gameData.value);
 
     location.reload();
   }
 </script>
 
-<FourWinning {teams} {measurement_unit} />
+<FourWinning {teams} {team} {measurement_unit} />
 
 <div class="ls">
   <p>Paste the data you got from <a href="/dashboard/games">Games</a> here:</p>
