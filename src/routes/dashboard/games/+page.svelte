@@ -84,12 +84,14 @@
   }, 20000);
 
   function hideData() {
-    const data_display = document.getElementById(
-      "game_data_string"
-    ) as HTMLElement;
+    const dataDisplays = document.getElementsByClassName("game_data_string");
 
-    data_display.style.display =
-      data_display?.style.display === "none" ? "block" : "none";
+    for (const dataDisplay of dataDisplays) {
+      if (dataDisplay instanceof HTMLElement) {
+        dataDisplay.style.display =
+          dataDisplay.style.display === "none" ? "block" : "none";
+      }
+    }
   }
 </script>
 
@@ -104,6 +106,8 @@
 <form action="?/delete_all" method="POST" autocomplete="off">
   <button>Delete All</button>
 </form>
+<button title="Toggle Game Data" on:click={hideData}><Fa icon={faEye} /></button
+>
 
 {#if showMessage == true && form?.message}
   <p class="success">{form?.message}</p>
@@ -148,10 +152,7 @@
         <button>Update Name</button>
       </form>
       <p>Created at the {new Date(game.date).toLocaleDateString()}</p>
-      <p id="game_data_string" style="display: none;">{game.data}</p>
-      <button title="Toggle Game Data" on:click={hideData}
-        ><Fa icon={faEye} /></button
-      >
+      <p class="game_data_string" style="display: none;">{game.data}</p>
       <p class="error">Please only paste the data in {game.teams}!</p>
       <button on:click={() => openGame(game.data, game.teams)}>Copy Data</button
       >
