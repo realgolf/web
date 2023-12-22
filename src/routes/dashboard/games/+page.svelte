@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { enhance } from "$app/forms";
   import { faEye } from "@fortawesome/free-regular-svg-icons";
   import { afterUpdate, onMount } from "svelte";
   import Fa from "svelte-fa";
@@ -54,7 +55,6 @@
   }
 
   function openGame(gameData: string, teams: string) {
-    console.log(teams);
     let local_storage_game = localStorage.getItem(teams);
 
     if (local_storage_game == null) {
@@ -67,6 +67,16 @@
       if (decision == true) {
         localStorage.removeItem(teams);
         fillLocalStorageAndRedirectUser(teams, gameData);
+      } else {
+        const decision2 = confirm(
+          "Do you want to proceed without saving the game?"
+        );
+
+        if (decision2 == true) {
+          saveLocalStorageGameInDB(teams);
+          fillLocalStorageAndRedirectUser(teams, gameData);
+        } else {
+        }
       }
     }
   }
@@ -86,6 +96,51 @@
     } else if ((teams = "exact_4_teams")) {
       redirect("/dashboard/modi/Exact/Four-Players");
     }
+  }
+
+  function asignNameToTeam(teams: string) {
+    let name: string;
+
+    if (teams === "4winning_2_teams") {
+      name = "4 Winning 2 Teams";
+    } else if (teams === "4winning_3_teams") {
+      name = "4 Winning 3 Teams";
+    } else if (teams === "4winning_4_teams") {
+      name = "4 Winning 4 Teams";
+    } else if (teams === "exact_2_teams") {
+      name = "Exact 2 Teams";
+    } else if (teams === "exact_3_teams") {
+      name = "Exact 3 Teams";
+    } else if (teams === "exact_4_teams") {
+      name = "Exact 4 Teams";
+    } else {
+      name = "Undefined";
+    }
+
+    return name;
+  }
+
+  function saveLocalStorageGameInDB(teams: string) {
+    const name = document.getElementById("name_LStoDB") as HTMLInputElement;
+    const team = document.getElementById("team_LStoDB") as HTMLInputElement;
+    const localStorageData = document.getElementById(
+      "localStorageData_LStoDB"
+    ) as HTMLInputElement;
+
+    if (name && team && localStorageData) {
+      name.value = asignNameToTeam(teams);
+      team.value = teams;
+      localStorageData.value = localStorage.getItem(teams) as string;
+
+      console.log(name.value);
+      console.log(team.value);
+      console.log(localStorageData.value);
+    }
+
+    const form = document.getElementById(
+      "saveLocalStorageToDB"
+    ) as HTMLFormElement;
+    form.submit();
   }
 
   let showMessage = true;
@@ -176,6 +231,18 @@
 {:else}
   <p class="error">No games found for this search.</p>
 {/if}
+
+<form
+  use:enhance
+  action="?/saveLocalStorageGameInDB"
+  method="POST"
+  id="saveLocalStorageToDB"
+  style="display: none;"
+>
+  <input type="text" name="team" id="team_LStoDB" />
+  <input type="text" name="name" id="name_LStoDB" />
+  <input type="text" name="localStorageData" id="localStorageData_LStoDB" />
+</form>
 
 <style lang="scss">
   div {
