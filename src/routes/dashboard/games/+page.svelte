@@ -58,22 +58,33 @@
     let local_storage_game = localStorage.getItem(teams);
 
     if (local_storage_game == null) {
-      localStorage.setItem(teams, gameData);
-      if (teams == "4winning_2_teams") {
-        redirect("/dashboard/modi/4Winning/Two-Players");
-      } else if (teams == "4winning_3_teams") {
-        redirect("/dashboard/modi/4Winning/Three-Players");
-      } else if (teams == "4winning_4_teams") {
-        redirect("/dashboard/modi/4Winning/Four-Players");
-      } else if (teams == "exact_2_teams") {
-        redirect("/dashboard/modi/Exact/Two-Players");
-      } else if ((teams = "exact_3_teams")) {
-        redirect("/dashboard/modi/Exact/Three-Players");
-      } else if ((teams = "exact_4_teams")) {
-        redirect("/dashboard/modi/Exact/Four-Players");
-      }
+      fillLocalStorageAndRedirectUser(teams, gameData);
     } else {
-      alert("You still have a game in the localStorage.");
+      const decision = confirm(
+        "Do you want to delete your current localStorage?"
+      );
+
+      if (decision == true) {
+        localStorage.removeItem(teams);
+        fillLocalStorageAndRedirectUser(teams, gameData);
+      }
+    }
+  }
+
+  function fillLocalStorageAndRedirectUser(teams: string, gameData: string) {
+    localStorage.setItem(teams, gameData);
+    if (teams == "4winning_2_teams") {
+      redirect("/dashboard/modi/4Winning/Two-Players");
+    } else if (teams == "4winning_3_teams") {
+      redirect("/dashboard/modi/4Winning/Three-Players");
+    } else if (teams == "4winning_4_teams") {
+      redirect("/dashboard/modi/4Winning/Four-Players");
+    } else if (teams == "exact_2_teams") {
+      redirect("/dashboard/modi/Exact/Two-Players");
+    } else if ((teams = "exact_3_teams")) {
+      redirect("/dashboard/modi/Exact/Three-Players");
+    } else if ((teams = "exact_4_teams")) {
+      redirect("/dashboard/modi/Exact/Four-Players");
     }
   }
 
