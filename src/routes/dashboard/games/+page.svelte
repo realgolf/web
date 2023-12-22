@@ -329,7 +329,7 @@
       <p>Created at the {new Date(game.date).toLocaleDateString()}</p>
       <p class="game_data_string" style="display: none;">{game.data}</p>
       <p class="error">Please only paste the data in {game.teams}!</p>
-      <button on:click={() => openGame(game.data, game.teams)}>Open Data</button
+      <button on:click={() => openGame(game.data, game.teams)}>Open Game</button
       >
       <form action="?/delete_game" method="POST" autocomplete="off">
         <input class="hidden" type="text" name="id" value={game.id} />
