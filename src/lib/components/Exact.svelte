@@ -76,12 +76,26 @@
     updateTeamTurn();
   }
 
+  function updatePoints() {
+    let points;
+    teams.map((team) => {
+      const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
+      const parsedData = storedData ? JSON.parse(storedData) : {};
+      points = parsedData[team.color]
+        ? parsedData[team.color].points
+        : team.points;
+      team.points = points;
+    });
+  }
+
   function updatePointsDisplay() {
     const display = document.querySelector("#points_display");
     if (display) {
       let displayContent = teams
         .map((team) => {
-          const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
+          const storedData = localStorage.getItem(
+            `exact_${teams.length}_teams`
+          );
           const parsedData = storedData ? JSON.parse(storedData) : {};
           const points = parsedData[team.color]
             ? parsedData[team.color].points
@@ -97,11 +111,14 @@
     let maxPoints = -Infinity;
     let winner = "";
 
-    for (const team of teams) {
-      if (team.points > maxPoints) {
-        maxPoints = team.points;
-        winner = team.color;
-      }
+    console.log(teams[0].points);
+    console.log(teams[1].points);
+    if (teams[1].points > teams[0].points) {
+      winner = teams[1].color;
+    } else if (teams[0].points > teams[1].points) {
+      winner = teams[0].color;
+    } else {
+      winner = "Tie";
     }
 
     return winner;
@@ -165,6 +182,7 @@
             return newPoints;
           });
 
+          updatePoints();
           updatePointsDisplay();
           clickedCellsCount++;
         }
@@ -174,9 +192,15 @@
 
     if (clickedCellsCount === userInput * teams.length) {
       const winner = findWinner();
-      const confirmed = confirm(
-        `The winner is ${winner}! Do you want to play again?`
-      );
+      let confirmed;
+
+      if (winner == "Tie") {
+        confirmed = confirm("The Game ended Tie!");
+      } else {
+        confirmed = confirm(
+          `The winner is ${winner}! Do you want to play again?`
+        );
+      }
 
       if (confirmed) {
         resetGame();
