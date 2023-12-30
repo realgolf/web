@@ -3,6 +3,7 @@
   import {
     faBars,
     faBook,
+    faBookBookmark,
     faChartLine,
     faGamepad,
     faGavel,
@@ -99,6 +100,9 @@
       <a href="/faq"><span><Fa icon={faQuestionCircle} /></span>FAQ</a>
       <a href="https://docs.realgolf.games"
         ><span><Fa icon={faBook} /></span>Documentation</a
+      >
+      <a href="https://rules.realgolf.games"
+        ><span><Fa icon={faBookBookmark}></Fa></span>Official Golf Rules</a
       >
     </div>
     <div class="copyright row border-bottom">
