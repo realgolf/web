@@ -94,14 +94,16 @@
   }
 
   function findWinner(): string {
-    let maxPoints = -Infinity;
     let winner = "";
 
-    for (const team of teams) {
-      if (team.points > maxPoints) {
-        maxPoints = team.points;
-        winner = team.color;
-      }
+    if(teams[0].points > teams[1].points && teams[0].points > teams[2].points && teams[0].points > teams[3].points) {
+      winner = teams[0].color;
+    } else if(teams[1].points > teams[0].points && teams[1].points > teams[2].points && teams[1].points > teams[3].points) {
+      winner = teams[1].color;
+    }else if(teams[2].points > teams[0].points && teams[2].points > teams[1].points && teams[2].points > teams[3].points) {
+      winner = teams[2].color;
+    }else if(teams[3].points > teams[0].points && teams[3].points > teams[1].points && teams[3].points > teams[2].points) {
+      winner = teams[3].color;
     }
 
     return winner;
