@@ -76,12 +76,26 @@
     updateTeamTurn();
   }
 
+  function updatePoints() {
+    let points;
+    teams.map((team) => {
+      const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
+      const parsedData = storedData ? JSON.parse(storedData) : {};
+      points = parsedData[team.color]
+        ? parsedData[team.color].points
+        : team.points;
+      team.points = points;
+    });
+  }
+
   function updatePointsDisplay() {
     const display = document.querySelector("#points_display");
     if (display) {
       let displayContent = teams
         .map((team) => {
-          const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
+          const storedData = localStorage.getItem(
+            `exact_${teams.length}_teams`
+          );
           const parsedData = storedData ? JSON.parse(storedData) : {};
           const points = parsedData[team.color]
             ? parsedData[team.color].points
@@ -93,14 +107,19 @@
     }
   }
 
-  function findWinner(): string {
+  function findWinner(teams: Team[]): string {
     let maxPoints = -Infinity;
-    let winner = "";
+    let winner = "Tie";
 
     for (const team of teams) {
+      console.log(team.points);
+
       if (team.points > maxPoints) {
         maxPoints = team.points;
         winner = team.color;
+      } else if (team.points === maxPoints) {
+        // Handle tie condition
+        winner = "Tie";
       }
     }
 
@@ -165,6 +184,7 @@
             return newPoints;
           });
 
+          updatePoints();
           updatePointsDisplay();
           clickedCellsCount++;
         }
@@ -173,10 +193,16 @@
     }
 
     if (clickedCellsCount === userInput * teams.length) {
-      const winner = findWinner();
-      const confirmed = confirm(
-        `The winner is ${winner}! Do you want to play again?`
-      );
+      const winner = findWinner(teams);
+      let confirmed;
+
+      if (winner == "Tie") {
+        confirmed = confirm("The Game ended Tie!");
+      } else {
+        confirmed = confirm(
+          `The winner is ${winner}! Do you want to play again?`
+        );
+      }
 
       if (confirmed) {
         resetGame();
