@@ -68,18 +68,21 @@
     </div>
     {#if !auth}
       <div class="logged-out row border-bottom">
+        <h3>Sign in</h3>
         <a href="/register"><span><Fa icon={faLock} /></span>Register</a>
         <a href="/login"><span><Fa icon={faKey} /></span>Login</a>
       </div>
     {/if}
     {#if auth}
       <div class="logged-in row border-bottom">
+        <h3>Account</h3>
         <a href="/dashboard"><span><Fa icon={faTh} /></span>Dashboard</a>
         <a href="/dashboard/settings"
           ><span><Fa icon={faGear} /></span>Settings</a
         >
       </div>
       <div class="games row border-bottom">
+        <h3>Dashboard</h3>
         <a href="/dashboard/modi"><span><Fa icon={faGamepad} /></span>Modi</a>
         <a href="/dashboard/games"><span><Fa icon={faSave} /></span>Games</a>
         <a href="/dashboard/info"><span><Fa icon={faInfoCircle} /></span>Info</a
@@ -92,12 +95,14 @@
       </div>
     {/if}
     <div class="external-links row border-bottom">
+      <h3>External Sites</h3>
       <a href="/faq"><span><Fa icon={faQuestionCircle} /></span>FAQ</a>
       <a href="https://docs.realgolf.games"
         ><span><Fa icon={faBook} /></span>Documentation</a
       >
     </div>
     <div class="copyright row border-bottom">
+      <h3>Legal</h3>
       <p><a href="/imprint"><Fa icon={faGavel} /> Imprint</a></p>
       <p>© 2023 Julian Hammer</p>
       <p>All rights reserved</p>
@@ -135,7 +140,9 @@
   }
 
   button :global(svg) {
-    transition: opacity 250ms linear, rotate 250ms linear;
+    transition:
+      opacity 250ms linear,
+      rotate 250ms linear;
     color: var(--font-color);
   }
 
