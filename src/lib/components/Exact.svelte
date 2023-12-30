@@ -107,18 +107,20 @@
     }
   }
 
-  function findWinner(): string {
+  function findWinner(teams: Team[]): string {
     let maxPoints = -Infinity;
-    let winner = "";
+    let winner = "Tie";
 
-    console.log(teams[0].points);
-    console.log(teams[1].points);
-    if (teams[1].points > teams[0].points) {
-      winner = teams[1].color;
-    } else if (teams[0].points > teams[1].points) {
-      winner = teams[0].color;
-    } else {
-      winner = "Tie";
+    for (const team of teams) {
+      console.log(team.points);
+
+      if (team.points > maxPoints) {
+        maxPoints = team.points;
+        winner = team.color;
+      } else if (team.points === maxPoints) {
+        // Handle tie condition
+        winner = "Tie";
+      }
     }
 
     return winner;
@@ -191,7 +193,7 @@
     }
 
     if (clickedCellsCount === userInput * teams.length) {
-      const winner = findWinner();
+      const winner = findWinner(teams);
       let confirmed;
 
       if (winner == "Tie") {
