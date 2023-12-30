@@ -33,23 +33,11 @@
       form.submit();
     }
   }
-
-  function saveToLS() {
-    let gameData = document.getElementById("game") as HTMLInputElement;
-
-    localStorage.setItem("exact_2_teams", gameData.value);
-
-    location.reload();
-  }
 </script>
 
 <Exact {teams} />
 
-<p>Paste the data you got from <a href="/dashboard/games">Games</a> here:</p>
-<input type="text" id="game" name="game" />
-<button on:click={saveToLS}>Submit</button>
 <br />
-
 <form method="POST" autocomplete="off" use:enhance>
   <input
     type="text"
@@ -59,9 +47,3 @@
   />
   <button on:click={saveToDatabaseAndSubmitForm}>Push to Database</button>
 </form>
-
-<style>
-  button {
-    margin-top: 2rem;
-  }
-</style>

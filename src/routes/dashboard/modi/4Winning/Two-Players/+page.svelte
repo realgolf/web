@@ -62,23 +62,10 @@
       alert(error);
     }
   }
-
-  function saveToLS() {
-    let gameData = document.getElementById("game") as HTMLInputElement;
-
-    localStorage.setItem("4winning_2_teams", gameData.value);
-
-    location.reload();
-  }
 </script>
 
 <FourWinning {teams} {team} {measurement_unit} />
 
-<div class="ls">
-  <p>Paste the data you got from <a href="/dashboard/games">Games</a> here:</p>
-  <input type="text" id="game" name="game" />
-  <button on:click={saveToLS}>Submit</button>
-</div>
 <br />
 <div class="database">
   <form method="POST" autocomplete="off" use:enhance>
@@ -91,11 +78,3 @@
     <button on:click={saveToDatabaseAndSubmitForm}>Save to Database</button>
   </form>
 </div>
-
-<style lang="scss">
-  .ls {
-    button {
-      margin-top: 1.5rem;
-    }
-  }
-</style>
