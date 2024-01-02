@@ -137,6 +137,7 @@
         if (info_display) {
           info_display.innerHTML =
             "<b> Oops! </b> This Field is already claimed by another Team. You can still win by hitting it four times!";
+          info_display.scrollIntoView();
         }
 
         FieldClickedFourTimes(outerIndex, innerIndex);
