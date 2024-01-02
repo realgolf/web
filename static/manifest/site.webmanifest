@@ -6,7 +6,7 @@
     "start_url": "/",
     "name": "Real Golf",
     "short_name": "Golf",
-    "description": "Welcome to \"Real Golf\" - your ultimate     destination for golf challenges! Discover \"4 Winning\", \"Exact\", and     \"Precision\" - captivating golf experiences tested with trainers.",
+    "description": "Welcome to \"Real Golf\" - your ultimate destination for golf challenges! Discover \"4 Winning\", \"Exact\", and \"Precision\" - captivating golf experiences tested with trainers.",
     "icons": [
       {
         "src": "/manifest/android-chrome-192x192.png",
