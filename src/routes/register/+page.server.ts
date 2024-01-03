@@ -13,6 +13,7 @@ export const actions: Actions = {
     const name = (data.get("name") as string)?.trim();
     const handicap = data.get("handicap") as unknown as number;
     const handicap_updated = new Date();
+    const registration_date = new Date();
 
     const user = { email, name };
 
@@ -22,7 +23,8 @@ export const actions: Actions = {
       verified_password,
       name,
       handicap,
-      handicap_updated
+      handicap_updated,
+      registration_date
     );
 
     if (error) {
