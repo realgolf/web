@@ -102,7 +102,7 @@
         ><span><Fa icon={faBook} /></span>Documentation</a
       >
       <a href="https://rules.realgolf.games"
-        ><span><Fa icon={faBookBookmark}></Fa></span>Official Golf Rules</a
+        ><span><Fa icon={faBookBookmark} /></span>Official Golf Rules</a
       >
     </div>
     <div class="copyright row border-bottom">
@@ -144,9 +144,7 @@
   }
 
   button :global(svg) {
-    transition:
-      opacity 250ms linear,
-      rotate 250ms linear;
+    transition: opacity 250ms linear, rotate 250ms linear;
     color: var(--font-color);
   }
 

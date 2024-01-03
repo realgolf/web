@@ -1,44 +1,44 @@
 {
-	"name": "golf",
-	"version": "2.0.0",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.0.1",
-		"@sveltejs/kit": "^2.0.6",
-		"@sveltejs/vite-plugin-svelte": "^3.0.1",
-		"@types/uuid": "^9.0.7",
-		"eslint": "^8.56.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.35.1",
-		"prettier": "^2.0.0",
-		"prettier-plugin-svelte": "^2.10.1",
-		"svelte": "^4.2.8",
-		"svelte-check": "^3.6.2",
-		"svelte-fa": "^3.0.4",
-		"tslib": "^2.4.1",
-		"typescript": "^5.3.3",
-		"vite": "^5.0.0"
-	},
-	"type": "module",
-	"dependencies": {
-		"@fortawesome/free-regular-svg-icons": "^6.5.1",
-		"@fortawesome/free-solid-svg-icons": "^6.5.1",
-		"@types/bcrypt": "^5.0.2",
-		"@types/jsonwebtoken": "^9.0.5",
-		"bcrypt": "^5.1.1",
-		"jsonwebtoken": "^9.0.2",
-		"lint": "^0.8.19",
-		"mongoose": "^8.0.3",
-		"sass": "^1.69.7",
-		"uuid": "^9.0.1"
-	}
+  "name": "golf",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-auto": "^3.0.1",
+    "@sveltejs/kit": "^2.0.6",
+    "@sveltejs/vite-plugin-svelte": "^3.0.1",
+    "@types/uuid": "^9.0.7",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-svelte": "^2.35.1",
+    "prettier": "^2.0.0",
+    "prettier-plugin-svelte": "^2.10.1",
+    "svelte": "^4.2.8",
+    "svelte-check": "^3.6.2",
+    "svelte-fa": "^3.0.4",
+    "tslib": "^2.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.0"
+  },
+  "type": "module",
+  "dependencies": {
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.5",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "lint": "^0.8.19",
+    "mongoose": "^8.0.3",
+    "sass": "^1.69.7",
+    "uuid": "^9.0.1"
+  }
 }
