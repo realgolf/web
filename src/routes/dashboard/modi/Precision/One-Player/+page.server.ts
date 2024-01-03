@@ -33,32 +33,69 @@ export const actions: Actions = {
         };
       }
 
+      const periods = ["daily", "weekly", "monthly", "yearly", "all_time"];
+
       if (user.one_player_precision_highscore) {
-        if (!user.one_player_precision_highscore?.daily) {
-          user.one_player_precision_highscore.daily = highscore;
-        } else if (user.one_player_precision_highscore?.daily > highscore) {
-          throw new Error("The Highsore is smaller then todays highscore");
-        }
-        if (!user.one_player_precision_highscore.weekly) {
-          user.one_player_precision_highscore.weekly = highscore;
-        } else if (user.one_player_precision_highscore.weekly > highscore) {
-          throw new Error("The Highsore is smaller then the weekly highscore");
+        const currentTime = new Date();
+
+        for (const period of periods) {
+          const highscoreData =
+            user.one_player_precision_highscore[
+              period as keyof typeof user.one_player_precision_highscore
+            ];
+
+          if (!highscoreData || !highscoreData.lastUpdated) {
+            user.one_player_precision_highscore[
+              period as keyof typeof user.one_player_precision_highscore
+            ] = {
+              value: highscore,
+              lastUpdated: currentTime,
+            };
+          } else {
+            const timeElapsed =
+              currentTime.getTime() -
+              new Date(highscoreData.lastUpdated).getTime();
+            const timeThreshold = getTimeThreshold(period);
+
+            if (
+              highscoreData.value < highscore ||
+              timeElapsed > timeThreshold
+            ) {
+              // Update highscore if the incoming highscore is greater
+              user.one_player_precision_highscore[
+                period as keyof typeof user.one_player_precision_highscore
+              ] = {
+                value: highscore,
+                lastUpdated: currentTime,
+              };
+            } else {
+              throw new Error(
+                `The Highscore is smaller than the ${period} highscore`
+              );
+            }
+          }
         }
 
-        if (!user.one_player_precision_highscore.monthly) {
-          user.one_player_precision_highscore.monthly = highscore;
-        } else if (user.one_player_precision_highscore.monthly > highscore) {
-          throw new Error("The Highsore is smaller then the monthly highscore");
-        }
-
-        if (!user.one_player_precision_highscore.yearly) {
-          user.one_player_precision_highscore.yearly = highscore;
-        } else if (user.one_player_precision_highscore.yearly > highscore) {
-          throw new Error("The Highsore is smaller then the yearly highscore");
-        }
-
-        console.log(user);
+        // Save the user after updating all highscores
+        await user.save();
       }
+
+      function getTimeThreshold(period: string): number {
+        switch (period) {
+          case "daily":
+            return 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+          case "weekly":
+            return 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+          case "monthly":
+            return 28 * 24 * 60 * 60 * 1000; // 28 days in milliseconds
+          case "yearly":
+            return 365 * 24 * 60 * 60 * 1000; // 365 days in milliseconds
+          default:
+            return 0;
+        }
+      }
+
+      await user.save();
     } catch (error) {
       console.error(error);
       return {

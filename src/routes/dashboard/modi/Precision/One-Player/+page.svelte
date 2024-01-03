@@ -3,6 +3,7 @@
   import { afterUpdate, onMount } from "svelte";
 
   export let data;
+  export let form;
   let measurement_unit: string;
   measurement_unit = data.measurement_unit ? data.measurement_unit : "yards";
   let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_unit);
@@ -115,6 +116,12 @@
 </svelte:head>
 
 <h1>{teams.length} Player</h1>
+
+{#if form?.error}
+  <p class="error">
+    {form.error}
+  </p>
+{/if}
 
 <div id="points_display" />
 
