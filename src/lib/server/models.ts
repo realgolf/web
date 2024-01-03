@@ -25,6 +25,13 @@ const User_Schema = new mongoose.Schema({
       date: { type: Date },
     },
   ],
+  one_player_precision_highscore: {
+    daily: {type: Number},
+    weekly: {type: Number},
+    monthly: {type: Number},
+    yearly: {type: Number},
+    all_time: {type: Number}
+  }
 });
 
 export const User_Model = mongoose.model("User", User_Schema);
