@@ -4,6 +4,7 @@
   import { afterUpdate, onMount } from "svelte";
   import Fa from "svelte-fa";
   import type { ActionData } from "./$types.js";
+  import FourWinningTable from "./FourWinning_table.svelte";
   import { teams } from "./teams";
 
   /**
@@ -11,6 +12,8 @@
    */
   export let data;
   export let form: ActionData;
+
+  let measurement_units: string = data.measurement_units;
 
   /**
    * STATE
@@ -259,6 +262,17 @@
       }
     }
   }
+
+  function togglePreview() {
+    const tablePreviews = document.getElementsByClassName("table_previews");
+
+    for (const tablePreview of tablePreviews) {
+      if (tablePreview instanceof HTMLElement) {
+        tablePreview.style.display =
+          tablePreview.style.display === "none" ? "block" : "none";
+      }
+    }
+  }
 </script>
 
 <svelte:head>
@@ -272,7 +286,7 @@
 <form action="?/delete_all" method="POST" autocomplete="off">
   <button>Delete All</button>
 </form>
-<button title="Toggle Game Data" on:click={hideData}><Fa icon={faEye} /></button
+<button title="Toggle Game Preview" on:click={togglePreview}><Fa icon={faEye} /></button
 >
 
 <div id="confirmationModal" class="modal">
@@ -327,10 +341,16 @@
         <button>Update Name</button>
       </form>
       <p>Created at the {new Date(game.date).toLocaleDateString()}</p>
-      <p class="game_data_string" style="display: none;">{game.data}</p>
-      <p class="error">Please only paste the data in {game.teams}!</p>
+      {#if game.teams.includes("4winning")}
+         <div class="table_previews" style="display: none;">
+           <FourWinningTable {measurement_units} />
+         </div>
+        {:else}
+         <p>{game.data}</p>
+      {/if}
       <button on:click={() => openGame(game.data, game.teams)}>Open Game</button
       >
+      <p class="error">Please only paste the data in {game.teams}!</p>
       <form action="?/delete_game" method="POST" autocomplete="off">
         <input class="hidden" type="text" name="id" value={game.id} />
         <button>Delete Game</button>
