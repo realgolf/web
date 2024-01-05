@@ -95,8 +95,4 @@
     height: calc(50vh / 8);
     text-align: center;
   }
-
-  .meters:hover {
-    cursor: pointer;
-  }
 </style>
