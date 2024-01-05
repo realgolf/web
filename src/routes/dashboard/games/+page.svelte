@@ -327,7 +327,7 @@
   {:else if copyStatus === "error"}
     <p class="error">Copy failed</p>
   {/if}
-  {#each filteredGames as game (game.id)}
+  {#each filteredGames as {name, teams, data, id, date}}
     <div class="game">
       <form action="?/rename" method="POST">
         <input
@@ -335,24 +335,25 @@
           name="name"
           id="name"
           class="headline"
-          bind:value={game.name}
+          bind:value={name}
         />
-        <input class="hidden" type="text" name="id" value={game.id} />
+        <input class="hidden" type="text" name="id" value={id} />
         <button>Update Name</button>
       </form>
-      <p>Created at the {new Date(game.date).toLocaleDateString()}</p>
-      {#if game.teams.includes("4winning")}
+      <p>Created at the {new Date(date).toLocaleDateString()}</p>
+      {#if teams.includes("4winning")}
          <div class="table_previews" style="display: none;">
-           <FourWinningTable {measurement_units} />
+           <FourWinningTable {measurement_units} {data} />
          </div>
+         <p>{data}</p>
         {:else}
-         <p>{game.data}</p>
+         <p>{data}</p>
       {/if}
-      <button on:click={() => openGame(game.data, game.teams)}>Open Game</button
+      <button on:click={() => openGame(data, teams)}>Open Game</button
       >
-      <p class="error">Please only paste the data in {game.teams}!</p>
+      <p class="error">Please only paste the data in {teams}!</p>
       <form action="?/delete_game" method="POST" autocomplete="off">
-        <input class="hidden" type="text" name="id" value={game.id} />
+        <input class="hidden" type="text" name="id" value={id} />
         <button>Delete Game</button>
       </form>
     </div>
