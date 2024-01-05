@@ -108,7 +108,7 @@
     <div class="copyright row border-bottom">
       <h3>Legal</h3>
       <p><a href="/imprint"><Fa icon={faGavel} /> Imprint</a></p>
-      <p>© 2023 Julian Hammer</p>
+      <p>© 2024 RealGolf.Games</p>
       <p>All rights reserved</p>
       <p>
         <a
