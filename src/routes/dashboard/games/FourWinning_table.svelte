@@ -1,8 +1,10 @@
 <script lang="ts">
   export let measurement_units;
+  export let data;
   import { capitalizeFirstLetter } from "$lib/shared/utils";
-
+  
   let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_units);
+  let game_data = data;
 
   interface Row {
     side: string;
