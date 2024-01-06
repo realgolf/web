@@ -42,8 +42,8 @@
       />
 
       <Card
-        link="/dashboard/modi"
-        title="Modi"
+        link="/dashboard/games"
+        title="Games"
         description="Here you can find all game modes you can play, just click on the link for
 the game you want to play."
       />
@@ -56,8 +56,8 @@ the game you want to play."
     </div>
     <div class="modis">
       <Card
-        link="/dashboard/games"
-        title="Games"
+        link="/dashboard/archive"
+        title="Archive"
         description="Here you can find all games you have saved in the database."
       />
 
