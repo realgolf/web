@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { browser } from "$app/environment";
   import { faEye } from "@fortawesome/free-solid-svg-icons";
   import { onMount } from "svelte";
   import Fa from "svelte-fa";
@@ -24,6 +25,10 @@
       });
     }
   });
+
+  if (browser && form?.user) {
+    window.location.href = "/dashboard";
+  }
 </script>
 
 <svelte:head>
@@ -53,10 +58,7 @@
 </form>
 
 {#if form?.user}
-  <p class="success">
-    Welcome {form.user.name}! You can now open the
-    <a href="/dashboard">Dashboard</a>.
-  </p>
+  <p class="success">Redirecting...</p>
 {/if}
 
 {#if form?.error}
