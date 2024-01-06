@@ -7,6 +7,8 @@ export async function load(event): Promise<any> {
 
   const user = await User_Model.findOne({ "user.email": email });
 
+  const measurement_units = user?.user?.measurement_units;
+
   if (!user) {
     return { status: 400, error: new Error("User could not be found") };
   } else {
@@ -15,7 +17,7 @@ export async function load(event): Promise<any> {
       delete gameCopy._id; // Remove the _id field
       return gameCopy;
     });
-    return { games };
+    return { games, measurement_units };
   }
 }
 
