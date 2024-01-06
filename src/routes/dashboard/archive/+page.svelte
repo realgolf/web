@@ -276,10 +276,10 @@
 </script>
 
 <svelte:head>
-  <title>Real Golf - Games</title>
+  <title>Real Golf - Archive</title>
 </svelte:head>
 
-<h1>Games</h1>
+<h1>Archive</h1>
 
 <h2>You have saved: {data.games.length} games in the database.</h2>
 
