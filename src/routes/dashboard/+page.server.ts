@@ -9,6 +9,27 @@ export async function load(event): Promise<unknown> {
     return { status: 400, error: "User could not be found" };
   } else {
     const one_player_precision_highscore = user?.one_player_precision_highscore;
+    const games = user.games;
+    const measurement_units = user.user?.measurement_units;
+
+    let newest_game;
+    let game;
+    let error;
+
+    if (games.length > 0) {
+      newest_game = [...games].pop();
+      if (newest_game) {
+        game = {
+          id: newest_game.id,
+          name: newest_game.name,
+          teams: newest_game.teams,
+          date: newest_game.date,
+          data: newest_game.data,
+        };
+      }
+    } else {
+      error = "The user has no saved Game.";
+    }
 
     const daily = {
       value: one_player_precision_highscore?.daily?.value,
@@ -35,8 +56,15 @@ export async function load(event): Promise<unknown> {
       lastUpdated: one_player_precision_highscore?.all_time?.lastUpdated,
     };
 
-    console.log(daily, weekly, monthly, yearly, all_time);
-
-    return { daily, weekly, monthly, yearly, all_time };
+    return {
+      daily,
+      weekly,
+      monthly,
+      yearly,
+      all_time,
+      game,
+      measurement_units,
+      error,
+    };
   }
 }
