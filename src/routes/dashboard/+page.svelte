@@ -23,26 +23,3 @@
 
   <h3>But most important enjoy the games and have fun!</h3>
 </main>
-
-<style lang="scss">
-  .modi {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 90vw;
-  }
-
-  .modis {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: left;
-
-    @media screen and (max-width: 767px) {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-</style>
