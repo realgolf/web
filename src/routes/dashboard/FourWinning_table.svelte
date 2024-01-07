@@ -6,7 +6,6 @@
   export let data;
 
   let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_units);
-  console.log(data);
   let game_data = data;
 
   interface Row {
@@ -127,11 +126,9 @@
           if (colorData.includes(field.id)) {
             field.color = color;
           }
-          console.log(field.id, field.color);
         });
       });
     });
-    console.log(rows);
     rows = rows;
   }
 

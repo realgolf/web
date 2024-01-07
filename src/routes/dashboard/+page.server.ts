@@ -28,7 +28,7 @@ export async function load(event): Promise<unknown> {
         };
       }
     } else {
-      error = "The user has no saved Game."
+      error = "The user has no saved Game.";
     }
 
     const daily = {
@@ -56,8 +56,15 @@ export async function load(event): Promise<unknown> {
       lastUpdated: one_player_precision_highscore?.all_time?.lastUpdated,
     };
 
-    console.log(daily, weekly, monthly, yearly, all_time);
-
-    return { daily, weekly, monthly, yearly, all_time, game, measurement_units, error };
+    return {
+      daily,
+      weekly,
+      monthly,
+      yearly,
+      all_time,
+      game,
+      measurement_units,
+      error,
+    };
   }
 }
