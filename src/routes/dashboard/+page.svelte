@@ -62,10 +62,12 @@
   <div class="card">
     <h2>The last game you have saved in the Database</h2>
     {#if !data.error}
-      <FourWinningTable
-        measurement_units={data.measurement_units}
-        data={data.game.data}
-      />
+      {#if data.game.teams.includes("4winning")}
+        <FourWinningTable
+          measurement_units={data.measurement_units}
+          data={data.game.data}
+        />
+      {/if}
       <p>Name of the Game: {data.game.name}</p>
       <p>Team the game is associated with: {data.game.teams}</p>
       <p>
