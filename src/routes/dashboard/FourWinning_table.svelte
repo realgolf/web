@@ -7,8 +7,7 @@
 
   let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_units);
   console.log(data);
-  let game_data =
-    '[{"color":"red","data":["1-0","2-1","3-0","4-0","5-0","6-0"]},{"color":"blue","data":["1-1","2-0","3-1","4-1","5-1"]}]';
+  let game_data = data;
 
   interface Row {
     side: string;
