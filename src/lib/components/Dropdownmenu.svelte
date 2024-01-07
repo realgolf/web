@@ -34,6 +34,12 @@
   }
 
   onMount(() => {
+    window.addEventListener("keypress", (e) => {
+      if (e.key == "m") {
+        toggleDropdown();
+      }
+    });
+
     function closeDropdownOnClick(event: any) {
       if (
         event.target instanceof Element &&
@@ -85,7 +91,8 @@
       <div class="internal-links row border-bottom">
         <h3>Internal Links</h3>
         <a href="/dashboard/games"><span><Fa icon={faGamepad} /></span>Games</a>
-        <a href="/dashboard/archive"><span><Fa icon={faSave} /></span>Archive</a>
+        <a href="/dashboard/archive"><span><Fa icon={faSave} /></span>Archive</a
+        >
         <a href="/dashboard/info"><span><Fa icon={faInfoCircle} /></span>Info</a
         >
         <a href="/dashboard/levels"
