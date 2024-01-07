@@ -1,4 +1,6 @@
 <script lang="ts">
+  import FourWinningTable from "./FourWinning_table.svelte";
+
   export let data: any;
 </script>
 
@@ -53,6 +55,29 @@
         Your all-time highscore is <b>{data.all_time.value}</b>, last exceeded
         on{" "}
         {new Date(data.all_time.lastUpdated).toLocaleDateString()}.
+      </p>
+    {/if}
+  </div>
+
+  <div class="card">
+    <h2>The last game you have saved in the Database</h2>
+    {#if !data.error}
+      <FourWinningTable
+        measurement_units={data.measurement_units}
+        data={data.game.data}
+      />
+      <p>Name of the Game: {data.game.name}</p>
+      <p>Team the game is associated with: {data.game.teams}</p>
+      <p>
+        You can see all your games in the <a href="/dashboard/archive"
+          >Archive</a
+        >.
+      </p>
+    {:else}
+      <p class="error">
+        You don't have any games saved, play a <a href="/dashboard/games"
+          >Game</a
+        > and save it in the Database to see it here
       </p>
     {/if}
   </div>
