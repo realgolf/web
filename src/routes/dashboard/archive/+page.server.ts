@@ -2,7 +2,7 @@ import { User_Model } from "$lib/server/models";
 import type { Actions } from "@sveltejs/kit";
 import { v4 as uuidv4 } from "uuid";
 
-export async function load(event): Promise<any> {
+export async function load(event): Promise<unknown> {
   const email = event.cookies.get("email");
 
   const user = await User_Model.findOne({ "user.email": email });

@@ -49,6 +49,7 @@ body[data-theme="system"] {
     --label-color: #aaa;
     --border-color: #333;
     --h2-color: skyblue;
+    --shadow-color: #ffffff7c;
   }
 
   @media (prefers-color-scheme: light) {
@@ -62,6 +63,7 @@ body[data-theme="system"] {
     --label-color: #777;
     --border-color: #ccc;
     --h2-color: var(--accent-color);
+    --shadow-color: #33333362;
   }
 }
 
