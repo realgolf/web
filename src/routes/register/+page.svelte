@@ -7,6 +7,16 @@
   export let form: ActionData;
 
   onMount(() => {
+    window.addEventListener("keydown", (e) => {
+      if (e.key == "Enter") {
+        const form = document.querySelectorAll(
+          "form"
+        ) as unknown as HTMLFormElement;
+
+        form.submit();
+      }
+    });
+
     const passwordInput = document.getElementById(
       "password_input"
     ) as HTMLInputElement;
