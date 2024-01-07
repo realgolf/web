@@ -82,10 +82,10 @@
           ><span><Fa icon={faGear} /></span>Settings</a
         >
       </div>
-      <div class="games row border-bottom">
-        <h3>Dashboard</h3>
-        <a href="/dashboard/modi"><span><Fa icon={faGamepad} /></span>Modi</a>
-        <a href="/dashboard/games"><span><Fa icon={faSave} /></span>Games</a>
+      <div class="internal-links row border-bottom">
+        <h3>Internal Links</h3>
+        <a href="/dashboard/games"><span><Fa icon={faGamepad} /></span>Games</a>
+        <a href="/dashboard/archive"><span><Fa icon={faSave} /></span>Archive</a>
         <a href="/dashboard/info"><span><Fa icon={faInfoCircle} /></span>Info</a
         >
         <a href="/dashboard/levels"
@@ -220,7 +220,7 @@
     .home,
     .external-links,
     .copyright,
-    .games,
+    .internal-links,
     .logged-out,
     .logged-in {
       padding-top: 10px;
