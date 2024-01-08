@@ -17,11 +17,11 @@ export const load: PageServerLoad = async (event) => {
 
   const user = await User_Model.findOne({ "user.email": email });
 
-  let measurement_unit = user?.user?.measurement_units as string;
-  let theme = user?.user?.theme as string;
-  let handicap = user?.user?.handicap as number;
-  let handicap_updated = user?.user?.handicap_updated as Date;
-  let local_handicap_updated = handicap_updated;
+  const measurement_unit = user?.user?.measurement_units as string;
+  const theme = user?.user?.theme as string;
+  const handicap = user?.user?.handicap as number;
+  const handicap_updated = user?.user?.handicap_updated as Date;
+  const pronouns = user?.user?.pronouns;
 
   const handicap_history = user?.handicap_history.map((history) => {
     const historyCopy = JSON.parse(JSON.stringify(history));
@@ -33,8 +33,9 @@ export const load: PageServerLoad = async (event) => {
     measurement_unit,
     theme,
     handicap,
-    local_handicap_updated,
+    handicap_updated,
     handicap_history,
+    pronouns,
   };
 };
 
@@ -170,6 +171,38 @@ export const actions: Actions = {
       return {
         status: 500,
         error: "Error deleting History",
+      };
+    }
+  },
+  pronouns: async (event) => {
+    const data = await event.request.formData();
+    const email = event.cookies.get("email");
+
+    const pronouns = data.get("pronouns-settings") as string;
+    const custom_pronoun = data.get("custom-pronoun") as string;
+
+    try {
+      const user = await User_Model.findOne({ "user.email": email });
+
+      if (!user) {
+        return {
+          status: 404,
+          error: "User not found",
+        };
+      }
+
+      user.user.pronouns = pronouns;
+
+      if (pronouns == "custom") {
+        user.user.custom_pronoun = custom_pronoun;
+      }
+
+      await user?.save();
+    } catch (error) {
+      console.error(error);
+      return {
+        status: 500,
+        error: "Error saving Pronoun",
       };
     }
   },
