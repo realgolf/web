@@ -1,11 +1,14 @@
 import { User_Model } from "$lib/server/models";
 import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async (event: { params: { name: string; }; }) => {
+export const load: PageServerLoad = async (event: {
+  params: { name: string };
+}) => {
   const param_name: string = event.params.name;
 
-  const user = await User_Model.findOne({"user.username": { $regex: new RegExp(param_name, 'i') }});
-
+  const user = await User_Model.findOne({
+    "user.username": { $regex: new RegExp(param_name, "i") },
+  });
 
   console.log(user);
 
@@ -16,9 +19,17 @@ export const load: PageServerLoad = async (event: { params: { name: string; }; }
   const user_name = user.user?.name;
   const user_username = user.user?.username;
   const user_registration_date = user.user?.registration_date;
+  const user_last_login_date = user.user?.last_login_date;
   const user_handicap = user.user?.handicap;
-  const user_one_player_precision_highscore = user.one_player_precision_highscore;
+  const user_one_player_precision_highscore =
+    user.one_player_precision_highscore;
   const user_games = user.games;
+
+  const games = user_games.map((game) => {
+    const gameCopy = JSON.parse(JSON.stringify(game));
+    delete gameCopy._id; // Remove the _id field
+    return gameCopy;
+  });
 
   const user_daily = {
     value: user_one_player_precision_highscore?.daily?.value,
@@ -51,12 +62,13 @@ export const load: PageServerLoad = async (event: { params: { name: string; }; }
     user_name,
     user_username,
     user_registration_date,
+    user_last_login_date,
     user_handicap,
     user_daily,
     user_weekly,
     user_monthly,
     user_yearly,
     user_all_time,
-    user_games,
+    games,
   };
 };
