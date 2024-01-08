@@ -13,6 +13,17 @@
     handicap_history = data.handicap_history;
   });
 
+  let selectedPronoun = "dont-specify";
+  let customPronoun = "";
+
+  function handlePronounChange(event: any) {
+    selectedPronoun = event.target.value;
+  }
+
+  function handleCustomPronounInput(event: any) {
+    customPronoun = event.target.value;
+  }
+
   onMount(() => {
     const newPasswordInput = document.getElementById(
       "new_password_input"
@@ -145,7 +156,7 @@
   </p>
   <p class="underline">Your current Handicap is: {data.handicap}</p>
   <p class="underline">
-    You've updated your handicap the last time at the {data.local_handicap_updated.toLocaleString()}
+    You've updated your handicap the last time at the {data.handicap_updated.toLocaleString()}
   </p>
   <p>
     When your Handicap has changed you can also update it here, so you can keep
@@ -206,6 +217,37 @@
 </div>
 
 <div id="preferences">
+  <h2>Pronouns</h2>
+  <p>Your prefered pronouns are currently: {data.pronouns}</p>
+  <p>You can choose them here:</p>
+
+  <form action="?/pronouns" method="POST" class="pronouns-form">
+    <label for="pronouns-settings"> Please select your prefered pronuns:</label>
+    <select
+      name="pronouns-settings"
+      id="pronouns-settings"
+      on:change={handlePronounChange}
+      bind:value={data.pronouns}
+    >
+      <option value="dont-specify">Don't specify</option>
+      <option value="they">they/them</option>
+      <option value="she">she/her</option>
+      <option value="he">he/him</option>
+      <option value="custom">Custom</option>
+    </select>
+
+    {#if selectedPronoun === "custom"}
+      <label for="custom-pronoun">Enter custom pronoun:</label>
+      <input
+        type="text"
+        id="custom-pronoun"
+        name="custom-pronoun"
+        on:input={handleCustomPronounInput}
+      />
+    {/if}
+    <br />
+    <button aria-label="Update Pronoun Settings">Update</button>
+  </form>
   <h2>Appearence</h2>
   <p class="underline">
     Your currently saved Theme is: {capitalizeFirstLetter(data.theme)}

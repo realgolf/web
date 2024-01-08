@@ -13,6 +13,7 @@ const User_Schema = new mongoose.Schema({
     handicap: { type: Number, required: true, default: 54 },
     handicap_updated: { type: Date, required: true, default: new Date() },
     pronouns: { type: String, default: "Don't specify" },
+    custom_pronoun: {type: String},
   },
   games: [
     {
