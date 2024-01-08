@@ -1,6 +1,6 @@
 <script lang="ts">
+  import FourWinningTable from "$lib/components/FourWinning_table.svelte";
   import { asignNameToTeam } from "$lib/shared/utils";
-  import FourWinningTable from "./FourWinning_table.svelte";
 
   export let data: any;
 
