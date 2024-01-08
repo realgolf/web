@@ -171,4 +171,10 @@
     height: calc(16.7vh / 8);
     text-align: center;
   }
+
+  @media only screen and (max-width: 600px) {
+    table {
+      display: none;
+    }
+  }
 </style>
