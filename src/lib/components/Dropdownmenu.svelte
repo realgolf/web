@@ -35,11 +35,10 @@
 
   onMount(() => {
     window.addEventListener("keypress", (e) => {
-      if (e.key == "m") {
+      if (e.key === "m" && e.ctrlKey) {
         toggleDropdown();
       }
     });
-
     function closeDropdownOnClick(event: any) {
       if (
         event.target instanceof Element &&
