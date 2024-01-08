@@ -32,8 +32,8 @@ export async function register_user(
 
   const username_error = await verify_username(username);
 
-  if(username_error) {
-    return {error: username_error}
+  if (username_error) {
+    return { error: username_error };
   }
 
   const saltRounds = 10;
@@ -108,18 +108,20 @@ export function verify_name(name: string): string {
 }
 
 export async function verify_username(username: string): Promise<string> {
-  if(!username) {
+  if (!username) {
     return "Username is required.";
   }
 
-  if(username.length <= 1) {
-    return "Username has to be at least 2 characters."
+  if (username.length <= 1) {
+    return "Username has to be at least 2 characters.";
   }
 
-  const previous_user = await User_Model.findOne({"user.username": username});
+  const previous_user = await User_Model.findOne({
+    "user.username": { $regex: new RegExp(username, "i") },
+  });
 
-  if(previous_user) {
-    return "There is already a account with this username."
+  if (previous_user) {
+    return "There is already a account with this username.";
   }
 
   return "";
