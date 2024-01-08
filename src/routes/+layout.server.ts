@@ -23,7 +23,7 @@ export const load: LayoutServerLoad = async (event) => {
     };
   }
 
-  let theme = user.user?.theme;
+  const theme = user.user?.theme;
 
   return { name, email, auth, theme };
 };

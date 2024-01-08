@@ -6,9 +6,7 @@
   export let data;
 
   let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_units);
-  console.log(data);
-  let game_data =
-    '[{"color":"red","data":["1-0","2-1","3-0","4-0","5-0","6-0"]},{"color":"blue","data":["1-1","2-0","3-1","4-1","5-1"]}]';
+  let game_data = data;
 
   interface Row {
     side: string;
@@ -128,11 +126,9 @@
           if (colorData.includes(field.id)) {
             field.color = color;
           }
-          console.log(field.id, field.color);
         });
       });
     });
-    console.log(rows);
     rows = rows;
   }
 
@@ -174,5 +170,11 @@
     min-width: calc(30vw / 15);
     height: calc(16.7vh / 8);
     text-align: center;
+  }
+
+  @media only screen and (max-width: 600px) {
+    table {
+      display: none;
+    }
   }
 </style>
