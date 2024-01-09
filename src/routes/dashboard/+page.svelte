@@ -1,10 +1,8 @@
 <script lang="ts">
+  import FourWinningTable from "$lib/components/FourWinning_table.svelte";
   import { asignNameToTeam } from "$lib/shared/utils";
-  import FourWinningTable from "./FourWinning_table.svelte";
 
   export let data: any;
-
-
 </script>
 
 <svelte:head>
@@ -72,7 +70,9 @@
         />
       {/if}
       <p>Name of the Game: {data.game.name}</p>
-      <p>Team the game is associated with: {asignNameToTeam(data.game.teams)}</p>
+      <p>
+        Team the game is associated with: {asignNameToTeam(data.game.teams)}
+      </p>
       <p>
         You can see all your games in the <a href="/dashboard/archive"
           >Archive</a

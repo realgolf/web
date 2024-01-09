@@ -1,7 +1,9 @@
 import { User_Model } from "$lib/server/models";
 import type { PageServerLoad } from "../$types";
 
-export const load: PageServerLoad = async (event: { cookies: { get: (arg0: string) => unknown; }; }) => {
+export const load: PageServerLoad = async (event: {
+  cookies: { get: (arg0: string) => unknown };
+}) => {
   const email = event.cookies.get("email");
 
   const user = await User_Model.findOne({ "user.email": email });

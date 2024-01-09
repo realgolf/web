@@ -84,6 +84,17 @@
   </div>
 
   <div>
+    <label for="username_input">Username</label>
+    <input
+      type="text"
+      name="username"
+      id="username_input"
+      placeholder="The username will always be made to lowercase."
+      value={form?.user?.username ?? ""}
+    />
+  </div>
+
+  <div>
     <label for="handicap">Handicap</label>
     <input type="text" name="handicap" id="handicap" />
   </div>
@@ -92,15 +103,17 @@
 
 {#if form?.error}
   <p class="error">
-    {form?.error}
-    You can still try to login here: <a href="/login">Login</a>, or open the
-    <a href="/dashboard">Dashboard</a>
+    {#if form?.error == "There is already a account with this username." || form?.error == "There is already an account with this email."}
+      {form?.error}
+    {:else}
+      {form?.error}
+      You can still try to login here: <a href="/login">Login</a>, or open the
+      <a href="/dashboard">Dashboard</a>
+    {/if}
   </p>
-{/if}
-
-{#if form?.user}
+{:else if form?.user?.name}
   <p class="success">
-    Welcome {form.user.name}! You can now open the
+    Welcome {form?.user?.name}! You can now open the
     <a href="/dashboard">Dashboard</a>.
   </p>
 {/if}

@@ -1,4 +1,4 @@
 {
-    "explorer.expandSingleFolderWorkspaces": true,
-    "explorer.compactFolders": false,
+  "explorer.expandSingleFolderWorkspaces": true,
+  "explorer.compactFolders": false
 }
