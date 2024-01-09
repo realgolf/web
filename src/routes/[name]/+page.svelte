@@ -1,6 +1,4 @@
 <script lang="ts">
-  import FourWinningTable from "$lib/components/FourWinning_table.svelte";
-  import { capitalizeFirstLetter } from "$lib/shared/utils.js";
   import { onMount } from "svelte";
 
   export let data;
@@ -18,6 +16,19 @@
       hasRedirected = true;
     }
   });
+
+  function formatPronouns(pronouns: string | undefined) {
+    switch (pronouns) {
+      case "he":
+        return "he/him";
+      case "she":
+        return "she/her";
+      case "they":
+        return "they/them";
+      default:
+        return pronouns;
+    }
+  }
 </script>
 
 <svelte:head>
@@ -27,7 +38,9 @@
 <div class="vcard-names">
   <span class="vcard-fullname">{data.user_username}</span>
   <br />
-  <span class="vcard-nickname">{data.user_name}</span>
+  <span class="vcard-nickname"
+    >{data.user_name} · {formatPronouns(data.user_pronouns)}</span
+  >
 </div>
 
 {#if data.user_registration_date}
@@ -37,44 +50,13 @@
 {/if}
 
 <p>
-  {#if (data.user_pronouns == "custom") && data.user_custom_pronoun}
-    {user_games?.length === 1
-      ? `${capitalizeFirstLetter(data.user_custom_pronoun)} has 1 saved game.`
-      : `${capitalizeFirstLetter(data.user_custom_pronoun)} has ${
-          user_games?.length
-        } saved games.`}
-  {:else}
-    {user_games?.length === 1
-      ? `${capitalizeFirstLetter(data.user_pronouns)} ${
-          data.user_pronouns === "they" ? "have" : "has"
-        } 1 saved game.`
-      : `${capitalizeFirstLetter(data.user_pronouns)} ${
-          data.user_pronouns === "they" ? "have" : "has"
-        } ${user_games?.length} saved games.`}
-  {/if}
-</p>
+  {user_games?.length === 1
+    ? `They have 1 saved game.`
+    : `They have ${user_games?.length} saved games.`}
 
-<div class="user_games">
-  <h2>Games played by {data.user_username}:</h2>
-  {#if user_games}
-    {#if user_games.length > 0}
-      {#each user_games as { name, teams, data, id, date }}
-        <div class="games">
-          <p>{name}</p>
-          <p>{teams}</p>
-          <p>
-            This game got created at the {new Date(date).toLocaleDateString()}
-          </p>
-          {#if teams.includes("4winning_")}
-            <FourWinningTable measurement_units="yards" {data} />
-          {/if}
-        </div>
-      {/each}
-    {:else}
-      <p class="error">No games found for this user.</p>
-    {/if}
-  {/if}
-</div>
+  You can find all of their games
+  <a href={`/${data.user_username}/games`}>here</a>.
+</p>
 
 <style lang="scss">
   .vcard-names {
@@ -91,15 +73,5 @@
       line-height: 24px;
       color: grey !important;
     }
-  }
-
-  .games {
-    background-color: var(--nav-color);
-    width: 90%;
-    padding: 50px 50px;
-    border-radius: 5px;
-    border: 3px solid var(--border-color);
-    margin-right: auto;
-    margin-bottom: 20px;
   }
 </style>

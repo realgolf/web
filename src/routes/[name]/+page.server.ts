@@ -27,12 +27,6 @@ export const load: PageServerLoad = async (event: {
   const user_pronouns = user.user?.pronouns;
   const user_custom_pronoun = user.user?.custom_pronoun;
 
-  const games = user_games.map((game) => {
-    const gameCopy = JSON.parse(JSON.stringify(game));
-    delete gameCopy._id; // Remove the _id field
-    return gameCopy;
-  });
-
   const user_daily = {
     value: user_one_player_precision_highscore?.daily?.value,
     lastUpdated: user_one_player_precision_highscore?.daily?.lastUpdated,
@@ -58,6 +52,12 @@ export const load: PageServerLoad = async (event: {
     lastUpdated: user_one_player_precision_highscore?.all_time?.lastUpdated,
   };
 
+  const games = user_games.map((game) => {
+    const gameCopy = JSON.parse(JSON.stringify(game));
+    delete gameCopy._id; // Remove the _id field
+    return gameCopy;
+  });
+
   console.log(user_username);
 
   return {
@@ -71,8 +71,8 @@ export const load: PageServerLoad = async (event: {
     user_monthly,
     user_yearly,
     user_all_time,
-    games,
     user_pronouns,
     user_custom_pronoun,
+    games,
   };
 };
