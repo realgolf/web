@@ -3,12 +3,11 @@ declare global {
     id: string;
     email: string;
     name: string;
-    username: string,
+    username: string;
   };
   type auth = {
     id: string;
   };
 }
 
-export { };
-
+export {};

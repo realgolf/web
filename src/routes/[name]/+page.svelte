@@ -16,19 +16,6 @@
       hasRedirected = true;
     }
   });
-
-  function formatPronouns(pronouns: string | undefined) {
-    switch (pronouns) {
-      case "he":
-        return "he/him";
-      case "she":
-        return "she/her";
-      case "they":
-        return "they/them";
-      default:
-        return pronouns;
-    }
-  }
 </script>
 
 <svelte:head>
@@ -38,9 +25,7 @@
 <div class="vcard-names">
   <span class="vcard-fullname">{data.user_username}</span>
   <br />
-  <span class="vcard-nickname"
-    >{data.user_name} · {formatPronouns(data.user_pronouns)}</span
-  >
+  <span class="vcard-nickname">{data.user_name}}</span>
 </div>
 
 {#if data.user_registration_date}
