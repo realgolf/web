@@ -1,5 +1,6 @@
 <script lang="ts">
   import FourWinningTable from "$lib/components/FourWinning_table.svelte";
+  import { capitalizeFirstLetter } from "$lib/shared/utils.js";
   import { onMount } from "svelte";
 
   export let data;
@@ -31,15 +32,26 @@
 
 {#if data.user_registration_date}
   <p>
-    {data.user_username} joined RealGolf.Games on the {data.user_registration_date.toLocaleDateString()}
-    and his / her last login was on the {data.user_last_login_date?.toLocaleDateString()}
+    {data.user_username} joined RealGolf.Games on {data.user_registration_date.toLocaleDateString()}.
   </p>
 {/if}
 
 <p>
-  {user_games?.length === 1
-    ? "He/She has 1 saved game."
-    : `He/She has ${user_games?.length} saved games.`}
+  {#if (data.user_pronouns == "custom") && data.user_custom_pronoun}
+    {user_games?.length === 1
+      ? `${capitalizeFirstLetter(data.user_custom_pronoun)} has 1 saved game.`
+      : `${capitalizeFirstLetter(data.user_custom_pronoun)} has ${
+          user_games?.length
+        } saved games.`}
+  {:else}
+    {user_games?.length === 1
+      ? `${capitalizeFirstLetter(data.user_pronouns)} ${
+          data.user_pronouns === "they" ? "have" : "has"
+        } 1 saved game.`
+      : `${capitalizeFirstLetter(data.user_pronouns)} ${
+          data.user_pronouns === "they" ? "have" : "has"
+        } ${user_games?.length} saved games.`}
+  {/if}
 </p>
 
 <div class="user_games">

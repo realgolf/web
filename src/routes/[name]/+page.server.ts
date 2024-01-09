@@ -24,6 +24,8 @@ export const load: PageServerLoad = async (event: {
   const user_one_player_precision_highscore =
     user.one_player_precision_highscore;
   const user_games = user.games;
+  const user_pronouns = user.user?.pronouns;
+  const user_custom_pronoun = user.user?.custom_pronoun;
 
   const games = user_games.map((game) => {
     const gameCopy = JSON.parse(JSON.stringify(game));
@@ -70,5 +72,7 @@ export const load: PageServerLoad = async (event: {
     user_yearly,
     user_all_time,
     games,
+    user_pronouns,
+    user_custom_pronoun,
   };
 };
