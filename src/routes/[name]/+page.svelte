@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount } from 'svelte';
 
+  
   export let data;
 
   let user_games = data.games;
@@ -48,32 +49,33 @@
   {#if data.user_daily?.lastUpdated === null}
     <p>{data.user_username} has never played One Player Precision</p>
   {:else}
-    <ul>
-      <li>
-        <b>Today's</b> highscore is: {data.user_daily?.value}, last updated on{" "}
-        {new Date(data.user_daily?.lastUpdated).toLocaleDateString()}.
-      </li>
-      <li>
-        <b>This Week's</b> highscore is: {data.user_weekly?.value}, last updated
-        on{" "}
-        {new Date(data.user_weekly?.lastUpdated).toLocaleDateString()}.
-      </li>
-      <li>
-        <b>This Month's</b> highscore is: {data.user_monthly?.value}, last
-        updated on{" "}
-        {new Date(data.user_monthly?.lastUpdated).toLocaleDateString()}.
-      </li>
-      <li>
-        <b>This Year's</b> highscore is: {data.user_yearly?.value}, last updated
-        on{" "}
-        {new Date(data.user_yearly?.lastUpdated).toLocaleDateString()}.
-      </li>
-    </ul>
-    <p>
-      {data.user_name}'s' all-time highscore is
-      <b>{data.user_all_time?.value}</b>, last exceeded on{" "}
-      {new Date(data.user_all_time?.lastUpdated).toLocaleDateString()}.
-    </p>
+  <ul>
+    <li>
+      <b>Today's</b> highscore is: {data.user_daily?.value}, last updated on{" "}
+      {data.user_daily?.lastUpdated && new Date(data.user_daily.lastUpdated).toLocaleDateString()}.
+    </li>
+    <li>
+      <b>This Week's</b> highscore is: {data.user_weekly?.value}, last updated
+      on{" "}
+      {data.user_weekly?.lastUpdated && new Date(data.user_weekly.lastUpdated).toLocaleDateString()}.
+    </li>
+    <li>
+      <b>This Month's</b> highscore is: {data.user_monthly?.value}, last
+      updated on{" "}
+      {data.user_monthly?.lastUpdated && new Date(data.user_monthly.lastUpdated).toLocaleDateString()}.
+    </li>
+    <li>
+      <b>This Year's</b> highscore is: {data.user_yearly?.value}, last updated
+      on{" "}
+      {data.user_yearly?.lastUpdated && new Date(data.user_yearly.lastUpdated).toLocaleDateString()}.
+    </li>
+  </ul>
+  <p>
+    {data.user_username}'s' all-time highscore is
+    <b>{data.user_all_time?.value}</b>, last exceeded on{" "}
+    {data.user_all_time?.lastUpdated && new Date(data.user_all_time.lastUpdated).toLocaleDateString()}.
+  </p>
+  
   {/if}
 </div>
 
