@@ -24,6 +24,7 @@ export const load: PageServerLoad = async (event: {
   const user_one_player_precision_highscore =
     user.one_player_precision_highscore;
   const user_games = user.games;
+  const user_bio = user.user?.bio;
 
   const user_daily = {
     value: user_one_player_precision_highscore?.daily?.value,
@@ -70,5 +71,6 @@ export const load: PageServerLoad = async (event: {
     user_yearly,
     user_all_time,
     games,
+    user_bio,
   };
 };
