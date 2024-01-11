@@ -11,17 +11,19 @@ export const actions: Actions = {
     const password = data.get("password") as string;
     const verified_password = data.get("password_verify") as string;
     const name = (data.get("name") as string)?.trim();
+    const username = (data.get("username") as string).trim();
     const handicap = data.get("handicap") as unknown as number;
     const handicap_updated = new Date();
     const registration_date = new Date();
 
-    const user = { email, name };
+    const user = { email, name, username };
 
     const { error } = await register_user(
       email,
       password,
       verified_password,
       name,
+      username,
       handicap,
       handicap_updated,
       registration_date
@@ -40,8 +42,9 @@ export const actions: Actions = {
         event.cookies.set("auth-token", token, cookie_options);
         event.cookies.set("email", user.email, cookie_options);
         event.cookies.set("name", user.name, cookie_options);
+        event.cookies.set("username", user.username, cookie_options);
 
-        return { email, user };
+        return { email, user, username };
       }
     }
   },

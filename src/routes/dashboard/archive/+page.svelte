@@ -1,10 +1,10 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
+  import FourWinningTable from "$lib/components/FourWinning_table.svelte";
   import { asignNameToTeam } from "$lib/shared/utils";
   import { faEye } from "@fortawesome/free-regular-svg-icons";
   import { afterUpdate, onMount } from "svelte";
   import Fa from "svelte-fa";
-  import FourWinningTable from "../FourWinning_table.svelte";
   import type { ActionData } from "./$types.js";
   import { teams } from "./teams";
 

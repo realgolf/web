@@ -142,7 +142,9 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
-    background-color: var(--nav-color);
+    background-color: var(--nav-color) !important;
+    border: none !important;
+    box-shadow: none !important;
 
     span .description {
       font-size: var(--tiny-font);

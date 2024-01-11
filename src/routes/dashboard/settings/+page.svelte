@@ -145,7 +145,7 @@
   </p>
   <p class="underline">Your current Handicap is: {data.handicap}</p>
   <p class="underline">
-    You've updated your handicap the last time at the {data.local_handicap_updated.toLocaleString()}
+    You've updated your handicap the last time at the {data.handicap_updated.toLocaleString()}
   </p>
   <p>
     When your Handicap has changed you can also update it here, so you can keep
