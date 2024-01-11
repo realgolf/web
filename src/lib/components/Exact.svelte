@@ -111,8 +111,6 @@
     let winner = "Tie";
 
     for (const team of teams) {
-      console.log(team.points);
-
       if (team.points > maxPoints) {
         maxPoints = team.points;
         winner = team.color;

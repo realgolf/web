@@ -111,11 +111,6 @@
         (team) => cell.style.backgroundColor === team.color
       );
 
-      console.log("cellId:", cellId);
-      console.log("isCellClaimed:", isCellClaimed);
-      console.log("currentTeam:", currentTeam);
-      console.log("teams:", teams);
-
       if (!isCellClaimed) {
         cell.style.backgroundColor = color;
         const Id = `${outerIndex + 1}-${innerIndex}`;
@@ -131,7 +126,6 @@
         checkWin();
         changeTeam();
       } else {
-        console.log("Field is already claimed by another team");
         const info_display = document.getElementById("info_display");
 
         if (info_display) {

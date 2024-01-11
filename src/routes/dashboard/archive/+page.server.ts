@@ -88,8 +88,6 @@ export const actions: Actions = {
     const team = data.get("team") as string;
     const local_storage_data = data.get("localStorageData") as string;
 
-    console.log(data);
-
     try {
       // Find the user
       const user = await User_Model.findOne({ "user.email": email });

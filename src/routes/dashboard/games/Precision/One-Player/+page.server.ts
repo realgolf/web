@@ -21,8 +21,6 @@ export const actions: Actions = {
     const data = await event.request.formData();
     const highscore = data.get("shots") as unknown as number;
 
-    console.log(highscore);
-
     try {
       const user = await User_Model.findOne({ "user.email": email });
 

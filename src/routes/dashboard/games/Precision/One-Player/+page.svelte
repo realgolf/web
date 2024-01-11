@@ -76,7 +76,6 @@
 
     if (form_input) {
       form_input.value = JSON.stringify(totalShots);
-      console.log(form_input.value);
     }
 
     const form = document.getElementById("highscore_form") as HTMLFormElement;

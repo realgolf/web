@@ -117,10 +117,6 @@
       name.value = asignNameToTeam(teams);
       team.value = teams;
       localStorageData.value = localStorage.getItem(teams) as string;
-
-      console.log(name.value);
-      console.log(team.value);
-      console.log(localStorageData.value);
     }
 
     const form = document.getElementById(

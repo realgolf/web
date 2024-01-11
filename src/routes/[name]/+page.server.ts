@@ -10,8 +10,6 @@ export const load: PageServerLoad = async (event: {
     "user.username": { $regex: new RegExp(param_name, "i") },
   });
 
-  console.log(user);
-
   if (!user) {
     return { status: 404, error: "User could not be found" };
   }
@@ -56,8 +54,6 @@ export const load: PageServerLoad = async (event: {
     delete gameCopy._id; // Remove the _id field
     return gameCopy;
   });
-
-  console.log(user_username);
 
   return {
     user_name,
