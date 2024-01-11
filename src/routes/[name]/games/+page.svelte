@@ -5,8 +5,9 @@
   let user_games = data.games;
 </script>
 
+<h2>Games played by {data.user_username}:</h2>
+
 <div class="user_games">
-  <h2>Games played by {data.user_username}:</h2>
   {#if user_games}
     {#if user_games.length > 0}
       {#each user_games as { name, teams, data, id, date }}
@@ -28,13 +29,18 @@
 </div>
 
 <style lang="scss">
+  .user_games {
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+  }
+
   .games {
-    background-color: var(--nav-color);
-    width: 90%;
-    padding: 50px 50px;
-    border-radius: 5px;
-    border: 3px solid var(--border-color);
-    margin-right: auto;
-    margin-bottom: 20px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
   }
 </style>
