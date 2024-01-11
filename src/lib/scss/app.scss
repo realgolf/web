@@ -113,9 +113,12 @@ input {
 }
 
 button {
-  padding: 0.4rem 0.8rem;
-  background-color: var(--accent-color);
-  cursor: pointer;
+  height: max-content;
+  width: max-content;
+  padding: 0.1rem 0.5rem;
+  background-color: var(--nav-color);
+  color: var(--font-color) !important;
+  border: 2px solid var(--border-color) !important;
 }
 
 button:focus {
