@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.user_username} ({data.user_username})</title>
+  <title>{data.user_username} ({data.user_name})</title>
 </svelte:head>
 
 <div class="vcard-names">
