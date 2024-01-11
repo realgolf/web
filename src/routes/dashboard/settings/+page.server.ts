@@ -17,11 +17,10 @@ export const load: PageServerLoad = async (event) => {
 
   const user = await User_Model.findOne({ "user.email": email });
 
-  let measurement_unit = user?.user?.measurement_units as string;
-  let theme = user?.user?.theme as string;
-  let handicap = user?.user?.handicap as number;
-  let handicap_updated = user?.user?.handicap_updated as Date;
-  let local_handicap_updated = handicap_updated;
+  const measurement_unit = user?.user?.measurement_units as string;
+  const theme = user?.user?.theme as string;
+  const handicap = user?.user?.handicap as number;
+  const handicap_updated = user?.user?.handicap_updated as Date;
 
   const handicap_history = user?.handicap_history.map((history) => {
     const historyCopy = JSON.parse(JSON.stringify(history));
@@ -33,7 +32,7 @@ export const load: PageServerLoad = async (event) => {
     measurement_unit,
     theme,
     handicap,
-    local_handicap_updated,
+    handicap_updated,
     handicap_history,
   };
 };

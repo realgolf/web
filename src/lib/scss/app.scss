@@ -22,6 +22,7 @@ body[data-theme="light"] {
   --label-color: #777;
   --border-color: #ccc;
   --h2-color: var(--accent-color);
+  --button-color: var(--border-color);
 }
 
 body[data-theme="dark"] {
@@ -35,6 +36,7 @@ body[data-theme="dark"] {
   --label-color: #aaa;
   --border-color: #333;
   --h2-color: skyblue;
+  --button-color: var(--border-color);
 }
 
 body[data-theme="system"] {
@@ -50,6 +52,7 @@ body[data-theme="system"] {
     --border-color: #333;
     --h2-color: skyblue;
     --shadow-color: #ffffff7c;
+    --button-color: var(--border-color);
   }
 
   @media (prefers-color-scheme: light) {
@@ -64,6 +67,7 @@ body[data-theme="system"] {
     --border-color: #ccc;
     --h2-color: var(--accent-color);
     --shadow-color: #33333362;
+    --button-color: var(--border-color);
   }
 }
 
@@ -113,9 +117,13 @@ input {
 }
 
 button {
-  padding: 0.4rem 0.8rem;
-  background-color: var(--accent-color);
-  cursor: pointer;
+  height: max-content;
+  width: max-content;
+  padding: 0.1rem 0.5rem;
+  background-color: var(--button-color);
+  color: var(--font-color) !important;
+  border: 2px solid var(--border-color) !important;
+  box-shadow: 1px 1px 1px 1px var(--shadow-color);
 }
 
 button:focus {

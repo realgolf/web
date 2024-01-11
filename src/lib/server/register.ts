@@ -7,6 +7,7 @@ export async function register_user(
   password: string,
   verified_password: string,
   name: string,
+  username: string,
   handicap: number,
   handicap_updated: Date,
   registration_date: Date
@@ -29,6 +30,12 @@ export async function register_user(
     return { error: name_error };
   }
 
+  const username_error = await verify_username(username);
+
+  if (username_error) {
+    return { error: username_error };
+  }
+
   const saltRounds = 10;
   const hashed_password = await bcrypt.hash(password, saltRounds);
 
@@ -37,6 +44,7 @@ export async function register_user(
       email,
       password: hashed_password,
       name,
+      username,
       handicap,
       handicap_updated,
       registration_date,
@@ -94,6 +102,26 @@ export function verify_name(name: string): string {
 
   if (name.length <= 1) {
     return "Name has to be at least 2 characters.";
+  }
+
+  return "";
+}
+
+export async function verify_username(username: string): Promise<string> {
+  if (!username) {
+    return "Username is required.";
+  }
+
+  if (username.length <= 1) {
+    return "Username has to be at least 2 characters.";
+  }
+
+  const previous_user = await User_Model.findOne({
+    "user.username": { $regex: new RegExp(username, "i") },
+  });
+
+  if (previous_user) {
+    return "There is already a account with this username.";
   }
 
   return "";
