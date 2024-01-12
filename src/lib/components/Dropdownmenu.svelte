@@ -22,11 +22,9 @@
   export let auth: string | undefined;
 
   let isOpen = false;
-  let blurBackground = false;
 
   function toggleDropdown() {
     isOpen = !isOpen;
-    blurBackground = isOpen;
   }
 
   function closeDropdown() {
