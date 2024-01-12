@@ -172,4 +172,8 @@
   button {
     margin: 15px 0;
   }
+
+  #highscore_form {
+    display: none;
+  }
 </style>
