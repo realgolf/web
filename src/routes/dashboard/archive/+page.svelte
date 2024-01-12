@@ -220,20 +220,6 @@
     showMessage = false;
   }, 20000);
 
-  /**
-   * TOGGLE THE VISIBILITY OF THE GAME DATA
-   */
-  function hideData() {
-    const dataDisplays = document.getElementsByClassName("game_data_string");
-
-    for (const dataDisplay of dataDisplays) {
-      if (dataDisplay instanceof HTMLElement) {
-        dataDisplay.style.display =
-          dataDisplay.style.display === "none" ? "block" : "none";
-      }
-    }
-  }
-
   function togglePreview() {
     const tablePreviews = document.getElementsByClassName("table_previews");
 
