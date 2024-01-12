@@ -26,13 +26,45 @@
     },
   ];
 
-  let range: number = 150;
+  let lower_range: number = 10;
+  let upper_range: number = 200;
+
+  let range = upper_range - lower_range;
 
   let currentTeamIndex = 0;
   let currentTeam = teams[currentTeamIndex];
 
+  let combinedRange: string = `${lower_range}-${upper_range}`;
+
+  function handleRangeInput(
+    event: Event & { currentTarget: HTMLInputElement }
+  ): void {
+    const inputRange = (event.target as HTMLInputElement).value;
+
+    // Split the input into lower and upper values
+    const [lowerStr, upperStr] = inputRange.split("-");
+
+    // Convert the string values to numbers
+    const lower = lowerStr ? parseInt(lowerStr, 10) : NaN;
+    const upper = upperStr ? parseInt(upperStr, 10) : NaN;
+
+    // Update the individual values if they are valid numbers
+    if (!isNaN(lower)) {
+      lower_range = lower;
+    }
+
+    if (!isNaN(upper)) {
+      upper_range = upper;
+    }
+  }
+
   function generateRandomNumber(): number {
-    const randomNumber: number = Math.random() * (range - 10) + 10;
+    let randomNumber: number;
+
+    do {
+      randomNumber = Math.random() * range + lower_range;
+    } while (randomNumber >= upper_range);
+
     const roundedNumber: number = Math.ceil(randomNumber);
     return roundedNumber;
   }
@@ -131,7 +163,13 @@
 <button on:click={resetGame}>Reset Game</button>
 
 <p>Choose range:</p>
-<input type="text" name="range" bind:value={range} />
+<input
+  type="text"
+  name="combined_range"
+  bind:value={combinedRange}
+  on:input={handleRangeInput}
+  placeholder='Input the Range you want to play split by an "-".'
+/>
 
 <p>{capitalizedMeasurementUnit} to play:</p>
 <ol>
