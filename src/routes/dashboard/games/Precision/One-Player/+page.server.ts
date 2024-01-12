@@ -1,4 +1,5 @@
 import { User_Model } from "$lib/server/models";
+import { getTimeThreshold } from "$lib/shared/utils";
 import type { Actions } from "@sveltejs/kit";
 import type { PageServerLoad } from "../$types";
 
@@ -15,6 +16,39 @@ export const load: PageServerLoad = async (event) => {
   }
 };
 
+const findUserByEmail = async (email: string | undefined) => {
+  return await User_Model.findOne({ "user.email": email });
+};
+
+const updateHighscore = (
+  highscoreData: { value: number; lastUpdated: Date },
+  periodKey: string,
+  highscore: number,
+  currentTime: Date
+) => {
+  const timeElapsed =
+    currentTime.getTime() - new Date(highscoreData?.lastUpdated ?? 0).getTime();
+  const timeThreshold = getTimeThreshold(periodKey);
+
+  if ((highscoreData?.value ?? 0) < highscore || timeElapsed > timeThreshold) {
+    highscoreData.value = highscore;
+    highscoreData.lastUpdated = currentTime;
+  }
+};
+
+const updateAllTimeHighscore = (
+  allTime: { value: number; lastUpdated: Date } | null | undefined,
+  highscore: number,
+  currentTime: Date
+) => {
+  if (allTime?.value && allTime?.lastUpdated) {
+    if (highscore > allTime.value) {
+      allTime.value = highscore;
+      allTime.lastUpdated = currentTime;
+    }
+  }
+};
+
 export const actions: Actions = {
   get_add_highscore: async (event) => {
     const email = event.cookies.get("email");
@@ -22,7 +56,7 @@ export const actions: Actions = {
     const highscore = data.get("shots") as unknown as number;
 
     try {
-      const user = await User_Model.findOne({ "user.email": email });
+      const user = await findUserByEmail(email);
 
       if (!user) {
         return {
@@ -31,69 +65,44 @@ export const actions: Actions = {
         };
       }
 
-      const periods = ["daily", "weekly", "monthly", "yearly", "all_time"];
+      const periods = ["daily", "weekly", "monthly", "yearly"];
+      const currentTime = new Date();
 
       if (user.one_player_precision_highscore) {
-        const currentTime = new Date();
-
         for (const period of periods) {
-          const highscoreData =
-            user.one_player_precision_highscore[
-              period as keyof typeof user.one_player_precision_highscore
-            ];
+          const periodKey =
+            period as keyof typeof user.one_player_precision_highscore;
+          const highscoreDataByPeriod =
+            user.one_player_precision_highscore[periodKey];
 
-          if (!highscoreData || !highscoreData.lastUpdated) {
-            user.one_player_precision_highscore[
-              period as keyof typeof user.one_player_precision_highscore
-            ] = {
+          if (!highscoreDataByPeriod?.lastUpdated) {
+            user.one_player_precision_highscore[periodKey] = {
               value: highscore,
               lastUpdated: currentTime,
             };
           } else {
-            const timeElapsed =
-              currentTime.getTime() -
-              new Date(highscoreData.lastUpdated).getTime();
-            const timeThreshold = getTimeThreshold(period);
-
-            if (
-              highscoreData.value < highscore ||
-              timeElapsed > timeThreshold
-            ) {
-              // Update highscore if the incoming highscore is greater
-              user.one_player_precision_highscore[
-                period as keyof typeof user.one_player_precision_highscore
-              ] = {
-                value: highscore,
-                lastUpdated: currentTime,
-              };
-            } else {
-              throw new Error(
-                `The Highscore is smaller than the ${period} highscore`
-              );
-            }
+            updateHighscore(
+              highscoreDataByPeriod,
+              periodKey,
+              highscore,
+              currentTime
+            );
           }
         }
 
-        // Save the user after updating all highscores
+        updateAllTimeHighscore(
+          user.one_player_precision_highscore.all_time,
+          highscore,
+          currentTime
+        );
+
         await user.save();
       }
 
-      function getTimeThreshold(period: string): number {
-        switch (period) {
-          case "daily":
-            return 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-          case "weekly":
-            return 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
-          case "monthly":
-            return 28 * 24 * 60 * 60 * 1000; // 28 days in milliseconds
-          case "yearly":
-            return 365 * 24 * 60 * 60 * 1000; // 365 days in milliseconds
-          default:
-            return 0;
-        }
-      }
-
-      await user.save();
+      return {
+        status: 200,
+        message: "Highscore updated successfully",
+      };
     } catch (error) {
       console.error(error);
       return {
