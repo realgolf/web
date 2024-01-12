@@ -4,6 +4,6 @@ export async function load(event) {
   const auth = event.cookies.get("auth-token");
 
   if (auth) {
-    throw redirect(302, "/dashboard/modi");
+    throw redirect(302, "/dashboard/games");
   }
 }
