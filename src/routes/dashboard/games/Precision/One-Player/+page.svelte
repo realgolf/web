@@ -168,7 +168,7 @@
   name="combined_range"
   bind:value={combinedRange}
   on:input={handleRangeInput}
-  placeholder='Input the Range you want to play split by an "-".'
+  placeholder="Input the Range you want to play split by an '-'."
 />
 
 <p>{capitalizedMeasurementUnit} to play:</p>
