@@ -139,7 +139,7 @@
 </ol>
 
 <ol>
-  {#each teams as t, index}
+  {#each teams as t}
     {#if t === currentTeam}
       <p>Distance Played by {t.color}:</p>
       <input

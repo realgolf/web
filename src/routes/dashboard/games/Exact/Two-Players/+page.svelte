@@ -13,7 +13,7 @@
     { color: "blue", data: [], points: 0 },
   ];
 
-  function saveToDatabaseAndSubmitForm(event: any) {
+  function saveToDatabaseAndSubmitForm(event: { preventDefault: () => void }) {
     event.preventDefault();
     // Extract data from localStorage
     const localStorageData = localStorage.getItem("exact_2_teams");

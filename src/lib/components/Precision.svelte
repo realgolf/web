@@ -16,6 +16,7 @@
   let range: number = 150;
 
   let currentTeamIndex = 0;
+  // eslint-disable-next-line
   let color = teams[currentTeamIndex].color;
   let currentTeam = teams[currentTeamIndex];
 
@@ -106,7 +107,7 @@
 </ol>
 
 <ol>
-  {#each teams as t, index}
+  {#each teams as t}
     {#if t === currentTeam}
       <p>Distance Played by {t.color}:</p>
       <input

@@ -21,7 +21,7 @@
    */
   let selectedTeam = "";
   let searchTerm = "";
-  let filteredGames: string | any[] = [];
+  let filteredGames: string[] = [];
 
   // ON COMPONENT MOUNT
   onMount(() => {
@@ -35,7 +35,7 @@
   function applyFilters(searchTerm: string) {
     if (searchTerm !== "") {
       filteredGames = data.games.filter(
-        (game: { name: string | any[]; date: string | any[] }) => {
+        (game: { name: string; date: string }) => {
           return (
             game.name.includes(searchTerm) ||
             new Date(game.date as string)
@@ -95,9 +95,9 @@
       redirect("/dashboard/games/4Winning/Four-Players");
     } else if (teams == "exact_2_teams") {
       redirect("/dashboard/games/Exact/Two-Players");
-    } else if ((teams = "exact_3_teams")) {
+    } else if (teams == "exact_3_teams") {
       redirect("/dashboard/games/Exact/Three-Players");
-    } else if ((teams = "exact_4_teams")) {
+    } else if (teams == "exact_4_teams") {
       redirect("/dashboard/games/Exact/Four-Players");
     }
   }

@@ -10,7 +10,7 @@
 <div class="user_games">
   {#if user_games}
     {#if user_games.length > 0}
-      {#each user_games as { name, teams, data, id, date }}
+      {#each user_games as { name, teams, data, date }}
         <div class="games">
           <p>{name}</p>
           <p>{teams}</p>

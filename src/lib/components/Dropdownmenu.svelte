@@ -37,7 +37,8 @@
         toggleDropdown();
       }
     });
-    function closeDropdownOnClick(event: any) {
+
+    function closeDropdownOnClick(event: MouseEvent | TouchEvent): void {
       if (
         event.target instanceof Element &&
         !event.target.closest(".dropdown") &&
