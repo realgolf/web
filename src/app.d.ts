@@ -8,6 +8,14 @@ declare global {
   type auth = {
     id: string;
   };
+  type games = {
+    id: string | null | undefined;
+    date: string | null | undefined;
+    name: string | null | undefined;
+    teams: string | null | undefined;
+    data: string | null | undefined;
+  }
 }
 
-export {};
+export { };
+

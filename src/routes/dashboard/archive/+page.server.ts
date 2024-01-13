@@ -12,7 +12,7 @@ export async function load(event): Promise<unknown> {
   if (!user) {
     return { status: 400, error: new Error("User could not be found") };
   } else {
-    const games = user.games.map((game) => {
+    const games: games = user.games.map((game) => {
       const gameCopy = JSON.parse(JSON.stringify(game));
       delete gameCopy._id; // Remove the _id field
       return gameCopy;
@@ -58,10 +58,12 @@ export const actions: Actions = {
     const id = data.get("id") as string;
     const games = user?.games;
 
-    if (games) {
-      const updatedGames = games.filter((game) => game.id !== id);
-      user.games = updatedGames;
-      await user.save();
+    if (user) {
+      if (games) {
+        const updatedGames = games.filter((game) => game.id !== id);
+        user.games = updatedGames as unknown as typeof user.games;
+        await user.save();
+      }
     }
   },
   rename: async (event) => {
