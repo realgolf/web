@@ -308,7 +308,6 @@
         <p>{data}</p>
       {/if}
       <button on:click={() => openGame(data, teams)}>Open Game</button>
-      <p class="error">Please only paste the data in {teams}!</p>
       <form action="?/delete_game" method="POST" autocomplete="off">
         <input class="hidden" type="text" name="id" value={id} />
         <button>Delete Game</button>
