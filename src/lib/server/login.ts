@@ -21,15 +21,25 @@ export async function login_user(email: string, password: string) {
   return { token, user };
 }
 
+interface ErrorResponse {
+  error: string;
+}
+
+interface SuccessResponse {
+  id: string;
+  email: string;
+  name: string;
+}
+
 async function get_user(
   email: string,
   password: string
-): Promise<{ error: string } | user> {
+): Promise<ErrorResponse | SuccessResponse> {
   if (!email) {
     return { error: "Email is required." };
   }
 
-  if (!email.match(email_regexp)) {
+  if (!RegExp(email_regexp).exec(email)) {
     return { error: "Please enter a valid email." };
   }
 
@@ -45,7 +55,7 @@ async function get_user(
 
   const password_is_correct = await bcrypt.compare(
     password,
-    user.user.password
+    user?.user?.password ?? ""
   );
 
   if (!password_is_correct) {
@@ -53,7 +63,7 @@ async function get_user(
   }
 
   const id = user._id.toString();
-  const name = user.user.name;
+  const name = user?.user?.name ?? "";
 
   return { id, email, name };
 }
