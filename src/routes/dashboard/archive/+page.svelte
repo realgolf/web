@@ -21,7 +21,7 @@
    */
   let selectedTeam = "";
   let searchTerm = "";
-  let filteredGames: string | any[] = [];
+  let filteredGames: string[] = [];
 
   // ON COMPONENT MOUNT
   onMount(() => {
@@ -35,7 +35,7 @@
   function applyFilters(searchTerm: string) {
     if (searchTerm !== "") {
       filteredGames = data.games.filter(
-        (game: { name: string | any[]; date: string | any[] }) => {
+        (game: { name: string; date: string }) => {
           return (
             game.name.includes(searchTerm) ||
             new Date(game.date as string)
@@ -95,9 +95,9 @@
       redirect("/dashboard/games/4Winning/Four-Players");
     } else if (teams == "exact_2_teams") {
       redirect("/dashboard/games/Exact/Two-Players");
-    } else if ((teams = "exact_3_teams")) {
+    } else if (teams == "exact_3_teams") {
       redirect("/dashboard/games/Exact/Three-Players");
-    } else if ((teams = "exact_4_teams")) {
+    } else if (teams == "exact_4_teams") {
       redirect("/dashboard/games/Exact/Four-Players");
     }
   }
@@ -117,10 +117,6 @@
       name.value = asignNameToTeam(teams);
       team.value = teams;
       localStorageData.value = localStorage.getItem(teams) as string;
-
-      console.log(name.value);
-      console.log(team.value);
-      console.log(localStorageData.value);
     }
 
     const form = document.getElementById(
@@ -223,20 +219,6 @@
   setTimeout(() => {
     showMessage = false;
   }, 20000);
-
-  /**
-   * TOGGLE THE VISIBILITY OF THE GAME DATA
-   */
-  function hideData() {
-    const dataDisplays = document.getElementsByClassName("game_data_string");
-
-    for (const dataDisplay of dataDisplays) {
-      if (dataDisplay instanceof HTMLElement) {
-        dataDisplay.style.display =
-          dataDisplay.style.display === "none" ? "block" : "none";
-      }
-    }
-  }
 
   function togglePreview() {
     const tablePreviews = document.getElementsByClassName("table_previews");

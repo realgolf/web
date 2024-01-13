@@ -10,8 +10,6 @@ export const load: PageServerLoad = async (event: {
     "user.username": { $regex: new RegExp(param_name, "i") },
   });
 
-  console.log(user);
-
   if (!user) {
     return { status: 404, error: "User could not be found" };
   }

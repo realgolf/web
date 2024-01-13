@@ -183,7 +183,7 @@ export async function change_theme(cookies: Cookies, theme: string) {
 
 export async function delete_account(cookies: Cookies, password: string) {
   const auth = authenticate(cookies);
-  let verified_password = password;
+  const verified_password = password;
 
   if (!auth) {
     return { error: "You are not authenticated" };
@@ -200,7 +200,6 @@ export async function delete_account(cookies: Cookies, password: string) {
   const password_error = verify_password(password, verified_password);
 
   if (password_error) {
-    console.log(password_error);
     return { error: password_error };
   }
 
@@ -240,7 +239,7 @@ export async function change_handicap(cookies: Cookies, handicap: number) {
     return { error: "Handicap must be greater than zero" };
   }
 
-  let old_handicap_object = {
+  const old_handicap_object = {
     handicap: user.user?.handicap,
     date: user.user?.handicap_updated,
   };

@@ -19,10 +19,6 @@
   };
 
   const toggleSystemTheme = () => {
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-      .matches
-      ? THEMES.DARK
-      : THEMES.LIGHT;
     setTheme("system");
   };
 

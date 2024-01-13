@@ -65,6 +65,7 @@
         <a href={path}>
           <Fa {icon} />
         </a>
+        <!-- eslint-disable-next-line -->
         <span class="no-line">{@html getPagePath()}</span>
       </li>
     {/each}

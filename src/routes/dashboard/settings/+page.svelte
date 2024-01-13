@@ -7,6 +7,8 @@
 
   export let form: ActionData;
   export let data;
+
+  // eslint-disable-next-line
   let handicap_history: any[] | undefined = [];
 
   onMount(() => {

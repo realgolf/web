@@ -2,6 +2,7 @@
   import FourWinningTable from "$lib/components/FourWinning_table.svelte";
   import { asignNameToTeam } from "$lib/shared/utils";
 
+  // eslint-disable-next-line
   export let data: any;
 </script>
 

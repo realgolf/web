@@ -27,17 +27,16 @@
   <h2 id="4-winning">4 Winning</h2>
 
   <p>
-    The rules of the game are very simple, it's just a kind of four-in-a-row,
-    you click the button which one you hit from the distance. After the first
-    team's turn, the second teams is and clicks on a field, regardless of
-    whether it has already been clicked on by another team, then it's the turn
-    of the next team, you can see which team it is at the top of the respective
-    game recognize. The game continues until one team has four squares in a row
-    or column. If you click the same field four times, a message appears telling
-    you that you have clicked the same field four times. When a team wins, the
-    values ​of the fields are reset and you can start from the beginning. The
-    game automatically switches teams. All of the above information applies to
-    all games!
+    The rules of the game are quite simple—it's essentially a variation of
+    four-in-a-row. You click on the button corresponding to the field you want
+    from a distance. After the first team's turn, the second team takes its turn
+    and clicks on a field, regardless of whether it has been chosen by another
+    team before. The current team is indicated at the top of the game interface.
+    The game proceeds with each team taking turns until one team successfully
+    forms four squares in a row or column. If you click on the same field four
+    times in a row, a message will appear notifying you of this. When a team
+    wins, the values of the fields reset, and a new round begins automatically,
+    with the teams alternating. These rules apply universally to all games.
   </p>
 
   <h2 id="exact">Exact</h2>

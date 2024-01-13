@@ -22,11 +22,9 @@
   export let auth: string | undefined;
 
   let isOpen = false;
-  let blurBackground = false;
 
   function toggleDropdown() {
     isOpen = !isOpen;
-    blurBackground = isOpen;
   }
 
   function closeDropdown() {
@@ -39,7 +37,8 @@
         toggleDropdown();
       }
     });
-    function closeDropdownOnClick(event: any) {
+
+    function closeDropdownOnClick(event: MouseEvent | TouchEvent): void {
       if (
         event.target instanceof Element &&
         !event.target.closest(".dropdown") &&

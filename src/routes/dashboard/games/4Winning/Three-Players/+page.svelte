@@ -2,6 +2,7 @@
   import { enhance } from "$app/forms";
   import FourWinning from "$lib/components/FourWinning.svelte";
 
+  // eslint-disable-next-line
   export let data: any;
   let measurement_unit = data.measurement_unit;
   let team = "4winning_3_teams";
@@ -17,7 +18,7 @@
     { color: "green", data: [] },
   ];
 
-  function saveToDatabaseAndSubmitForm(event: any) {
+  function saveToDatabaseAndSubmitForm(event: { preventDefault: () => void }) {
     event.preventDefault();
     let localStorageData = localStorage.getItem("4winning_3_teams");
 

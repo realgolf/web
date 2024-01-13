@@ -38,6 +38,7 @@
     points: number;
   }
 
+  // eslint-disable-next-line
   let pointsByTeam: Record<string, any> = {};
   let shotsPlayed: number = 0;
 
@@ -111,8 +112,6 @@
     let winner = "Tie";
 
     for (const team of teams) {
-      console.log(team.points);
-
       if (team.points > maxPoints) {
         maxPoints = team.points;
         winner = team.color;
@@ -133,7 +132,6 @@
 
     if (match) {
       const rowNumber = parseInt(match[1]);
-      const index = parseInt(match[2]);
       let clickedCell: HTMLElement | null = document.getElementById(targetId);
       if (clickedCell) {
         clickedCell.style.backgroundColor = color;
