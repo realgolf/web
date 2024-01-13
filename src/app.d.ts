@@ -14,8 +14,7 @@ declare global {
     name: string | null | undefined;
     teams: string | null | undefined;
     data: string | null | undefined;
-  }
+  };
 }
 
-export { };
-
+export {};
