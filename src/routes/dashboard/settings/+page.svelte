@@ -3,9 +3,8 @@
   import { faEye } from "@fortawesome/free-solid-svg-icons";
   import { onMount } from "svelte";
   import Fa from "svelte-fa";
-  import type { ActionData } from "../$types";
 
-  export let form: ActionData;
+  export let form;
   export let data;
 
   // eslint-disable-next-line
