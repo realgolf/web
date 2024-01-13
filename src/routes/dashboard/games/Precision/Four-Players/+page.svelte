@@ -4,7 +4,7 @@
   let point = 100;
 
   export let data;
-  let measurement_unit = data.measurement_unit;
+  let measurement_unit = data.measurement_unit ?? "yards";
 
   interface Team {
     color: string;

@@ -10,7 +10,13 @@ import {
 import { User_Model } from "$lib/server/models";
 import { cookie_options } from "$lib/server/utils";
 import { fail, redirect, type Actions } from "@sveltejs/kit";
+import type { Types } from "mongoose";
 import type { PageServerLoad } from "../$types";
+
+interface HandicapHistory {
+  date: Date | null | undefined;
+  handicap: number | null | undefined;
+}
 
 export const load: PageServerLoad = async (event) => {
   const email = event.cookies.get("email");
@@ -161,7 +167,10 @@ export const actions: Actions = {
         };
       }
 
-      user.handicap_history = [];
+      if (user) {
+        user.handicap_history =
+          [] as unknown as Types.DocumentArray<HandicapHistory>;
+      }
 
       await user?.save();
     } catch (error) {

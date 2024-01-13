@@ -5,14 +5,24 @@
   import { faEye } from "@fortawesome/free-regular-svg-icons";
   import { afterUpdate, onMount } from "svelte";
   import Fa from "svelte-fa";
-  import type { ActionData } from "./$types.js";
   import { teams } from "./teams";
+
+  /* eslint-disable */
+  interface Data {
+    auth: string;
+    email: string;
+    games: games[];
+    measurement_units: string;
+    name: string;
+    theme: string;
+  }
+  /* eslint-enable */
 
   /**
    * REACTIVE DATA
    */
-  export let data;
-  export let form: ActionData;
+  export let data: Data;
+  export let form;
 
   let measurement_units: string = data.measurement_units;
 
@@ -21,7 +31,8 @@
    */
   let selectedTeam = "";
   let searchTerm = "";
-  let filteredGames: string[] = [];
+  // eslint-disable-next-line
+  let filteredGames: games[] | any[] = [];
 
   // ON COMPONENT MOUNT
   onMount(() => {
@@ -34,8 +45,8 @@
    */
   function applyFilters(searchTerm: string) {
     if (searchTerm !== "") {
-      filteredGames = data.games.filter(
-        (game: { name: string; date: string }) => {
+      filteredGames = data.games.filter((game) => {
+        if (game.name) {
           return (
             game.name.includes(searchTerm) ||
             new Date(game.date as string)
@@ -43,11 +54,9 @@
               .includes(searchTerm)
           );
         }
-      );
+      });
     } else if (selectedTeam !== "") {
-      filteredGames = data.games.filter(
-        (game: { teams: string }) => game.teams === selectedTeam
-      );
+      filteredGames = data.games.filter((game) => game.teams === selectedTeam);
     } else {
       filteredGames = data.games;
     }
