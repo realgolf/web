@@ -28,11 +28,15 @@ export async function change_name(
     return { error: "User could not found" };
   }
 
-  if (user.user.name === name) {
+  if (user?.user?.name === name) {
     return { error: "You already have this name." };
   }
 
-  user.user.name = name;
+  if (user?.user) {
+    if (name) {
+      user.user.name = name;
+    }
+  }
 
   try {
     await user.save();
@@ -66,7 +70,9 @@ export async function change_email(
     return { error: "User could not found" };
   }
 
-  user.user.email = email;
+  if (user && user.user) {
+    user.user.email = email;
+  }
 
   try {
     await user.save();
@@ -94,7 +100,7 @@ export async function change_password(
 
   const valid_current_password = (await bcrypt.compare(
     current_password,
-    user.user.password
+    user?.user?.password ?? ""
   )) as unknown as boolean;
 
   if (!valid_current_password) {
@@ -115,7 +121,9 @@ export async function change_password(
     const saltRounds = 10;
     const hashed_password = await bcrypt.hash(new_password, saltRounds);
 
-    user.user.password = hashed_password;
+    if (user && user.user) {
+      user.user.password = hashed_password;
+    }
   } else {
     return { error: "Passwords do not match" };
   }
@@ -146,7 +154,9 @@ export async function change_measurement(
     return { error: "User could not be found" };
   }
 
-  user.user.measurement_units = measurement_unit;
+  if (user && user.user) {
+    user.user.measurement_units = measurement_unit;
+  }
 
   try {
     await user.save();
@@ -171,7 +181,9 @@ export async function change_theme(cookies: Cookies, theme: string) {
     return { error: "User could not be found" };
   }
 
-  user.user.theme = theme;
+  if (user && user.user) {
+    user.user.theme = theme;
+  }
 
   try {
     await user.save();
@@ -246,8 +258,10 @@ export async function change_handicap(cookies: Cookies, handicap: number) {
 
   user.handicap_history.push(old_handicap_object);
 
-  user.user.handicap = handicap;
-  user.user.handicap_updated = new Date();
+  if (user && user.user) {
+    user.user.handicap = handicap;
+    user.user.handicap_updated = new Date();
+  }
 
   try {
     await user.save();
