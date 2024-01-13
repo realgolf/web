@@ -66,6 +66,7 @@
     } while (randomNumber >= upper_range);
 
     const roundedNumber: number = Math.ceil(randomNumber);
+    console.log(roundedNumber);
     return roundedNumber;
   }
 
@@ -170,6 +171,11 @@
   on:input={handleRangeInput}
   placeholder="Input the Range you want to play split by an '-'."
 />
+<button
+  on:click={() => {
+    MetersToPlay = generateRandomNumber();
+  }}>Generate Number when range change</button
+>
 
 <p>{capitalizedMeasurementUnit} to play:</p>
 <ol>
