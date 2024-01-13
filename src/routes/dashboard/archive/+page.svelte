@@ -7,6 +7,7 @@
   import Fa from "svelte-fa";
   import { teams } from "./teams";
 
+  /* eslint-disable */
   interface Data {
     auth: string;
     email: string;
@@ -15,6 +16,7 @@
     name: string;
     theme: string;
   }
+  /* eslint-enable */
 
   /**
    * REACTIVE DATA
@@ -29,6 +31,7 @@
    */
   let selectedTeam = "";
   let searchTerm = "";
+  // eslint-disable-next-line
   let filteredGames: games[] | any[] = [];
 
   // ON COMPONENT MOUNT
