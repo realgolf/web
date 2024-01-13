@@ -26,6 +26,7 @@ interface ErrorResponse {
 }
 
 interface SuccessResponse {
+  username: string;
   id: string;
   email: string;
   name: string;
@@ -64,6 +65,7 @@ async function get_user(
 
   const id = user._id.toString();
   const name = user?.user?.name ?? "";
+  const username = user.user?.username ?? "";
 
-  return { id, email, name };
+  return { id, email, name, username };
 }
