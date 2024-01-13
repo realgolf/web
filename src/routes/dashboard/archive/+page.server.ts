@@ -1,5 +1,6 @@
 import { User_Model } from "$lib/server/models";
 import type { Actions } from "@sveltejs/kit";
+import type { Types } from "mongoose";
 import { v4 as uuidv4 } from "uuid";
 
 export async function load(event): Promise<unknown> {
@@ -12,7 +13,7 @@ export async function load(event): Promise<unknown> {
   if (!user) {
     return { status: 400, error: new Error("User could not be found") };
   } else {
-    const games: games = user.games.map((game) => {
+    const games: games[] = user.games.map((game) => {
       const gameCopy = JSON.parse(JSON.stringify(game));
       delete gameCopy._id; // Remove the _id field
       return gameCopy;
@@ -35,7 +36,9 @@ export const actions: Actions = {
         };
       }
 
-      user.games = [];
+      if (user) {
+        user.games = [] as unknown as Types.DocumentArray<games>;
+      }
 
       await user.save();
 
