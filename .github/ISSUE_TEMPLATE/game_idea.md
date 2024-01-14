@@ -1,7 +1,7 @@
 ---
 name: Game Idea
 about: Suggest an Game Idea
-title: ""
+title: "[GAME]"
 labels: game
 assignees: MoinJulian
 ---
