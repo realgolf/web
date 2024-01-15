@@ -6,6 +6,7 @@
   let user_games = data.games;
 
   let hasRedirected = false;
+  let editing = false;
 
   onMount(() => {
     const correctCasedUrl = `/${data.user_username}`;
@@ -16,6 +17,11 @@
       hasRedirected = true;
     }
   });
+
+  function handleCancel(event: { preventDefault: () => void }) {
+    event.preventDefault();
+    editing = false;
+  }
 </script>
 
 <svelte:head>
@@ -26,9 +32,21 @@
   <span class="vcard-nickname">{data.user_username}</span>
   <br />
   <span class="vcard-fullname">{data.user_name}</span>
+
   <div class="bio">
-    {#if data.user_bio}
-      {data.user_bio}
+    {#if editing}
+      <form action="?/chnage_bio" method="POST">
+        <textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
+        <br />
+        <button type="submit">Save</button>
+        <button type="button" on:click={handleCancel}>Cancel</button>
+      </form>
+    {:else if data.sameUser}
+      <p>{data.user_bio}</p>
+      <br />
+      <button on:click={() => (editing = true)}>Edit</button>
+    {:else}
+      <p>{data.user_bio}</p>
     {/if}
   </div>
 </div>
