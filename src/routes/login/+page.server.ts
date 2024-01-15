@@ -18,6 +18,7 @@ export const actions: Actions = {
       event.cookies.set("auth-token", token, cookie_options);
       event.cookies.set("email", user.email, cookie_options);
       event.cookies.set("name", user.name, cookie_options);
+      event.cookies.set("username", user.username, cookie_options);
 
       return { email, user };
     }
