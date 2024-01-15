@@ -1,17 +1,24 @@
 import { User_Model } from "$lib/server/models";
 import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async (event: {
-  params: { name: string };
-}) => {
+export const load: PageServerLoad = async (event) => {
   const param_name: string = event.params.name;
 
   const user = await User_Model.findOne({
     "user.username": { $regex: new RegExp(param_name, "i") },
   });
+  const cookie_username = event.cookies.get("username");
+
+  let sameUser: boolean;
 
   if (!user) {
     return { status: 404, error: "User could not be found" };
+  }
+
+  if (cookie_username === user.user?.username) {
+    sameUser = true;
+  } else {
+    sameUser = false;
   }
 
   const user_name = user.user?.name;
@@ -68,5 +75,6 @@ export const load: PageServerLoad = async (event: {
     user_all_time,
     games,
     user_bio,
+    sameUser,
   };
 };
