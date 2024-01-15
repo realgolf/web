@@ -81,7 +81,7 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
-  chnage_bio: async (event) => {
+  edit_profile: async (event) => {
     const email = event.cookies.get("email");
     const user = await User_Model.findOne({ "user.email": email });
     const data = await event.request.formData();
