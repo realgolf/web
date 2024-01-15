@@ -6,6 +6,7 @@ export const load: PageServerLoad = async (event) => {
   event.cookies.delete("auth-token", cookie_options);
   event.cookies.delete("email", cookie_options);
   event.cookies.delete("name", cookie_options);
+  event.cookies.delete("username", cookie_options);
   throw redirect(301, "/");
 };
 
@@ -14,6 +15,7 @@ export const actions: Actions = {
     event.cookies.delete("auth-token", cookie_options);
     event.cookies.delete("email", cookie_options);
     event.cookies.delete("name", cookie_options);
+    event.cookies.delete("username", cookie_options);
     throw redirect(301, "/");
   },
 };
