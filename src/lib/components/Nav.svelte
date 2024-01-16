@@ -9,6 +9,7 @@
   import Dropdownmenu from "./Dropdownmenu.svelte";
 
   export let auth: string | undefined;
+  export let username: string | undefined;
 
   type link = {
     path: string;
@@ -70,7 +71,7 @@
       </li>
     {/each}
     <li>
-      <Dropdownmenu {auth} />
+      <Dropdownmenu {auth} {username}/>
     </li>
   </ul>
 </nav>
