@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
   import {
     faBars,
     faBook,
@@ -12,6 +11,7 @@
     faInfoCircle,
     faKey,
     faLock,
+    faQuestionCircle,
     faSave,
     faTh,
     faUser,
