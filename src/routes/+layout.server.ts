@@ -3,7 +3,7 @@ import { User_Model } from "$lib/server/models";
 import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
 
-export const load: LayoutServerLoad = async (event) => {
+export const load: LayoutServerLoad = async (event: { cookies: { get: (arg0: string) => string; }; }) => {
   const connection = await connect_to_db();
   if (!connection) {
     throw error(500, "Database connection failed");
@@ -13,6 +13,7 @@ export const load: LayoutServerLoad = async (event) => {
 
   const name = event.cookies.get("name") ?? "";
   const email = event.cookies.get("email") ?? "";
+  const username = event.cookies.get("username") ?? "";
 
   const user = await User_Model.findOne({ "user.email": email });
 
@@ -25,5 +26,5 @@ export const load: LayoutServerLoad = async (event) => {
 
   const theme = user.user?.theme;
 
-  return { name, email, auth, theme };
+  return { name, email, auth, theme, username };
 };
