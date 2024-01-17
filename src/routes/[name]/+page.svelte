@@ -68,7 +68,6 @@
             on:click={() => handleBadgeClick(index)}
           >
             {badge.title.toUpperCase()}
-            {index}
           </p>
           {#if activeBadgeIndex === index}
             <div class="description">
