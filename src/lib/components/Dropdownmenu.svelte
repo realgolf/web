@@ -13,6 +13,7 @@
     faLock,
     faQuestionCircle,
     faSave,
+    faSignOutAlt,
     faTh,
     faUser,
     faWrench,
@@ -126,6 +127,11 @@
         >
       </p>
     </div>
+    {#if auth}
+      <div class="border-bottom logout row">
+        <a href="/logout"><span><Fa icon={faSignOutAlt} /></span>Sign Out</a>
+      </div>
+    {/if}
   </div>
 {/if}
 
@@ -230,6 +236,7 @@
     .home,
     .external-links,
     .copyright,
+    .logout,
     .internal-links,
     .logged-out,
     .logged-in {

@@ -241,7 +241,7 @@
 </div>
 
 <form action="/logout" method="POST" class="logout-form">
-  <button>Logout</button>
+  <button>Sign out</button>
 </form>
 
 <style lang="scss">
