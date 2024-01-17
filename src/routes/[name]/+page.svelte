@@ -50,6 +50,20 @@
       <p>{data.user_bio}</p>
     {/if}
   </div>
+  <div class="highlights">
+    <h3>Highlights</h3>
+    <div class="badges">
+      {#if data.badges}
+        {#each data.badges as badge}
+          <p
+            style="border: 1px solid {badge.color}; width: max-content; border-radius: 24px; padding: 3px 5px; color: {badge.color}; margin: 3px 5px; font-size: var(--tiny-font)"
+          >
+            {badge.title.toUpperCase()}
+          </p>
+        {/each}
+      {/if}
+    </div>
+  </div>
 </div>
 
 {#if data.user_registration_date}
@@ -149,5 +163,14 @@
     color: var(--font-color);
     font-size: var(--medium-font);
     width: 100%;
+  }
+
+  .highlights {
+    margin-top: 20px;
+    .badges {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+    }
   }
 </style>
