@@ -63,6 +63,12 @@ export const load: PageServerLoad = async (event) => {
     return gameCopy;
   });
 
+  const badges = user.user?.badges.map((badge) => {
+    const badgeCopy = JSON.parse(JSON.stringify(badge));
+    delete badgeCopy._id; // Remove the _id field
+    return badgeCopy;
+  });
+
   return {
     user_name,
     user_username,
@@ -77,6 +83,7 @@ export const load: PageServerLoad = async (event) => {
     games,
     user_bio,
     sameUser,
+    badges,
   };
 };
 
@@ -102,6 +109,5 @@ export const actions: Actions = {
       await user.save();
       console.log(user);
     }
-    
   },
 };
