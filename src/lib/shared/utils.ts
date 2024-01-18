@@ -12,10 +12,6 @@ export function removeLastSymbol(string: string) {
   return string.slice(0, -1);
 }
 
-export function removeFirstSymbol(inputString: string): string {
-  return inputString.substring(1);
-}
-
 export function asignNameToTeam(teams: string) {
   let name: string;
 
