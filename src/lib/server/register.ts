@@ -125,7 +125,9 @@ export async function verify_username(username: string): Promise<string> {
     return "There is already a account with this username.";
   }
 
-  if (sites.includes(username)) {
+  const lowerCaseSites = sites.map((site) => site.toLowerCase());
+
+  if (lowerCaseSites.includes(username.toLowerCase())) {
     return "The username cannot be equal to one of our sites.";
   }
 
