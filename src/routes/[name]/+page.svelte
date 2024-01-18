@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { removeFirstSymbol } from "$lib/shared/utils.js";
   import { onMount } from "svelte";
 
   export let data;
@@ -37,7 +38,7 @@
 </svelte:head>
 
 {#if data.user_username == undefined}
-  <h1>404 {path} could not be found</h1>
+  <h1>404 {removeFirstSymbol(path)} could not be found</h1>
 {:else}
   <div class="vcard-names">
     <span class="vcard-nickname">{data.user_username}</span>
