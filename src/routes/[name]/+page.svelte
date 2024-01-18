@@ -8,6 +8,8 @@
   let hasRedirected = false;
   let editing = false;
 
+  let path = location.pathname;
+
   onMount(() => {
     const correctCasedUrl = `/${data.user_username}`;
 
@@ -34,107 +36,111 @@
   <title>{data.user_username} ({data.user_name})</title>
 </svelte:head>
 
-<div class="vcard-names">
-  <span class="vcard-nickname">{data.user_username}</span>
-  <br />
-  <span class="vcard-fullname">{data.user_name}</span>
+{#if data.user_username == undefined}
+  <h1>404 {path} could not be found</h1>
+{:else}
+  <div class="vcard-names">
+    <span class="vcard-nickname">{data.user_username}</span>
+    <br />
+    <span class="vcard-fullname">{data.user_name}</span>
 
-  {#if data.user_bio}
-    <div class="bio">
-      {#if editing}
-        <form action="?/edit_profile" method="POST">
-          <label for="bio">Bio</label>
-          <textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
+    {#if data.user_bio}
+      <div class="bio">
+        {#if editing}
+          <form action="?/edit_profile" method="POST">
+            <label for="bio">Bio</label>
+            <textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
+            <br />
+            <button type="submit">Save</button>
+            <button type="button" on:click={handleCancel}>Cancel</button>
+          </form>
+        {:else if data.sameUser}
+          <p>{data.user_bio}</p>
           <br />
-          <button type="submit">Save</button>
-          <button type="button" on:click={handleCancel}>Cancel</button>
-        </form>
-      {:else if data.sameUser}
-        <p>{data.user_bio}</p>
-        <br />
-        <button on:click={() => (editing = true)}>Edit profile</button>
-      {:else}
-        <p>{data.user_bio}</p>
-      {/if}
-    </div>
-  {/if}
-  {#if data.badges && data.badges.length > 0}
-    <div class="highlights">
-      <h3>Highlights</h3>
-      <div class="badges">
-        {#each data.badges as badge, index}
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-          <p
-            style="border: 1px solid {badge.color}; width: max-content; border-radius: 24px; padding: 3px 5px; color: {badge.color}; margin: 3px 5px; font-size: var(--tiny-font);"
-            on:click={() => handleBadgeClick(index)}
-          >
-            {badge.title.toUpperCase()}
-          </p>
-          {#if activeBadgeIndex === index}
-            <div class="description">
-              <p>{badge.description}</p>
-            </div>
-          {/if}
-        {/each}
+          <button on:click={() => (editing = true)}>Edit profile</button>
+        {:else}
+          <p>{data.user_bio}</p>
+        {/if}
       </div>
-    </div>
-  {/if}
-</div>
+    {/if}
+    {#if data.badges && data.badges.length > 0}
+      <div class="highlights">
+        <h3>Highlights</h3>
+        <div class="badges">
+          {#each data.badges as badge, index}
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+            <p
+              style="border: 1px solid {badge.color}; width: max-content; border-radius: 24px; padding: 3px 5px; color: {badge.color}; margin: 3px 5px; font-size: var(--tiny-font);"
+              on:click={() => handleBadgeClick(index)}
+            >
+              {badge.title.toUpperCase()}
+            </p>
+            {#if activeBadgeIndex === index}
+              <div class="description">
+                <p>{badge.description}</p>
+              </div>
+            {/if}
+          {/each}
+        </div>
+      </div>
+    {/if}
+  </div>
 
-{#if data.user_registration_date}
-  <p>
-    {data.user_username} joined RealGolf.Games on {data.user_registration_date.toLocaleDateString()}.
-  </p>
-{/if}
-
-<p>
-  {user_games?.length === 1
-    ? `They have 1 saved game.`
-    : `They have ${user_games?.length} saved games.`}
-
-  You can find all of their games
-  <a href={`/${data.user_username}/games`}>here</a>.
-</p>
-
-<div id="one_player_precision">
-  <h2>One Player Precision Highscore</h2>
-  {#if data.user_daily?.lastUpdated === null}
-    <p>{data.user_username} has never played One Player Precision</p>
-  {:else}
-    <ul>
-      <li>
-        <b>Today's</b> highscore is: {data.user_daily?.value}, last updated on{" "}
-        {data.user_daily?.lastUpdated &&
-          new Date(data.user_daily.lastUpdated).toLocaleDateString()}.
-      </li>
-      <li>
-        <b>This Week's</b> highscore is: {data.user_weekly?.value}, last updated
-        on{" "}
-        {data.user_weekly?.lastUpdated &&
-          new Date(data.user_weekly.lastUpdated).toLocaleDateString()}.
-      </li>
-      <li>
-        <b>This Month's</b> highscore is: {data.user_monthly?.value}, last
-        updated on{" "}
-        {data.user_monthly?.lastUpdated &&
-          new Date(data.user_monthly.lastUpdated).toLocaleDateString()}.
-      </li>
-      <li>
-        <b>This Year's</b> highscore is: {data.user_yearly?.value}, last updated
-        on{" "}
-        {data.user_yearly?.lastUpdated &&
-          new Date(data.user_yearly.lastUpdated).toLocaleDateString()}.
-      </li>
-    </ul>
+  {#if data.user_registration_date}
     <p>
-      {data.user_username}'s' all-time highscore is
-      <b>{data.user_all_time?.value}</b>, last exceeded on{" "}
-      {data.user_all_time?.lastUpdated &&
-        new Date(data.user_all_time.lastUpdated).toLocaleDateString()}.
+      {data.user_username} joined RealGolf.Games on {data.user_registration_date.toLocaleDateString()}.
     </p>
   {/if}
-</div>
+
+  <p>
+    {user_games?.length === 1
+      ? `They have 1 saved game.`
+      : `They have ${user_games?.length} saved games.`}
+
+    You can find all of their games
+    <a href={`/${data.user_username}/games`}>here</a>.
+  </p>
+
+  <div id="one_player_precision">
+    <h2>One Player Precision Highscore</h2>
+    {#if data.user_daily?.lastUpdated === null}
+      <p>{data.user_username} has never played One Player Precision</p>
+    {:else}
+      <ul>
+        <li>
+          <b>Today's</b> highscore is: {data.user_daily?.value}, last updated on{" "}
+          {data.user_daily?.lastUpdated &&
+            new Date(data.user_daily.lastUpdated).toLocaleDateString()}.
+        </li>
+        <li>
+          <b>This Week's</b> highscore is: {data.user_weekly?.value}, last
+          updated on{" "}
+          {data.user_weekly?.lastUpdated &&
+            new Date(data.user_weekly.lastUpdated).toLocaleDateString()}.
+        </li>
+        <li>
+          <b>This Month's</b> highscore is: {data.user_monthly?.value}, last
+          updated on{" "}
+          {data.user_monthly?.lastUpdated &&
+            new Date(data.user_monthly.lastUpdated).toLocaleDateString()}.
+        </li>
+        <li>
+          <b>This Year's</b> highscore is: {data.user_yearly?.value}, last
+          updated on{" "}
+          {data.user_yearly?.lastUpdated &&
+            new Date(data.user_yearly.lastUpdated).toLocaleDateString()}.
+        </li>
+      </ul>
+      <p>
+        {data.user_username}'s' all-time highscore is
+        <b>{data.user_all_time?.value}</b>, last exceeded on{" "}
+        {data.user_all_time?.lastUpdated &&
+          new Date(data.user_all_time.lastUpdated).toLocaleDateString()}.
+      </p>
+    {/if}
+  </div>
+{/if}
 
 <style lang="scss">
   .vcard-names {
