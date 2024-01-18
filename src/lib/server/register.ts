@@ -1,3 +1,4 @@
+import { sites } from "$lib/shared/sites";
 import bcrypt from "bcrypt";
 import { User_Model } from "./models";
 import { email_regexp } from "./utils";
@@ -122,6 +123,10 @@ export async function verify_username(username: string): Promise<string> {
 
   if (previous_user) {
     return "There is already a account with this username.";
+  }
+
+  if (sites.includes(username)) {
+    return "The username cannot be equal to one of our sites.";
   }
 
   return "";
