@@ -33,11 +33,21 @@
 </script>
 
 <svelte:head>
-  <title>{data.user_username} ({data.user_name})</title>
+  {#if data.user_username == undefined}
+    <title>404 - User/Page Not Found</title>
+  {:else}
+    <title>{data.user_username} ({data.user_name})</title>
+  {/if}
 </svelte:head>
 
 {#if data.user_username == undefined}
-  <h1>404 {path} could not be found</h1>
+<div class="error-container">
+  <h1 class="error">404 - User/Page Not Found!</h1>
+  <p>We couldn't find the user or page for the path: <strong>{path}</strong></p>
+  <p>Please check the path for any errors, ensure it is correctly spelled, and try again.</p>
+  <p>Go back to <a href="/">home</a>.</p>
+</div>
+
 {:else}
   <div class="vcard-names">
     <span class="vcard-nickname">{data.user_username}</span>

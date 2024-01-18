@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { removeLastLetter } from "$lib/shared/utils.js";
+  import { removeLastSymbol } from "$lib/shared/utils.js";
 
   export let data;
   let measurement_unit = data.measurement_unit as string;
@@ -58,7 +58,7 @@
     <br />
     Precision is measured by the deviation in {measurement_unit} from the target
     distance. The closer the ball is to the specified distance, the fewer points
-    will be deducted. It follows a deduction of 1 point per {removeLastLetter(
+    will be deducted. It follows a deduction of 1 point per {removeLastSymbol(
       measurement_unit
     )} deviation from the target.
     <br />

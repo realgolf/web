@@ -8,7 +8,7 @@ export function capitalizeFirstLetter(string: string | undefined) {
   }
 }
 
-export function removeLastLetter(string: string) {
+export function removeLastSymbol(string: string) {
   return string.slice(0, -1);
 }
 
