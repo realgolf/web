@@ -39,23 +39,25 @@
   <br />
   <span class="vcard-fullname">{data.user_name}</span>
 
-  <div class="bio">
-    {#if editing}
-      <form action="?/edit_profile" method="POST">
-        <label for="bio">Bio</label>
-        <textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
+  {#if data.user_bio}
+    <div class="bio">
+      {#if editing}
+        <form action="?/edit_profile" method="POST">
+          <label for="bio">Bio</label>
+          <textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
+          <br />
+          <button type="submit">Save</button>
+          <button type="button" on:click={handleCancel}>Cancel</button>
+        </form>
+      {:else if data.sameUser}
+        <p>{data.user_bio}</p>
         <br />
-        <button type="submit">Save</button>
-        <button type="button" on:click={handleCancel}>Cancel</button>
-      </form>
-    {:else if data.sameUser}
-      <p>{data.user_bio}</p>
-      <br />
-      <button on:click={() => (editing = true)}>Edit profile</button>
-    {:else}
-      <p>{data.user_bio}</p>
-    {/if}
-  </div>
+        <button on:click={() => (editing = true)}>Edit profile</button>
+      {:else}
+        <p>{data.user_bio}</p>
+      {/if}
+    </div>
+  {/if}
   {#if data.badges && data.badges.length > 0}
     <div class="highlights">
       <h3>Highlights</h3>
