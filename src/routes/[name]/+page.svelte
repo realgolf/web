@@ -56,10 +56,10 @@
       <p>{data.user_bio}</p>
     {/if}
   </div>
-  <div class="highlights">
-    <h3>Highlights</h3>
-    <div class="badges">
-      {#if data.badges}
+  {#if data.badges}
+    <div class="highlights">
+      <h3>Highlights</h3>
+      <div class="badges">
         {#each data.badges as badge, index}
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -75,9 +75,9 @@
             </div>
           {/if}
         {/each}
-      {/if}
+      </div>
     </div>
-  </div>
+  {/if}
 </div>
 
 {#if data.user_registration_date}
