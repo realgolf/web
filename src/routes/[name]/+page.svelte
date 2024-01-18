@@ -56,7 +56,7 @@
       <p>{data.user_bio}</p>
     {/if}
   </div>
-  {#if data.badges}
+  {#if data.badges && data.badges.length > 0}
     <div class="highlights">
       <h3>Highlights</h3>
       <div class="badges">
