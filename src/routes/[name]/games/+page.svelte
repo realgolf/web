@@ -43,6 +43,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>{data.user_username} - Games</title>
+</svelte:head>
+
 <h2>Games played by {data.user_username}:</h2>
 
 {#if show_confirmation}
