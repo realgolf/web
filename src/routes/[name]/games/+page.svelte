@@ -24,7 +24,7 @@
     const user = data.user_username;
     const domain = extractDomain(window.location.href);
 
-    const url = `https://${domain}/${user}/games/${id}`;
+    const url = `${domain}/${user}/games/${id}`;
 
     console.log(url);
 
@@ -47,7 +47,7 @@
 
 {#if show_confirmation}
   <div class="success" transition:slide={{ duration: 150 }}>
-    Copied short URL to clipboard!
+    Copied URL to clipboard!
   </div>
 {/if}
 
