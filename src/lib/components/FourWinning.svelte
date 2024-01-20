@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { Row, Team } from "$lib/scripts/FourWinning/interfaces";
   import { capitalizeFirstLetter } from "$lib/shared/utils";
   import { onMount } from "svelte";
 
@@ -11,16 +12,7 @@
   export let team: string;
   let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_unit);
 
-  interface Team {
-    color: string;
-    data: string[];
-  }
-
-  interface Row {
-    side: string;
-    data: string[];
-  }
-
+ 
   let rows: Row[] = [
     {
       side: `1 ${capitalizedMeasurementUnit}`,
