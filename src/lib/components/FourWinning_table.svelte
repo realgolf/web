@@ -1,4 +1,5 @@
 <script lang="ts">
+  import type { GameData, Row } from "$lib/scripts/FourWinning_table/interfaces";
   import { capitalizeFirstLetter } from "$lib/shared/utils";
   import { onMount } from "svelte";
 
@@ -7,11 +8,6 @@
 
   let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_units);
   let game_data = data;
-
-  interface Row {
-    side: string;
-    data: { id: string; value: string; color: string }[];
-  }
 
   let rows: Row[] = [
     {
@@ -111,11 +107,6 @@
       ],
     },
   ];
-
-  interface GameData {
-    color: string;
-    data: string[];
-  }
 
   function colorFields() {
     let gameData: GameData[] = JSON.parse(game_data);

@@ -320,22 +320,26 @@
    * This function is for the input field, to input the distance.
    */
 
-  function handleClick() {
-    let input = document.getElementById("distance") as HTMLInputElement;
+  function handleInput() {
+    const input = document.getElementById("distance") as HTMLInputElement;
 
     if (input) {
-      let distanceStr = input.value.trim();
+      const distanceStr = input.value.trim();
 
       if (distanceStr !== "") {
-        let distance = parseFloat(distanceStr);
+        const distance = parseFloat(distanceStr);
 
-        if (!isNaN(distance)) {
-          if (distance >= 10 && distance <= 23) {
-            let rowIndex = Math.floor((distance - 10) / 2);
-            let cell = document.getElementById(`row1-${rowIndex}`);
-            let Id = `1-${rowIndex}`;
+        if (!isNaN(distance) && distance >= 10 && distance <= 163) {
+          const rowIndex = Math.floor((distance - 10) / 3);
+          const rowId = Math.floor((distance - 10) / 13) + 1;
 
-            if (cell) {
+          const cell = document.getElementById(`row${rowId}-${rowIndex}`);
+          const Id = `${rowId}-${rowIndex}`;
+
+          if (cell) {
+            // Check if the background color is not transparent
+            console.log(cell.style.backgroundColor);
+            if (cell.style.backgroundColor === "" || cell.style.backgroundColor === "transparent") {
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
@@ -345,124 +349,14 @@
 
               checkWin();
               changeTeam();
+            } else {
+              alert("This field is already claimed by another team.");
             }
-          } else if (distance >= 24 && distance <= 37) {
-            let rowIndex = Math.floor((distance - 24) / 2);
-            let cell = document.getElementById(`row2-${rowIndex}`);
-            let Id = `2-${rowIndex}`;
-
-            if (cell) {
-              cell.style.backgroundColor = currentTeam.color;
-              currentTeam.data.push(Id);
-              localStorage.setItem(
-                `4winning_${teams.length}_teams`,
-                JSON.stringify(teams)
-              );
-
-              checkWin();
-              changeTeam();
-            }
-          } else if (distance >= 38 && distance <= 58) {
-            let rowIndex = Math.floor((distance - 38) / 3);
-            let cell = document.getElementById(`row3-${rowIndex}`);
-            let Id = `3-${rowIndex}`;
-
-            if (cell) {
-              cell.style.backgroundColor = currentTeam.color;
-              currentTeam.data.push(Id);
-              localStorage.setItem(
-                `4winning_${teams.length}_teams`,
-                JSON.stringify(teams)
-              );
-
-              checkWin();
-              changeTeam();
-            }
-          } else if (distance >= 59 && distance <= 79) {
-            let rowIndex = Math.floor((distance - 59) / 3);
-            let cell = document.getElementById(`row4-${rowIndex}`);
-            let Id = `4-${rowIndex}`;
-
-            if (cell) {
-              cell.style.backgroundColor = currentTeam.color;
-              currentTeam.data.push(Id);
-              localStorage.setItem(
-                `4winning_${teams.length}_teams`,
-                JSON.stringify(teams)
-              );
-
-              checkWin();
-              changeTeam();
-            }
-          } else if (distance >= 80 && distance <= 100) {
-            let rowIndex = Math.floor((distance - 80) / 3);
-            let cell = document.getElementById(`row5-${rowIndex}`);
-            let Id = `5-${rowIndex}`;
-
-            if (cell) {
-              cell.style.backgroundColor = currentTeam.color;
-              currentTeam.data.push(Id);
-              localStorage.setItem(
-                `4winning_${teams.length}_teams`,
-                JSON.stringify(teams)
-              );
-
-              checkWin();
-              changeTeam();
-            }
-          } else if (distance >= 101 && distance <= 121) {
-            let rowIndex = Math.floor((distance - 101) / 3);
-            let cell = document.getElementById(`row6-${rowIndex}`);
-            let Id = `6-${rowIndex}`;
-
-            if (cell) {
-              cell.style.backgroundColor = currentTeam.color;
-              currentTeam.data.push(Id);
-              localStorage.setItem(
-                `4winning_${teams.length}_teams`,
-                JSON.stringify(teams)
-              );
-
-              checkWin();
-              changeTeam();
-            }
-          } else if (distance >= 122 && distance <= 142) {
-            let rowIndex = Math.floor((distance - 122) / 3);
-            let cell = document.getElementById(`row7-${rowIndex}`);
-            let Id = `7-${rowIndex}`;
-
-            if (cell) {
-              cell.style.backgroundColor = currentTeam.color;
-              currentTeam.data.push(Id);
-              localStorage.setItem(
-                `4winning_${teams.length}_teams`,
-                JSON.stringify(teams)
-              );
-
-              checkWin();
-              changeTeam();
-            }
-          } else if (distance >= 143 && distance <= 163) {
-            let rowIndex = Math.floor((distance - 142) / 3);
-            let cell = document.getElementById(`row8-${rowIndex}`);
-            let Id = `8-${rowIndex}`;
-
-            if (cell) {
-              cell.style.backgroundColor = currentTeam.color;
-              currentTeam.data.push(Id);
-              localStorage.setItem(
-                `4winning_${teams.length}_teams`,
-                JSON.stringify(teams)
-              );
-
-              checkWin();
-              changeTeam();
-            }
-          } else {
-            alert("An unexpected error occured.");
           }
         } else {
-          alert("Invalid input. Please enter a valid number.");
+          alert(
+            "Invalid input. Please enter a valid number between 10 and 163."
+          );
         }
       } else {
         alert("You need to enter a number.");
@@ -525,7 +419,7 @@
 
 <p>You can also enter the distance you have played here:</p>
 <input type="number" name="distance" id="distance" />
-<button on:click={handleClick}>Submit</button>
+<button on:click={handleInput}>Submit</button>
 
 <table>
   {#each rows as { side, data }, outerIndex}
@@ -565,6 +459,7 @@
     min-width: calc(90vw / 15);
     height: calc(50vh / 8);
     text-align: center;
+    background-color: transparent;
   }
 
   .meters:hover {
