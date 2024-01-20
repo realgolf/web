@@ -1,16 +1,54 @@
-<script>
+<script lang="ts">
   import FourWinningTable from "$lib/components/FourWinning_table.svelte";
+  import { slide } from "svelte/transition";
   export let data;
 
   let user_games = data.games;
+  let show_confirmation = false;
+
+  function extractDomain(url: string): string | null {
+    try {
+      const parsedUrl = new URL(url);
+      // Check if the port is specified, and include it in the domain
+      const domainWithPort = parsedUrl.port
+        ? `${parsedUrl.hostname}:${parsedUrl.port}`
+        : parsedUrl.hostname;
+      return domainWithPort;
+    } catch (error) {
+      // URL parsing failed
+      return null;
+    }
+  }
+
+  async function shareGame(id: any) {
+    const user = data.user_username;
+    const game = id;
+    const domain = extractDomain(window.location.href);
+
+    const url = `https://${domain}/${user}/games/${id}`;
+
+    console.log(url);
+
+    await window.navigator.clipboard.writeText(url);
+    show_confirmation = true;
+    setTimeout(() => {
+      show_confirmation = false;
+    }, 1500);
+  }
 </script>
 
 <h2>Games played by {data.user_username}:</h2>
 
+{#if show_confirmation}
+  <div class="success" transition:slide={{ duration: 150 }}>
+    Copied short URL to clipboard!
+  </div>
+{/if}
+
 <div class="user_games">
   {#if user_games}
     {#if user_games.length > 0}
-      {#each user_games as { name, teams, data, date }}
+      {#each user_games as { name, teams, data, date, id }}
         <div class="games">
           <p>{name}</p>
           <p>{teams}</p>
@@ -20,6 +58,7 @@
           {#if teams.includes("4winning_")}
             <FourWinningTable measurement_units="yards" {data} />
           {/if}
+          <button on:click={() => shareGame(id)}>Share Game</button>
         </div>
       {/each}
     {:else}
