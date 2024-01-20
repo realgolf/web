@@ -387,7 +387,7 @@
    * This function is for the input field, to input the distance.
    */
 
-  function handleClick() {
+  function handleInput() {
     let input = document.getElementById("distance") as HTMLInputElement;
 
     if (input) {
@@ -592,7 +592,7 @@
 
 <p>You can also enter the distance you have played here:</p>
 <input type="number" name="distance" id="distance" />
-<button on:click={handleClick}>Submit</button>
+<button on:click={handleInput}>Submit</button>
 
 <table>
   {#each rows as { side, data }, outerIndex}
