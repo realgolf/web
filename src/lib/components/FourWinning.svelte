@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Team } from "$lib/scripts/FourWinning/interfaces";
+  import { rows } from "$lib/scripts/FourWinning/rows";
   import { capitalizeFirstLetter } from "$lib/shared/utils";
   import { onMount } from "svelte";
 
@@ -9,76 +11,7 @@
   export let teams: Team[];
   export let measurement_unit: string;
   export let team: string;
-  let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_unit);
-
-  interface Team {
-    color: string;
-    data: string[];
-  }
-
-  interface Row {
-    side: string;
-    data: string[];
-  }
-
-  let rows: Row[] = [
-    {
-      side: `1 ${capitalizedMeasurementUnit}`,
-      data: ["10-11", "12-13", "14-15", "16-17", "18-19", "20-21", "22-23"],
-    },
-    {
-      side: `1 ${capitalizedMeasurementUnit}`,
-      data: ["24-25", "26-27", "28-29", "30-31", "32-33", "34-35", "36-37"],
-    },
-    {
-      side: `2 ${capitalizedMeasurementUnit}`,
-      data: ["38-40", "41-43", "44-46", "47-49", "50-52", "53-55", "56-58"],
-    },
-    {
-      side: `2 ${capitalizedMeasurementUnit}`,
-      data: ["59-61", "62-64", "65-67", "68-70", "71-73", "74-76", "77-79"],
-    },
-    {
-      side: `3 ${capitalizedMeasurementUnit}`,
-      data: ["80-82", "83-85", "86-88", "89-91", "92-94", "95-97", "98-100"],
-    },
-    {
-      side: `3 ${capitalizedMeasurementUnit}`,
-      data: [
-        "101-103",
-        "104-106",
-        "107-109",
-        "110-112",
-        "113-115",
-        "116-118",
-        "119-121",
-      ],
-    },
-    {
-      side: `4 ${capitalizedMeasurementUnit}`,
-      data: [
-        "122-124",
-        "125-127",
-        "128-130",
-        "131-133",
-        "134-136",
-        "137-139",
-        "140-142",
-      ],
-    },
-    {
-      side: `4 ${capitalizedMeasurementUnit}`,
-      data: [
-        "143-145",
-        "146-148",
-        "149-151",
-        "152-154",
-        "155-157",
-        "158-160",
-        "161-163",
-      ],
-    },
-  ];
+  const capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_unit);
 
   let currentTeamIndex = 0;
   let color = teams[currentTeamIndex].color;
@@ -598,7 +531,7 @@
   {#each rows as { side, data }, outerIndex}
     <tbody id={`row${outerIndex + 1}`}>
       <tr>
-        <td class="points">{side}</td>
+        <td class="points">{side} {capitalizedMeasurementUnit}</td>
         {#each data as value, innerIndex}
           <td
             class="meters"
