@@ -22,7 +22,6 @@
 
   async function shareGame(id: any) {
     const user = data.user_username;
-    const game = id;
     const domain = extractDomain(window.location.href);
 
     const url = `https://${domain}/${user}/games/${id}`;
@@ -34,6 +33,13 @@
     setTimeout(() => {
       show_confirmation = false;
     }, 1500);
+  }
+
+  function openGame(id: any) {
+    const user = data.user_username;
+
+    const url = `/${user}/games/${id}`;
+    window.location.href = url;
   }
 </script>
 
@@ -58,7 +64,9 @@
           {#if teams.includes("4winning_")}
             <FourWinningTable measurement_units="yards" {data} />
           {/if}
+          <br />
           <button on:click={() => shareGame(id)}>Share Game</button>
+          <button on:click={() => openGame(id)}>Open Game</button>
         </div>
       {/each}
     {:else}
