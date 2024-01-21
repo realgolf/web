@@ -21,6 +21,29 @@ const User_Schema = new mongoose.Schema({
 			}
 		]
 	},
+	achievements: [
+		{
+			title: {type: String},
+			description: {type: String},
+			first_unlocked: {type: Date},
+			is_unlocked: {
+				bronze_unlocked: {type: Boolean},
+				silver_unlocked: {type: Boolean},
+				gold_unlocked: {type: Boolean},
+				platinum_unlocked: {type: Boolean}
+			},
+			history: {
+				bronze_unlocked_date: {type: Date},
+				bronze_unlocked_game: {type: String},
+				silver_unlocked_date: {type: Date},
+				silver_unlocked_game: {type: String},
+				gold_unlocked_date: {type: Date},
+				gold_unlocked_game: {type: String},
+				platinum_unlocked_date: {type: Date},
+				platinum_unlocked_game: {type: String},
+			}
+		}
+	],
 	games: [
 		{
 			id: { type: String },
@@ -30,6 +53,7 @@ const User_Schema = new mongoose.Schema({
 			data: { type: String }
 		}
 	],
+	total_games: {type: Number},
 	one_player_precision_highscore: {
 		daily: {
 			value: { type: Number, default: 0 },
