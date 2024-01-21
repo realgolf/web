@@ -9,6 +9,8 @@ export interface Achievements {
     platinum_unlocked: boolean;
   };
   history?: {
+    first_unlocked_date?: Date;
+    first_unlocked_game?: string;
     bronze_unlocked_date?: Date;
     bronze_unlocked_game?: string;
     silver_unlocked_date?: Date;

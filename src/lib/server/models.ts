@@ -33,6 +33,8 @@ const User_Schema = new mongoose.Schema({
 				platinum_unlocked: {type: Boolean}
 			},
 			history: {
+				first_unlocked_date: {type: Date},
+				first_unlocked_game: {type: String},
 				bronze_unlocked_date: {type: Date},
 				bronze_unlocked_game: {type: String},
 				silver_unlocked_date: {type: Date},

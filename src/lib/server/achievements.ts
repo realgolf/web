@@ -10,8 +10,6 @@ export async function check_achievement(user: User, gameId: string) {
   // check_bronze_requirements(total_games, achievements, user_name, gameId);
 
   user.achievements = achievements;
-
-  console.log(user);
 }
 
 function check_first_unlock(
@@ -32,8 +30,8 @@ function check_first_unlock(
         platinum_unlocked: false,
       },
       history: {
-        bronze_unlocked_date: new Date(),
-        bronze_unlocked_game: gameId,
+        first_unlocked_date: new Date(),
+        first_unlocked_game: gameId,
       },
     });
 
@@ -50,21 +48,7 @@ function check_first_unlock(
 //   gameId: string
 // ) {
 //   if (total_games == 16) {
-//     achievements.push({
-//       title: "Game Master",
-//       description: `${user_name} played games that have been saved`,
-//       first_unlocked: new Date(),
-//       is_unlocked: {
-//         bronze_unlocked: true,
-//         silver_unlocked: false,
-//         gold_unlocked: false,
-//         platinum_unlocked: false,
-//       },
-//       history: {
-//         bronze_unlocked_date: new Date(),
-//         bronze_unlocked_game: gameId,
-//       },
-//     });
+//     console.log(achievements);
 
 //     return achievements;
 //   } else {
