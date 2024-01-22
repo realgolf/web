@@ -55,7 +55,7 @@ const User_Schema = new mongoose.Schema({
 			data: { type: String }
 		}
 	],
-	total_games: {type: Number},
+	total_games: {type: Number, default: 0},
 	one_player_precision_highscore: {
 		daily: {
 			value: { type: Number, default: 0 },
