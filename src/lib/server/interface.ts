@@ -1,7 +1,8 @@
+import type { Achievements } from "./interface/Achievements";
 import type { GolfRound } from "./interface/GolfRound";
 import type { HandicapHistory } from "./interface/HandicapHistory";
-import type { Achievements } from "./interface/achievements";
-import type { OnePlayerPrecisionHighscore } from "./interface/onePlayerPrecision";
+import type { OnePlayerPrecisionHighscore } from "./interface/OnePlayerPrecision";
+
 
 export interface User {
   user: {
