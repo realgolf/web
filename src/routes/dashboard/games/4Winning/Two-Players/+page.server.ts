@@ -64,9 +64,7 @@ export const actions: Actions = {
           date: formattedDate,
           data: JSON.stringify(team_data),
         });
-      }
 
-      if(user.total_games) {
         user.total_games += 1;
         const user_copy = user as User;
         check_achievement(user_copy, gameId);

@@ -1,5 +1,5 @@
 import type { User } from "./interface";
-import type { Achievements } from "./interface/achievements";
+import type { Achievements } from "./interface/Achievements";
 
 export async function check_achievement(user: User, gameId: string) {
   const achievements = user.achievements;
@@ -7,7 +7,7 @@ export async function check_achievement(user: User, gameId: string) {
   const user_name = user.user.username;
 
   check_first_unlock(total_games, achievements, user_name, gameId);
-  // check_bronze_requirements(total_games, achievements, user_name, gameId);
+  check_bronze_requirements(total_games, achievements, user_name, gameId);
 
   user.achievements = achievements;
 }
@@ -41,23 +41,48 @@ function check_first_unlock(
   }
 }
 
-// function check_bronze_requirements(
-//   total_games: number,
-//   achievements: Achievements[],
-//   user_name: string,
-//   gameId: string
-// ) {
-//   if (total_games == 16) {
-//     console.log(achievements);
+function check_bronze_requirements(
+  total_games: number,
+  achievements: Achievements[],
+  user_name: string,
+  gameId: string
+) {
+  if (total_games == 16) {
+    // Update the "Game Master" achievement
+    const updatedAchievements = updateAchievementByTitle(
+      achievements,
+      "Game Master",
+      {
+        is_unlocked: {
+          bronze_unlocked: true,
+          silver_unlocked: false,
+          gold_unlocked: false,
+          platinum_unlocked: false,
+        },
+        history: {
+          bronze_unlocked_date: new Date(),
+          bronze_unlocked_game: gameId,
+        },
+      }
+    );
 
-//     return achievements;
-//   } else {
-//     return "";
-//   }
-// }
+    // Log the updated achievements
+    console.log(updatedAchievements);
 
-// function check_silver_requirements(total_games: number, achievements: Achievements, user_name: string, gameId: string) {
-//   if(total_games == 128) {
+    return updatedAchievements;
+  } else {
+    return achievements;
+  }
+}
 
-//   }
-// }
+export function updateAchievementByTitle(
+  achievements: Achievements[],
+  title: string,
+  updateData: Partial<Achievements>
+): Achievements[] {
+  return achievements.map((achievement) =>
+    achievement.title === title
+      ? { ...achievement, ...updateData }
+      : achievement
+  );
+}
