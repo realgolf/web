@@ -9,6 +9,7 @@ export async function check_achievement(user: User, gameId: string) {
   check_first_unlock(total_games, achievements, user_name, gameId);
   check_bronze_requirements(total_games, achievements, gameId);
   check_silver_requirements(total_games, achievements, gameId);
+  check_gold_requirements(total_games, achievements, gameId);
 
   user.achievements = achievements;
 }
@@ -76,10 +77,31 @@ function check_silver_requirements(
         (achievement) => achievement.title === "Game Master"
       );
 
-      if(game_master?.history) {
+      if (game_master?.history) {
         game_master.is_unlocked.silver_unlocked = true;
         game_master.history.silver_unlocked_date = new Date();
         game_master.history.silver_unlocked_game = gameId;
+      }
+    }
+  }
+}
+
+//! Requires 1024 played games
+function check_gold_requirements(
+  total_games: number,
+  achievements: Achievements[],
+  gameId: string
+) {
+  if (total_games == 1024) {
+    if (achievements) {
+      const game_master = achievements.find(
+        (achievement) => achievement.title === "Game Master"
+      );
+
+      if (game_master?.history) {
+        game_master.is_unlocked.gold_unlocked = true;
+        game_master.history.gold_unlocked_date = new Date();
+        game_master.history.gold_unlocked_game = gameId;
       }
     }
   }
