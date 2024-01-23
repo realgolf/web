@@ -7,7 +7,7 @@ export async function check_achievement(user: User, gameId: string) {
   const user_name = user.user.username;
 
   check_first_unlock(total_games, achievements, user_name, gameId);
-  check_bronze_requirements(total_games, achievements, user_name, gameId);
+  check_bronze_requirements(total_games, achievements, gameId);
 
   user.achievements = achievements;
 }
@@ -44,45 +44,19 @@ function check_first_unlock(
 function check_bronze_requirements(
   total_games: number,
   achievements: Achievements[],
-  user_name: string,
   gameId: string
 ) {
   if (total_games == 16) {
-    // Update the "Game Master" achievement
-    const updatedAchievements = updateAchievementByTitle(
-      achievements,
-      "Game Master",
-      {
-        is_unlocked: {
-          bronze_unlocked: true,
-          silver_unlocked: false,
-          gold_unlocked: false,
-          platinum_unlocked: false,
-        },
-        history: {
-          bronze_unlocked_date: new Date(),
-          bronze_unlocked_game: gameId,
-        },
+    if (achievements) {
+      const game_master = achievements.find(
+        (achievement) => achievement.title === "Game Master"
+      );
+
+      if (game_master?.history) {
+        game_master.is_unlocked.bronze_unlocked = true;
+        game_master.history.bronze_unlocked_date = new Date();
+        game_master.history.bronze_unlocked_game = gameId;
       }
-    );
-
-    // Log the updated achievements
-    console.log(updatedAchievements);
-
-    return updatedAchievements;
-  } else {
-    return achievements;
+    }
   }
-}
-
-export function updateAchievementByTitle(
-  achievements: Achievements[],
-  title: string,
-  updateData: Partial<Achievements>
-): Achievements[] {
-  return achievements.map((achievement) =>
-    achievement.title === title
-      ? { ...achievement, ...updateData }
-      : achievement
-  );
 }
