@@ -40,8 +40,7 @@
   let activeAchievementIndex: number | null;
 
   function handleAchievementClick(index: number) {
-    activeAchievementIndex =
-      index === activeAchievementIndex ? null : index;
+    activeAchievementIndex = index === activeAchievementIndex ? null : index;
   }
 </script>
 

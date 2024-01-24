@@ -3,7 +3,6 @@ import type { GolfRound } from "./interface/GolfRound";
 import type { HandicapHistory } from "./interface/HandicapHistory";
 import type { OnePlayerPrecisionHighscore } from "./interface/OnePlayerPrecision";
 
-
 export interface User {
   user: {
     email: string;

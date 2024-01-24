@@ -71,7 +71,7 @@
       </li>
     {/each}
     <li>
-      <Dropdownmenu {auth} {username}/>
+      <Dropdownmenu {auth} {username} />
     </li>
   </ul>
 </nav>

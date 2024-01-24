@@ -1,5 +1,8 @@
 <script lang="ts">
-  import type { GameData, Row } from "$lib/scripts/FourWinning_table/interfaces";
+  import type {
+    GameData,
+    Row,
+  } from "$lib/scripts/FourWinning_table/interfaces";
   import { capitalizeFirstLetter } from "$lib/shared/utils";
   import { onMount } from "svelte";
 
