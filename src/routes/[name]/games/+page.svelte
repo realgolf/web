@@ -20,7 +20,7 @@
     }
   }
 
-  async function shareGame(id: any) {
+  async function shareGame(id: string) {
     const user = data.user_username;
     const domain = extractDomain(window.location.href);
 
@@ -35,7 +35,7 @@
     }, 1500);
   }
 
-  function openGame(id: any) {
+  function openGame(id: string) {
     const user = data.user_username;
 
     const url = `/${user}/games/${id}`;
