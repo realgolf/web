@@ -2,7 +2,7 @@
   "name": "golf",
   "version": "2.0.0",
   "author": "RealGolf.Games",
-  "license": "All-Rights-Resrved",
+  "license": "All-Rights-Reserved",
   "private": true,
   "scripts": {
     "dev": "vite dev",
