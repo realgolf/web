@@ -122,8 +122,7 @@
             <h4 on:click={() => handleAchievementClick(index)}>
               {achievement.title}
             </h4>
-            {#if activeAchievementIndex === index}
-              <p>{achievement.description}</p>
+            {#if activeAchievementIndex !== index}
               {#if achievement.is_unlocked.bronze_unlocked == true}
                 <p class="tiers" style="background-color: {bronze_color};">
                   1x
@@ -139,6 +138,16 @@
                   4x
                 </p>
               {/if}
+            {/if}
+            {#if activeAchievementIndex === index}
+              <div class="description">
+                <p>{achievement.description}</p>
+              </div>
+              <div class="history">
+                <ul>
+                  <li>{achievement.history.first_unlocked_date} - {achievement.history.first_unlcoked_game}</li>
+                </ul>
+              </div>
             {/if}
           </div>
         {/each}
