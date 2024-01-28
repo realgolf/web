@@ -118,12 +118,20 @@
         <h3>Achievements</h3>
         {#each data.achievements as achievement, index}
           <div class="achievement">
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-            <h4 on:click={() => handleAchievementClick(index)}>
-              {achievement.title}
-            </h4>
-            {#if activeAchievementIndex == index}
+            <div
+              tabindex="0"
+              role="button"
+              class="heading"
+              on:click={() => handleAchievementClick(index)}
+              on:keydown={(event) => {
+                if (event.key === " ") {
+                  handleAchievementClick(index);
+                }
+              }}
+            >
+              <h4>
+                {achievement.title}
+              </h4>
               {#if achievement.is_unlocked.bronze_unlocked == true}
                 <p class="tiers" style="background-color: {bronze_color};">
                   1x
@@ -139,7 +147,8 @@
                   4x
                 </p>
               {/if}
-            {:else}
+            </div>
+            {#if activeAchievementIndex == index}
               <div class="description">
                 <p>{achievement.description}</p>
               </div>
@@ -150,7 +159,12 @@
                     {new Date(
                       achievement.history.first_unlocked_date
                     ).toLocaleDateString()}
-                    - {achievement.history.first_unlocked_game}
+                    -
+                    <a
+                      href="/{data.user_username}/games/{achievement.history
+                        .first_unlocked_game}"
+                      >{achievement.history.first_unlocked_game}</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -300,12 +314,42 @@
         padding: 5px 5px;
         border: 1px solid var(--border-color);
 
-        .tiers {
-          max-width: max-content;
-          color: black;
-          padding: 3px 10px;
-          border-radius: 2em;
-          width: 100%;
+        .heading {
+          display: flex;
+          flex-direction: row;
+
+          &:focus {
+            outline: none;
+          }
+
+          h4 {
+            height: max-content;
+          }
+
+          h4,
+          .tiers {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Align items in the cross-axis */
+          }
+
+          .tiers {
+            max-width: max-content;
+            color: black;
+            padding: 3px 10px;
+            border-radius: 2em;
+            width: 100%;
+            margin-left: 4rem;
+            margin-bottom: 0 !important;
+          }
+        }
+
+        .history {
+          padding: 0rem 1rem;
+
+          ul {
+            padding: 0rem 1rem;
+          }
         }
       }
     }
