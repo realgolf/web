@@ -3,7 +3,9 @@ import { User_Model } from "$lib/server/models";
 import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
 
-export const load: LayoutServerLoad = async (event: { cookies: { get: (arg0: string) => string; }; }) => {
+export const load: LayoutServerLoad = async (event: {
+  cookies: { get: (arg0: string) => string };
+}) => {
   const connection = await connect_to_db();
   if (!connection) {
     throw error(500, "Database connection failed");

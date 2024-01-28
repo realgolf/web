@@ -22,7 +22,7 @@
 <LoadProgress />
 <ScrollUp />
 
-<Nav auth={data.auth} username={data.username}/>
+<Nav auth={data.auth} username={data.username} />
 
 <main>
   <slot />

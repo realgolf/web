@@ -31,6 +31,7 @@ export const load: PageServerLoad = async (event) => {
     user.one_player_precision_highscore;
   const user_games = user.games;
   const user_bio = user.user?.bio;
+  const total_games = user.total_games;
 
   const user_daily = {
     value: user_one_player_precision_highscore?.daily?.value,
@@ -69,6 +70,12 @@ export const load: PageServerLoad = async (event) => {
     return badgeCopy;
   });
 
+  const achievements = user.achievements.map((achievement) => {
+    const achievementCopy = JSON.parse(JSON.stringify(achievement));
+    delete achievementCopy._id; // Remove the _id field
+    return achievementCopy;
+  });
+
   return {
     user_name,
     user_username,
@@ -84,6 +91,8 @@ export const load: PageServerLoad = async (event) => {
     user_bio,
     sameUser,
     badges,
+    achievements,
+    total_games,
   };
 };
 

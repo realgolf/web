@@ -339,7 +339,10 @@
           if (cell) {
             // Check if the background color is not transparent
             console.log(cell.style.backgroundColor);
-            if (cell.style.backgroundColor === "" || cell.style.backgroundColor === "transparent") {
+            if (
+              cell.style.backgroundColor === "" ||
+              cell.style.backgroundColor === "transparent"
+            ) {
               cell.style.backgroundColor = currentTeam.color;
               currentTeam.data.push(Id);
               localStorage.setItem(
