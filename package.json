@@ -16,9 +16,9 @@
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^3.1.1",
-    "@sveltejs/kit": "^2.4.3",
+    "@sveltejs/kit": "^2.5.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.1",
-    "@types/uuid": "^9.0.7",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
@@ -41,7 +41,7 @@
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
     "lint": "^1.1.2",
-    "mongoose": "^8.0.4",
+    "mongoose": "^8.1.1",
     "sass": "^1.70.0",
     "uuid": "^9.0.1"
   }
