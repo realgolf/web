@@ -1,5 +1,7 @@
-import { v4 as uuidv4 } from "uuid";
+import { check_achievement } from "$lib/server/achievements";
+import type { User } from "$lib/server/interface";
 import { User_Model } from "$lib/server/models";
+import { v4 as uuidv4 } from "uuid";
 import type { Actions } from "./$types";
 
 export const actions: Actions = {
@@ -49,6 +51,10 @@ export const actions: Actions = {
           date: formattedDate,
           data: JSON.stringify(team_data),
         });
+
+        user.total_games += 1;
+        const user_copy = user as User;
+        check_achievement(user_copy, gameId);
       }
 
       // Save the user with the new game
