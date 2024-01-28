@@ -40,6 +40,7 @@
   let activeAchievementIndex: number | null;
 
   function handleAchievementClick(index: number) {
+    console.log(activeAchievementIndex);
     activeAchievementIndex = index === activeAchievementIndex ? null : index;
   }
 </script>
@@ -122,30 +123,35 @@
             <h4 on:click={() => handleAchievementClick(index)}>
               {achievement.title}
             </h4>
-            {#if activeAchievementIndex !== index}
+            {#if activeAchievementIndex == index}
               {#if achievement.is_unlocked.bronze_unlocked == true}
                 <p class="tiers" style="background-color: {bronze_color};">
                   1x
                 </p>
-              {:else if achievement.is_unlocked.silver_unlocked}
+              {:else if achievement.is_unlocked.silver_unlocked == true}
                 <p class="tiers" style="background-color: {silver_color};">
                   2x
                 </p>
-              {:else if achievement.is_unlocked.gold_unlocked}
+              {:else if achievement.is_unlocked.gold_unlocked == true}
                 <p class="tiers" style="background-color: {gold_color};">3x</p>
-              {:else if achievement.is_unlocked.platinum_unlocked}
+              {:else if achievement.is_unlocked.platinum_unlocked == true}
                 <p class="tiers" style="background-color: {platinum_color};">
                   4x
                 </p>
               {/if}
-            {/if}
-            {#if activeAchievementIndex === index}
+            {:else}
               <div class="description">
                 <p>{achievement.description}</p>
               </div>
               <div class="history">
+                <p>History</p>
                 <ul>
-                  <li>{achievement.history.first_unlocked_date} - {achievement.history.first_unlcoked_game}</li>
+                  <li>
+                    {new Date(
+                      achievement.history.first_unlocked_date
+                    ).toLocaleDateString()}
+                    - {achievement.history.first_unlocked_game}
+                  </li>
                 </ul>
               </div>
             {/if}
@@ -290,7 +296,7 @@
       }
 
       .achievement {
-        max-width: 10rem;
+        max-width: 20rem;
         padding: 5px 5px;
         border: 1px solid var(--border-color);
 
