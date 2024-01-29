@@ -89,7 +89,6 @@
       type="text"
       name="username"
       id="username_input"
-      placeholder="The username will always be made to lowercase."
       value={form?.user?.username ?? ""}
     />
   </div>
