@@ -15,6 +15,6 @@
       Handicap is: <b>{data.handicap}</b>
     </p>
 
-    <a href="/play">Play</a>
+    <a href="/dashboard/score/play">Play</a>
   </div>
 </main>
