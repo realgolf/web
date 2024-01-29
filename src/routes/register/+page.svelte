@@ -102,7 +102,7 @@
 
 {#if form?.error}
   <p class="error">
-    {#if form?.error == "There is already a account with this username." || form?.error == "There is already an account with this email."}
+    {#if form?.error == "There is already a account with this username." || form?.error == "There is already an account with this email." || form?.error == "Handicap is required. If you don't have a handicap, please enter 54."}
       {form?.error}
     {:else}
       {form?.error}
