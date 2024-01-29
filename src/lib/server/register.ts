@@ -37,6 +37,14 @@ export async function register_user(
     return { error: username_error };
   }
 
+  const handicap_error = verify_handicap(handicap);
+
+  if (handicap_error) {
+    return {
+      error: handicap_error,
+    };
+  }
+
   const saltRounds = 10;
   const hashed_password = await bcrypt.hash(password, saltRounds);
 
@@ -132,4 +140,21 @@ export async function verify_username(username: string): Promise<string> {
   }
 
   return "";
+}
+
+export function verify_handicap(handicap: number) {
+  const advice: string = "If you have no handicap please enter '54'";
+  let error;
+
+  if (handicap > 54) {
+    error = "Handicap must be smaller or equal to 54.";
+  }
+
+  if (handicap < -54) {
+    error = "Handicap is too low.";
+  }
+
+  if (error != null) {
+    return `${error}  ${advice}`;
+  }
 }
