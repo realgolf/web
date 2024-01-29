@@ -37,6 +37,14 @@ export async function register_user(
     return { error: username_error };
   }
 
+  const handicap_error = verify_handicap(handicap);
+
+  if (handicap_error) {
+    return {
+      error: handicap_error,
+    };
+  }
+
   const saltRounds = 10;
   const hashed_password = await bcrypt.hash(password, saltRounds);
 
@@ -64,6 +72,7 @@ export async function verify_email(email: string): Promise<string> {
   if (!email) {
     return "Email is required.";
   }
+
   if (!email.match(email_regexp)) {
     return "Please enter a valid email.";
   }
@@ -103,6 +112,28 @@ export function verify_name(name: string): string {
 
   if (name.length <= 1) {
     return "Name has to be at least 2 characters.";
+  }
+
+  return "";
+}
+
+export function verify_handicap(handicap: number): string {
+  const advice = " If you don't have a handicap, please enter 54.";
+
+  if (!handicap) {
+    return "Handicap is required." + advice;
+  }
+
+  if (isNaN(handicap)) {
+    return "Invalid handicap value. Please enter a valid number." + advice;
+  }
+
+  if (handicap > 54) {
+    return "Handicap must be smaller or equal to 54." + advice;
+  }
+
+  if (handicap < -54) {
+    return "Handicap is too low." + advice;
   }
 
   return "";
