@@ -72,6 +72,7 @@ export async function verify_email(email: string): Promise<string> {
   if (!email) {
     return "Email is required.";
   }
+
   if (!email.match(email_regexp)) {
     return "Please enter a valid email.";
   }
@@ -116,6 +117,28 @@ export function verify_name(name: string): string {
   return "";
 }
 
+export function verify_handicap(handicap: number): string {
+  const advice = " If you don't have a handicap, please enter 54.";
+
+  if (!handicap) {
+    return "Handicap is required." + advice;
+  }
+
+  if (isNaN(handicap)) {
+    return "Invalid handicap value. Please enter a valid number." + advice;
+  }
+
+  if (handicap > 54) {
+    return "Handicap must be smaller or equal to 54." + advice;
+  }
+
+  if (handicap < -54) {
+    return "Handicap is too low." + advice;
+  }
+
+  return "";
+}
+
 export async function verify_username(username: string): Promise<string> {
   if (!username) {
     return "Username is required.";
@@ -140,21 +163,4 @@ export async function verify_username(username: string): Promise<string> {
   }
 
   return "";
-}
-
-export function verify_handicap(handicap: number) {
-  const advice: string = "If you have no handicap please enter '54'";
-  let error;
-
-  if (handicap > 54) {
-    error = "Handicap must be smaller or equal to 54.";
-  }
-
-  if (handicap < -54) {
-    error = "Handicap is too low.";
-  }
-
-  if (error != null) {
-    return `${error}  ${advice}`;
-  }
 }
