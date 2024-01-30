@@ -98,9 +98,9 @@ const User_Schema = new mongoose.Schema({
       holeByHoleData: [
         {
           holeNumber: { type: Number, required: true },
-          par: {type: Number, required: true},
-          distance: {type: Number, required: true},
-          hcp: {type: Number, required: true},
+          par: { type: Number, required: true },
+          distance: { type: Number, required: true },
+          hcp: { type: Number, required: true },
           strokes: { type: Number, required: true },
           putts: { type: Number, required: true },
           fairwaysHit: { type: Boolean },
