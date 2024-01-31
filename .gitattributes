@@ -14,8 +14,8 @@
 *.scss linguist-detectable=true
 *.scss linguist-language=SCSS
 
-*.yml linguist-detectable=true
+*.yml linguist-detectable=false
 *.yml linguist-language=YAML
 
-*.yaml linguist-detectable=true
+*.yaml linguist-detectable=false
 *.yaml linguist-language=YAML
