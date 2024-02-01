@@ -14,6 +14,10 @@ You can visit the live website at [realgolf.games](https://realgolf.games).
 
 RealGolf.Games Web is a web-based platform that enhances your golf training experience. This repository contains all the data and code for the website.
 
+## Production Architecture
+
+![Production Architecture](./img/architecture.png)
+
 ## Badges
 
 - **Render Status**: ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cmt9bgf109ks73a487og&query=status&style=flat-square&logo=render&label=Render) - Indicates the current deployment status of the website on Render.
