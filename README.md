@@ -12,7 +12,7 @@ You can visit the live website at [realgolf.games](https://realgolf.games).
 
 ## Project Overview
 
-RealGolf.Games Web is a web-based platform that enhances your golf trainning experience. This repository contains all the data and code for the website.
+RealGolf.Games Web is a web-based platform that enhances your golf training experience. This repository contains all the data and code for the website.
 
 ## Badges
 
