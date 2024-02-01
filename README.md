@@ -41,6 +41,7 @@ We would like to thank the following projects and libraries for their contributi
 
 - [SvelteKit](https://github.com/sveltejs/kit)
 - [MongoDB](https://github.com/mongodb)
+- [Render](https://github.com/renderinc)
 
 ## Contact
 
