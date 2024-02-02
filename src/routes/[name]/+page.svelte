@@ -225,7 +225,7 @@
           </li>
         </ul>
         <p>
-          {data.user_username}'s' all-time highscore is
+          {data.user_username}'s all-time highscore is
           <b>{data.user_all_time?.value}</b>, last exceeded on{" "}
           {data.user_all_time?.lastUpdated &&
             new Date(data.user_all_time.lastUpdated).toLocaleDateString()}.
