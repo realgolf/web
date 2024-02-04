@@ -20,10 +20,12 @@ const User_Schema = new mongoose.Schema({
         color: { type: String },
       },
     ],
-    socials: {
-      type: [String],
-      default: [],
-    },
+    socials: [
+      {
+        platform: { type: String },
+        link: { type: String },
+      },
+    ],
   },
   achievements: [
     {
