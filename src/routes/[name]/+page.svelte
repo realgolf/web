@@ -11,6 +11,12 @@
 
   let user_games = data.games;
 
+  console.log(data.socials);
+
+  data.socials?.forEach((social) => {
+    console.log(social);
+  });
+
   let hasRedirected = false;
   let editing = false;
   let path: string;
@@ -93,11 +99,6 @@
           <p>{data.user_bio}</p>
           <br />
         {/if}
-        <button on:click={() => (editing = true)}>Edit profile</button>
-      {:else}
-        {#if data.user_bio}
-          <p>{data.user_bio}</p>
-        {/if}
         {#if data.socials}
           <div class="socials">
             {#each data.socials as social}
@@ -105,6 +106,14 @@
             {/each}
           </div>
         {/if}
+        <button on:click={() => (editing = true)}>Edit profile</button>
+      {:else if data.user_bio && data.socials}
+        <p>{data.user_bio}</p>
+        <div class="socials">
+          {#each data.socials as social}
+            <p>{social}</p>
+          {/each}
+        </div>
       {/if}
     </div>
     {#if data.badges && data.badges.length > 0}

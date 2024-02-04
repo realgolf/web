@@ -76,7 +76,11 @@ export const load: PageServerLoad = async (event) => {
     return achievementCopy;
   });
 
-  const socials = user.user?.socials as socials[];
+  const socials = user.user?.socials.map((social) => {
+    const socialCopy = JSON.parse(JSON.stringify(social));
+    delete socialCopy._id;
+    return socialCopy;
+  });
 
   return {
     user_name,
@@ -120,7 +124,8 @@ export const actions: Actions = {
         socials.push({ platform, link });
       });
 
-      console.log(socials_array);
+      user.user.socials = socials_array;
+      await user.save();
     }
 
     if (user?.user) {
@@ -133,7 +138,6 @@ export const actions: Actions = {
         };
       }
       await user.save();
-      console.log(user);
     }
   },
 };
