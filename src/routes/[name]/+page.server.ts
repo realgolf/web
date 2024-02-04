@@ -117,7 +117,9 @@ export const actions: Actions = {
     if (user?.user && socials_input_cleaned) {
       const socials = user.user?.socials;
 
-      const socials_array = socials_input_cleaned.split("\n");
+      const socials_array = socials_input_cleaned
+        .split("\n")
+        .filter((social) => social.length > 0);
 
       socials_array.forEach((social) => {
         const [platform, link] = social.split(":");
