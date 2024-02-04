@@ -4,9 +4,10 @@ import {
   faInstagram,
   faLinkedin,
   faPinterest,
+  faXTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { faChess, faChessKnight, faX } from "@fortawesome/free-solid-svg-icons";
+import { faChess, faChessKnight } from "@fortawesome/free-solid-svg-icons";
 
 export const social_links = [
   {
@@ -42,7 +43,7 @@ export const social_links = [
     domain: "https://lichess.org/@/*",
   },
   {
-    logo: faX,
+    logo: faXTwitter,
     domain: "https://x.com/*",
   },
 ];
