@@ -15,10 +15,6 @@ declare global {
     teams: string | null | undefined;
     data: string | null | undefined;
   };
-  type socials = {
-    platform: string | null | undefined;
-    link: string | null | undefined;
-  };
 }
 
 export { };
