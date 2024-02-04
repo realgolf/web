@@ -73,14 +73,18 @@
       <span class="vcard-fullname">{data.user_name}</span>
     </div>
     <div class="bio">
-      {#if data.user_bio}
-        <p>{data.user_bio}</p>
-      {/if}
       {#if editing}
         <form action="?/edit_profile" method="POST">
           <label for="bio">Bio</label>
           <textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
           <br />
+          <label for="socials">Socials (one per line)</label>
+          <textarea
+            bind:value={data.socials}
+            name="socials"
+            id="socials"
+            rows="3"
+          />
           <button type="submit">Save</button>
           <button type="button" on:click={handleCancel}>Cancel</button>
         </form>
@@ -90,6 +94,17 @@
           <br />
         {/if}
         <button on:click={() => (editing = true)}>Edit profile</button>
+      {:else}
+        {#if data.user_bio}
+          <p>{data.user_bio}</p>
+        {/if}
+        {#if data.socials}
+          <div class="socials">
+            {#each data.socials as social}
+              <p>{social}</p>
+            {/each}
+          </div>
+        {/if}
       {/if}
     </div>
     {#if data.badges && data.badges.length > 0}
