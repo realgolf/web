@@ -113,16 +113,9 @@ export const actions: Actions = {
     const socials_input_cleaned = socials_input.replace(/\r/g, "");
 
     if (user?.user && socials_input_cleaned) {
-      const socials = user.user?.socials;
-
       const socials_array = socials_input_cleaned
         .split("\n")
         .filter((social) => social.length > 0);
-
-      socials_array.forEach((social) => {
-        const [platform, link] = social.split(":");
-        socials.push({ platform, link });
-      });
 
       user.user.socials = socials_array;
       await user.save();
