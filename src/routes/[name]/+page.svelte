@@ -4,7 +4,7 @@
     gold_color,
     platinum_color,
     silver_color,
-  } from "$lib/scripts/achievement_color_codes.js";
+  } from "$lib/scripts/achievement_color_codes";
   import { onMount } from "svelte";
 
   export let data;
@@ -13,9 +13,8 @@
 
   console.log(data.socials);
 
-  data.socials?.forEach((social) => {
-    console.log(social);
-  });
+  let display_socials =
+    data.socials?.map((social) => `${social}\n`).join("") ?? "";
 
   let hasRedirected = false;
   let editing = false;
@@ -86,7 +85,7 @@
           <br />
           <label for="socials">Socials (one per line)</label>
           <textarea
-            bind:value={data.socials}
+            bind:value={display_socials}
             name="socials"
             id="socials"
             rows="3"

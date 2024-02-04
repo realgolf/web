@@ -112,8 +112,6 @@ export const actions: Actions = {
     const socials_input = data.get("socials") as string;
     const socials_input_cleaned = socials_input.replace(/\r/g, "");
 
-    console.log(socials_input_cleaned);
-
     if (user?.user && socials_input_cleaned) {
       const socials = user.user?.socials;
 
