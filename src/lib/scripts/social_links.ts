@@ -46,4 +46,8 @@ export const social_links = [
     logo: faXTwitter,
     domain: "https://x.com/*",
   },
+  {
+    logo: faXTwitter,
+    domain: "https://twitter.com/*",
+  },
 ];
