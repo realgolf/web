@@ -5,7 +5,7 @@
     platinum_color,
     silver_color,
   } from "$lib/scripts/achievement_color_codes";
-  import { social_links } from "$lib/scripts/social_links.js";
+  import { modify_social } from "$lib/scripts/modify_social.js";
   import { faLink } from "@fortawesome/free-solid-svg-icons";
   import { onMount } from "svelte";
   import Fa from "svelte-fa";
@@ -17,57 +17,9 @@
   let display_socials =
     data.socials?.map((social) => `${social}\n`).join("") ?? "";
 
-  function modify_social() {
-    let socials = data.socials;
-    let matchedSocials: any[] = [];
-
-    if (socials) {
-      socials.forEach((social) => {
-        let matched = false;
-        for (const social_link of social_links) {
-          let pattern = new RegExp("^" + social_link.domain.replace("*", ".*"));
-          if (pattern.test(social)) {
-            matched = true;
-            let url = new URL(social);
-            let username;
-
-            // Check for Lichess and Chess.com special cases
-            if (social_link.domain === "https://lichess.org/@/*") {
-              username = url.pathname.split("@/")[1]; // Get the part after '@/'
-            } else if (
-              social_link.domain === "https://www.chess.com/members/*"
-            ) {
-              username = url.pathname.split("/")[2]; // Get the part after 'members/'
-            } else {
-              username = url.pathname.substring(1); // Remove the leading slash
-            }
-
-            matchedSocials.push({
-              link: social,
-              domain: social_link.domain,
-              logo: social_link.logo,
-              username: username, // Add the username to the object
-            });
-            break; // Break out of the loop once we find a match
-          }
-        }
-        if (!matched) {
-          matchedSocials.push({
-            link: social,
-            domain: social,
-            logo: undefined,
-            username: social,
-          });
-        }
-      });
-    }
-
-    return matchedSocials;
-  }
-
   let socials_render: any[] = [];
   // Call modify_social() and assign the result to socials_render
-  socials_render = modify_social();
+  socials_render = modify_social(data);
 
   let hasRedirected = false;
   let editing = false;
@@ -155,13 +107,13 @@
           <div class="socials">
             {#each socials_render as social}
               {#if social.logo != undefined}
-                <p>
+                <p class="social_p">
                   <a href={social.link}
                     ><span><Fa icon={social.logo} /></span> {social.username}</a
                   >
                 </p>
               {:else}
-                <p>
+                <p class="social_p">
                   <a href={social.link}>
                     <span><Fa icon={faLink} /></span>
                     <span>{social.username}</span>
@@ -345,6 +297,18 @@
       .bio {
         padding: 0.5rem 0;
         max-width: 296px;
+
+        .socials {
+          display: flex;
+          flex-direction: row;
+          margin-bottom: 1rem;
+
+          .social_p {
+            width: max-content;
+            margin-bottom: 0 !important;
+            font-size: var(--tiny-font);
+          }
+        }
       }
     }
 
