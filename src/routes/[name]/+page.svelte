@@ -175,8 +175,21 @@
       {:else if data.user_bio && data.socials}
         <p>{data.user_bio}</p>
         <div class="socials">
-          {#each data.socials as social}
-            <p>{social}</p>
+          {#each socials_render as social}
+            {#if social.logo != undefined}
+              <p>
+                <a href={social.link}
+                  ><span><Fa icon={social.logo} /></span> {social.username}</a
+                >
+              </p>
+            {:else}
+              <p>
+                <a href={social.link}>
+                  <span><Fa icon={faLink} /></span>
+                  <span>{social.username}</span>
+                </a>
+              </p>
+            {/if}
           {/each}
         </div>
       {/if}
