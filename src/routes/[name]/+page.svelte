@@ -5,16 +5,58 @@
     platinum_color,
     silver_color,
   } from "$lib/scripts/achievement_color_codes";
+  import { social_links } from "$lib/scripts/social_links.js";
   import { onMount } from "svelte";
+  import Fa from "svelte-fa";
 
   export let data;
 
   let user_games = data.games;
 
-  console.log(data.socials);
-
   let display_socials =
     data.socials?.map((social) => `${social}\n`).join("") ?? "";
+
+  function modify_social() {
+    let socials = data.socials;
+    let matchedSocials: any[] = [];
+
+    if (socials) {
+      socials.forEach((social) => {
+        social_links.forEach((social_link) => {
+          let pattern = new RegExp("^" + social_link.domain.replace("*", ".*"));
+          if (pattern.test(social)) {
+            // Parse the URL and get the username from the pathname
+            let url = new URL(social);
+            let username;
+
+            // Check for Lichess and Chess.com special cases
+            if (social_link.domain === "https://lichess.org/@/*") {
+              username = url.pathname.split("@/")[1]; // Get the part after '@/'
+            } else if (
+              social_link.domain === "https://www.chess.com/members/*"
+            ) {
+              username = url.pathname.split("/")[2]; // Get the part after 'members/'
+            } else {
+              username = url.pathname.substring(1); // Remove the leading slash
+            }
+
+            matchedSocials.push({
+              link: social,
+              domain: social_link.domain,
+              logo: social_link.logo,
+              username: username, // Add the username to the object
+            });
+          }
+        });
+      });
+    }
+
+    return matchedSocials;
+  }
+
+  let socials_render: any[] = [];
+  // Call modify_social() and assign the result to socials_render
+  socials_render = modify_social();
 
   let hasRedirected = false;
   let editing = false;
@@ -100,8 +142,12 @@
         {/if}
         {#if data.socials}
           <div class="socials">
-            {#each data.socials as social}
-              <p>{social}</p>
+            {#each socials_render as social}
+              <p>
+                <a href={social.link}
+                  ><span><Fa icon={social.logo} /></span> {social.username}</a
+                >
+              </p>
             {/each}
           </div>
         {/if}
