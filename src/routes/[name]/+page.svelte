@@ -6,6 +6,7 @@
     silver_color,
   } from "$lib/scripts/achievement_color_codes";
   import { social_links } from "$lib/scripts/social_links.js";
+  import { faLink } from "@fortawesome/free-solid-svg-icons";
   import { onMount } from "svelte";
   import Fa from "svelte-fa";
 
@@ -22,10 +23,11 @@
 
     if (socials) {
       socials.forEach((social) => {
-        social_links.forEach((social_link) => {
+        let matched = false;
+        for (const social_link of social_links) {
           let pattern = new RegExp("^" + social_link.domain.replace("*", ".*"));
           if (pattern.test(social)) {
-            // Parse the URL and get the username from the pathname
+            matched = true;
             let url = new URL(social);
             let username;
 
@@ -46,8 +48,17 @@
               logo: social_link.logo,
               username: username, // Add the username to the object
             });
+            break; // Break out of the loop once we find a match
           }
-        });
+        }
+        if (!matched) {
+          matchedSocials.push({
+            link: social,
+            domain: social,
+            logo: undefined,
+            username: social,
+          });
+        }
       });
     }
 
@@ -143,11 +154,20 @@
         {#if data.socials}
           <div class="socials">
             {#each socials_render as social}
-              <p>
-                <a href={social.link}
-                  ><span><Fa icon={social.logo} /></span> {social.username}</a
-                >
-              </p>
+              {#if social.logo != undefined}
+                <p>
+                  <a href={social.link}
+                    ><span><Fa icon={social.logo} /></span> {social.username}</a
+                  >
+                </p>
+              {:else}
+                <p>
+                  <a href={social.link}>
+                    <span><Fa icon={faLink} /></span>
+                    <span>{social.username}</span>
+                  </a>
+                </p>
+              {/if}
             {/each}
           </div>
         {/if}
