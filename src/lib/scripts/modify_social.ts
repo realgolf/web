@@ -3,21 +3,29 @@ import type { PageData } from "../../routes/[name]/$types";
 import { social_links } from "./social_links";
 
 type matchedSocials = {
-  link: string;
-  domain: string;
-  logo: IconDefinition | undefined;
-  username: string;
+ link: string;
+ domain: string;
+ logo: IconDefinition | undefined;
+ username: string;
 };
 
-export function modify_social(data: PageData) {
-  const socials = data.socials;
-  const matchedSocials: matchedSocials[] = [];
+// Helper function to escape special characters in a string
+function escapeRegex(input: string): string {
+ return input.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&');
+}
 
-  if (socials) {
+export function modify_social(data: PageData) {
+ const socials = data.socials;
+ const matchedSocials: matchedSocials[] = [];
+
+ if (socials) {
     socials.forEach((social: string) => {
       let matched = false;
       for (const social_link of social_links) {
-        const pattern = new RegExp("^" + social_link.domain.replace("*", ".*"));
+        // Escape special characters and replace '*' with '.*' globally
+        const escapedDomain = escapeRegex(social_link.domain.replace('*', '.*'));
+        const pattern = new RegExp(`^${escapedDomain}`, "g");
+
         if (pattern.test(social)) {
           matched = true;
           const url = new URL(social);
@@ -50,7 +58,7 @@ export function modify_social(data: PageData) {
         });
       }
     });
-  }
+ }
 
-  return matchedSocials;
+ return matchedSocials;
 }
