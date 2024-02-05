@@ -135,7 +135,6 @@
         <form action="?/edit_profile" method="POST">
           <label for="bio">Bio</label>
           <textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
-          <br />
           <label for="socials">Socials (one per line)</label>
           <textarea
             bind:value={display_socials}
@@ -149,20 +148,29 @@
       {:else if data.sameUser}
         {#if data.user_bio}
           <p>{data.user_bio}</p>
-          <br />
         {/if}
+        <button style="margin-bottom: 1rem;" on:click={() => (editing = true)}
+          >Edit profile</button
+        >
         {#if data.socials}
-          <div class="socials">
+          <div class="socials" style="margin-bottom: 1rem;">
             {#each socials_render as social}
               {#if social.logo != undefined}
-                <p>
-                  <a href={social.link}
+                <p style="margin-bottom: 0px;">
+                  <a
+                    target="_blank"
+                    style="text-decoration: none;"
+                    href={social.link}
                     ><span><Fa icon={social.logo} /></span> {social.username}</a
                   >
                 </p>
               {:else}
-                <p>
-                  <a href={social.link}>
+                <p style="margin-bottom: 0px;">
+                  <a
+                    target="_blank"
+                    style="text-decoration: none;"
+                    href={social.link}
+                  >
                     <span><Fa icon={faLink} /></span>
                     <span>{social.username}</span>
                   </a>
@@ -171,12 +179,31 @@
             {/each}
           </div>
         {/if}
-        <button on:click={() => (editing = true)}>Edit profile</button>
       {:else if data.user_bio && data.socials}
         <p>{data.user_bio}</p>
         <div class="socials">
-          {#each data.socials as social}
-            <p>{social}</p>
+          {#each socials_render as social}
+            {#if social.logo != undefined}
+              <p style="margin-bottom: 0px;">
+                <a
+                  target="_blank"
+                  style="text-decoration: none;"
+                  href={social.link}
+                  ><span><Fa icon={social.logo} /></span> {social.username}</a
+                >
+              </p>
+            {:else}
+              <p style="margin-bottom: 0px;">
+                <a
+                  target="_blank"
+                  style="text-decoration: none;"
+                  href={social.link}
+                >
+                  <span><Fa icon={faLink} /></span>
+                  <span>{social.username}</span>
+                </a>
+              </p>
+            {/if}
           {/each}
         </div>
       {/if}
