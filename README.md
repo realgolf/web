@@ -34,6 +34,8 @@ RealGolf.Games Web offers the following features:
   - Precision
 - User Authentication with MongoDB
 - Golf Course Score Tracker **Currently under development**
+- Local multiplayer functionality for users to play against each other on the same device.
+- Feature issue [#160](https://github.com/realgolf/web/issues/160) raised for implementing remote multiplayer, enabling users to compete against each other online.
 
 ## License
 
