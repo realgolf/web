@@ -38,13 +38,21 @@
 
 <Exact {teams} />
 
-<br />
-<form method="POST" autocomplete="off" use:enhance>
-  <input
-    type="text"
-    name="team_data"
-    id="team_data"
-    value={JSON.stringify(teams)}
-  />
-  <button on:click={saveToDatabaseAndSubmitForm}>Push to Database</button>
-</form>
+<div class="database">
+  <br />
+  <form method="POST" autocomplete="off" use:enhance>
+    <input
+      type="text"
+      name="team_data"
+      id="team_data"
+      value={JSON.stringify(teams)}
+    />
+    <button on:click={saveToDatabaseAndSubmitForm}>Push to Database</button>
+  </form>
+</div>
+
+<style lang="scss">
+  .database {
+    display: none;
+  }
+</style>

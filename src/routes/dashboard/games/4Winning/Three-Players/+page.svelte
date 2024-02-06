@@ -77,8 +77,8 @@
 
 <FourWinning {teams} {team} {measurement_unit} />
 
-<br />
 <div class="database">
+  <br />
   <form method="POST" autocomplete="off" use:enhance>
     <input
       type="text"
@@ -89,3 +89,9 @@
     <button on:click={saveToDatabaseAndSubmitForm}>Save to Database</button>
   </form>
 </div>
+
+<style lang="scss">
+  .database {
+    display: none;
+  }
+</style>
