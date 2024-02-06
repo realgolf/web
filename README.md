@@ -12,7 +12,11 @@ You can visit the live website at [realgolf.games](https://realgolf.games).
 
 ## Project Overview
 
-RealGolf.Games Web is a web-based platform that enhances your golf trainning experience. This repository contains all the data and code for the website.
+RealGolf.Games Web is a web-based platform that enhances your golf training experience. This repository contains all the data and code for the website.
+
+## Production Architecture
+
+![Production Architecture](./img/architecture.png)
 
 ## Badges
 
@@ -41,6 +45,7 @@ We would like to thank the following projects and libraries for their contributi
 
 - [SvelteKit](https://github.com/sveltejs/kit)
 - [MongoDB](https://github.com/mongodb)
+- [Render](https://github.com/renderinc)
 
 ## Contact
 

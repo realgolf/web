@@ -76,6 +76,12 @@ export const load: PageServerLoad = async (event) => {
     return achievementCopy;
   });
 
+  const socials = user.user?.socials.map((social) => {
+    const socialCopy = JSON.parse(JSON.stringify(social));
+    delete socialCopy._id;
+    return socialCopy;
+  });
+
   return {
     user_name,
     user_username,
@@ -93,6 +99,7 @@ export const load: PageServerLoad = async (event) => {
     badges,
     achievements,
     total_games,
+    socials,
   };
 };
 
@@ -102,9 +109,17 @@ export const actions: Actions = {
     const user = await User_Model.findOne({ "user.email": email });
     const data = await event.request.formData();
     const bio = data.get("bio") as string;
+    const socials_input = data.get("socials") as string;
+    const socials_input_cleaned = socials_input.replace(/\r/g, "");
 
-    console.log(user);
-    console.log(bio);
+    if (user?.user && socials_input_cleaned) {
+      const socials_array = socials_input_cleaned
+        .split("\n")
+        .filter((social) => social.length > 0);
+
+      user.user.socials = socials_array;
+      await user.save();
+    }
 
     if (user?.user) {
       if (user.user.bio !== bio) {
@@ -116,7 +131,6 @@ export const actions: Actions = {
         };
       }
       await user.save();
-      console.log(user);
     }
   },
 };
