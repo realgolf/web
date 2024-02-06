@@ -1,20 +1,20 @@
-<!-- Please fill out the sections below to describe your pull request. -->
+Please fill out the sections below to describe your pull request.
 
 ## Title
 
-<!--The title of your Pull Request should be in the following format: [Issue Name you want to fix (#Issue Number)]-->
+The title of your Pull Request should be in the following format: [Issue Name you want to fix (#Issue Number)]
 
 ## Description
 
-<!-- Describe the purpose and scope of the changes made in this pull request. -->
+Describe the purpose and scope of the changes made in this pull request.
 
 ## Related Issue
 
-<!-- If this pull request addresses a specific issue, reference it here using the format [#Issue Number]. Otherwise, remove this section. -->
+If this pull request addresses a specific issue, reference it here using the format [#Issue Number]. Otherwise, remove this section.
 
 ## Changes Made
 
-<!-- List the specific changes made in this pull request, such as added, modified, or deleted files, new features implemented, bugs fixed, etc. -->
+List the specific changes made in this pull request, such as added, modified, or deleted files, new features implemented, bugs fixed, etc.
 
 - Change 1:
 - Change 2:
@@ -22,11 +22,11 @@
 
 ## Screenshots/GIFs (if applicable)
 
-<!-- If the changes include visual updates, provide screenshots or GIFs to showcase the differences. -->
+If the changes include visual updates, provide screenshots or GIFs to showcase the differences.
 
 ## Checklist
 
-<!-- Make sure all items on the checklist below are completed before submitting the pull request. Remove any items that are not applicable. -->
+Make sure all items on the checklist below are completed before submitting the pull request. Remove any items that are not applicable.
 
 - [ ] My code follows the project's coding conventions.
 - [ ] My changes have been tested locally and pass all necessary tests.
@@ -38,4 +38,4 @@
 
 ## Additional Notes
 
-<!-- Add any additional notes or context that might be helpful for reviewers or maintainers. -->
+Add any additional notes or context that might be helpful for reviewers or maintainers.
