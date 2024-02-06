@@ -1,6 +1,6 @@
 # RealGolf.Games Web
 
-![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cmt9bgf109ks73a487og&query=status&style=flat-square&logo=render&label=Render) [![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) [![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web)
 
 ![RealGolf.Games Banner](./img/logo_banner.PNG)
 
@@ -20,7 +20,7 @@ RealGolf.Games Web is a web-based platform that enhances your golf training expe
 
 ## Badges
 
-- **Render Status**: ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cmt9bgf109ks73a487og&query=status&style=flat-square&logo=render&label=Render) - Indicates the current deployment status of the website on Render.
+- **Render Status**: ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) - Indicates the current deployment status of the website on Render.
 - **CodeQL**: [![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) - Code quality analysis using GitHub CodeQL.
 - **GitHub Repo Size**: ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web) - Shows the size of the GitHub repository.
 
