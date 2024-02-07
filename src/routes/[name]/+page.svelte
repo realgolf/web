@@ -1,12 +1,6 @@
 <script lang="ts">
-	import Achievements from '$lib/components/public_profile/Achievements.svelte';
-	import Badges from '$lib/components/public_profile/Badges.svelte';
-	import Bio from '$lib/components/public_profile/Bio-Socials.svelte';
 	import ErrorPage from '$lib/components/public_profile/Error_Page.svelte';
-	import Games from '$lib/components/public_profile/Games.svelte';
-	import Names from '$lib/components/public_profile/Names.svelte';
-	import OnePlayerPrecisionHighscore from '$lib/components/public_profile/One_Player__Precision_Highscore.svelte';
-	import Registration from '$lib/components/public_profile/Registration.svelte';
+	import Info from '$lib/components/public_profile/Info.svelte';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
@@ -39,28 +33,5 @@
 {#if data.user_username == undefined}
 	<ErrorPage bind:path />
 {:else}
-	<div class="info">
-		<Names {data} />
-		<Bio {data} />
-		{#if data.badges && data.badges.length > 0}
-			<Badges {data} />
-		{/if}
-		{#if data.achievements && data.achievements.length > 0}
-			<Achievements {data} />
-		{/if}
-
-		{#if data.user_registration_date}
-			<Registration {data} />
-		{/if}
-
-		<Games {data} />
-
-		<OnePlayerPrecisionHighscore {data} />
-	</div>
+	<Info {data} />
 {/if}
-
-<style lang="scss">
-	.info {
-		margin: 3rem;
-	}
-</style>
