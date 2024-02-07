@@ -5,6 +5,7 @@
 	import ErrorPage from '$lib/components/public_profile/Error_Page.svelte';
 	import Names from '$lib/components/public_profile/Names.svelte';
 	import OnePlayerPrecisionHighscore from '$lib/components/public_profile/One_Player__Precision_Highscore.svelte';
+	import Registration from '$lib/components/public_profile/Registration.svelte';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
@@ -50,11 +51,7 @@
 		{/if}
 
 		{#if data.user_registration_date}
-			<div class="registration_date">
-				<p>
-					{data.user_username} joined RealGolf.Games on {data.user_registration_date.toLocaleDateString()}.
-				</p>
-			</div>
+			<Registration {data} />
 		{/if}
 
 		<div class="games">
