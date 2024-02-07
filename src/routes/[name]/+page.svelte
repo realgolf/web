@@ -3,6 +3,7 @@
 	import Badges from '$lib/components/public_profile/Badges.svelte';
 	import Bio from '$lib/components/public_profile/Bio-Socials.svelte';
 	import ErrorPage from '$lib/components/public_profile/Error_Page.svelte';
+	import Games from '$lib/components/public_profile/Games.svelte';
 	import Names from '$lib/components/public_profile/Names.svelte';
 	import OnePlayerPrecisionHighscore from '$lib/components/public_profile/One_Player__Precision_Highscore.svelte';
 	import Registration from '$lib/components/public_profile/Registration.svelte';
@@ -10,8 +11,6 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-
-	let user_games = data.games;
 
 	let hasRedirected = false;
 
@@ -54,16 +53,7 @@
 			<Registration {data} />
 		{/if}
 
-		<div class="games">
-			<p>
-				{user_games?.length === 1
-					? `They have 1 saved game.`
-					: `They have ${user_games?.length} saved games.`}
-
-				You can find all of their games
-				<a href={`/${data.user_username}/games`}>here</a>.
-			</p>
-		</div>
+		<Games {data} />
 
 		<OnePlayerPrecisionHighscore {data} />
 	</div>
