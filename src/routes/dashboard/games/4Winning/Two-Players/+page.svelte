@@ -77,9 +77,9 @@
       id="team_data"
       value={JSON.stringify(teams)}
     />
-    <button on:click={saveToDatabaseAndSubmitForm}>Save to Database</button>
   </form>
 </div>
+<button on:click={saveToDatabaseAndSubmitForm}>Save to Database</button>
 
 <style lang="scss">
   .database {
