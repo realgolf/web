@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Badges from '$lib/components/public_profile/Badges.svelte';
 	import Bio from '$lib/components/public_profile/Bio-Socials.svelte';
 	import ErrorPage from '$lib/components/public_profile/Error_Page.svelte';
 	import {
@@ -7,10 +8,10 @@
 		platinum_color,
 		silver_color
 	} from '$lib/scripts/achievement_color_codes';
-
 	import { onMount } from 'svelte';
+	import type { PageData } from './$types';
 
-	export let data;
+	export let data: PageData;
 
 	let user_games = data.games;
 
@@ -28,12 +29,6 @@
 			hasRedirected = true;
 		}
 	});
-
-	let activeBadgeIndex: number | null;
-
-	function handleBadgeClick(index: number) {
-		activeBadgeIndex = index === activeBadgeIndex ? null : index;
-	}
 
 	let activeAchievementIndex: number | null;
 
@@ -62,26 +57,7 @@
 		</div>
 		<Bio {data} />
 		{#if data.badges && data.badges.length > 0}
-			<div class="highlights">
-				<h3>Highlights</h3>
-				<div class="badges">
-					{#each data.badges as badge, index}
-						<!-- svelte-ignore a11y-click-events-have-key-events -->
-						<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-						<p
-							style="border: 1px solid {badge.color}; width: max-content; border-radius: 24px; padding: 3px 5px; color: {badge.color}; margin: 3px 5px; font-size: var(--tiny-font);"
-							on:click={() => handleBadgeClick(index)}
-						>
-							{badge.title.toUpperCase()}
-						</p>
-						{#if activeBadgeIndex === index}
-							<div class="description">
-								<p>{badge.description}</p>
-							</div>
-						{/if}
-					{/each}
-				</div>
-			</div>
+			<Badges {data} />
 		{/if}
 		{#if data.achievements && data.achievements.length > 0}
 			<div class="achievements">
@@ -222,27 +198,6 @@
 			ul {
 				margin-left: 20px;
 				list-style-type: square;
-			}
-		}
-
-		.highlights {
-			margin-top: 20px;
-			.badges {
-				margin-top: 10px;
-				display: flex;
-				flex-direction: row;
-
-				.description {
-					position: absolute;
-					margin-top: 30px;
-					background-color: var(--nav-color);
-					border: 1px solid var(--border-color);
-					width: 260px;
-					padding: 10px;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
 			}
 		}
 
