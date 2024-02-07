@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Team } from "$lib/scripts/FourWinning/interfaces";
   import { rows } from "$lib/scripts/FourWinning/rows";
+  import type { Team } from "$lib/scripts/FourWinning/types";
   import { capitalizeFirstLetter } from "$lib/shared/utils";
   import { onMount } from "svelte";
 

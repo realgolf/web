@@ -1,4 +1,4 @@
-import type { Row } from "./interfaces";
+import type { Row } from "./types";
 
 export const rows: Row[] = [
   {
