@@ -68,8 +68,8 @@
 
 <FourWinning {teams} {team} {measurement_unit} />
 
-<br />
 <div class="database">
+  <br />
   <form method="POST" autocomplete="off" use:enhance>
     <input
       type="text"
@@ -77,6 +77,12 @@
       id="team_data"
       value={JSON.stringify(teams)}
     />
-    <button on:click={saveToDatabaseAndSubmitForm}>Save to Database</button>
   </form>
 </div>
+<button on:click={saveToDatabaseAndSubmitForm}>Save to Database</button>
+
+<style lang="scss">
+  .database {
+    display: none;
+  }
+</style>
