@@ -3,6 +3,7 @@
 	import Badges from '$lib/components/public_profile/Badges.svelte';
 	import Bio from '$lib/components/public_profile/Bio-Socials.svelte';
 	import ErrorPage from '$lib/components/public_profile/Error_Page.svelte';
+	import Names from '$lib/components/public_profile/Names.svelte';
 	import OnePlayerPrecisionHighscore from '$lib/components/public_profile/One_Player__Precision_Highscore.svelte';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
@@ -39,11 +40,7 @@
 	<ErrorPage bind:path />
 {:else}
 	<div class="info">
-		<div class="vcard-names">
-			<span class="vcard-nickname">{data.user_username}</span>
-			<br />
-			<span class="vcard-fullname">{data.user_name}</span>
-		</div>
+		<Names {data} />
 		<Bio {data} />
 		{#if data.badges && data.badges.length > 0}
 			<Badges {data} />
@@ -78,19 +75,5 @@
 <style lang="scss">
 	.info {
 		margin: 3rem;
-		.vcard-names {
-			line-height: 1;
-
-			.vcard-fullname {
-				line-height: 24px;
-				color: grey !important;
-			}
-
-			.vcard-nickname {
-				font-size: 2rem;
-				font-weight: 400;
-				line-height: 1.25;
-			}
-		}
 	}
 </style>
