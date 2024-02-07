@@ -52,7 +52,7 @@
 		{/if}
 
 		{#if data.user_registration_date}
-			<div class="rehistration_date">
+			<div class="registration_date">
 				<p>
 					{data.user_username} joined RealGolf.Games on {data.user_registration_date.toLocaleDateString()}.
 				</p>
