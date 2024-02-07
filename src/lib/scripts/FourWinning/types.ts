@@ -1,9 +1,9 @@
-export interface Team {
+export type Team  = {
   color: string;
   data: string[];
 }
 
-export interface Row {
+export type Row = {
   side: string;
   data: string[];
 }
