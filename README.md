@@ -1,6 +1,6 @@
 # RealGolf.Games Web
 
-![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/feature)[![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/feature)![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/bug)[![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web)
 
 ![RealGolf.Games Banner](./img/logo_banner.PNG)
 
