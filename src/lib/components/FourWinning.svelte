@@ -1,8 +1,13 @@
 <script lang="ts">
+	import { FourTimesWin } from '$lib/scripts/FourWinning/FourTimesWin';
+	import { changeTeam } from '$lib/scripts/FourWinning/changeTeam';
+	import { checkWin } from '$lib/scripts/FourWinning/checkWin';
 	import { restartGame_Btn } from '$lib/scripts/FourWinning/restartGameBtn';
 	import { rows } from '$lib/scripts/FourWinning/rows';
+	import { showNumberofClicks } from '$lib/scripts/FourWinning/showNumberOfClicks';
 	import type { Team } from '$lib/scripts/FourWinning/types';
 	import { updateTeamTurn } from '$lib/scripts/FourWinning/updateTeamTurn';
+	import { winCombinations } from '$lib/scripts/FourWinning/winCombinations';
 	import { capitalizeFirstLetter } from '$lib/shared/utils';
 	import { onMount } from 'svelte';
 
@@ -19,16 +24,8 @@
 	let color = teams[currentTeamIndex].color;
 	let currentTeam = teams[currentTeamIndex];
 
-	/**
-	 * This function changes the team
-	 */
-
-	function changeTeam() {
-		currentTeamIndex = (currentTeamIndex + 1) % teams.length;
-		currentTeam = teams[currentTeamIndex];
-		color = currentTeam.color;
-		updateTeamTurn(color);
-	}
+	let hitCounts: Record<string, number> = {};
+	let numberOfClicks: string;
 
 	/**
 	 * This function handles the click event for each field
@@ -56,8 +53,16 @@
 				localStorage.setItem(team, JSON.stringify(teams));
 
 				FieldClickedFourTimes(outerIndex, innerIndex);
-				checkWin();
-				changeTeam();
+				checkWin(
+					winCombinations,
+					currentTeam,
+					teams,
+					hitCounts,
+					numberOfClicks,
+					color,
+					currentTeamIndex
+				);
+				changeTeam(currentTeamIndex, teams, currentTeam, color);
 			} else {
 				const info_display = document.getElementById('info_display');
 
@@ -68,8 +73,16 @@
 				}
 
 				FieldClickedFourTimes(outerIndex, innerIndex);
-				checkWin();
-				changeTeam();
+				checkWin(
+					winCombinations,
+					currentTeam,
+					teams,
+					hitCounts,
+					numberOfClicks,
+					color,
+					currentTeamIndex
+				);
+				changeTeam(currentTeamIndex, teams, currentTeam, color);
 
 				// Hide the text after 10 seconds
 				setTimeout(() => {
@@ -87,8 +100,6 @@
 	 * @param innerIndex
 	 */
 
-	let hitCounts: Record<string, number> = {};
-
 	function FieldClickedFourTimes(outerIndex: number, innerIndex: number) {
 		const cellId = `row${outerIndex + 1}-${innerIndex}`;
 		const cell = document.getElementById(cellId);
@@ -98,183 +109,25 @@
 
 			if (!hitCounts[cellKey]) {
 				hitCounts[cellKey] = 1;
-				showNumberofClicks(hitCounts);
+				showNumberofClicks(hitCounts, numberOfClicks);
 			} else {
 				hitCounts[cellKey] += 1;
-				showNumberofClicks(hitCounts);
+				showNumberofClicks(hitCounts, numberOfClicks);
 			}
 
 			if (hitCounts[cellKey] === 4) {
-				FourTimesWin(cellId, teamColor, hitCounts);
-			}
-		}
-	}
-
-	/**
-	 * This function outputs the winning team for the FieldClickedFourTimes function
-	 * @param cellId
-	 * @param teamColor
-	 */
-
-	function FourTimesWin(
-		cellId: string,
-		teamColor: string,
-		hitCounts: number | Record<string, number>
-	) {
-		showNumberofClicks(hitCounts);
-		const confirmed = confirm(`Cell ${cellId} has been hit four times by ${teamColor} team!`);
-
-		if (confirmed) {
-			const confirmed2 = confirm(`Do you want to restart the game?`);
-
-			if (confirmed2) {
-				restartGame();
-			}
-		}
-	}
-
-	/**
-	 * This function generates all the win combinations for the four in a row
-	 */
-
-	function generateWinCombinations(): {
-		cells: { outerIndex: number; innerIndex: number }[];
-	}[] {
-		const combinations: {
-			cells: { outerIndex: number; innerIndex: number }[];
-		}[] = [];
-
-		// Rows
-		for (let i = 0; i <= 55; i += 7) {
-			for (let j = i; j < i + 4; j++) {
-				combinations.push({
-					cells: [
-						{ outerIndex: Math.floor(j / 7), innerIndex: j % 7 },
-						{ outerIndex: Math.floor((j + 1) / 7), innerIndex: (j + 1) % 7 },
-						{ outerIndex: Math.floor((j + 2) / 7), innerIndex: (j + 2) % 7 },
-						{ outerIndex: Math.floor((j + 3) / 7), innerIndex: (j + 3) % 7 }
-					]
-				});
-			}
-		}
-
-		// Columns
-		for (let i = 0; i < 7; i++) {
-			for (let j = i; j <= i + 21; j += 7) {
-				combinations.push({
-					cells: [
-						{ outerIndex: Math.floor(j / 7), innerIndex: j % 7 },
-						{ outerIndex: Math.floor((j + 7) / 7), innerIndex: (j + 7) % 7 },
-						{ outerIndex: Math.floor((j + 14) / 7), innerIndex: (j + 14) % 7 },
-						{ outerIndex: Math.floor((j + 21) / 7), innerIndex: (j + 21) % 7 }
-					]
-				});
-			}
-		}
-
-		// Diagonal (top-left to bottom-right)
-		for (let i = 0; i <= 21; i += 7) {
-			for (let j = i; j <= i + 2; j++) {
-				combinations.push({
-					cells: [
-						{ outerIndex: Math.floor(j / 7), innerIndex: j % 7 },
-						{ outerIndex: Math.floor((j + 8) / 7), innerIndex: (j + 8) % 7 },
-						{ outerIndex: Math.floor((j + 16) / 7), innerIndex: (j + 16) % 7 },
-						{ outerIndex: Math.floor((j + 24) / 7), innerIndex: (j + 24) % 7 }
-					]
-				});
-			}
-		}
-
-		// Diagonal (top-right to bottom-left)
-		for (let i = 3; i <= 23; i += 7) {
-			for (let j = i; j <= i + 2; j++) {
-				combinations.push({
-					cells: [
-						{ outerIndex: Math.floor(j / 7), innerIndex: j % 7 },
-						{ outerIndex: Math.floor((j + 6) / 7), innerIndex: (j + 6) % 7 },
-						{ outerIndex: Math.floor((j + 12) / 7), innerIndex: (j + 12) % 7 },
-						{ outerIndex: Math.floor((j + 18) / 7), innerIndex: (j + 18) % 7 }
-					]
-				});
-			}
-		}
-
-		return combinations;
-	}
-
-	/**
-	 * This function check if a team has won
-	 */
-
-	const winCombinations = generateWinCombinations();
-
-	function checkWin() {
-		for (const combination of winCombinations) {
-			const { cells } = combination;
-			const teamData = currentTeam.data;
-			let isWinningCombination = true;
-
-			for (const cell of cells) {
-				const { outerIndex, innerIndex } = cell;
-				const cellId = `${outerIndex}-${innerIndex}`;
-
-				if (!teamData.includes(cellId)) {
-					isWinningCombination = false;
-					break;
-				}
-			}
-
-			if (isWinningCombination) {
-				const confirmed = confirm(
-					`Team ${currentTeam.color} wins! Do you want to restart the game?`
+				FourTimesWin(
+					cellId,
+					teamColor,
+					hitCounts,
+					teams,
+					numberOfClicks,
+					currentTeamIndex,
+					currentTeam,
+					color
 				);
-
-				if (confirmed) {
-					restartGame();
-				}
 			}
 		}
-
-		return false;
-	}
-
-	let numberOfClicks: string;
-
-	function showNumberofClicks(hitCounts: number | Record<string, number>) {
-		numberOfClicks = JSON.stringify(hitCounts);
-		return numberOfClicks;
-	}
-
-	/**
-	 * The next to function restart the game, without reloading the page.
-	 */
-
-	function restartGame() {
-		let input = document.getElementById('distance') as HTMLInputElement;
-
-		if (input) {
-			input.value = '';
-		}
-
-		localStorage.removeItem(`4winning_${teams.length}_teams`);
-
-		teams.forEach((team) => {
-			team.data = [];
-		});
-
-		const cells = document.querySelectorAll('.meters');
-		cells.forEach((cell) => {
-			(cell as HTMLElement).style.backgroundColor = '';
-		});
-
-		hitCounts = {};
-		numberOfClicks = undefined as unknown as string;
-		currentTeamIndex = 0;
-		currentTeam = teams[currentTeamIndex];
-		color = currentTeam.color;
-		changeTeam();
-		updateTeamTurn(color);
 	}
 
 	/**
@@ -305,8 +158,16 @@
 							currentTeam.data.push(Id);
 							localStorage.setItem(`4winning_${teams.length}_teams`, JSON.stringify(teams));
 
-							checkWin();
-							changeTeam();
+							checkWin(
+								winCombinations,
+								currentTeam,
+								teams,
+								hitCounts,
+								numberOfClicks,
+								color,
+								currentTeamIndex
+							);
+							changeTeam(currentTeamIndex, teams, currentTeam, color);
 						} else {
 							alert('This field is already claimed by another team.');
 						}
@@ -365,7 +226,8 @@
 <p id="team_turn_display">Current Team Turn: {currentTeam.color}</p>
 <p class="success" id="info_display" />
 
-<button on:click={changeTeam}>Switch Team</button>
+<button on:click={() => changeTeam(currentTeamIndex, teams, currentTeam, color)}>Switch Team</button
+>
 <button
 	on:click={() =>
 		restartGame_Btn(teams, hitCounts, numberOfClicks, currentTeamIndex, currentTeam, color)}
