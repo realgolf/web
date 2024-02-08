@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { restartGame_Btn } from '$lib/scripts/FourWinning/restartGameBtn';
 	import { rows } from '$lib/scripts/FourWinning/rows';
 	import type { Team } from '$lib/scripts/FourWinning/types';
 	import { updateTeamTurn } from '$lib/scripts/FourWinning/updateTeamTurn';
@@ -276,32 +277,6 @@
 		updateTeamTurn(color);
 	}
 
-	function restartGame_Btn() {
-		let input = document.getElementById('distance') as HTMLInputElement;
-
-		if (input) {
-			input.value = '';
-		}
-
-		localStorage.removeItem(`4winning_${teams.length}_teams`);
-
-		teams.forEach((team) => {
-			team.data = [];
-		});
-
-		const cells = document.querySelectorAll('.meters');
-		cells.forEach((cell) => {
-			(cell as HTMLElement).style.backgroundColor = '';
-		});
-
-		hitCounts = {};
-		numberOfClicks = undefined as unknown as string;
-		currentTeamIndex = 0;
-		currentTeam = teams[currentTeamIndex];
-		color = currentTeam.color;
-		updateTeamTurn(color);
-	}
-
 	/**
 	 * This function is for the input field, to input the distance.
 	 */
@@ -391,7 +366,11 @@
 <p class="success" id="info_display" />
 
 <button on:click={changeTeam}>Switch Team</button>
-<button on:click={restartGame_Btn}>Restart Game</button>
+<button
+	on:click={() =>
+		restartGame_Btn(teams, hitCounts, numberOfClicks, currentTeamIndex, currentTeam, color)}
+	>Restart Game</button
+>
 
 <p>You can also enter the distance you have played here:</p>
 <input type="number" name="distance" id="distance" />
