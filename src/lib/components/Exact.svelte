@@ -4,6 +4,7 @@
 	import type { Team } from '$lib/scripts/Exact/types';
 	import { updatePoints } from '$lib/scripts/Exact/updatePoints';
 	import { updatePointsDisplay } from '$lib/scripts/Exact/updatePointsDisplay';
+	import { updateTeamTurn } from '$lib/scripts/Exact/updateTeamTurn';
 	import { afterUpdate, onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 
@@ -31,7 +32,7 @@
 		}
 
 		updatePointsDisplay(teams);
-		updateTeamTurn();
+		updateTeamTurn(color);
 	});
 
 	let userInput: number = 20;
@@ -44,7 +45,7 @@
 		currentTeamIndex = (currentTeamIndex + 1) % teams.length;
 		currentTeam = teams[currentTeamIndex];
 		color = currentTeam.color;
-		updateTeamTurn();
+		updateTeamTurn(color);
 	}
 
 	let lastRowNumbers: Record<string, number | null> = {};
@@ -123,13 +124,6 @@
 		}
 	}
 
-	function updateTeamTurn() {
-		const teamTurnDisplay = document.getElementById('team_turn_display');
-		if (teamTurnDisplay) {
-			teamTurnDisplay.innerHTML = `Current Team Turn: ${color}`;
-		}
-	}
-
 	function resetGame() {
 		localStorage.removeItem(`exact_${teams.length}_teams`);
 		for (let team of teams) {
@@ -150,16 +144,16 @@
 		});
 
 		updatePointsDisplay(teams);
-		updateTeamTurn();
+		updateTeamTurn(color);
 	}
 
 	onMount(() => {
 		updatePointsDisplay(teams);
-		updateTeamTurn();
+		updateTeamTurn(color);
 	});
 
 	afterUpdate(() => {
-		updateTeamTurn();
+		updateTeamTurn(color);
 	});
 </script>
 
