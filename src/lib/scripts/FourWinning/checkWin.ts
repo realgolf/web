@@ -8,7 +8,8 @@ export function checkWin(
 	hitCounts: Record<string, number>,
 	numberOfClicks: string,
 	color: string,
-	currentTeamIndex: number
+	currentTeamIndex: number,
+	changeTeam: () => void
 ) {
 	for (const combination of winCombinations) {
 		const { cells } = combination;
@@ -29,7 +30,15 @@ export function checkWin(
 			const confirmed = confirm(`Team ${currentTeam.color} wins! Do you want to restart the game?`);
 
 			if (confirmed) {
-				restartGame(teams, hitCounts, numberOfClicks, currentTeamIndex, currentTeam, color);
+				restartGame(
+					teams,
+					hitCounts,
+					numberOfClicks,
+					currentTeamIndex,
+					currentTeam,
+					color,
+					changeTeam
+				);
 			}
 		}
 	}

@@ -1,4 +1,3 @@
-import { changeTeam } from './changeTeam';
 import type { Team } from './types';
 import { updateTeamTurn } from './updateTeamTurn';
 
@@ -8,7 +7,8 @@ export function restartGame(
 	numberOfClicks: string,
 	currentTeamIndex: number,
 	currentTeam: Team,
-	color: string
+	color: string,
+	changeTeam: () => void
 ) {
 	const input = document.getElementById('distance') as HTMLInputElement;
 
@@ -32,7 +32,7 @@ export function restartGame(
 	currentTeamIndex = 0;
 	currentTeam = teams[currentTeamIndex];
 	color = currentTeam.color;
-	changeTeam(currentTeamIndex, teams, currentTeam, color);
+	changeTeam();
 	updateTeamTurn(color);
 
 	return { hitCounts, numberOfClicks, currentTeamIndex, currentTeam, color };

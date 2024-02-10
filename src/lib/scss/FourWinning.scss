@@ -1,0 +1,19 @@
+.meters,
+.points {
+	flex: 0 0 25%;
+	box-sizing: border-box;
+	border: 5px solid var(--border-color);
+	min-width: calc(90vw / 15);
+	height: calc(50vh / 8);
+	text-align: center;
+	background-color: transparent;
+}
+
+.meters:hover {
+	cursor: pointer;
+}
+
+button {
+	cursor: pointer;
+	border: 5px solid var(--border-color);
+}

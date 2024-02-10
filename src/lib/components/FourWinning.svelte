@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { FourTimesWin } from '$lib/scripts/FourWinning/FourTimesWin';
-	import { changeTeam } from '$lib/scripts/FourWinning/changeTeam';
 	import { checkWin } from '$lib/scripts/FourWinning/checkWin';
 	import { restartGame_Btn } from '$lib/scripts/FourWinning/restartGameBtn';
 	import { rows } from '$lib/scripts/FourWinning/rows';
@@ -26,6 +25,13 @@
 
 	let hitCounts: Record<string, number> = {};
 	let numberOfClicks: string;
+
+	function changeTeam(): void {
+		currentTeamIndex = (currentTeamIndex + 1) % teams.length;
+		currentTeam = teams[currentTeamIndex];
+		color = currentTeam.color;
+		updateTeamTurn(color);
+	}
 
 	/**
 	 * This function handles the click event for each field
@@ -60,9 +66,10 @@
 					hitCounts,
 					numberOfClicks,
 					color,
-					currentTeamIndex
+					currentTeamIndex,
+					changeTeam
 				);
-				changeTeam(currentTeamIndex, teams, currentTeam, color);
+				changeTeam();
 			} else {
 				const info_display = document.getElementById('info_display');
 
@@ -80,9 +87,10 @@
 					hitCounts,
 					numberOfClicks,
 					color,
-					currentTeamIndex
+					currentTeamIndex,
+					changeTeam
 				);
-				changeTeam(currentTeamIndex, teams, currentTeam, color);
+				changeTeam();
 
 				// Hide the text after 10 seconds
 				setTimeout(() => {
@@ -165,9 +173,10 @@
 								hitCounts,
 								numberOfClicks,
 								color,
-								currentTeamIndex
+								currentTeamIndex,
+								changeTeam
 							);
-							changeTeam(currentTeamIndex, teams, currentTeam, color);
+							changeTeam();
 						} else {
 							alert('This field is already claimed by another team.');
 						}
@@ -226,8 +235,7 @@
 <p id="team_turn_display">Current Team Turn: {currentTeam.color}</p>
 <p class="success" id="info_display" />
 
-<button on:click={() => changeTeam(currentTeamIndex, teams, currentTeam, color)}>Switch Team</button
->
+<button on:click={changeTeam}>Switch Team</button>
 <button
 	on:click={() =>
 		restartGame_Btn(teams, hitCounts, numberOfClicks, currentTeamIndex, currentTeam, color)}
@@ -267,24 +275,6 @@
 	{/if}
 </details>
 
-<style>
-	.meters,
-	.points {
-		flex: 0 0 25%;
-		box-sizing: border-box;
-		border: 5px solid var(--border-color);
-		min-width: calc(90vw / 15);
-		height: calc(50vh / 8);
-		text-align: center;
-		background-color: transparent;
-	}
-
-	.meters:hover {
-		cursor: pointer;
-	}
-
-	button {
-		cursor: pointer;
-		border: 5px solid var(--border-color);
-	}
+<style lang="scss">
+	@import '$lib/scss/FourWinning.scss';
 </style>
