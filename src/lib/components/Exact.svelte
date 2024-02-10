@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { findWinner } from '$lib/scripts/Exact/findWinner';
 	import { rows } from '$lib/scripts/Exact/rows';
 	import type { Team } from '$lib/scripts/Exact/types';
 	import { updatePoints } from '$lib/scripts/Exact/updatePoints';
@@ -44,23 +45,6 @@
 		currentTeam = teams[currentTeamIndex];
 		color = currentTeam.color;
 		updateTeamTurn();
-	}
-
-	function findWinner(teams: Team[]): string {
-		let maxPoints = -Infinity;
-		let winner = 'Tie';
-
-		for (const team of teams) {
-			if (team.points > maxPoints) {
-				maxPoints = team.points;
-				winner = team.color;
-			} else if (team.points === maxPoints) {
-				// Handle tie condition
-				winner = 'Tie';
-			}
-		}
-
-		return winner;
 	}
 
 	let lastRowNumbers: Record<string, number | null> = {};
