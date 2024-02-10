@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { generateRandomNumber } from '$lib/scripts/Precision/generateRandomNumber';
+	import type { Team } from '$lib/scripts/Precision/types';
+	import { updatePointsDisplay } from '$lib/scripts/Precision/updatePointsDisplay';
 	import { capitalizeFirstLetter } from '$lib/shared/utils';
 	import { afterUpdate, onMount } from 'svelte';
 
@@ -7,12 +9,6 @@
 	export let point: number;
 	export let measurement_unit: string;
 	let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_unit);
-
-	interface Team {
-		color: string;
-		points: number;
-		distance: number;
-	}
 
 	let currentTeamIndex = 0;
 	// eslint-disable-next-line
@@ -47,13 +43,6 @@
 	}
 
 	let MetersToPlay: number = generateRandomNumber(range, lower_range, upper_range);
-
-	function updatePointsDisplay() {
-		const display = document.querySelector('#points_display');
-		if (display) {
-			display.innerHTML = teams.map((t) => `${t.color} team points: ${t.points}`).join('<br>');
-		}
-	}
 
 	function changeTeam() {
 		MetersToPlay = generateRandomNumber(range, lower_range, upper_range);
@@ -98,11 +87,11 @@
 	}
 
 	onMount(() => {
-		updatePointsDisplay();
+		updatePointsDisplay(teams);
 	});
 
 	afterUpdate(() => {
-		updatePointsDisplay();
+		updatePointsDisplay(teams);
 	});
 </script>
 
