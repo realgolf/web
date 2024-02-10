@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { checkWinner } from '$lib/scripts/Precision/checkWinner';
 	import { generateRandomNumber } from '$lib/scripts/Precision/generateRandomNumber';
+	import { resetGame } from '$lib/scripts/Precision/resetGame';
 	import type { Team } from '$lib/scripts/Precision/types';
 	import { updatePointsDisplay } from '$lib/scripts/Precision/updatePointsDisplay';
 	import { capitalizeFirstLetter } from '$lib/shared/utils';
@@ -59,31 +61,17 @@
 		const pointsToDeduct = Math.abs(difference);
 		currentTeam.points -= pointsToDeduct;
 		changeTeam();
-		checkWinner();
-	}
-
-	function checkWinner() {
-		const teamsWithPoints = teams.filter((t) => t.points > 0);
-		if (teamsWithPoints.length === 1) {
-			const winner = teamsWithPoints[0].color;
-			const confirmed = confirm(`The winner is Team ${winner}!`);
-
-			if (confirmed) {
-				resetGame();
-			}
-		}
-	}
-
-	function resetGame() {
-		for (let team of teams) {
-			team.points = point;
-		}
-
-		range = 150;
-		currentTeamIndex = 0;
-		color = teams[currentTeamIndex].color;
-		currentTeam = teams[currentTeamIndex];
-		MetersToPlay = generateRandomNumber(range, lower_range, upper_range);
+		checkWinner(
+			teams,
+			point,
+			range,
+			lower_range,
+			upper_range,
+			currentTeamIndex,
+			color,
+			currentTeam,
+			MetersToPlay
+		);
 	}
 
 	onMount(() => {
@@ -103,7 +91,20 @@
 
 <div id="points_display" />
 
-<button on:click={resetGame}>Reset Game</button>
+<button
+	on:click={() =>
+		resetGame(
+			teams,
+			point,
+			range,
+			lower_range,
+			upper_range,
+			currentTeamIndex,
+			color,
+			currentTeam,
+			MetersToPlay
+		)}>Reset Game</button
+>
 
 <p>Choose range:</p>
 <input
