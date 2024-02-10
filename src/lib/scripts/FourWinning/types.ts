@@ -1,9 +1,13 @@
-export type Team  = {
-  color: string;
-  data: string[];
-}
+export type Team = {
+	color: string;
+	data: string[];
+};
 
 export type Row = {
-  side: string;
-  data: string[];
-}
+	side: string;
+	data: string[];
+};
+
+export type winCombination = {
+	cells: { outerIndex: number; innerIndex: number }[];
+};
