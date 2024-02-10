@@ -1,246 +1,216 @@
 <script lang="ts">
-	import { rows } from "$lib/scripts/Exact/rows";
-	import { afterUpdate, onMount } from "svelte";
-	import { writable } from "svelte/store";
+	import { rows } from '$lib/scripts/Exact/rows';
+	import type { Team } from '$lib/scripts/Exact/types';
+	import { updatePoints } from '$lib/scripts/Exact/updatePoints';
+	import { afterUpdate, onMount } from 'svelte';
+	import { writable } from 'svelte/store';
 
+	export let teams: Team[];
 
+	// eslint-disable-next-line
+	let pointsByTeam: Record<string, any> = {};
+	let shotsPlayed: number = 0;
 
-  export let teams: Team[];
+	teams.forEach((team) => {
+		pointsByTeam[team.color] = writable(team.points);
+	});
 
-  interface Team {
-    color: string;
-    data: number[];
-    points: number;
-  }
+	onMount(() => {
+		const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
+		if (storedData !== null) {
+			const parsedData = JSON.parse(storedData);
+			teams.forEach((team) => {
+				if (parsedData[team.color]) {
+					pointsByTeam[team.color].set(parsedData[team.color].points);
+				}
+			});
+			shotsPlayed = parsedData['red'].shots;
+			clickedCellsCount = shotsPlayed; // Update clickedCellsCount as well
+		}
 
-  // eslint-disable-next-line
-  let pointsByTeam: Record<string, any> = {};
-  let shotsPlayed: number = 0;
+		updatePointsDisplay();
+		updateTeamTurn();
+	});
 
-  teams.forEach((team) => {
-    pointsByTeam[team.color] = writable(team.points);
-  });
+	let userInput: number = 20;
+	let clickedCellsCount: number = 0; // Initialize clickedCellsCount
+	let currentTeamIndex = 0;
+	let currentTeam = teams[currentTeamIndex];
+	let color = currentTeam.color;
 
-  onMount(() => {
-    const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
-    if (storedData !== null) {
-      const parsedData = JSON.parse(storedData);
-      teams.forEach((team) => {
-        if (parsedData[team.color]) {
-          pointsByTeam[team.color].set(parsedData[team.color].points);
-        }
-      });
-      shotsPlayed = parsedData["red"].shots;
-      clickedCellsCount = shotsPlayed; // Update clickedCellsCount as well
-    }
+	function changeTeam() {
+		currentTeamIndex = (currentTeamIndex + 1) % teams.length;
+		currentTeam = teams[currentTeamIndex];
+		color = currentTeam.color;
+		updateTeamTurn();
+	}
 
-    updatePointsDisplay();
-    updateTeamTurn();
-  });
+	function updatePointsDisplay() {
+		const display = document.querySelector('#points_display');
+		if (display) {
+			let displayContent = teams
+				.map((team) => {
+					const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
+					const parsedData = storedData ? JSON.parse(storedData) : {};
+					const points = parsedData[team.color] ? parsedData[team.color].points : team.points;
+					return `${team.color} team points: ${points}`;
+				})
+				.join('<br>');
+			display.innerHTML = displayContent;
+		}
+	}
 
-  let userInput: number = 20;
-  let clickedCellsCount: number = 0; // Initialize clickedCellsCount
-  let currentTeamIndex = 0;
-  let currentTeam = teams[currentTeamIndex];
-  let color = currentTeam.color;
+	function findWinner(teams: Team[]): string {
+		let maxPoints = -Infinity;
+		let winner = 'Tie';
 
-  function changeTeam() {
-    currentTeamIndex = (currentTeamIndex + 1) % teams.length;
-    currentTeam = teams[currentTeamIndex];
-    color = currentTeam.color;
-    updateTeamTurn();
-  }
+		for (const team of teams) {
+			if (team.points > maxPoints) {
+				maxPoints = team.points;
+				winner = team.color;
+			} else if (team.points === maxPoints) {
+				// Handle tie condition
+				winner = 'Tie';
+			}
+		}
 
-  function updatePoints() {
-    let points;
-    teams.map((team) => {
-      const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
-      const parsedData = storedData ? JSON.parse(storedData) : {};
-      points = parsedData[team.color]
-        ? parsedData[team.color].points
-        : team.points;
-      team.points = points;
-    });
-  }
+		return winner;
+	}
 
-  function updatePointsDisplay() {
-    const display = document.querySelector("#points_display");
-    if (display) {
-      let displayContent = teams
-        .map((team) => {
-          const storedData = localStorage.getItem(
-            `exact_${teams.length}_teams`
-          );
-          const parsedData = storedData ? JSON.parse(storedData) : {};
-          const points = parsedData[team.color]
-            ? parsedData[team.color].points
-            : team.points;
-          return `${team.color} team points: ${points}`;
-        })
-        .join("<br>");
-      display.innerHTML = displayContent;
-    }
-  }
+	let lastRowNumbers: Record<string, number | null> = {};
 
-  function findWinner(teams: Team[]): string {
-    let maxPoints = -Infinity;
-    let winner = "Tie";
+	function handleClick(event: MouseEvent) {
+		const targetId = (event.target as HTMLElement).id;
+		const match = targetId.match(/row(\d+)-(\d+)/);
 
-    for (const team of teams) {
-      if (team.points > maxPoints) {
-        maxPoints = team.points;
-        winner = team.color;
-      } else if (team.points === maxPoints) {
-        // Handle tie condition
-        winner = "Tie";
-      }
-    }
+		if (match) {
+			const rowNumber = parseInt(match[1]);
+			let clickedCell: HTMLElement | null = document.getElementById(targetId);
+			if (clickedCell) {
+				clickedCell.style.backgroundColor = color;
+				let team = teams.find((t) => t.color === color);
+				if (team) {
+					pointsByTeam[color].update((currentPoints: number) => {
+						let newPoints = currentPoints;
 
-    return winner;
-  }
+						if (rowNumber >= 1 && rowNumber <= 6) {
+							newPoints += 1;
+						} else if (rowNumber === 7) {
+							newPoints += 2;
+						} else if (rowNumber === 8) {
+							newPoints += 3;
+						} else if (rowNumber === 9) {
+							newPoints += 5;
+						} else if (rowNumber === 10) {
+							newPoints -= 1;
+						}
 
-  let lastRowNumbers: Record<string, number | null> = {};
+						if (lastRowNumbers[color] === rowNumber) {
+							if (rowNumber >= 1 && rowNumber <= 6) {
+								newPoints += 1;
+							} else if (rowNumber === 7) {
+								newPoints += 2;
+							} else if (rowNumber === 8) {
+								newPoints += 3;
+							} else if (rowNumber === 9) {
+								newPoints += 5;
+							} else if (rowNumber === 10) {
+								newPoints -= 1;
+							}
+						}
 
-  function handleClick(event: MouseEvent) {
-    const targetId = (event.target as HTMLElement).id;
-    const match = targetId.match(/row(\d+)-(\d+)/);
+						lastRowNumbers[color] = rowNumber; // Setze lastRowNumber nach der Verarbeitung
 
-    if (match) {
-      const rowNumber = parseInt(match[1]);
-      let clickedCell: HTMLElement | null = document.getElementById(targetId);
-      if (clickedCell) {
-        clickedCell.style.backgroundColor = color;
-        let team = teams.find((t) => t.color === color);
-        if (team) {
-          pointsByTeam[color].update((currentPoints: number) => {
-            let newPoints = currentPoints;
+						const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
+						let parsedData = storedData ? JSON.parse(storedData) : {};
 
-            if (rowNumber >= 1 && rowNumber <= 6) {
-              newPoints += 1;
-            } else if (rowNumber === 7) {
-              newPoints += 2;
-            } else if (rowNumber === 8) {
-              newPoints += 3;
-            } else if (rowNumber === 9) {
-              newPoints += 5;
-            } else if (rowNumber === 10) {
-              newPoints -= 1;
-            }
+						parsedData[color] = { points: newPoints, shots: clickedCellsCount };
+						localStorage.setItem(`exact_${teams.length}_teams`, JSON.stringify(parsedData)); // Im localStorage speichern
+						return newPoints;
+					});
 
-            if (lastRowNumbers[color] === rowNumber) {
-              if (rowNumber >= 1 && rowNumber <= 6) {
-                newPoints += 1;
-              } else if (rowNumber === 7) {
-                newPoints += 2;
-              } else if (rowNumber === 8) {
-                newPoints += 3;
-              } else if (rowNumber === 9) {
-                newPoints += 5;
-              } else if (rowNumber === 10) {
-                newPoints -= 1;
-              }
-            }
+					updatePoints(teams);
+					updatePointsDisplay();
+					clickedCellsCount++;
+				}
+				changeTeam();
+			}
+		}
 
-            lastRowNumbers[color] = rowNumber; // Setze lastRowNumber nach der Verarbeitung
+		if (clickedCellsCount === userInput * teams.length) {
+			const winner = findWinner(teams);
+			let confirmed;
 
-            const storedData = localStorage.getItem(
-              `exact_${teams.length}_teams`
-            );
-            let parsedData = storedData ? JSON.parse(storedData) : {};
+			if (winner == 'Tie') {
+				confirmed = confirm('The Game ended Tie!');
+			} else {
+				confirmed = confirm(`The winner is ${winner}! Do you want to play again?`);
+			}
 
-            parsedData[color] = { points: newPoints, shots: clickedCellsCount };
-            localStorage.setItem(
-              `exact_${teams.length}_teams`,
-              JSON.stringify(parsedData)
-            ); // Im localStorage speichern
-            return newPoints;
-          });
+			if (confirmed) {
+				resetGame();
+			}
+		}
+	}
 
-          updatePoints();
-          updatePointsDisplay();
-          clickedCellsCount++;
-        }
-        changeTeam();
-      }
-    }
+	function updateTeamTurn() {
+		const teamTurnDisplay = document.getElementById('team_turn_display');
+		if (teamTurnDisplay) {
+			teamTurnDisplay.innerHTML = `Current Team Turn: ${color}`;
+		}
+	}
 
-    if (clickedCellsCount === userInput * teams.length) {
-      const winner = findWinner(teams);
-      let confirmed;
+	function resetGame() {
+		localStorage.removeItem(`exact_${teams.length}_teams`);
+		for (let team of teams) {
+			team.data = [];
+			team.points = 0;
+			pointsByTeam[team.color].set(0); // Setzen Sie die Punkte für jedes Team auf 0 im Store
+		}
 
-      if (winner == "Tie") {
-        confirmed = confirm("The Game ended Tie!");
-      } else {
-        confirmed = confirm(
-          `The winner is ${winner}! Do you want to play again?`
-        );
-      }
+		userInput = 20;
+		clickedCellsCount = 0;
+		currentTeamIndex = 0;
+		currentTeam = teams[currentTeamIndex];
+		color = currentTeam.color;
 
-      if (confirmed) {
-        resetGame();
-      }
-    }
-  }
+		const cells = document.querySelectorAll('.meters');
+		cells.forEach((cell) => {
+			(cell as HTMLElement).style.backgroundColor = '';
+		});
 
-  function updateTeamTurn() {
-    const teamTurnDisplay = document.getElementById("team_turn_display");
-    if (teamTurnDisplay) {
-      teamTurnDisplay.innerHTML = `Current Team Turn: ${color}`;
-    }
-  }
+		updatePointsDisplay();
+		updateTeamTurn();
+	}
 
-  function resetGame() {
-    localStorage.removeItem(`exact_${teams.length}_teams`);
-    for (let team of teams) {
-      team.data = [];
-      team.points = 0;
-      pointsByTeam[team.color].set(0); // Setzen Sie die Punkte für jedes Team auf 0 im Store
-    }
+	onMount(() => {
+		updatePointsDisplay();
+		updateTeamTurn();
+	});
 
-    userInput = 20;
-    clickedCellsCount = 0;
-    currentTeamIndex = 0;
-    currentTeam = teams[currentTeamIndex];
-    color = currentTeam.color;
-
-    const cells = document.querySelectorAll(".meters");
-    cells.forEach((cell) => {
-      (cell as HTMLElement).style.backgroundColor = "";
-    });
-
-    updatePointsDisplay();
-    updateTeamTurn();
-  }
-
-  onMount(() => {
-    updatePointsDisplay();
-    updateTeamTurn();
-  });
-
-  afterUpdate(() => {
-    updateTeamTurn();
-  });
+	afterUpdate(() => {
+		updateTeamTurn();
+	});
 </script>
 
 <svelte:head>
-  <title>Exact - {teams.length} Players</title>
+	<title>Exact - {teams.length} Players</title>
 </svelte:head>
 
 <h1>{teams.length} Players</h1>
 
 <p>
-  Enter the amount of shots per team: <input
-    bind:value={userInput}
-    type="number"
-    name="shots"
-    id="shots"
-  />
+	Enter the amount of shots per team: <input
+		bind:value={userInput}
+		type="number"
+		name="shots"
+		id="shots"
+	/>
 </p>
 
 <p>
-  You have played {clickedCellsCount} of {userInput * teams.length} shots, so you
-  have
-  {userInput * teams.length - clickedCellsCount} shots left.
+	You have played {clickedCellsCount} of {userInput * teams.length} shots, so you have
+	{userInput * teams.length - clickedCellsCount} shots left.
 </p>
 
 <p id="team_turn_display">Current Team Turn: {currentTeam.color}</p>
@@ -252,54 +222,54 @@
 <br />
 
 <table id="field" style="display: flex; flex-direction: column;">
-  {#each rows as { points, data }, outerIndex}
-    <tbody id={`row${outerIndex + 1}`}>
-      <tr>
-        <td class="points">{points}</td>
-        {#each data as value, innerIndex}
-          <td
-            class="meters"
-            id={`row${outerIndex + 1}-${innerIndex}`}
-            style="background-color: {teams[outerIndex]};"
-            on:click={handleClick}
-          >
-            {value}
-          </td>
-        {/each}
-      </tr>
-    </tbody>
-  {/each}
+	{#each rows as { points, data }, outerIndex}
+		<tbody id={`row${outerIndex + 1}`}>
+			<tr>
+				<td class="points">{points}</td>
+				{#each data as value, innerIndex}
+					<td
+						class="meters"
+						id={`row${outerIndex + 1}-${innerIndex}`}
+						style="background-color: {teams[outerIndex]};"
+						on:click={handleClick}
+					>
+						{value}
+					</td>
+				{/each}
+			</tr>
+		</tbody>
+	{/each}
 </table>
 
 <style>
-  table {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .meters,
-  .points {
-    flex: 0 0 25%;
-    box-sizing: border-box;
-    border: 5px solid var(--border-color);
-    min-width: calc(80vw / 15);
-    height: calc(30vh / 8);
-    text-align: center;
-  }
+	table {
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.meters,
+	.points {
+		flex: 0 0 25%;
+		box-sizing: border-box;
+		border: 5px solid var(--border-color);
+		min-width: calc(80vw / 15);
+		height: calc(30vh / 8);
+		text-align: center;
+	}
 
-  .meters:hover {
-    cursor: pointer;
-  }
+	.meters:hover {
+		cursor: pointer;
+	}
 
-  button {
-    cursor: pointer;
-    border: 5px solid var(--border-color);
-  }
+	button {
+		cursor: pointer;
+		border: 5px solid var(--border-color);
+	}
 
-  input {
-    color: var(--font-color);
-    background-color: var(--bg-color);
-    border: 2px solid var(--border-color);
-    box-shadow: none;
-    font-size: var(--medium-font);
-  }
+	input {
+		color: var(--font-color);
+		background-color: var(--bg-color);
+		border: 2px solid var(--border-color);
+		box-shadow: none;
+		font-size: var(--medium-font);
+	}
 </style>
