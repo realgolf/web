@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { checkWinner } from '$lib/scripts/Precision/checkWinner';
+	import { deductPoints } from '$lib/scripts/Precision/deductPoints';
 	import { generateRandomNumber } from '$lib/scripts/Precision/generateRandomNumber';
 	import { resetGame } from '$lib/scripts/Precision/resetGame';
 	import type { Team } from '$lib/scripts/Precision/types';
@@ -24,6 +24,8 @@
 
 	let combinedRange: string = `${lower_range}-${upper_range}`;
 
+	let MetersToPlay: number = generateRandomNumber(range, lower_range, upper_range);
+
 	function handleRangeInput(event: Event & { currentTarget: HTMLInputElement }): void {
 		const inputRange = (event.target as HTMLInputElement).value;
 
@@ -44,8 +46,6 @@
 		}
 	}
 
-	let MetersToPlay: number = generateRandomNumber(range, lower_range, upper_range);
-
 	function changeTeam() {
 		MetersToPlay = generateRandomNumber(range, lower_range, upper_range);
 		for (let team of teams) {
@@ -54,24 +54,6 @@
 		currentTeamIndex = (currentTeamIndex + 1) % teams.length;
 		currentTeam = teams[currentTeamIndex];
 		color = currentTeam.color;
-	}
-
-	function deductPoints() {
-		const difference: number = MetersToPlay - currentTeam.distance;
-		const pointsToDeduct = Math.abs(difference);
-		currentTeam.points -= pointsToDeduct;
-		changeTeam();
-		checkWinner(
-			teams,
-			point,
-			range,
-			lower_range,
-			upper_range,
-			currentTeamIndex,
-			color,
-			currentTeam,
-			MetersToPlay
-		);
 	}
 
 	onMount(() => {
@@ -134,7 +116,21 @@
 				type="number"
 				bind:value={t.distance}
 			/>
-			<button on:click={deductPoints}>Enter</button>
+			<button
+				on:click={() =>
+					deductPoints(
+						MetersToPlay,
+						currentTeam,
+						changeTeam,
+						teams,
+						point,
+						range,
+						lower_range,
+						upper_range,
+						currentTeamIndex,
+						color
+					)}>Enter</button
+			>
 		{/if}
 	{/each}
 </ol>
