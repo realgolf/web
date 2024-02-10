@@ -2,6 +2,7 @@
 	import { rows } from '$lib/scripts/Exact/rows';
 	import type { Team } from '$lib/scripts/Exact/types';
 	import { updatePoints } from '$lib/scripts/Exact/updatePoints';
+	import { updatePointsDisplay } from '$lib/scripts/Exact/updatePointsDisplay';
 	import { afterUpdate, onMount } from 'svelte';
 	import { writable } from 'svelte/store';
 
@@ -28,7 +29,7 @@
 			clickedCellsCount = shotsPlayed; // Update clickedCellsCount as well
 		}
 
-		updatePointsDisplay();
+		updatePointsDisplay(teams);
 		updateTeamTurn();
 	});
 
@@ -43,21 +44,6 @@
 		currentTeam = teams[currentTeamIndex];
 		color = currentTeam.color;
 		updateTeamTurn();
-	}
-
-	function updatePointsDisplay() {
-		const display = document.querySelector('#points_display');
-		if (display) {
-			let displayContent = teams
-				.map((team) => {
-					const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
-					const parsedData = storedData ? JSON.parse(storedData) : {};
-					const points = parsedData[team.color] ? parsedData[team.color].points : team.points;
-					return `${team.color} team points: ${points}`;
-				})
-				.join('<br>');
-			display.innerHTML = displayContent;
-		}
 	}
 
 	function findWinner(teams: Team[]): string {
@@ -130,7 +116,7 @@
 					});
 
 					updatePoints(teams);
-					updatePointsDisplay();
+					updatePointsDisplay(teams);
 					clickedCellsCount++;
 				}
 				changeTeam();
@@ -179,12 +165,12 @@
 			(cell as HTMLElement).style.backgroundColor = '';
 		});
 
-		updatePointsDisplay();
+		updatePointsDisplay(teams);
 		updateTeamTurn();
 	}
 
 	onMount(() => {
-		updatePointsDisplay();
+		updatePointsDisplay(teams);
 		updateTeamTurn();
 	});
 
