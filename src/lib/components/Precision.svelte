@@ -136,19 +136,5 @@
 </ol>
 
 <style lang="scss">
-	ol {
-		list-style: none;
-	}
-
-	input {
-		border: none;
-		background-color: var(--border-color);
-		color: var(--font-color);
-		font-size: var(--medium-font);
-		margin: 15px 0;
-	}
-
-	button {
-		margin: 15px 0;
-	}
+	@import '$lib/scss/Precision.scss';
 </style>
