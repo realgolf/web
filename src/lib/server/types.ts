@@ -3,7 +3,7 @@ import type { GolfRound } from "./interface/GolfRound";
 import type { HandicapHistory } from "./interface/HandicapHistory";
 import type { OnePlayerPrecisionHighscore } from "./interface/OnePlayerPrecision";
 
-export interface User {
+export type User = {
   user: {
     email: string;
     password: string;
