@@ -1,5 +1,5 @@
-import type { User } from "./interface";
 import type { Achievements } from "./interface/Achievements";
+import type { User } from "./types";
 
 export async function check_achievement(user: User, gameId: string) {
   const achievements = user.achievements;
