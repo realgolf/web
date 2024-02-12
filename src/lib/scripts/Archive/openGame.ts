@@ -1,6 +1,6 @@
+import { open_dialog } from '$lib/components/Global/Dialog.svelte';
 import { fillLocalStorageAndRedirectUser } from './fillLocalStorageAndRedirectUser';
 import { saveLocalStorageGameInDB } from './saveLocalStorageGameInDB';
-import { showModal } from './showModal';
 
 export function openGame(gameData: string, teams: string) {
 	const local_storage_game = localStorage.getItem(teams);
@@ -8,24 +8,29 @@ export function openGame(gameData: string, teams: string) {
 	if (local_storage_game == null) {
 		fillLocalStorageAndRedirectUser(teams, gameData);
 	} else {
-		showModal(
-			'<b>Oops!</b> Looks like your Storage is full. <br> Do you want to delete it?',
-			() => {
-				// Yes button callback
-				localStorage.removeItem(teams);
-				fillLocalStorageAndRedirectUser(teams, gameData);
-			},
-			() => {
-				// Save the Game in the Database button callback
-				saveLocalStorageGameInDB(teams);
-				setTimeout(() => {
+		open_dialog({
+			text: 'Your storage is full. You have to decide.',
+			modal: true,
+			confirm: {
+				text: 'Delete unsaved game?',
+				action: () => {
+					localStorage.removeItem(teams);
 					fillLocalStorageAndRedirectUser(teams, gameData);
-				}, 100);
+				}
 			},
-			() => {
-				// No button callback
-				// No further action
+			save: {
+				text: 'Save in Database',
+				action: async () => {
+					saveLocalStorageGameInDB(teams);
+					setTimeout(() => {
+						fillLocalStorageAndRedirectUser(teams, gameData);
+					}, 100);
+				}
+			},
+			cancel: {
+				text: 'Stay here.',
+				action: () => {}
 			}
-		);
+		});
 	}
 }

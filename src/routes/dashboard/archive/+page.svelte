@@ -44,18 +44,6 @@
 		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
 	}
 
-	/**
-	 * HIDE THE CONFIRMATION MODAL WHEN CLICKING OUTSIDE
-	 */
-	onMount(() => {
-		window.onclick = (event) => {
-			const modal = document.getElementById('confirmationModal');
-			if (modal && event.target === modal) {
-				modal.style.display = 'none';
-			}
-		};
-	});
-
 	let showMessage = true;
 
 	/**
@@ -78,15 +66,6 @@
 	<button>Delete All</button>
 </form>
 <button title="Toggle Game Preview" on:click={togglePreview}><Fa icon={faEye} /></button>
-
-<div id="confirmationModal" class="modal">
-	<div class="modal-content">
-		<p class="success" id="confirmationText" />
-		<button id="yesBtn">Yes</button>
-		<button id="saveBtn">Save the Game in the Database</button>
-		<button id="noBtn">No</button>
-	</div>
-</div>
 
 {#if showMessage == true && form?.message}
 	<p class="success">{form?.message}</p>
