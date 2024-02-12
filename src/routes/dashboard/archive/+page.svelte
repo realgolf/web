@@ -1,22 +1,13 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
-	import { asignNameToTeam } from '$lib/shared/utils';
+	import Game from '$lib/components/Archive/Game.svelte';
+	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
+	import { togglePreview } from '$lib/scripts/Archive/togglePreview';
+	import type { Data } from '$lib/scripts/Archive/types';
 	import { faEye } from '@fortawesome/free-regular-svg-icons';
 	import { afterUpdate, onMount } from 'svelte';
 	import Fa from 'svelte-fa';
 	import { teams } from './teams';
-
-	/* eslint-disable */
-	interface Data {
-		auth: string;
-		email: string;
-		games: games[];
-		measurement_units: string;
-		name: string;
-		theme: string;
-	}
-	/* eslint-enable */
 
 	/**
 	 * REACTIVE DATA
@@ -40,166 +31,17 @@
 	});
 
 	/**
-	 * APPLY FILTERS TO GAMES
-	 * @param searchTerm
+	 * APPLY FILTERS ON EVERY UPDATE
 	 */
-	function applyFilters(searchTerm: string) {
-		if (searchTerm !== '') {
-			filteredGames = data.games.filter((game) => {
-				if (game.name) {
-					return (
-						game.name.includes(searchTerm) ||
-						new Date(game.date as string).toLocaleDateString().includes(searchTerm)
-					);
-				}
-			});
-		} else if (selectedTeam !== '') {
-			filteredGames = data.games.filter((game) => game.teams === selectedTeam);
-		} else {
-			filteredGames = data.games;
-		}
-	}
+	afterUpdate(() => {
+		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
+	});
 
 	/**
 	 * HANDLE TEAM CHANGE
 	 */
 	function handleTeamChange() {
-		applyFilters(searchTerm);
-	}
-
-	/**
-	 * APPLY FILTERS ON EVERY UPDATE
-	 */
-	afterUpdate(() => {
-		applyFilters(searchTerm);
-	});
-
-	/**
-	 * COPY STATUS
-	 */
-	let copyStatus: string | null = null;
-
-	/**
-	 * REDIRECT FUNCTION
-	 * @param path
-	 */
-	function redirect(path: string) {
-		window.location.href = path;
-	}
-
-	/**
-	 * REDIRECT USER BASED ON TEAMS SELECTED
-	 * @param teams
-	 * @param gameData
-	 */
-	function fillLocalStorageAndRedirectUser(teams: string, gameData: string) {
-		localStorage.setItem(teams, gameData);
-		if (teams == '4winning_2_teams') {
-			redirect('/dashboard/games/4Winning/Two-Players');
-		} else if (teams == '4winning_3_teams') {
-			redirect('/dashboard/games/4Winning/Three-Players');
-		} else if (teams == '4winning_4_teams') {
-			redirect('/dashboard/games/4Winning/Four-Players');
-		} else if (teams == 'exact_2_teams') {
-			redirect('/dashboard/games/Exact/Two-Players');
-		} else if (teams == 'exact_3_teams') {
-			redirect('/dashboard/games/Exact/Three-Players');
-		} else if (teams == 'exact_4_teams') {
-			redirect('/dashboard/games/Exact/Four-Players');
-		}
-	}
-
-	/**
-	 * SAVE'S A GAME FROM THE LOCAL STORGAE IN THE DATABASE
-	 * @param teams
-	 */
-	function saveLocalStorageGameInDB(teams: string) {
-		const name = document.getElementById('name_LStoDB') as HTMLInputElement;
-		const team = document.getElementById('team_LStoDB') as HTMLInputElement;
-		const localStorageData = document.getElementById('localStorageData_LStoDB') as HTMLInputElement;
-
-		if (name && team && localStorageData) {
-			name.value = asignNameToTeam(teams);
-			team.value = teams;
-			localStorageData.value = localStorage.getItem(teams) as string;
-		}
-
-		const form = document.getElementById('saveLocalStorageToDB') as HTMLFormElement;
-		form.submit();
-	}
-
-	/**
-	 * RECIEVE THE GAME FROM THE DATABASE AND OPEN IT IN THE CORRECT GAME
-	 * @params {string} gameData - The data of the game.
-	 * @params {string} teams - The team of the game.
-	 */
-	function openGame(gameData: string, teams: string) {
-		let local_storage_game = localStorage.getItem(teams);
-
-		if (local_storage_game == null) {
-			fillLocalStorageAndRedirectUser(teams, gameData);
-		} else {
-			showModal(
-				'<b>Oops!</b> Looks like your Storage is full. <br> Do you want to delete it?',
-				() => {
-					// Yes button callback
-					localStorage.removeItem(teams);
-					fillLocalStorageAndRedirectUser(teams, gameData);
-				},
-				() => {
-					// Save the Game in the Database button callback
-					saveLocalStorageGameInDB(teams);
-					setTimeout(() => {
-						fillLocalStorageAndRedirectUser(teams, gameData);
-					}, 100);
-				},
-				() => {
-					// No button callback
-					// No further action
-				}
-			);
-		}
-	}
-
-	/**
-	 * DISPLAY A CONFIRMATION MODAL
-	 * @param message
-	 * @param yesCallback
-	 * @param saveCallback
-	 * @param noCallback
-	 */
-	function showModal(
-		message: string,
-		yesCallback: () => void,
-		saveCallback: () => void,
-		noCallback: () => void
-	) {
-		const modal = document.getElementById('confirmationModal');
-		const textElement = document.getElementById('confirmationText');
-		const yesBtn = document.getElementById('yesBtn');
-		const saveBtn = document.getElementById('saveBtn');
-		const noBtn = document.getElementById('noBtn');
-
-		if (modal && textElement && yesBtn && saveBtn && noBtn) {
-			textElement.innerHTML = message;
-
-			modal.style.display = 'block';
-
-			yesBtn.onclick = () => {
-				modal.style.display = 'none';
-				yesCallback();
-			};
-
-			saveBtn.onclick = () => {
-				modal.style.display = 'none';
-				saveCallback();
-			};
-
-			noBtn.onclick = () => {
-				modal.style.display = 'none';
-				noCallback();
-			};
-		}
+		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
 	}
 
 	/**
@@ -222,16 +64,6 @@
 	setTimeout(() => {
 		showMessage = false;
 	}, 20000);
-
-	function togglePreview() {
-		const tablePreviews = document.getElementsByClassName('table_previews');
-
-		for (const tablePreview of tablePreviews) {
-			if (tablePreview instanceof HTMLElement) {
-				tablePreview.style.display = tablePreview.style.display === 'none' ? 'block' : 'none';
-			}
-		}
-	}
 </script>
 
 <svelte:head>
@@ -280,40 +112,8 @@
 </select>
 
 {#if filteredGames.length > 0}
-	{#if copyStatus === 'success'}
-		<p class="success">Copy successful</p>
-	{:else if copyStatus === 'error'}
-		<p class="error">Copy failed</p>
-	{/if}
 	{#each filteredGames as { name, teams, data, id, date }}
-		<div class="game">
-			<form action="?/rename" method="POST">
-				<input
-					type="text"
-					name="name"
-					id="name"
-					class="headline"
-					bind:value={name}
-					aria-label="Name of the Game"
-				/>
-				<input class="hidden" type="text" name="id" value={id} />
-				<button>Update Name</button>
-			</form>
-			<p>Created at the {new Date(date).toLocaleDateString()}</p>
-			{#if teams.includes('4winning')}
-				<div class="table_previews" style="display: none;">
-					<FourWinningTable {measurement_units} {data} />
-				</div>
-				<p>{data}</p>
-			{:else}
-				<p>{data}</p>
-			{/if}
-			<button on:click={() => openGame(data, teams)}>Open Game</button>
-			<form action="?/delete_game" method="POST" autocomplete="off">
-				<input class="hidden" type="text" name="id" value={id} />
-				<button>Delete Game</button>
-			</form>
-		</div>
+		<Game {name} {teams} {data} {id} {date} {measurement_units} />
 	{/each}
 {:else}
 	<p class="error">No games found for this search.</p>
@@ -332,68 +132,5 @@
 </form>
 
 <style lang="scss">
-	.game {
-		background-color: var(--nav-color);
-		width: 90vw;
-		padding: 50px 50px;
-		border-radius: 5px;
-		border: 3px solid var(--border-color);
-		margin-right: auto;
-		margin-bottom: 20px;
-
-		button {
-			margin: 10px 0px;
-		}
-
-		p {
-			border: 3px solid var(--border-color);
-			max-width: max-content;
-			overflow-wrap: break-word; /* Erzwingt Wortumbrüche */
-		}
-
-		.headline {
-			margin-block: 0.5rem;
-			line-height: 1.2;
-			color: var(--h2-color);
-		}
-
-		.hidden {
-			display: none;
-		}
-	}
-
-	label {
-		font-size: var(--medium-font);
-	}
-
-	select {
-		color: var(--font-color);
-		border: none;
-		font-family: inherit;
-		font-size: inherit;
-		border-radius: 0.25rem;
-		background: none;
-		margin-bottom: 1.5rem;
-		text-align: center;
-
-		padding: 0.4rem 0.8rem;
-		background-color: var(--accent-color);
-		cursor: pointer;
-
-		&:focus {
-			outline: 0.1rem solid var(--font-color);
-			outline-offset: 0.2rem;
-		}
-	}
-
-	.modal {
-		display: none;
-		margin: 15px 0;
-
-		.modal-content {
-			background-color: var(--nav-color);
-			border: 1px solid var(--border-color);
-			border-radius: 5px;
-		}
-	}
+	@import '$lib/scss/Archive/main.scss';
 </style>
