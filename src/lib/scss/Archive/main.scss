@@ -21,14 +21,3 @@ select {
 		outline-offset: 0.2rem;
 	}
 }
-
-.modal {
-	display: none;
-	margin: 15px 0;
-
-	.modal-content {
-		background-color: var(--nav-color);
-		border: 1px solid var(--border-color);
-		border-radius: 5px;
-	}
-}

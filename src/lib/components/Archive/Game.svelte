@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { openGame } from '$lib/scripts/Archive/openGame';
-	import FourWinningTable from '../FourWinning_table.svelte';
+	import Dialog from '../Global/Dialog.svelte';
+	import FourWinningTable from './FourWinning_table.svelte';
 
 	export let name: string;
 	export let date: string;
@@ -38,6 +39,8 @@
 		<button>Delete Game</button>
 	</form>
 </div>
+
+<Dialog />
 
 <style lang="sass">
     @import "$lib/scss/Archive/game.scss"

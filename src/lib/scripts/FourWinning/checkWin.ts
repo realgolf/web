@@ -1,3 +1,4 @@
+import { open_dialog } from '$lib/components/Global/Dialog.svelte';
 import { restartGame } from './restartGame';
 import type { Team, winCombination } from './types';
 
@@ -27,19 +28,28 @@ export function checkWin(
 		}
 
 		if (isWinningCombination) {
-			const confirmed = confirm(`Team ${currentTeam.color} wins! Do you want to restart the game?`);
-
-			if (confirmed) {
-				restartGame(
-					teams,
-					hitCounts,
-					numberOfClicks,
-					currentTeamIndex,
-					currentTeam,
-					color,
-					changeTeam
-				);
-			}
+			open_dialog({
+				text: `Team ${currentTeam.color} wins! Do you want to restart the game?`,
+				modal: true,
+				confirm: {
+					text: 'Yes',
+					action: () => {
+						restartGame(
+							teams,
+							hitCounts,
+							numberOfClicks,
+							currentTeamIndex,
+							currentTeam,
+							color,
+							changeTeam
+						);
+					}
+				},
+				cancel: {
+					text: 'No',
+					action: () => {}
+				}
+			});
 		}
 	}
 

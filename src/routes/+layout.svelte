@@ -1,6 +1,6 @@
 <script lang="ts">
 	import LoadProgress from '$lib/components/LoadProgress.svelte';
-	import Nav from '$lib/components/Nav.svelte';
+	import Nav from '$lib/components/Nav/Nav.svelte';
 	import ScrollUp from '$lib/components/ScrollUp.svelte';
 	import '$lib/scss/app.scss';
 	import { onMount } from 'svelte';

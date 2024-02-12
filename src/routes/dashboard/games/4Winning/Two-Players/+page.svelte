@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import FourWinning from '$lib/components/FourWinning.svelte';
+	import FourWinning from '$lib/components/Games/FourWinning.svelte';
+	import Dialog, { open_dialog } from '$lib/components/Global/Dialog.svelte';
 
 	// eslint-disable-next-line
 	export let data: any;
@@ -59,7 +60,11 @@
 			}
 		} else {
 			let error = 'There is no game data!';
-			alert(error);
+			open_dialog({
+				text: error,
+				modal: false,
+				cancel: null
+			});
 		}
 	}
 </script>
@@ -73,6 +78,8 @@
 	</form>
 </div>
 <button on:click={saveToDatabaseAndSubmitForm}>Save to Database</button>
+
+<Dialog />
 
 <style lang="scss">
 	.database {

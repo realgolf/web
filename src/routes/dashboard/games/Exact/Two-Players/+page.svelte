@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import Exact from '$lib/components/Exact.svelte';
+	import Exact from '$lib/components/Games/Exact.svelte';
 
 	interface Team {
 		color: string;

@@ -1,6 +1,7 @@
 <script lang="ts">
-	import ErrorPage from '$lib/components/public_profile/Error_Page.svelte';
-	import Info from '$lib/components/public_profile/Info.svelte';
+
+	import ErrorPage from '$lib/components/Public_Profile/Error_Page.svelte';
+	import Info from '$lib/components/Public_Profile/Info.svelte';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 

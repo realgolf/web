@@ -8,6 +8,7 @@
 	import { updateTeamTurn } from '$lib/scripts/Exact/updateTeamTurn';
 	import { afterUpdate, onMount } from 'svelte';
 	import { writable } from 'svelte/store';
+	import Dialog, { open_dialog } from '../Global/Dialog.svelte';
 
 	export let teams: Team[];
 
@@ -111,24 +112,47 @@
 
 		if (clickedCellsCount === userInput * teams.length) {
 			const winner = findWinner(teams);
-			let confirmed;
 
 			if (winner == 'Tie') {
-				confirmed = confirm('The Game ended Tie!');
+				open_dialog({
+					text: 'The Game ended Tie!',
+					modal: false,
+					confirm: {
+						text: 'Restart Game',
+						action: () => {
+							resetGame(
+								teams,
+								pointsByTeam,
+								userInput,
+								clickedCellsCount,
+								currentTeamIndex,
+								currentTeam,
+								color
+							);
+						}
+					},
+					cancel: null
+				});
 			} else {
-				confirmed = confirm(`The winner is ${winner}! Do you want to play again?`);
-			}
-
-			if (confirmed) {
-				resetGame(
-					teams,
-					pointsByTeam,
-					userInput,
-					clickedCellsCount,
-					currentTeamIndex,
-					currentTeam,
-					color
-				);
+				open_dialog({
+					text: `The winner is ${winner}! Do you want to play again?`,
+					modal: false,
+					confirm: {
+						text: 'Restart Game',
+						action: () => {
+							resetGame(
+								teams,
+								pointsByTeam,
+								userInput,
+								clickedCellsCount,
+								currentTeamIndex,
+								currentTeam,
+								color
+							);
+						}
+					},
+					cancel: null
+				});
 			}
 		}
 	}
@@ -202,6 +226,8 @@
 		</tbody>
 	{/each}
 </table>
+
+<Dialog />
 
 <style lang="scss">
 	@import '$lib/scss/Exact.scss';
