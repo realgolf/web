@@ -54,6 +54,6 @@ We would like to thank the following projects and libraries for their contributi
 
 For inquiries or feedback, feel free to reach out:
 
-- Email: [Julian Hammer](mailto:jh@moinjulian.com)
+- Email: [Support](mailto:support@realgolf.games)
 
 Thank you for being a part of the RealGolf community!
