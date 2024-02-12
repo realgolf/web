@@ -79,17 +79,17 @@
 
 <dialog bind:this={dialog} class:modal={$dialog_state?.modal} class:visible={$visible}>
 	<p>
-		{$dialog_state?.text}
+		{@html $dialog_state?.text}
 	</p>
 	<menu>
 		{#if $dialog_state?.cancel}
-			<button class="button" on:click={cancel}>{$dialog_state.cancel.text}</button>
+			<button class="button" on:click={cancel}>{@html $dialog_state.cancel.text}</button>
 		{/if}
 		{#if $dialog_state?.save}
-			<button class="button" on:click={save}>{$dialog_state.save.text}</button>
+			<button class="button" on:click={save}>{@html $dialog_state.save.text}</button>
 		{/if}
 		{#if $dialog_state?.confirm}
-			<button class="button" on:click={confirm}>{$dialog_state.confirm.text}</button>
+			<button class="button" on:click={confirm}>{@html $dialog_state.confirm.text}</button>
 		{/if}
 	</menu>
 </dialog>
