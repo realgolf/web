@@ -1,23 +1,13 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
+	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
+	import type { Data } from '$lib/scripts/Archive/types';
 	import { asignNameToTeam } from '$lib/shared/utils';
 	import { faEye } from '@fortawesome/free-regular-svg-icons';
 	import { afterUpdate, onMount } from 'svelte';
 	import Fa from 'svelte-fa';
 	import { teams } from './teams';
-
-	/* eslint-disable */
-
-	interface Data {
-		auth: string;
-		email: string;
-		games: games[];
-		measurement_units: string;
-		name: string;
-		theme: string;
-	}
-	/* eslint-enable */
 
 	/**
 	 * REACTIVE DATA
@@ -41,38 +31,17 @@
 	});
 
 	/**
-	 * APPLY FILTERS TO GAMES
-	 * @param searchTerm
-	 */
-	function applyFilters(searchTerm: string) {
-		if (searchTerm !== '') {
-			filteredGames = data.games.filter((game) => {
-				if (game.name) {
-					return (
-						game.name.includes(searchTerm) ||
-						new Date(game.date as string).toLocaleDateString().includes(searchTerm)
-					);
-				}
-			});
-		} else if (selectedTeam !== '') {
-			filteredGames = data.games.filter((game) => game.teams === selectedTeam);
-		} else {
-			filteredGames = data.games;
-		}
-	}
-
-	/**
 	 * HANDLE TEAM CHANGE
 	 */
 	function handleTeamChange() {
-		applyFilters(searchTerm);
+		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
 	}
 
 	/**
 	 * APPLY FILTERS ON EVERY UPDATE
 	 */
 	afterUpdate(() => {
-		applyFilters(searchTerm);
+		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
 	});
 
 	/**
