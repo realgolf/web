@@ -3,6 +3,7 @@
 	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
 	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
 	import { openGame } from '$lib/scripts/Archive/openGame';
+	import { togglePreview } from '$lib/scripts/Archive/togglePreview';
 	import type { Data } from '$lib/scripts/Archive/types';
 	import { faEye } from '@fortawesome/free-regular-svg-icons';
 	import { afterUpdate, onMount } from 'svelte';
@@ -66,15 +67,7 @@
 		showMessage = false;
 	}, 20000);
 
-	function togglePreview() {
-		const tablePreviews = document.getElementsByClassName('table_previews');
 
-		for (const tablePreview of tablePreviews) {
-			if (tablePreview instanceof HTMLElement) {
-				tablePreview.style.display = tablePreview.style.display === 'none' ? 'block' : 'none';
-			}
-		}
-	}
 </script>
 
 <svelte:head>
