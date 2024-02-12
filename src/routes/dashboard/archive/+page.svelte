@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
 	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
-	import { redirect } from '$lib/scripts/Archive/redirect';
+	import { fillLocalStorageAndRedirectUser } from '$lib/scripts/Archive/fillLocalStorageAndRedirectUser';
 	import type { Data } from '$lib/scripts/Archive/types';
 	import { asignNameToTeam } from '$lib/shared/utils';
 	import { faEye } from '@fortawesome/free-regular-svg-icons';
@@ -44,28 +44,6 @@
 	 */
 	function handleTeamChange() {
 		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
-	}
-
-	/**
-	 * REDIRECT USER BASED ON TEAMS SELECTED
-	 * @param teams
-	 * @param gameData
-	 */
-	function fillLocalStorageAndRedirectUser(teams: string, gameData: string) {
-		localStorage.setItem(teams, gameData);
-		if (teams == '4winning_2_teams') {
-			redirect('/dashboard/games/4Winning/Two-Players');
-		} else if (teams == '4winning_3_teams') {
-			redirect('/dashboard/games/4Winning/Three-Players');
-		} else if (teams == '4winning_4_teams') {
-			redirect('/dashboard/games/4Winning/Four-Players');
-		} else if (teams == 'exact_2_teams') {
-			redirect('/dashboard/games/Exact/Two-Players');
-		} else if (teams == 'exact_3_teams') {
-			redirect('/dashboard/games/Exact/Three-Players');
-		} else if (teams == 'exact_4_teams') {
-			redirect('/dashboard/games/Exact/Four-Players');
-		}
 	}
 
 	/**
