@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Precision from '$lib/components/Precision.svelte';
+	import Precision from '$lib/components/Games/Precision.svelte';
+
 
 	let point = 100;
 

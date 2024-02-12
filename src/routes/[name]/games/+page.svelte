@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
+	import FourWinningTable from '$lib/components/Archive/FourWinning_table.svelte';
 	import { slide } from 'svelte/transition';
 	export let data;
 

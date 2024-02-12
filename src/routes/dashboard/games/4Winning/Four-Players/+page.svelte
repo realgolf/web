@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import FourWinning from '$lib/components/FourWinning.svelte';
+	import FourWinning from '$lib/components/Games/FourWinning.svelte';
 
 	// eslint-disable-next-line
 	export let data: any;

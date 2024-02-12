@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { openGame } from '$lib/scripts/Archive/openGame';
-	import FourWinningTable from '../FourWinning_table.svelte';
+	import FourWinningTable from './FourWinning_table.svelte';
 
 	export let name: string;
 	export let date: string;
