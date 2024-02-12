@@ -5,13 +5,13 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "daily"
-      time: "00:00"
+      interval: 'daily'
+      time: '00:00'
     reviewers:
-      - "@MoinJulian"
+      - '@MoinJulian'
     labels:
-      - "pnpm"
-      - "dependencies"
+      - 'pnpm'
+      - 'dependencies'

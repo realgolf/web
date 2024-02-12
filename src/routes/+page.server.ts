@@ -1,9 +1,9 @@
-import { redirect } from "@sveltejs/kit";
+import { redirect } from '@sveltejs/kit';
 
 export async function load(event) {
-  const auth = event.cookies.get("auth-token");
+	const auth = event.cookies.get('auth-token');
 
-  if (auth) {
-    throw redirect(302, "/dashboard");
-  }
+	if (auth) {
+		throw redirect(302, '/dashboard');
+	}
 }

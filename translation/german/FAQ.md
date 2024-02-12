@@ -78,7 +78,7 @@ Absolut! Sie haben die Flexibilität, Ihr Passwort jederzeit zu ändern. Hier is
 
 Durch Befolgen dieser Schritte können Sie Ihr Passwort
 
- einfach aktualisieren und Ihr Konto sicher halten.
+einfach aktualisieren und Ihr Konto sicher halten.
 
 ## Sind meine persönlichen Informationen sicher?
 

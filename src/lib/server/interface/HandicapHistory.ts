@@ -1,4 +1,4 @@
 export interface HandicapHistory {
-  handicap: number;
-  date: Date;
+	handicap: number;
+	date: Date;
 }

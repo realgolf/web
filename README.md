@@ -5,7 +5,7 @@
 
 ![RealGolf.Games Banner](./img/logo_banner.PNG)
 
-#### __Read this in [other languages](./translation/translations.md).__
+#### **Read this in [other languages](./translation/translations.md).**
 
 <kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](./translation/german/German.md)</kbd>
 

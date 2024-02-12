@@ -151,6 +151,7 @@
 
 <p>
 	Enter the amount of shots per team: <input
+		aria-label="Number of shots per Team"
 		bind:value={userInput}
 		type="number"
 		name="shots"
