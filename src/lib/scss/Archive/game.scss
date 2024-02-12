@@ -1,0 +1,29 @@
+.game {
+	background-color: var(--nav-color);
+	width: 90vw;
+	padding: 50px 50px;
+	border-radius: 5px;
+	border: 3px solid var(--border-color);
+	margin-right: auto;
+	margin-bottom: 20px;
+
+	button {
+		margin: 10px 0px;
+	}
+
+	p {
+		border: 3px solid var(--border-color);
+		max-width: max-content;
+		overflow-wrap: break-word; /* Erzwingt Wortumbrüche */
+	}
+
+	.headline {
+		margin-block: 0.5rem;
+		line-height: 1.2;
+		color: var(--h2-color);
+	}
+
+	.hidden {
+		display: none;
+	}
+}

@@ -50,7 +50,7 @@
 						{value}
 					</td>
 				{/each}
-				<td class="points">{side}</td>
+				<td class="points">{side} {capitalizedMeasurementUnit}</td>
 			</tr>
 		</tbody>
 	{/each}
