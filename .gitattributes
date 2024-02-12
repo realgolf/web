@@ -1,10 +1,6 @@
 *.json linguist-detectable=true
 *.json linguist-language=JSON
 
-*.md linguist-detectable=true
-*.md linguist-language=Markdown
-*.md linguist-documentation=false
-
 *.js linguist-detectable=true
 *.js linguist-language=JavaScript
 
@@ -14,8 +10,10 @@
 *.scss linguist-detectable=true
 *.scss linguist-language=SCSS
 
-*.yml linguist-detectable=false
+*.yml linguist-detectable=true
 *.yml linguist-language=YAML
 
-*.yaml linguist-detectable=false
+*.yaml linguist-detectable=true
 *.yaml linguist-language=YAML
+
+pnpm-lock.yaml linguist-vendored
