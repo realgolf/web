@@ -9,6 +9,7 @@
 	import { winCombinations } from '$lib/scripts/FourWinning/winCombinations';
 	import { capitalizeFirstLetter } from '$lib/shared/utils';
 	import { onMount } from 'svelte';
+	import Dialog, { open_dialog } from '../Global/Dialog.svelte';
 
 	/**
 	 * Declared all variables
@@ -71,13 +72,11 @@
 				);
 				changeTeam();
 			} else {
-				const info_display = document.getElementById('info_display');
-
-				if (info_display) {
-					info_display.innerHTML =
-						'<b> Oops! </b> This Field is already claimed by another Team. You can still win by hitting it four times!';
-					info_display.scrollIntoView();
-				}
+				open_dialog({
+					text: '<b> Oops! </b> This Field is already claimed by another Team. You can still win by hitting it four times!',
+					modal: false,
+					cancel: null
+				});
 
 				FieldClickedFourTimes(outerIndex, innerIndex);
 				checkWin(
@@ -91,13 +90,6 @@
 					changeTeam
 				);
 				changeTeam();
-
-				// Hide the text after 10 seconds
-				setTimeout(() => {
-					if (info_display) {
-						info_display.innerHTML = ''; // Empty the content to hide the text
-					}
-				}, 10000); // 10000 milliseconds (10 seconds)
 			}
 		}
 	}
@@ -178,14 +170,22 @@
 							);
 							changeTeam();
 						} else {
-							alert('This field is already claimed by another team.');
+							open_dialog({
+								text: 'This field is already claimed by another team.',
+								modal: false,
+								cancel: null
+							});
 						}
 					}
 				} else {
-					alert('Invalid input. Please enter a valid number between 10 and 163.');
+					open_dialog({
+						text: 'Invalid input. Please enter a valid number between 10 and 163.',
+						modal: false,
+						cancel: null
+					});
 				}
 			} else {
-				alert('You need to enter a number.');
+				open_dialog({ text: 'You need to enter a number.', modal: false, cancel: null });
 			}
 		}
 	}
@@ -233,7 +233,6 @@
 <h1>{teams.length} Players</h1>
 
 <p id="team_turn_display">Current Team Turn: {currentTeam.color}</p>
-<p class="success" id="info_display" />
 
 <button on:click={changeTeam}>Switch Team</button>
 <button
@@ -292,6 +291,8 @@
 		{numberOfClicks}
 	{/if}
 </details>
+
+<Dialog />
 
 <style lang="scss">
 	@import '$lib/scss/FourWinning.scss';
