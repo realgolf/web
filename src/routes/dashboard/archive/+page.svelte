@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
 	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
+	import { redirect } from '$lib/scripts/Archive/redirect';
 	import type { Data } from '$lib/scripts/Archive/types';
 	import { asignNameToTeam } from '$lib/shared/utils';
 	import { faEye } from '@fortawesome/free-regular-svg-icons';
@@ -24,18 +25,12 @@
 	let searchTerm = '';
 	// eslint-disable-next-line
 	let filteredGames: games[] | any[] = [];
+	let copyStatus: string | null = null;
 
 	// ON COMPONENT MOUNT
 	onMount(() => {
 		filteredGames = data.games;
 	});
-
-	/**
-	 * HANDLE TEAM CHANGE
-	 */
-	function handleTeamChange() {
-		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
-	}
 
 	/**
 	 * APPLY FILTERS ON EVERY UPDATE
@@ -45,16 +40,10 @@
 	});
 
 	/**
-	 * COPY STATUS
+	 * HANDLE TEAM CHANGE
 	 */
-	let copyStatus: string | null = null;
-
-	/**
-	 * REDIRECT FUNCTION
-	 * @param path
-	 */
-	function redirect(path: string) {
-		window.location.href = path;
+	function handleTeamChange() {
+		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
 	}
 
 	/**
