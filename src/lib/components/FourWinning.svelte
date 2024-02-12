@@ -243,10 +243,28 @@
 >
 
 <p>You can also enter the distance you have played here:</p>
-<input type="number" name="distance" id="distance" />
+<input
+	type="number"
+	name="distance"
+	id="distance"
+	aria-label=" You can also enter the Distance here"
+/>
 <button on:click={handleInput}>Submit</button>
 
 <table>
+	<thead style="display: none;" aria-hidden="false">
+		<tr>
+			<th>Lateral Deviation</th>
+			<th>Distance</th>
+			<th>Distance</th>
+			<th>Distance</th>
+			<th>Distance</th>
+			<th>Distance</th>
+			<th>Distance</th>
+			<th>Distance</th>
+			<th>Lateral Deviation</th>
+		</tr>
+	</thead>
 	{#each rows as { side, data }, outerIndex}
 		<tbody id={`row${outerIndex + 1}`}>
 			<tr>
@@ -260,7 +278,7 @@
 						{value}
 					</td>
 				{/each}
-				<td class="points">{side}</td>
+				<td class="points">{side} {capitalizedMeasurementUnit}</td>
 			</tr>
 		</tbody>
 	{/each}
