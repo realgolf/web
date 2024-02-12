@@ -104,8 +104,8 @@
 		border: none;
 		border-radius: 0.25rem;
 		box-shadow: 0rem 0rem 1rem #000e;
-		background-color: white;
-		color: black;
+		background-color: var(--nav-color);
+		color: var(--font-color);
 		font-size: 1.25rem;
 		text-align: center;
 		opacity: 0;
@@ -127,7 +127,7 @@
 	}
 
 	dialog button {
-		outline-color: var(--btn-color);
+		outline-color: white;
 	}
 
 	menu {
