@@ -124,7 +124,8 @@
 					numberOfClicks,
 					currentTeamIndex,
 					currentTeam,
-					color
+					color,
+					changeTeam
 				);
 			}
 		}
