@@ -288,7 +288,14 @@
 	{#each filteredGames as { name, teams, data, id, date }}
 		<div class="game">
 			<form action="?/rename" method="POST">
-				<input type="text" name="name" id="name" class="headline" bind:value={name} />
+				<input
+					type="text"
+					name="name"
+					id="name"
+					class="headline"
+					bind:value={name}
+					aria-label="Name of the Game"
+				/>
 				<input class="hidden" type="text" name="id" value={id} />
 				<button>Update Name</button>
 			</form>
