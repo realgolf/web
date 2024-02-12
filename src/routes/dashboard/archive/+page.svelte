@@ -2,8 +2,7 @@
 	import { enhance } from '$app/forms';
 	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
 	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
-	import { fillLocalStorageAndRedirectUser } from '$lib/scripts/Archive/fillLocalStorageAndRedirectUser';
-	import { saveLocalStorageGameInDB } from '$lib/scripts/Archive/saveLocalStorageGameInDB';
+	import { openGame } from '$lib/scripts/Archive/openGame';
 	import type { Data } from '$lib/scripts/Archive/types';
 	import { faEye } from '@fortawesome/free-regular-svg-icons';
 	import { afterUpdate, onMount } from 'svelte';
@@ -44,80 +43,6 @@
 	 */
 	function handleTeamChange() {
 		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
-	}
-
-	/**
-	 * RECIEVE THE GAME FROM THE DATABASE AND OPEN IT IN THE CORRECT GAME
-	 * @params {string} gameData - The data of the game.
-	 * @params {string} teams - The team of the game.
-	 */
-	function openGame(gameData: string, teams: string) {
-		let local_storage_game = localStorage.getItem(teams);
-
-		if (local_storage_game == null) {
-			fillLocalStorageAndRedirectUser(teams, gameData);
-		} else {
-			showModal(
-				'<b>Oops!</b> Looks like your Storage is full. <br> Do you want to delete it?',
-				() => {
-					// Yes button callback
-					localStorage.removeItem(teams);
-					fillLocalStorageAndRedirectUser(teams, gameData);
-				},
-				() => {
-					// Save the Game in the Database button callback
-					saveLocalStorageGameInDB(teams);
-					setTimeout(() => {
-						fillLocalStorageAndRedirectUser(teams, gameData);
-					}, 100);
-				},
-				() => {
-					// No button callback
-					// No further action
-				}
-			);
-		}
-	}
-
-	/**
-	 * DISPLAY A CONFIRMATION MODAL
-	 * @param message
-	 * @param yesCallback
-	 * @param saveCallback
-	 * @param noCallback
-	 */
-	function showModal(
-		message: string,
-		yesCallback: () => void,
-		saveCallback: () => void,
-		noCallback: () => void
-	) {
-		const modal = document.getElementById('confirmationModal');
-		const textElement = document.getElementById('confirmationText');
-		const yesBtn = document.getElementById('yesBtn');
-		const saveBtn = document.getElementById('saveBtn');
-		const noBtn = document.getElementById('noBtn');
-
-		if (modal && textElement && yesBtn && saveBtn && noBtn) {
-			textElement.innerHTML = message;
-
-			modal.style.display = 'block';
-
-			yesBtn.onclick = () => {
-				modal.style.display = 'none';
-				yesCallback();
-			};
-
-			saveBtn.onclick = () => {
-				modal.style.display = 'none';
-				saveCallback();
-			};
-
-			noBtn.onclick = () => {
-				modal.style.display = 'none';
-				noCallback();
-			};
-		}
 	}
 
 	/**
