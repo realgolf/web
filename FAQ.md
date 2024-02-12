@@ -32,17 +32,17 @@ Absolutely! Our games are completely free to play. All you need to do is create 
 
 Your creative input is highly valued! If you have exciting new game ideas, we encourage you to get involved. Here's how:
 
-- **Open an Issue on GitHub:** Feel free to open an Issue on our [GitHub](https://github.com/MoinJulian/Golf/issues) repository and label it with "game". Your idea will be reviewed and considered by our team.
+- **Open an Issue on GitHub:** Feel free to open an Issue on our [GitHub](https://github.com/realgolf/web/issues) repository and label it with "game". Your idea will be reviewed and considered by our team.
 
-- **Email Us:** You can also share your ideas via email to [support@moinjulian.com](mailto:support@moinjulian.com). We welcome your suggestions and will eagerly explore each one.
+- **Email Us:** You can also share your ideas via email to [Support](mailto:support@realgolf.games). We welcome your suggestions and will eagerly explore each one.
 
 For your valuable contributions, your name will be recognized in our [Contributors.md](/Contributors.md) file. Your ideas can shape the future of Real Golf, and we greatly appreciate your input. Let's create amazing experiences together!
 
 ## How can I report bugs or suggest new features?
 
-To report bugs, you can open an Issue on our [GitHub repository](https://github.com/MoinJulian/Golf/issues) and label it with "bug." Alternatively, you can send an email to [support@moinjulian.com](mailto:support@moinjulian.com).
+To report bugs, you can open an Issue on our [GitHub repository](https://github.com/realgolf/web/issues) and label it with "bug." Alternatively, you can send an email to [Support](mailto:support@realgolf.games).
 
-To suggest new features, you can also open an issue on our [GitHub repository](https://github.com/MoinJulian/Golf/issues) and label it with "feature." You can also send your suggestions via email to [support@moinjulian.com](mailto:support@moinjulian.com).
+To suggest new features, you can also open an issue on our [GitHub repository](https://github.com/realgolf/web/issues) and label it with "feature." You can also send your suggestions via email to [Support](mailto:support@realgolf.games).
 
 ## Is the project open source?
 
@@ -62,7 +62,7 @@ Our project is built using a combination of powerful technologies:
 
 - **Frontend Development**: We utilize the JavaScript Full Stack Framework, [SvelteKit](https://kit.svelte.dev), along with TypeScript and Sass for crafting engaging and dynamic user interfaces.
 
-- **Backend Development**: For the server-side aspect, we've harnessed the capabilities of [MongoDB](https://www.mongodb.com) to securely store user data and ensure smooth interactions.
+- **Backend Development**: For the server-side aspect, we've harnessed the capabilities of [MongoDB](https://github.com/mongodb) to securely store user data and ensure smooth interactions.
 
 This versatile tech stack empowers us to create a seamless user experience and a robust backend infrastructure.
 
@@ -90,4 +90,4 @@ We are committed to maintaining the highest standards of security to safeguard y
 
 ## Further Questions
 
-If you have any additional questions, don't hesitate to reach out to us. Simply send an email to [support@moinjulian.com](mailto:support@moinjulian.com) with your question. We'll respond promptly and may even consider adding your question to this FAQ to help other users.
+If you have any additional questions, don't hesitate to reach out to us. Simply send an email to [Support](mailto:support@realgolf.games) with your question. We'll respond promptly and may even consider adding your question to this FAQ to help other users.

@@ -5,6 +5,10 @@
 
 ![RealGolf.Games Banner](./img/logo_banner.PNG)
 
+#### __Read this in [other languages](./translation/translations.md).__
+
+<kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](./translation/german/German.md)</kbd>
+
 ## Introduction
 
 Welcome to the RealGolf.Games website repository! This project serves as the hub for RealGolf's training platform. Whether you're a developer, contributor, or user, this README provides essential information to get you started.
@@ -54,6 +58,6 @@ We would like to thank the following projects and libraries for their contributi
 
 For inquiries or feedback, feel free to reach out:
 
-- Email: [Julian Hammer](mailto:jh@moinjulian.com)
+- Email: [Support](mailto:support@realgolf.games)
 
 Thank you for being a part of the RealGolf community!
