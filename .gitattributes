@@ -19,3 +19,5 @@
 
 *.yaml linguist-detectable=true
 *.yaml linguist-language=YAML
+
+pnpm-lock.yaml linguist-vendored
