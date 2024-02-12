@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
+	import Game from '$lib/components/Archive/Game.svelte';
 	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
-	import { openGame } from '$lib/scripts/Archive/openGame';
 	import { togglePreview } from '$lib/scripts/Archive/togglePreview';
 	import type { Data } from '$lib/scripts/Archive/types';
 	import { faEye } from '@fortawesome/free-regular-svg-icons';
@@ -25,7 +24,6 @@
 	let searchTerm = '';
 	// eslint-disable-next-line
 	let filteredGames: games[] | any[] = [];
-	let copyStatus: string | null = null;
 
 	// ON COMPONENT MOUNT
 	onMount(() => {
@@ -66,8 +64,6 @@
 	setTimeout(() => {
 		showMessage = false;
 	}, 20000);
-
-
 </script>
 
 <svelte:head>
@@ -116,40 +112,8 @@
 </select>
 
 {#if filteredGames.length > 0}
-	{#if copyStatus === 'success'}
-		<p class="success">Copy successful</p>
-	{:else if copyStatus === 'error'}
-		<p class="error">Copy failed</p>
-	{/if}
 	{#each filteredGames as { name, teams, data, id, date }}
-		<div class="game">
-			<form action="?/rename" method="POST">
-				<input
-					type="text"
-					name="name"
-					id="name"
-					class="headline"
-					bind:value={name}
-					aria-label="Name of the Game"
-				/>
-				<input class="hidden" type="text" name="id" value={id} />
-				<button>Update Name</button>
-			</form>
-			<p>Created at the {new Date(date).toLocaleDateString()}</p>
-			{#if teams.includes('4winning')}
-				<div class="table_previews" style="display: none;">
-					<FourWinningTable {measurement_units} {data} />
-				</div>
-				<p>{data}</p>
-			{:else}
-				<p>{data}</p>
-			{/if}
-			<button on:click={() => openGame(data, teams)}>Open Game</button>
-			<form action="?/delete_game" method="POST" autocomplete="off">
-				<input class="hidden" type="text" name="id" value={id} />
-				<button>Delete Game</button>
-			</form>
-		</div>
+		<Game {name} {teams} {data} {id} {date} {measurement_units} />
 	{/each}
 {:else}
 	<p class="error">No games found for this search.</p>
@@ -168,5 +132,5 @@
 </form>
 
 <style lang="scss">
-	@import '$lib/scss/archive.scss';
+	@import '$lib/scss/Archive/main.scss';
 </style>
