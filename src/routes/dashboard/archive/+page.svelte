@@ -3,8 +3,8 @@
 	import FourWinningTable from '$lib/components/FourWinning_table.svelte';
 	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
 	import { fillLocalStorageAndRedirectUser } from '$lib/scripts/Archive/fillLocalStorageAndRedirectUser';
+	import { saveLocalStorageGameInDB } from '$lib/scripts/Archive/saveLocalStorageGameInDB';
 	import type { Data } from '$lib/scripts/Archive/types';
-	import { asignNameToTeam } from '$lib/shared/utils';
 	import { faEye } from '@fortawesome/free-regular-svg-icons';
 	import { afterUpdate, onMount } from 'svelte';
 	import Fa from 'svelte-fa';
@@ -44,25 +44,6 @@
 	 */
 	function handleTeamChange() {
 		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
-	}
-
-	/**
-	 * SAVE'S A GAME FROM THE LOCAL STORGAE IN THE DATABASE
-	 * @param teams
-	 */
-	function saveLocalStorageGameInDB(teams: string) {
-		const name = document.getElementById('name_LStoDB') as HTMLInputElement;
-		const team = document.getElementById('team_LStoDB') as HTMLInputElement;
-		const localStorageData = document.getElementById('localStorageData_LStoDB') as HTMLInputElement;
-
-		if (name && team && localStorageData) {
-			name.value = asignNameToTeam(teams);
-			team.value = teams;
-			localStorageData.value = localStorage.getItem(teams) as string;
-		}
-
-		const form = document.getElementById('saveLocalStorageToDB') as HTMLFormElement;
-		form.submit();
 	}
 
 	/**
