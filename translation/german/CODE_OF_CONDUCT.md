@@ -1,4 +1,3 @@
-
 # Vereinbarung über Verhaltenskodex für Mitwirkende
 
 ## Unsere Verpflichtung

@@ -8,15 +8,9 @@ const seconds = today.getSeconds();
 
 // Format the time
 export const formattedTime =
-  hours +
-  ":" +
-  (minutes < 10 ? "0" : "") +
-  minutes +
-  ":" +
-  (seconds < 10 ? "0" : "") +
-  seconds;
+	hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
 
 const year = today.getFullYear();
-const month = (today.getMonth() + 1).toString().padStart(2, "0");
-const day = today.getDate().toString().padStart(2, "0");
+const month = (today.getMonth() + 1).toString().padStart(2, '0');
+const day = today.getDate().toString().padStart(2, '0');
 export const formattedDate = `${year}-${month}-${day}`;

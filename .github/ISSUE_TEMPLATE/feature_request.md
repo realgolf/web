@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for the project (for game ideas use the "Game Idea Template")
-title: "[FEATURE]"
+title: '[FEATURE]'
 labels: feature
 assignees: MoinJulian
 ---
