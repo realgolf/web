@@ -102,7 +102,12 @@
 		</div>
 
 		<div>
-			<button id="toggle_password" type="button"><Fa id="eye_icon" icon={faEye} /></button>
+			<button
+				id="toggle_password"
+				type="button"
+				aria-label="Toggle between password visible and pasword hidden"
+				><Fa id="eye_icon" icon={faEye} /></button
+			>
 			<button aria-label="update password">Update</button>
 		</div>
 	</form>
@@ -187,8 +192,13 @@
 	<h2 class="error">Your Account will be lost forever! (a long time!)</h2>
 	<form action="?/delete_account" method="POST" class="delete_account_form">
 		<div>
-			<label for="password_input">Password</label>
-			<input type="password" id="password_input" name="password_delete_account" value="" />
+			<label for="delete_account_password_input">Password</label>
+			<input
+				type="password"
+				id="delete_account_password_input"
+				name="password_delete_account"
+				value=""
+			/>
 		</div>
 		<button aria-label="delete Account">Delete Account</button>
 	</form>
