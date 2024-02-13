@@ -5,7 +5,7 @@
 	import Bio from './Bio-Socials.svelte';
 	import Games from './Games.svelte';
 	import Names from './Names.svelte';
-	import OnePlayerPrecisionHighscore from './One_Player__Precision_Highscore.svelte';
+	import OnePlayerPrecisionHighscore from './One_Player_Precision_Highscore.svelte';
 	import Registration from './Registration.svelte';
 
 	export let data: PageData;
