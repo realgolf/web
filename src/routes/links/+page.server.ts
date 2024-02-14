@@ -16,6 +16,7 @@ export const actions = {
 		if ('erros' in redirection) {
 			return fail(400, { ...redirection, url });
 		}
+
 		return { ...redirection, url };
 	}
 };

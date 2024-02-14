@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 export async function connect_to_db() {
 	try {
-		return await mongoose.connect(SECRET_MONGODB_SHORTURLDB_CONNECTION);
+		return mongoose.createConnection(SECRET_MONGODB_SHORTURLDB_CONNECTION);
 	} catch (err) {
 		console.log(err);
 	}

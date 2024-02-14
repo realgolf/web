@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { connect_to_db } from './connect';
 
 const url_regexp =
 	/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,})/gi;
@@ -29,4 +30,5 @@ const schema = new mongoose.Schema(
 	}
 );
 
-export const Redirection = mongoose.model('redirection', schema);
+const redirection_model = await connect_to_db();
+export const Redirection = redirection_model?.model('redirection', schema);

@@ -13,8 +13,12 @@ export async function create_shortcut(
 	}
 	const shortcut = id();
 	const visits = 0;
-	const redirection = new Redirection({ shortcut, url, visits });
+	let redirection;
+	if (Redirection) {
+		redirection = new Redirection({ shortcut, url, visits });
+	}
 
+	if (redirection === undefined) return { errors: ['Internal server error'] };
 	const error = redirection.validateSync();
 	if (error) {
 		const errors = Object.values(error.errors).map((e) => e.message);
