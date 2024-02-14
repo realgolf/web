@@ -10,8 +10,8 @@
 <h1>Levels</h1>
 
 <main>
-	<p class="success">Please read the levels.</p>
-	<p class="success">To play with the levels is optional.</p>
+	<p class="highlight">Please read the levels.</p>
+	<p class="highlight">To play with the levels is optional.</p>
 
 	<details>
 		<summary>Table of Contains</summary>

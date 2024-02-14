@@ -72,7 +72,7 @@
 <h1>Games</h1>
 
 <main>
-	<p class="success">Here you can find the different modi you can play the Games in.</p>
+	<p class="highlight">Here you can find the different modi you can play the Games in.</p>
 
 	<details>
 		<summary>Table of Contains</summary>

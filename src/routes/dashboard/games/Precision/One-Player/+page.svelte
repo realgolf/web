@@ -173,7 +173,7 @@
 
 <p>{capitalizedMeasurementUnit} to play:</p>
 <ol>
-	<li class="success">{MetersToPlay}</li>
+	<li class="highlight">{MetersToPlay}</li>
 </ol>
 
 <ol>

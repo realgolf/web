@@ -115,7 +115,7 @@
 
 <div class="handicap">
 	<h2>Handicap</h2>
-	<p class="success">
+	<p class="highlight">
 		The Handicap in Golf is a numerical measure of a golfer's ability, or potential ability, that is
 		used to enable players of different abilities to compete against one another.
 	</p>

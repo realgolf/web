@@ -12,8 +12,8 @@
 <h1>Rules</h1>
 
 <main>
-	<p class="success">This are all rules for all three games.</p>
-	<p class="success">Please read them carefully.</p>
+	<p class="highlight">This are all rules for all three games.</p>
+	<p class="highlight">Please read them carefully.</p>
 
 	<details>
 		<summary>Table of Contains</summary>

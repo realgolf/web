@@ -4,7 +4,7 @@
 
 <h1>Tools</h1>
 
-<p class="success">
+<p class="highlight">
 	This shows a few examples for material you can you use to determine the exact length.
 </p>
 

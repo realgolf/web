@@ -20,7 +20,7 @@
 		</b>
 	</p>
 
-	<p class="success">The navigation can be found in the dropdown menu.</p>
+	<p class="highlight">The navigation can be found in the dropdown menu.</p>
 
 	<h3>But most important enjoy the games and have fun!</h3>
 

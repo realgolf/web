@@ -131,12 +131,12 @@
 	}
 
 	.toast.success {
-		background-color: rgb(46, 165, 46);
+		background-color: var(--highlight-color);
 		color: white;
 	}
 
 	.toast.error {
-		background-color: rgb(223, 58, 58);
+		background-color: var(--error-color);
 		color: white;
 	}
 
