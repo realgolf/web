@@ -1,4 +1,4 @@
-import { cookie_options } from '$lib/server/utils';
+import { cookie_options } from '$lib/server/user/utils';
 import { redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
