@@ -9,9 +9,9 @@ export async function get_url(shortcut: string) {
 	}
 
 	const connection = connect_to_db();
-	if (!connection) return;
+	if (connection === null || connection === undefined) return;
 
-	const doc = await Redirection.findOne({ shortcut });
+	const doc = await Redirection?.findOne({ shortcut });
 	if (!doc) return;
 
 	cache[shortcut] = doc.url;

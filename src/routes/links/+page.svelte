@@ -43,7 +43,7 @@
 </form>
 
 <div aria-live="polite">
-	{#if loading}
+	{#if loading && !form}
 		<Loader />
 	{:else if form?.errors}
 		<section aria-label="errors" in:fade={{ duration: 150 }}>
