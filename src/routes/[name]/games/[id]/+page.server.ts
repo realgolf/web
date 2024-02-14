@@ -5,11 +5,11 @@ import type { PageServerLoad } from '../$types';
 
 function removeIdFromGame(
 	game: Types.Subdocument<Types.ObjectId> & {
-		name?: string | null | undefined;
-		id?: string | null | undefined;
-		date?: string | null | undefined;
-		teams?: string | null | undefined;
-		data?: string | null | undefined;
+		name?: string | null;
+		id?: string | null;
+		date?: string | null;
+		teams?: string | null;
+		data?: string | null;
 	}
 ) {
 	const gameCopy = JSON.parse(JSON.stringify(game));
