@@ -10,4 +10,7 @@
 *.scss linguist-detectable=true
 *.scss linguist-language=SCSS
 
+*.sh linguist-detectable=false
+Dockerfile linguist-detectable=true
+
 pnpm-lock.yaml linguist-vendored
