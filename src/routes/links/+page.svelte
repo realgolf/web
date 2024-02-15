@@ -26,6 +26,12 @@
 	let show_confirmation = false;
 </script>
 
+<svelte:head>
+	<title>Url Shortner</title>
+</svelte:head>
+
+<h1>Url Shortner</h1>
+
 <form
 	class="text-lg my-4 flex flex-col gap-3 transition-opacity duration-200"
 	class:opacity-70={loading}
