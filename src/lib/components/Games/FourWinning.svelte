@@ -72,24 +72,26 @@
 				);
 				changeTeam();
 			} else {
-				open_dialog({
-					text: '<b> Oops! </b> This Field is already claimed by another Team. You can still win by hitting it four times!',
-					modal: false,
-					cancel: null
-				});
-
-				FieldClickedFourTimes(outerIndex, innerIndex);
-				checkWin(
-					winCombinations,
-					currentTeam,
-					teams,
-					hitCounts,
-					numberOfClicks,
-					color,
-					currentTeamIndex,
-					changeTeam
-				);
-				changeTeam();
+				if (cell.style.backgroundColor != currentTeam.color) {
+					open_dialog({
+						text: '<b> Oops! </b> This Field is already claimed by another Team. You can still win by hitting it four times!',
+						modal: false,
+						cancel: null
+					});
+				} else {
+					FieldClickedFourTimes(outerIndex, innerIndex);
+					checkWin(
+						winCombinations,
+						currentTeam,
+						teams,
+						hitCounts,
+						numberOfClicks,
+						color,
+						currentTeamIndex,
+						changeTeam
+					);
+					changeTeam();
+				}
 			}
 		}
 	}

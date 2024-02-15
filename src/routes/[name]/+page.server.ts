@@ -126,7 +126,6 @@ export const actions: Actions = {
 		if (user?.user && (user.user.email_public === false || user.user.email_public === true)) {
 			console.log('email_public', email_public);
 			user.user.email_public = email_public;
-			console.log(user);
 			await user.save();
 		}
 
