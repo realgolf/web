@@ -79,6 +79,12 @@ const User_Schema = new mongoose.Schema({
 			lastUpdated: { type: Date, default: null }
 		}
 	},
+	one_player_precision_history: [
+		{
+			value: { type: Number, default: 0 },
+			lastUpdated: { type: Date, default: null }
+		}
+	],
 	golf_round: [
 		{
 			id: { type: String },
