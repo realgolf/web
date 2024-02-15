@@ -18,13 +18,13 @@
 		<p>
 			{post.description}
 		</p>
-		<div class="more">More...</div>
+		<div class="more_blog">More...</div>
 	</PreviewCard>
 </li>
 
 <style lang="scss">
 	.date {
-		color: var(--secondary-font-color);
+		color: #999;
 		font-size: var(--small-font);
 		margin-bottom: 0.5rem;
 	}
