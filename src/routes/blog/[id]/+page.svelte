@@ -1,4 +1,6 @@
 <script lang="ts">
+	import GoBack from '$lib/components/Blog/GoBack.svelte';
+
 	//import Controls from "$lib/components/Controls.svelte";
 	//import GoBack from '$lib/components/GoBack.svelte';
 
@@ -15,7 +17,7 @@
 	<title>MoinJulian | {title}</title>
 </svelte:head>
 
-<!-- <GoBack /> -->
+<GoBack />
 
 <main>
 	<h1>
