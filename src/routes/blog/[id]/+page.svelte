@@ -17,49 +17,55 @@
 
 <!-- <GoBack /> -->
 
-<h1>
-	{title}
-</h1>
+<main>
+	<h1>
+		{title}
+	</h1>
 
-<div class="dates">
-	<div>Published: {published}</div>
-	{#if updated}
-		<div>Updated: {updated}</div>
-	{/if}
-</div>
-
-{#if toc.length > 0}
-	<details class="toc">
-		<summary>Table of Contents</summary>
-		<ol>
-			{#each toc as item}
-				<li>
-					<a href="#{item.id}">{item.text}</a>
-				</li>
-			{/each}
-		</ol>
-	</details>
-
-	<div class="outer-toc" class:long={toc.length > 15} aria-hidden="true">
-		<ol>
-			{#each toc as item}
-				<li>
-					<a tabindex="-1" href="#{item.id}">{item.text}</a>
-				</li>
-			{/each}
-		</ol>
+	<div class="dates">
+		<div>Published: {published}</div>
+		{#if updated}
+			<div>Updated: {updated}</div>
+		{/if}
 	</div>
-{/if}
 
-<article>
-	{@html html_code}
-</article>
+	{#if toc.length > 0}
+		<details class="toc">
+			<summary>Table of Contents</summary>
+			<ol>
+				{#each toc as item}
+					<li>
+						<a href="#{item.id}">{item.text}</a>
+					</li>
+				{/each}
+			</ol>
+		</details>
+
+		<div class="outer-toc" class:long={toc.length > 15} aria-hidden="true">
+			<ol>
+				{#each toc as item}
+					<li>
+						<a tabindex="-1" href="#{item.id}">{item.text}</a>
+					</li>
+				{/each}
+			</ol>
+		</div>
+	{/if}
+
+	<article>
+		{@html html_code}
+	</article>
+</main>
 
 <style lang="scss">
+	main {
+		margin-left: 1rem;
+	}
+
 	.dates {
 		margin-top: -0.5rem;
 		font-size: var(--small-font);
-		color: var(--secondary-font-color);
+		color: #999;
 	}
 
 	.toc {
