@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { onDestroy, onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import { browser } from '$app/environment';
-	import Fa from 'svelte-fa';
 	import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
+	import { onDestroy, onMount } from 'svelte';
+	import Fa from 'svelte-fa';
+	import { fade } from 'svelte/transition';
 
 	let show = false;
 	let timer: number | null = null;
@@ -54,5 +54,6 @@
 		place-content: center;
 		background-color: var(--accent-color);
 		color: var(--inverted-font-color);
+		box-shadow: none !important;
 	}
 </style>
