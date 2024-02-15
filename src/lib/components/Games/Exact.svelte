@@ -7,13 +7,13 @@
 	import { updatePointsDisplay } from '$lib/scripts/Exact/updatePointsDisplay';
 	import { updateTeamTurn } from '$lib/scripts/Exact/updateTeamTurn';
 	import { afterUpdate, onMount } from 'svelte';
-	import { writable } from 'svelte/store';
+	import { writable, type Writable } from 'svelte/store';
 	import Dialog, { open_dialog } from '../Global/Dialog.svelte';
 
 	export let teams: Team[];
 
 	// eslint-disable-next-line
-	let pointsByTeam: Record<string, any> = {};
+	let pointsByTeam: Record<string, Writable<number>> = {};
 	let shotsPlayed: number = 0;
 
 	teams.forEach((team) => {
