@@ -1,6 +1,8 @@
 #!/bin/sh
 # This script runs before each commit.
 
+echo "Running pre-commit checks..."
+
 # Run build command
 pnpm run build
 
