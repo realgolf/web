@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { social_links } from '$lib/scripts/social_links.js';
-	import { faLink } from '@fortawesome/free-solid-svg-icons';
+	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
 
@@ -66,20 +66,20 @@
 	socials_render = modify_social();
 </script>
 
-{data.user_email_public}
-
 <div class="bio">
 	{#if editing}
 		<form action="?/edit_profile" method="POST">
 			<label for="bio">Bio</label>
 			<textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
-			<label for="email_public">Display Email Public</label>
-			<input
-				type="checkbox"
-				name="email_public"
-				id="email_public"
-				bind:checked={data.user_email_public}
-			/>
+			<div class="checkbox">
+				<label for="email_public">Display Email Public</label>
+				<input
+					type="checkbox"
+					name="email_public"
+					id="email_public"
+					bind:checked={data.user_email_public}
+				/>
+			</div>
 			<label for="socials">Socials (one per line)</label>
 			<textarea bind:value={display_socials} name="socials" id="socials" rows="3" />
 			<button type="submit">Save</button>
@@ -90,6 +90,10 @@
 			<p>{data.user_bio}</p>
 		{/if}
 		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}>Edit profile</button>
+		<br />
+		{#if data.user_email_public}
+			<a href="mailto:{data.user_email}"><Fa icon={faEnvelope} /> <span>{data.user_email}</span></a>
+		{/if}
 		{#if data.socials}
 			<div class="socials" style="margin-bottom: 1rem;">
 				{#each socials_render as social}
@@ -110,8 +114,11 @@
 				{/each}
 			</div>
 		{/if}
-	{:else if data.user_bio && data.socials}
+	{:else if data.user_bio && data.socials && data.user_email_public}
 		<p>{data.user_bio}</p>
+		{#if data.user_email_public == true}
+			<p><Fa icon={faEnvelope} /> <span>{data.user_email}</span></p>
+		{/if}
 		<div class="socials">
 			{#each socials_render as social}
 				{#if social.logo != undefined}
@@ -143,6 +150,11 @@
 			color: var(--font-color);
 			font-size: var(--medium-font);
 			width: 100%;
+		}
+
+		.checkbox {
+			display: flex;
+			flex-direction: row;
 		}
 
 		input[type='checkbox'] {

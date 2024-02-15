@@ -116,8 +116,6 @@ export const actions: Actions = {
 		const socials_input_cleaned = socials_input.replace(/\r/g, '');
 		const email_public = data.get('email_public') === 'on';
 
-		console.log(email_public);
-
 		if (user?.user && socials_input_cleaned) {
 			const socials_array = socials_input_cleaned.split('\n').filter((social) => social.length > 0);
 
@@ -125,8 +123,10 @@ export const actions: Actions = {
 			await user.save();
 		}
 
-		if (user?.user && user.user.email_public) {
+		if (user?.user && (user.user.email_public === false || user.user.email_public === true)) {
+			console.log('email_public', email_public);
 			user.user.email_public = email_public;
+			console.log(user);
 			await user.save();
 		}
 
