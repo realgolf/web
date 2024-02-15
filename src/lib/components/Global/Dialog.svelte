@@ -1,4 +1,5 @@
 <script lang="ts" context="module">
+	import sanitizeHTML from '$lib/shared/utils';
 	import { writable } from 'svelte/store';
 
 	let dialog: HTMLDialogElement;
@@ -22,6 +23,7 @@
 	const visible = writable<boolean>(false);
 
 	export function open_dialog(options: Dialog_State) {
+		console.log('open_dialog', options);
 		const all_options = { ...DEFAULT_STATE, ...options };
 		visible.set(true);
 		dialog_state.set(all_options);
@@ -78,18 +80,22 @@
 <svelte:window on:keydown={handle_keydown} />
 
 <dialog bind:this={dialog} class:modal={$dialog_state?.modal} class:visible={$visible}>
-	<p>
-		{@html $dialog_state?.text}
-	</p>
+	<p use:sanitizeHTML={[$dialog_state?.text ?? '']} />
 	<menu>
 		{#if $dialog_state?.cancel}
-			<button class="button" on:click={cancel}>{@html $dialog_state.cancel.text}</button>
+			<button class="button" on:click={cancel}>
+				<span use:sanitizeHTML={[$dialog_state.cancel.text]} />
+			</button>
 		{/if}
 		{#if $dialog_state?.save}
-			<button class="button" on:click={save}>{@html $dialog_state.save.text}</button>
+			<button class="button" on:click={save}>
+				<span use:sanitizeHTML={[$dialog_state.save.text]} />
+			</button>
 		{/if}
 		{#if $dialog_state?.confirm}
-			<button class="button" on:click={confirm}>{@html $dialog_state.confirm.text}</button>
+			<button class="button" on:click={confirm}>
+				<span use:sanitizeHTML={[$dialog_state.confirm.text]} />
+			</button>
 		{/if}
 	</menu>
 </dialog>

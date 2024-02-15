@@ -1,3 +1,5 @@
+import { default as DOMPurify, default as createDOMPurify } from 'dompurify';
+
 export function capitalizeFirstLetter(string: string | undefined) {
 	// Check if the string is defined and not empty
 	if (typeof string === 'string' && string.length > 0) {
@@ -47,4 +49,20 @@ export function getTimeThreshold(period: string): number {
 		default:
 			return 0;
 	}
+}
+
+export default function sanitizeHTML(node: { innerHTML: string }, [unsafeHTML]: [string]) {
+	if (typeof window !== 'undefined') {
+		const DOMPurify = createDOMPurify(window);
+
+		node.innerHTML = DOMPurify.sanitize(unsafeHTML);
+	}
+
+	return {
+		update([unsafeHTML]: [string]) {
+			if (typeof window !== 'undefined') {
+				node.innerHTML = DOMPurify.sanitize(unsafeHTML);
+			}
+		}
+	};
 }
