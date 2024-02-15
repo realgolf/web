@@ -3,6 +3,7 @@
 		faBars,
 		faBook,
 		faBookBookmark,
+		faBookOpenReader,
 		faChartLine,
 		faGamepad,
 		faGavel,
@@ -100,6 +101,7 @@
 		{/if}
 		<div class="external-links row border-bottom">
 			<h3>External Sites</h3>
+			<a href="/blog"><span><Fa icon={faBookOpenReader} /></span>Blog</a>
 			<a href="/faq"><span><Fa icon={faQuestionCircle} /></span>FAQ</a>
 			<a href="https://docs.realgolf.games"><span><Fa icon={faBook} /></span>Documentation</a>
 			<a href="https://rules.realgolf.games"

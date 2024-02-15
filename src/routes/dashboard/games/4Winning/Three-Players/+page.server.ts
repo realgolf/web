@@ -1,6 +1,6 @@
-import { check_achievement } from '$lib/server/achievements';
-import { User_Model } from '$lib/server/models';
-import type { User } from '$lib/server/types';
+import { check_achievement } from '$lib/server/user/achievements';
+import { User_Model } from '$lib/server/user/models';
+import type { User } from '$lib/server/user/types';
 import { v4 as uuidv4 } from 'uuid';
 import type { Actions, PageServerLoad } from './$types';
 

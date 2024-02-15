@@ -1,4 +1,4 @@
-import { User_Model } from '$lib/server/models';
+import { User_Model } from '$lib/server/user/models';
 import type { PageServerLoad } from '../$types';
 
 export const load: PageServerLoad = async (event: {
