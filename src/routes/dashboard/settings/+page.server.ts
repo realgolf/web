@@ -6,9 +6,9 @@ import {
 	change_password,
 	change_theme,
 	delete_account
-} from '$lib/server/account';
-import { User_Model } from '$lib/server/models';
-import { cookie_options } from '$lib/server/utils';
+} from '$lib/server/user/account';
+import { User_Model } from '$lib/server/user/models';
+import { cookie_options } from '$lib/server/user/utils';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import type { Types } from 'mongoose';
 import type { PageServerLoad } from '../$types';
