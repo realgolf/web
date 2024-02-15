@@ -1,6 +1,6 @@
-import { login_user } from '$lib/server/login';
-import { register_user } from '$lib/server/register';
-import { cookie_options } from '$lib/server/utils';
+import { login_user } from '$lib/server/user/login';
+import { register_user } from '$lib/server/user/register';
+import { cookie_options } from '$lib/server/user/utils';
 import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 

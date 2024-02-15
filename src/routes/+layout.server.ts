@@ -1,5 +1,5 @@
-import { connect_to_db } from '$lib/server/db';
-import { User_Model } from '$lib/server/models';
+import { connect_to_db } from '$lib/server/user/db';
+import { User_Model } from '$lib/server/user/models';
 import { error } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 

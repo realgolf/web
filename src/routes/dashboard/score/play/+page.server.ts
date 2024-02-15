@@ -1,4 +1,4 @@
-import { User_Model } from '$lib/server/models';
+import { User_Model } from '$lib/server/user/models';
 import { formattedTime, today } from '$lib/shared/time';
 import { redirect, type Actions } from '@sveltejs/kit';
 import { v4 as uuidv4 } from 'uuid';

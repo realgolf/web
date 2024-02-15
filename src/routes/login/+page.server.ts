@@ -1,5 +1,5 @@
-import { login_user } from '$lib/server/login';
-import { cookie_options } from '$lib/server/utils';
+import { login_user } from '$lib/server/user/login';
+import { cookie_options } from '$lib/server/user/utils';
 import { fail, type Actions } from '@sveltejs/kit';
 
 export const actions: Actions = {
