@@ -34,4 +34,5 @@ fi
 echo "All checks passed. Committing..."
 # If all checks pass, allow the commit to proceed
 git push origin HEAD
+echo "Pushed to origin HEAD"
 exit 0
