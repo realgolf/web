@@ -118,6 +118,19 @@ export const actions: Actions = {
 					);
 				}
 
+				if (user) {
+					console.log('User found');
+
+					const highscoreHistory = user.one_player_precision_history;
+
+					highscoreHistory.push({
+						value: highscore,
+						lastUpdated: currentTime
+					});
+
+					console.log(user);
+				}
+
 				// Save the updated user to the database
 				await user.save();
 			}

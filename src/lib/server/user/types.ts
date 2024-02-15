@@ -28,6 +28,7 @@ export type User = {
 	}[];
 	total_games: number;
 	one_player_precision_highscore: OnePlayerPrecisionHighscore;
+	one_player_precision_history: { value: number; lastUpdated: Date }[];
 	golf_round: GolfRound[];
 	handicap_history: HandicapHistory[];
 };
