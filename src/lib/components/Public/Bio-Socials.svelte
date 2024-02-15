@@ -66,11 +66,20 @@
 	socials_render = modify_social();
 </script>
 
+{data.user_email_public}
+
 <div class="bio">
 	{#if editing}
 		<form action="?/edit_profile" method="POST">
 			<label for="bio">Bio</label>
 			<textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
+			<label for="email_public">Display Email Public</label>
+			<input
+				type="checkbox"
+				name="email_public"
+				id="email_public"
+				bind:checked={data.user_email_public}
+			/>
 			<label for="socials">Socials (one per line)</label>
 			<textarea bind:value={display_socials} name="socials" id="socials" rows="3" />
 			<button type="submit">Save</button>
@@ -134,6 +143,11 @@
 			color: var(--font-color);
 			font-size: var(--medium-font);
 			width: 100%;
+		}
+
+		input[type='checkbox'] {
+			width: max-content;
+			margin-left: 0.5rem;
 		}
 	}
 </style>
