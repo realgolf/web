@@ -1,5 +1,6 @@
 <script lang="ts">
 	import GoBack from '$lib/components/Blog/GoBack.svelte';
+	import sanitizeHTML from '$lib/shared/utils.js';
 
 	//import Controls from "$lib/components/Controls.svelte";
 	//import GoBack from '$lib/components/GoBack.svelte';
@@ -54,9 +55,7 @@
 		</div>
 	{/if}
 
-	<article>
-		{@html html_code}
-	</article>
+	<article use:sanitizeHTML={[html_code]} />
 </main>
 
 <style lang="scss">

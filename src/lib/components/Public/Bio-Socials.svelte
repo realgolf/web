@@ -1,12 +1,19 @@
 <script lang="ts">
 	import { social_links } from '$lib/scripts/social_links.js';
-	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
+	import { faEnvelope, faLink, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
 
 	export let data: PageData;
 
 	let editing = false;
+
+	type matchedSocials = {
+		link: string;
+		domain: string;
+		logo: IconDefinition | undefined;
+		username: string;
+	};
 
 	function handleCancel(event: { preventDefault: () => void }) {
 		event.preventDefault();
@@ -17,7 +24,7 @@
 
 	function modify_social() {
 		let socials = data.socials;
-		let matchedSocials: any[] = [];
+		let matchedSocials: matchedSocials[] = [];
 
 		if (socials) {
 			socials.forEach((social) => {
@@ -61,7 +68,9 @@
 		return matchedSocials;
 	}
 
-	let socials_render: any[] = [];
+	type socialsRender = matchedSocials[];
+
+	let socials_render: socialsRender = [];
 	// Call modify_social() and assign the result to socials_render
 	socials_render = modify_social();
 </script>

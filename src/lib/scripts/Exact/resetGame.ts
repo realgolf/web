@@ -1,10 +1,11 @@
+import type { Writable } from 'svelte/store';
 import type { Team } from './types';
 import { updatePointsDisplay } from './updatePointsDisplay';
 import { updateTeamTurn } from './updateTeamTurn';
 
 export function resetGame(
 	teams: Team[],
-	pointsByTeam: Record<string, any>,
+	pointsByTeam: Record<string, Writable<number>>,
 	userInput: number,
 	clickedCellsCount: number,
 	currentTeamIndex: number,
