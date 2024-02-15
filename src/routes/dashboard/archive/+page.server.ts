@@ -1,4 +1,4 @@
-import { User_Model } from '$lib/server/models';
+import { User_Model } from '$lib/server/user/models';
 import type { Actions } from '@sveltejs/kit';
 import type { Types } from 'mongoose';
 import { v4 as uuidv4 } from 'uuid';

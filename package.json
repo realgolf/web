@@ -18,6 +18,8 @@
 		"@sveltejs/adapter-auto": "^3.1.1",
 		"@sveltejs/kit": "^2.5.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.2",
+		"@types/he": "^1.2.3",
+		"@types/mathjax": "^0.0.40",
 		"@types/uuid": "^9.0.8",
 		"@typescript-eslint/eslint-plugin": "^7.0.1",
 		"eslint": "^8.56.0",
@@ -30,7 +32,7 @@
 		"svelte-fa": "^4.0.2",
 		"tslib": "^2.4.1",
 		"typescript": "^5.3.3",
-		"vite": "^5.1.1"
+		"vite": "^5.1.2"
 	},
 	"type": "module",
 	"dependencies": {
@@ -41,10 +43,15 @@
 		"@types/bcrypt": "^5.0.2",
 		"@types/jsonwebtoken": "^9.0.5",
 		"bcrypt": "^5.1.1",
+		"front-matter": "^4.0.2",
+		"he": "^1.2.0",
 		"jsonwebtoken": "^9.0.2",
 		"lint": "^1.1.2",
+		"markdown-it": "^14.0.0",
+		"mathjax": "^3.2.2",
 		"mongoose": "^8.1.2",
 		"sass": "^1.70.0",
+		"shiki": "^1.1.2",
 		"uuid": "^9.0.1"
 	}
 }

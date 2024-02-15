@@ -1,5 +1,5 @@
-import { authenticate } from '$lib/server/authenticate';
-import { cookie_options } from '$lib/server/utils';
+import { authenticate } from '$lib/server/user/authenticate';
+import { cookie_options } from '$lib/server/user/utils';
 import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle: Handle = async ({ event, resolve }) => {
