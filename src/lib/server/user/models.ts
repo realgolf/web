@@ -13,6 +13,7 @@ const User_Schema = new mongoose.Schema({
 		handicap: { type: Number, required: true, default: 54 },
 		handicap_updated: { type: Date, required: true, default: new Date() },
 		bio: { type: String },
+		email_public: { type: Boolean, required: true, default: false },
 		badges: [
 			{
 				title: { type: String },

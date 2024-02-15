@@ -23,6 +23,8 @@ export const load: PageServerLoad = async (event) => {
 	}
 
 	const user_name = user.user?.name;
+	const user_email = user.user?.email;
+	const user_email_public = user.user?.email_public;
 	const user_username = user.user?.username;
 	const user_registration_date = user.user?.registration_date;
 	const user_last_login_date = user.user?.last_login_date;
@@ -84,6 +86,8 @@ export const load: PageServerLoad = async (event) => {
 	return {
 		user_name,
 		user_username,
+		user_email,
+		user_email_public,
 		user_registration_date,
 		user_last_login_date,
 		user_handicap,
@@ -110,11 +114,19 @@ export const actions: Actions = {
 		const bio = data.get('bio') as string;
 		const socials_input = data.get('socials') as string;
 		const socials_input_cleaned = socials_input.replace(/\r/g, '');
+		const email_public = data.get('email_public') === 'on';
 
 		if (user?.user && socials_input_cleaned) {
 			const socials_array = socials_input_cleaned.split('\n').filter((social) => social.length > 0);
 
 			user.user.socials = socials_array;
+			await user.save();
+		}
+
+		if (user?.user && (user.user.email_public === false || user.user.email_public === true)) {
+			console.log('email_public', email_public);
+			user.user.email_public = email_public;
+			console.log(user);
 			await user.save();
 		}
 
