@@ -5,8 +5,6 @@ updated: 2024-02-15
 description: Welcome to the RealGolf.Games Blog!
 ---
 
-# Welcome to our Blog
-
 Welcome to the RealGolf.Games Blog! We are delighted to have you join us on this journey.
 
 ## What We Will Use This Blog For
