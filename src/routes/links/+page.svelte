@@ -16,11 +16,15 @@
 	}
 
 	async function copy_url() {
-		await window.navigator.clipboard.writeText(short_url);
-		show_confirmation = true;
-		setTimeout(() => {
-			show_confirmation = false;
-		}, 1500);
+		try {
+			await window.navigator.clipboard.writeText(short_url);
+			show_confirmation = true;
+			setTimeout(() => {
+				show_confirmation = false;
+			}, 1500);
+		} catch (error) {
+			console.error('Failed to copy url', error);
+		}
 	}
 
 	let show_confirmation = false;
