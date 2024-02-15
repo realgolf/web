@@ -10,10 +10,4 @@
 *.scss linguist-detectable=true
 *.scss linguist-language=SCSS
 
-*.yml linguist-detectable=true
-*.yml linguist-language=YAML
-
-*.yaml linguist-detectable=true
-*.yaml linguist-language=YAML
-
 pnpm-lock.yaml linguist-vendored
