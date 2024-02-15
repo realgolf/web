@@ -30,14 +30,5 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-# # Run tests
-# pnpm run test
-
-# # Check if tests passed
-# if [ $? -ne 0 ]; then
-#   echo "Tests failed. Aborting commit."
-#   exit 1
-# fi
-
 # If all checks pass, allow the commit to proceed
 exit 0
