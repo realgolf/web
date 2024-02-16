@@ -27,6 +27,7 @@ export const load: PageServerLoad = async (event) => {
 	const theme = user?.user?.theme as string;
 	const handicap = user?.user?.handicap as number;
 	const handicap_updated = user?.user?.handicap_updated as Date;
+	const id = user?.id as string;
 
 	const handicap_history = user?.handicap_history.map((history) => {
 		const historyCopy = JSON.parse(JSON.stringify(history));
@@ -36,6 +37,7 @@ export const load: PageServerLoad = async (event) => {
 
 	return {
 		measurement_unit,
+		id,
 		theme,
 		handicap,
 		handicap_updated,

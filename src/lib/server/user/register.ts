@@ -75,7 +75,7 @@ export async function register_user(
 			if (error.message.includes('E11000 duplicate key error collection')) {
 				// If a duplicate key error occurred, generate a new ID and try again
 				id = Math.random().toString(36).slice(2);
-				user.id = id;
+				user.id = `user-friendly-${id}`;
 			} else {
 				return { error: err as string };
 			}
