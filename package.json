@@ -1,6 +1,6 @@
 {
 	"name": "golf",
-	"version": "2.1.1",
+	"version": "2.2.1",
 	"author": "RealGolf.Games",
 	"license": "All-Rights-Reserved",
 	"private": true,
@@ -49,6 +49,7 @@
 		"@sveltejs/adapter-node": "^4.0.1",
 		"@types/bcrypt": "^5.0.2",
 		"@types/jsonwebtoken": "^9.0.5",
+		"autoprefixer": "^10.4.17",
 		"bcrypt": "^5.1.1",
 		"dompurify": "^3.0.8",
 		"front-matter": "^4.0.2",
@@ -58,8 +59,11 @@
 		"markdown-it": "^14.0.0",
 		"mathjax": "^3.2.2",
 		"mongoose": "^8.1.2",
+		"nanoid": "^5.0.5",
+		"postcss": "^8.4.35",
 		"sass": "^1.70.0",
 		"shiki": "^1.1.2",
+		"tailwindcss": "^3.4.1",
 		"uuid": "^9.0.1"
 	}
 }
