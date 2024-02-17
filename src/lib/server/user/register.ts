@@ -51,33 +51,35 @@ export async function register_user(
 
 	let id = Math.random().toString(36).slice(2);
 
-	const user = new User_Model({
-		id: id,
-		user: {
-			email,
-			password: hashed_password,
-			name,
-			username,
-			handicap,
-			handicap_updated,
-			registration_date
-		}
-	});
+	if (User_Model) {
+		const user = new User_Model({
+			id: id,
+			user: {
+				email,
+				password: hashed_password,
+				name,
+				username,
+				handicap,
+				handicap_updated,
+				registration_date
+			}
+		});
 
-	let continueLoop = true;
+		let continueLoop = true;
 
-	while (continueLoop) {
-		try {
-			await user.save();
-			continueLoop = false;
-		} catch (err) {
-			const error = err as MongooseError;
-			if (error.message.includes('E11000 duplicate key error collection')) {
-				// If a duplicate key error occurred, generate a new ID and try again
-				id = Math.random().toString(36).slice(2);
-				user.id = `user-friendly-${id}`;
-			} else {
-				return { error: err as string };
+		while (continueLoop) {
+			try {
+				await user.save();
+				continueLoop = false;
+			} catch (err) {
+				const error = err as MongooseError;
+				if (error.message.includes('E11000 duplicate key error collection')) {
+					// If a duplicate key error occurred, generate a new ID and try again
+					id = Math.random().toString(36).slice(2);
+					user.id = `user-friendly-${id}`;
+				} else {
+					return { error: err as string };
+				}
 			}
 		}
 	}
@@ -94,7 +96,7 @@ export async function verify_email(email: string): Promise<string> {
 		return 'Please enter a valid email.';
 	}
 
-	const previous_user = await User_Model.findOne({ 'user.email': email });
+	const previous_user = await User_Model?.findOne({ 'user.email': email });
 
 	if (previous_user) {
 		return 'There is already an account with this email.';
@@ -162,7 +164,7 @@ export async function verify_username(username: string): Promise<string> {
 		return 'Username has to be at least 2 characters.';
 	}
 
-	const previous_user = await User_Model.findOne({
+	const previous_user = await User_Model?.findOne({
 		'user.username': { $regex: new RegExp(username, 'i') }
 	});
 

@@ -21,7 +21,7 @@ interface HandicapHistory {
 export const load: PageServerLoad = async (event) => {
 	const email = event.cookies.get('email');
 
-	const user = await User_Model.findOne({ 'user.email': email });
+	const user = await User_Model?.findOne({ 'user.email': email });
 
 	const measurement_unit = user?.user?.measurement_units as string;
 	const theme = user?.user?.theme as string;
@@ -160,7 +160,7 @@ export const actions: Actions = {
 		const email = event.cookies.get('email');
 
 		try {
-			const user = await User_Model.findOne({ 'user.email': email });
+			const user = await User_Model?.findOne({ 'user.email': email });
 
 			if (!user) {
 				return {

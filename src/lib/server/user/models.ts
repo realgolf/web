@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { connect_to_db } from './db';
 
 const User_Schema = new mongoose.Schema({
 	id: { type: String, require: true, unique: true },
@@ -133,4 +134,6 @@ const User_Schema = new mongoose.Schema({
 	]
 });
 
-export const User_Model = mongoose.model('User', User_Schema);
+const user_model = await connect_to_db();
+
+export const User_Model = user_model?.model('User', User_Schema);

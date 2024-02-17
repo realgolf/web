@@ -10,7 +10,7 @@ export const load: PageServerLoad = async (event) => {
 	const email = event.cookies.get('email');
 
 	// Find the user in the database using the email
-	const user = await User_Model.findOne({ 'user.email': email });
+	const user = await User_Model?.findOne({ 'user.email': email });
 
 	// If the user is not found, return an error with a 400 status code
 	if (!user) {
@@ -24,7 +24,7 @@ export const load: PageServerLoad = async (event) => {
 
 // Define a function to find the user by email
 const findUserByEmail = async (email: string | undefined) => {
-	return await User_Model.findOne({ 'user.email': email });
+	return await User_Model?.findOne({ 'user.email': email });
 };
 
 // Define a function to update the highscore

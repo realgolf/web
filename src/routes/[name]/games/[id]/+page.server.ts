@@ -24,7 +24,7 @@ export const load: PageServerLoad = async (event: any) => {
 	console.log(param_name);
 	console.log(param_id);
 
-	const user = await User_Model.findOne({
+	const user = await User_Model?.findOne({
 		'user.username': { $regex: new RegExp(param_name, 'i') }
 	});
 

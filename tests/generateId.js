@@ -2,7 +2,10 @@ function generateRandomId() {
 	return Math.random().toString(36).slice(2);
 }
 
-function findDuplicateId(generateId, maxIterations = 8) {
+/**
+ * @param {{ (): string; (): any; }} generateId
+ */
+function findDuplicateId(generateId, maxIterations = 1) {
 	console.time('findDuplicateId');
 	const ids = new Set();
 	let duplicateId = null;

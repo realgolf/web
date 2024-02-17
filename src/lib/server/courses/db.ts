@@ -1,7 +1,7 @@
-import { SECRET_MONGODB_USERDB_CONNECTION } from '$env/static/private';
+import { SECRET_MONGODB_COURSEDB_CONNECTION } from '$env/static/private';
 import mongoose from 'mongoose';
 
-const database_URI = SECRET_MONGODB_USERDB_CONNECTION;
+const database_URI = SECRET_MONGODB_COURSEDB_CONNECTION;
 
 export async function connect_to_db() {
 	try {

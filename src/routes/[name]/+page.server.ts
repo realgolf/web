@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async (event) => {
 	const param_name: string = event.params.name;
 
-	const user = await User_Model.findOne({
+	const user = await User_Model?.findOne({
 		'user.username': { $regex: new RegExp(param_name, 'i') }
 	});
 	const cookie_username = event.cookies.get('username');
@@ -109,7 +109,7 @@ export const load: PageServerLoad = async (event) => {
 export const actions: Actions = {
 	edit_profile: async (event) => {
 		const email = event.cookies.get('email');
-		const user = await User_Model.findOne({ 'user.email': email });
+		const user = await User_Model?.findOne({ 'user.email': email });
 		const data = await event.request.formData();
 		const bio = data.get('bio') as string;
 		const socials_input = data.get('socials') as string;

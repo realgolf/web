@@ -24,7 +24,7 @@ export const actions: Actions = {
 
 		try {
 			// Find the user
-			const user = await User_Model.findOne({ 'user.email': email });
+			const user = await User_Model?.findOne({ 'user.email': email });
 
 			if (!user) {
 				return {

@@ -11,7 +11,7 @@ export async function login_user(email: string, password: string) {
 		return { error: user.error };
 	}
 
-	await User_Model.updateOne(
+	await User_Model?.updateOne(
 		{ 'user.email': email },
 		{ $set: { 'user.last_login_date': new Date() } }
 	);
@@ -41,7 +41,7 @@ async function get_user(email: string, password: string): Promise<ErrorResponse 
 		return { error: 'Please enter a valid email.' };
 	}
 
-	const user = await User_Model.findOne({ 'user.email': email });
+	const user = await User_Model?.findOne({ 'user.email': email });
 
 	if (!user) {
 		return { error: 'Email could not be found.' };
