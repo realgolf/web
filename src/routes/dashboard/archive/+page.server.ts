@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 export async function load(event): Promise<unknown> {
 	const email = event.cookies.get('email');
 
-	const user = await User_Model.findOne({ 'user.email': email });
+	const user = await User_Model?.findOne({ 'user.email': email });
 
 	const measurement_units = user?.user?.measurement_units;
 
@@ -27,7 +27,7 @@ export const actions: Actions = {
 		const email = event.cookies.get('email');
 
 		try {
-			const user = await User_Model.findOne({ 'user.email': email });
+			const user = await User_Model?.findOne({ 'user.email': email });
 
 			if (!user) {
 				return {
@@ -56,7 +56,7 @@ export const actions: Actions = {
 	},
 	delete_game: async (event) => {
 		const email = event.cookies.get('email');
-		const user = await User_Model.findOne({ 'user.email': email });
+		const user = await User_Model?.findOne({ 'user.email': email });
 		const data = await event.request.formData();
 		const id = data.get('id') as string;
 		const games = user?.games;
@@ -71,7 +71,7 @@ export const actions: Actions = {
 	},
 	rename: async (event) => {
 		const email = event.cookies.get('email');
-		const user = await User_Model.findOne({ 'user.email': email });
+		const user = await User_Model?.findOne({ 'user.email': email });
 		const data = await event.request.formData();
 		const id = data.get('id') as string;
 		const name = (data.get('name') as string)?.trim();
@@ -95,7 +95,7 @@ export const actions: Actions = {
 
 		try {
 			// Find the user
-			const user = await User_Model.findOne({ 'user.email': email });
+			const user = await User_Model?.findOne({ 'user.email': email });
 
 			if (!user) {
 				return {

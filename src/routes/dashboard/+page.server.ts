@@ -3,7 +3,7 @@ import { User_Model } from '$lib/server/user/models';
 export async function load(event): Promise<unknown> {
 	const email = event.cookies.get('email');
 
-	const user = await User_Model.findOne({ 'user.email': email });
+	const user = await User_Model?.findOne({ 'user.email': email });
 
 	if (!user) {
 		return { status: 400, error: 'User could not be found' };

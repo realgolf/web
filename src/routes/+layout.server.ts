@@ -17,7 +17,7 @@ export const load: LayoutServerLoad = async (event: {
 	const email = event.cookies.get('email') ?? '';
 	const username = event.cookies.get('username') ?? '';
 
-	const user = await User_Model.findOne({ 'user.email': email });
+	const user = await User_Model?.findOne({ 'user.email': email });
 
 	if (!user) {
 		return {

@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async (event: { params: { name: string } }) => {
 	const param_name: string = event.params.name;
 
-	const user = await User_Model.findOne({
+	const user = await User_Model?.findOne({
 		'user.username': { $regex: new RegExp(param_name, 'i') }
 	});
 

@@ -22,7 +22,7 @@ export async function change_name(
 		return { error: name_error };
 	}
 
-	const user = await User_Model.findOne({ _id: id });
+	const user = await User_Model?.findOne({ _id: id });
 
 	if (!user) {
 		return { error: 'User could not found' };
@@ -64,7 +64,7 @@ export async function change_email(
 		return { error: email_error };
 	}
 
-	const user = await User_Model.findOne({ _id: id });
+	const user = await User_Model?.findOne({ _id: id });
 
 	if (!user) {
 		return { error: 'User could not found' };
@@ -96,7 +96,7 @@ export async function change_password(
 
 	const { id } = auth;
 
-	const user = await User_Model.findOne({ _id: id });
+	const user = await User_Model?.findOne({ _id: id });
 
 	const valid_current_password = (await bcrypt.compare(
 		current_password,
@@ -145,7 +145,7 @@ export async function change_measurement(cookies: Cookies, measurement_unit: str
 
 	const { id } = auth;
 
-	const user = await User_Model.findOne({ _id: id });
+	const user = await User_Model?.findOne({ _id: id });
 
 	if (!user) {
 		return { error: 'User could not be found' };
@@ -172,7 +172,7 @@ export async function change_theme(cookies: Cookies, theme: string) {
 
 	const { id } = auth;
 
-	const user = await User_Model.findOne({ _id: id });
+	const user = await User_Model?.findOne({ _id: id });
 
 	if (!user) {
 		return { error: 'User could not be found' };
@@ -200,7 +200,7 @@ export async function delete_account(cookies: Cookies, password: string) {
 
 	const { id } = auth;
 
-	const user = await User_Model.findOne({ _id: id });
+	const user = await User_Model?.findOne({ _id: id });
 
 	if (!user) {
 		return { error: 'User could not be found' };
@@ -216,7 +216,7 @@ export async function delete_account(cookies: Cookies, password: string) {
 
 	if (password_is_correct) {
 		try {
-			await User_Model.deleteOne({ _id: id });
+			await User_Model?.deleteOne({ _id: id });
 			return { message: 'The user got deleted', account_deleted: true };
 		} catch (err) {
 			return { error: err as string, account_deleted: false };
@@ -235,7 +235,7 @@ export async function change_handicap(cookies: Cookies, handicap: number) {
 
 	const { id } = auth;
 
-	const user = await User_Model.findOne({ _id: id });
+	const user = await User_Model?.findOne({ _id: id });
 
 	if (!user) {
 		return { error: 'User could not be found' };
