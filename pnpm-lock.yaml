@@ -59,6 +59,9 @@ dependencies:
   postcss:
     specifier: ^8.4.35
     version: 8.4.35
+  postcss-safe-parser:
+    specifier: ^7.0.0
+    version: 7.0.0(postcss@8.4.35)
   sass:
     specifier: ^1.70.0
     version: 1.70.0
@@ -2494,6 +2497,15 @@ packages:
     dependencies:
       postcss: 8.4.35
     dev: true
+
+  /postcss-safe-parser@7.0.0(postcss@8.4.35):
+    resolution: {integrity: sha512-ovehqRNVCpuFzbXoTb4qLtyzK3xn3t/CUBxOs8LsnQjQrShaB4lKiHoVqY8ANaC0hBMHq5QVWk77rwGklFUDrg==}
+    engines: {node: '>=18.0'}
+    peerDependencies:
+      postcss: ^8.4.31
+    dependencies:
+      postcss: 8.4.35
+    dev: false
 
   /postcss-scss@4.0.9(postcss@8.4.35):
     resolution: {integrity: sha512-AjKOeiwAitL/MXxQW2DliT28EKukvvbEWx3LBmJIRN8KfBGZbRTxNYW0kSqi1COiTZ57nZ9NW06S6ux//N1c9A==}
