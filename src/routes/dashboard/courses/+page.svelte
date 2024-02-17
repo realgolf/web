@@ -17,6 +17,6 @@
 			<b>{data.handicap}</b>
 		</p>
 
-		<a href="/dashboard/score/play">Play</a>
+		<a href="/dashboard/courses/play">Play</a>
 	</div>
 </main>
