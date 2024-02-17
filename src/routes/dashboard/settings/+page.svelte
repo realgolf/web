@@ -45,6 +45,18 @@
 			});
 		}
 	});
+
+	let show_copy_info = false;
+
+	function copy_to_clipboard(id: string) {
+		if (window) {
+			window.navigator.clipboard.writeText(id);
+			show_copy_info = true;
+			setTimeout(() => {
+				show_copy_info = false;
+			}, 3000);
+		}
+	}
 </script>
 
 <svelte:head>
@@ -65,8 +77,21 @@
 	</p>
 {/if}
 
+{#if show_copy_info}
+	<p class="success">ID copied to clipboard</p>
+{/if}
+
 <div id="account">
 	<h2>Account</h2>
+
+	<div class="id">
+		<p>Your ID is: {data.id}</p>
+		<button on:click={() => copy_to_clipboard(data.id)}>Copy ID</button>
+		<p>
+			Our team uses this ID to identify you, in the Database. Please provide our Team with this id
+			when they ask for it.
+		</p>
+	</div>
 
 	<form action="?/name" method="POST" autocomplete="off" class="update-form">
 		<div>
@@ -209,6 +234,14 @@
 </form>
 
 <style lang="scss">
+	.id {
+		margin-bottom: 1rem;
+
+		button {
+			margin: 1rem 0;
+		}
+	}
+
 	.handicap_history > details {
 		&[open] summary {
 			text-decoration: underline;

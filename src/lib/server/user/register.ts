@@ -1,5 +1,6 @@
 import { sites } from '$lib/shared/sites';
 import bcrypt from 'bcrypt';
+import type { MongooseError } from 'mongoose';
 import { User_Model } from './models';
 import { email_regexp } from './utils';
 
@@ -48,7 +49,10 @@ export async function register_user(
 	const saltRounds = 10;
 	const hashed_password = await bcrypt.hash(password, saltRounds);
 
+	let id = Math.random().toString(36).slice(2);
+
 	const user = new User_Model({
+		id: id,
 		user: {
 			email,
 			password: hashed_password,
@@ -60,12 +64,25 @@ export async function register_user(
 		}
 	});
 
-	try {
-		await user.save();
-		return { error: '' };
-	} catch (err) {
-		return { error: err as string };
+	let continueLoop = true;
+
+	while (continueLoop) {
+		try {
+			await user.save();
+			continueLoop = false;
+		} catch (err) {
+			const error = err as MongooseError;
+			if (error.message.includes('E11000 duplicate key error collection')) {
+				// If a duplicate key error occurred, generate a new ID and try again
+				id = Math.random().toString(36).slice(2);
+				user.id = `user-friendly-${id}`;
+			} else {
+				return { error: err as string };
+			}
+		}
 	}
+
+	return { error: '' };
 }
 
 export async function verify_email(email: string): Promise<string> {
