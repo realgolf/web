@@ -1,3 +1,10 @@
+/**
+ * Changes the value of the rounded_corners property for a user.
+ *
+ * @param cookies - The cookies object containing the user's authentication token.
+ * @param rounded_corners - The new value for the rounded_corners property.
+ * @returns An object with the updated rounded_corners value or an error message.
+ */
 import type { Cookies } from '@sveltejs/kit';
 import { authenticate } from '../authenticate';
 import { User_Model } from '../models';

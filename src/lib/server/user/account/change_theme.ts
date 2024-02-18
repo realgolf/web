@@ -1,3 +1,10 @@
+/**
+ * Changes the theme of a user's account.
+ *
+ * @param cookies - The cookies object containing the user's authentication token.
+ * @param theme - The new theme to be set for the user's account.
+ * @returns An object with the updated theme or an error message.
+ */
 import type { Cookies } from '@sveltejs/kit';
 import { authenticate } from '../authenticate';
 import { User_Model } from '../models';

@@ -1,3 +1,10 @@
+/**
+ * Changes the email address of a user.
+ *
+ * @param cookies - The cookies object containing the user's authentication token.
+ * @param email - The new email address to be set.
+ * @returns A promise that resolves to an object with the new email address if successful, or an error message if unsuccessful.
+ */
 import type { Cookies } from '@sveltejs/kit';
 import { authenticate } from '../authenticate';
 import { User_Model } from '../models';

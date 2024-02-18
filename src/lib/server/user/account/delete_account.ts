@@ -1,3 +1,10 @@
+/**
+ * Deletes a user account.
+ *
+ * @param cookies - The cookies object containing the user's authentication token.
+ * @param password - The password provided by the user to verify the account deletion.
+ * @returns An object with either an error message or a success message indicating whether the account was deleted.
+ */
 import type { Cookies } from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 import { authenticate } from '../authenticate';

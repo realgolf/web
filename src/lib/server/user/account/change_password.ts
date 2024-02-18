@@ -1,3 +1,12 @@
+/**
+ * Changes the password for a user account.
+ *
+ * @param cookies - The cookies object containing the user's authentication token.
+ * @param current_password - The current password of the user.
+ * @param new_password - The new password to set for the user.
+ * @param verified_password - The verified new password to confirm the change.
+ * @returns A promise that resolves to an object with either an error message or the new password.
+ */
 import type { Cookies } from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 import { authenticate } from '../authenticate';

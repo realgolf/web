@@ -1,3 +1,10 @@
+/**
+ * Changes the handicap of a user.
+ *
+ * @param cookies - The cookies object containing the user's authentication token.
+ * @param handicap - The new handicap value to set for the user.
+ * @returns An object with the updated handicap value or an error message.
+ */
 import type { Cookies } from '@sveltejs/kit';
 import { authenticate } from '../authenticate';
 import { User_Model } from '../models';

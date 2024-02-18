@@ -1,3 +1,10 @@
+/**
+ * Changes the measurement unit for a user.
+ *
+ * @param cookies - The cookies object containing the user's authentication token.
+ * @param measurement_unit - The new measurement unit to set for the user.
+ * @returns An object with the updated measurement unit or an error message.
+ */
 import type { Cookies } from '@sveltejs/kit';
 import { authenticate } from '../authenticate';
 import { User_Model } from '../models';
