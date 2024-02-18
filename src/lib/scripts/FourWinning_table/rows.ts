@@ -1,5 +1,11 @@
+/**
+ * Represents an array of rows in the FourWinning table.
+ */
 import type { Row } from './types';
 
+/**
+ * The array of rows in the FourWinning table.
+ */
 export let rows: Row[] = [
 	{
 		side: `1`,
@@ -99,6 +105,11 @@ export let rows: Row[] = [
 	}
 ];
 
+/**
+ * Sets the rows of the FourWinning table to the specified new rows.
+ * @param newRows - The new rows to set.
+ * @returns The updated array of rows.
+ */
 export function setToNewRows(newRows: Row[]) {
 	rows = newRows;
 	return rows;
