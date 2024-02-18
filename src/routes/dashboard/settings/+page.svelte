@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { capitalizeFirstLetter } from '$lib/shared/utils';
+	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import { faEye } from '@fortawesome/free-solid-svg-icons';
 	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa';
@@ -274,16 +274,6 @@
 			border: 3px solid var(--border-color);
 			margin-right: auto;
 			margin-bottom: 20px;
-		}
-	}
-
-	.same-line {
-		display: flex;
-		flex-direction: row;
-
-		input[type='checkbox'] {
-			max-width: max-content;
-			margin-left: 1rem;
 		}
 	}
 

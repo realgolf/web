@@ -1,3 +1,9 @@
+/**
+ * Highlights code blocks in HTML content using the specified themes and languages.
+ *
+ * @param htmlContent The HTML content containing code blocks to be highlighted.
+ * @returns The HTML content with highlighted code blocks.
+ */
 import he from 'he';
 import { getHighlighter } from 'shiki';
 

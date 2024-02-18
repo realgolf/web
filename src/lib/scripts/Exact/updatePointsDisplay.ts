@@ -1,3 +1,8 @@
+/**
+ * Updates the points display on the webpage based on the provided teams.
+ * @param teams - An array of Team objects representing the teams.
+ * @returns The innerHTML of the points display element, or undefined if the element is not found.
+ */
 import type { Team } from './types';
 
 export function updatePointsDisplay(teams: Team[]) {

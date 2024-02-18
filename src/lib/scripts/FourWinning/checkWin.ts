@@ -1,3 +1,17 @@
+/**
+ * Checks if any of the win combinations are achieved by the current team.
+ * If a win combination is found, it opens a dialog to restart the game.
+ *
+ * @param winCombinations - An array of win combinations to check against.
+ * @param currentTeam - The current team object.
+ * @param teams - An array of all teams.
+ * @param hitCounts - A record of hit counts for each cell.
+ * @param numberOfClicks - The number of clicks made.
+ * @param color - The color of the current team.
+ * @param currentTeamIndex - The index of the current team in the teams array.
+ * @param changeTeam - A function to change the current team.
+ * @returns `false` indicating that no win combination was found.
+ */
 import { open_dialog } from '$lib/components/Global/Dialog.svelte';
 import { restartGame } from './restartGame';
 import type { Team, winCombination } from './types';

@@ -1,3 +1,6 @@
+/**
+ * Represents an array of rows, each containing points and data.
+ */
 import type { Row } from './types';
 
 export const rows: Row[] = [

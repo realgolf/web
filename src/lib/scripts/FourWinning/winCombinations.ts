@@ -1,3 +1,10 @@
+/**
+ * Generates an array of win combinations for a game board.
+ * Each win combination is represented by an array of cells,
+ * where each cell is defined by its outerIndex and innerIndex.
+ *
+ * @returns An array of win combinations.
+ */
 import type { winCombination } from './types';
 
 function generateWinCombinations(): {

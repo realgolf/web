@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { removeLastSymbol } from '$lib/shared/utils.js';
+	import { removeLastSymbol } from '$lib/shared/utils/removeLastSymbol.js';
 
 	export let data;
 	let measurement_unit = data.measurement_unit as string;

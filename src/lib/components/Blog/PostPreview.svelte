@@ -4,7 +4,7 @@
 
 	export let post: posts;
 
-	$: draft = post.id.startsWith('_draft');
+	$: draft = post.id.startsWith('_draft'); // Check if the post is a draft
 </script>
 
 <li>

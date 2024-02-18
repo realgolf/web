@@ -1,6 +1,6 @@
 // Import necessary modules and types
 import { User_Model } from '$lib/server/user/models';
-import { getTimeThreshold } from '$lib/shared/utils';
+import { getTimeThreshold } from '$lib/shared/utils/getTimeThreshold';
 import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from '../$types';
 

@@ -1,3 +1,6 @@
+/**
+ * Represents the schema for a golf course in the database.
+ */
 import mongoose from 'mongoose';
 import { connect_to_db } from './db';
 
@@ -26,4 +29,7 @@ const Course_Schema = new mongoose.Schema({
 
 const course_model = await connect_to_db();
 
+/**
+ * The Mongoose model for the Course collection.
+ */
 export const Course_Model = course_model?.model('Course', Course_Schema);

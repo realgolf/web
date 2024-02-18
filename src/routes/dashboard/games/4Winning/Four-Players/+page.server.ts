@@ -1,4 +1,4 @@
-import { check_achievement } from '$lib/server/user/achievements';
+import { check_achievement } from '$lib/server/user/achievements/achievements';
 import { User_Model } from '$lib/server/user/models'; // Assuming you have a User model
 import type { User } from '$lib/server/user/types';
 import { v4 as uuidv4 } from 'uuid';

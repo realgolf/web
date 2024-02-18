@@ -1,8 +1,12 @@
 <script lang="ts">
+	// Importing the openGame function from the specified file
 	import { openGame } from '$lib/scripts/Archive/openGame';
+	// Importing the Dialog component from the specified file
 	import Dialog from '../Global/Dialog.svelte';
+	// Importing the FourWinningTable component from the specified file
 	import FourWinningTable from './FourWinning_table.svelte';
 
+	// Exporting the following variables as props
 	export let name: string;
 	export let date: string;
 	export let id: string;

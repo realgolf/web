@@ -1,3 +1,13 @@
+/**
+ * Restarts the game when the User clicks the Restart Game Button by resetting the necessary variables and elements.
+ * @param teams - An array of teams.
+ * @param hitCounts - A record of hit counts.
+ * @param numberOfClicks - The number of clicks.
+ * @param currentTeamIndex - The index of the current team.
+ * @param currentTeam - The current team.
+ * @param color - The color of the current team.
+ * @returns An object containing the updated hitCounts, numberOfClicks, currentTeamIndex, currentTeam, and color.
+ */
 import type { Team } from './types';
 import { updateTeamTurn } from './updateTeamTurn';
 

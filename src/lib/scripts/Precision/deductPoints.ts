@@ -1,3 +1,17 @@
+/**
+ * Deducts points from the current team based on the difference between the meters to play and the current team's distance.
+ * @param MetersToPlay The total meters to play.
+ * @param currentTeam The current team object.
+ * @param changeTeam A function to change the current team.
+ * @param teams An array of team objects.
+ * @param point The point value.
+ * @param range The range value.
+ * @param lower_range The lower range value.
+ * @param upper_range The upper range value.
+ * @param currentTeamIndex The index of the current team in the teams array.
+ * @param color The color value.
+ * @returns An object containing the difference, points deducted, and the updated current team.
+ */
 import { checkWinner } from './checkWinner';
 import type { Team } from './types';
 

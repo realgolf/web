@@ -1,3 +1,11 @@
+/**
+ * Applies filters to the games data based on the provided search term, selected team, and data.
+ * @param searchTerm - The search term to filter the games by.
+ * @param filteredGames - The array of filtered games.
+ * @param data - The data containing the games.
+ * @param selectedTeam - The selected team to filter the games by.
+ * @returns The filtered array of games.
+ */
 import type { Data, filteredGames } from './types';
 
 export function applyFilters(

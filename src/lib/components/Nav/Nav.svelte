@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { capitalizeFirstLetter } from '$lib/shared/utils';
+	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import { faHouse, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import Dropdownmenu from './Dropdownmenu.svelte';

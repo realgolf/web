@@ -1,3 +1,8 @@
+/**
+ * Initializes MathJax and renders formulas using MathJax.
+ * @module formulas
+ */
+
 import mathjax from 'mathjax';
 
 const MathJax = await mathjax.init({
@@ -5,9 +10,9 @@ const MathJax = await mathjax.init({
 });
 
 /**
- * renders a single formula with MathJax
- * @param {string} formula
- * @returns {string}
+ * Renders a single formula with MathJax.
+ * @param {string} formula - The formula to render.
+ * @returns {string} - The rendered formula as an HTML string.
  */
 function render_formula(formula) {
 	const svg = MathJax.tex2svg(formula, {
@@ -19,9 +24,9 @@ function render_formula(formula) {
 const math_tag_regex = /&lt;math&gt;(.*?)&lt;\/math&gt;/g;
 
 /**
- * renders all formulas in a HTML string with MathJax
- * @param {string} htmlContent
- * @returns {string}
+ * Renders all formulas in an HTML string with MathJax.
+ * @param {string} htmlContent - The HTML string containing formulas to render.
+ * @returns {string} - The HTML string with rendered formulas.
  */
 export function render_formulas(htmlContent) {
 	const renderedHtml = htmlContent.replace(math_tag_regex, (_, formula) => {

@@ -1,16 +1,21 @@
 <script lang="ts">
+	// Import all the functions and types from the Precision folder
 	import { deductPoints } from '$lib/scripts/Precision/deductPoints';
 	import { generateRandomNumber } from '$lib/scripts/Precision/generateRandomNumber';
 	import { resetGame } from '$lib/scripts/Precision/resetGame';
 	import type { Team } from '$lib/scripts/Precision/types';
 	import { updatePointsDisplay } from '$lib/scripts/Precision/updatePointsDisplay';
-	import { capitalizeFirstLetter } from '$lib/shared/utils';
+	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
+// Import onMount and afterUpdate from Svelte
 	import { afterUpdate, onMount } from 'svelte';
+	// Import the Dialog component and the open_dialog function from the Global folder
 	import Dialog, { open_dialog } from '../Global/Dialog.svelte';
 
+	// Define Props
 	export let teams: Team[];
 	export let point: number;
 	export let measurement_unit: string;
+	// Define Variables
 	let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_unit);
 
 	let currentTeamIndex = 0;
@@ -27,6 +32,7 @@
 
 	let MetersToPlay: number = generateRandomNumber(range, lower_range, upper_range);
 
+	// Define handleRangeInput function to handle the chnage of the allowed range
 	function handleRangeInput(event: Event & { currentTarget: HTMLInputElement }): void {
 		const inputRange = (event.target as HTMLInputElement).value;
 
@@ -47,6 +53,7 @@
 		}
 	}
 
+	// Define changeTeam function to change the current team
 	function changeTeam() {
 		MetersToPlay = generateRandomNumber(range, lower_range, upper_range);
 		for (let team of teams) {
@@ -57,6 +64,7 @@
 		color = currentTeam.color;
 	}
 
+	// Define request_restart_confirmation function to request a confirmation before restarting the game
 	function request_restart_confirmation() {
 		open_dialog({
 			text: 'Are you sure you want to restart the game?',
