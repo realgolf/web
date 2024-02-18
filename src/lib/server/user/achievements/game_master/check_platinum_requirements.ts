@@ -1,3 +1,10 @@
+/**
+ * Checks if the platinum requirements for the "Game Master" achievement are met.
+ *
+ * @param total_games The total number of games played.
+ * @param achievements The array of achievements.
+ * @param gameId The ID of the game.
+ */
 import type { Achievements } from '../../interface/Achievements';
 
 //! Requires 8192 played games

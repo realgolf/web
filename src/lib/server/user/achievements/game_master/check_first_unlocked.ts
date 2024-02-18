@@ -1,3 +1,11 @@
+/**
+ * Checks if the user has played two games and unlocks the "Game Master" achievement if true.
+ * @param total_games The total number of games played by the user.
+ * @param achievements The array of achievements for the user.
+ * @param user_name The name of the user.
+ * @param gameId The ID of the game.
+ * @returns The updated array of achievements if the user has played two games, otherwise an empty string.
+ */
 import type { Achievements } from '../../interface/Achievements';
 
 //! Requires 2 played games

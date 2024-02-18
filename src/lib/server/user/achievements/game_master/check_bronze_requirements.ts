@@ -1,3 +1,10 @@
+/**
+ * Checks if the bronze requirements for the "Game Master" achievement are met.
+ *
+ * @param total_games The total number of games played.
+ * @param achievements The list of achievements.
+ * @param gameId The ID of the game being checked.
+ */
 import type { Achievements } from '../../interface/Achievements';
 
 //! Requires 16 played games
