@@ -1,3 +1,9 @@
+/**
+ * Fills the local storage with game data and redirects the user based on the teams parameter.
+ *
+ * @param teams - The teams parameter indicating the number of teams.
+ * @param gameData - The game data to be stored in the local storage.
+ */
 import { redirect } from './redirect';
 
 export function fillLocalStorageAndRedirectUser(teams: string, gameData: string) {

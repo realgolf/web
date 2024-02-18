@@ -1,3 +1,8 @@
+/**
+ * Saves the data from local storage to the database.
+ *
+ * @param teams - The teams for which the data will be saved.
+ */
 import { asignNameToTeam } from '$lib/shared/utils';
 
 export function saveLocalStorageGameInDB(teams: string) {

@@ -1,3 +1,8 @@
+/**
+ * Toggles the display of table previews.
+ *
+ * @returns {HTMLCollectionOf<Element>} The collection of table previews.
+ */
 export function togglePreview() {
 	const tablePreviews = document.getElementsByClassName('table_previews');
 
