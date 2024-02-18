@@ -227,6 +227,23 @@
 			updateTeamTurn(color);
 		}
 	});
+
+	function request_confirmation() {
+		open_dialog({
+			text: 'Are you sure you want to restart the game?',
+			modal: true,
+			confirm: {
+				text: "Yes, I'm sure",
+				action: () => {
+					restartGame_Btn(teams, hitCounts, numberOfClicks, currentTeamIndex, currentTeam, color);
+				}
+			},
+			cancel: {
+				text: 'No, I want to continue playing',
+				action: () => {}
+			}
+		});
+	}
 </script>
 
 <svelte:head>
@@ -239,9 +256,9 @@
 
 <button on:click={changeTeam}>Switch Team</button>
 <button
-	on:click={() =>
-		restartGame_Btn(teams, hitCounts, numberOfClicks, currentTeamIndex, currentTeam, color)}
-	>Restart Game</button
+	on:click={() => {
+		request_confirmation();
+	}}>Restart Game</button
 >
 
 <p>You can also enter the distance you have played here:</p>
