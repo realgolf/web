@@ -12,6 +12,12 @@
 			theme = 'system';
 		}
 		localStorage.setItem('theme', theme);
+
+		let rounded_corners = data.rounded_corners as boolean;
+		if (rounded_corners === undefined) {
+			rounded_corners = 'true';
+		}
+		localStorage.setItem('rounded_corners', rounded_corners);
 	});
 </script>
 
