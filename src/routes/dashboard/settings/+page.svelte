@@ -252,7 +252,7 @@
 			background-color: var(--nav-color);
 			width: max-content;
 			padding: 50px 50px;
-			border-radius: 5px;
+			border-radius: var(--border-radius);
 			border: 3px solid var(--border-color);
 			margin-right: auto;
 			margin-bottom: 20px;
@@ -278,7 +278,7 @@
 		border: none;
 		font-family: inherit;
 		font-size: inherit;
-		border-radius: 0.25rem;
+		border-radius: var(--border-radius);
 		background: none;
 		margin-bottom: 1.5rem;
 		text-align: center;

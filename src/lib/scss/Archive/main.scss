@@ -7,7 +7,7 @@ select {
 	border: none;
 	font-family: inherit;
 	font-size: inherit;
-	border-radius: 0.25rem;
+	border-radius: var(--border-radius);
 	background: none;
 	margin-bottom: 1.5rem;
 	text-align: center;

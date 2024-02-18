@@ -15,7 +15,7 @@
 	.card_normal {
 		background-color: var(--nav-color);
 		padding: 50px 50px;
-		border-radius: 5px;
+		border-radius: var(--border-radius);
 		border: 1px solid var(--border-color);
 		margin: 15px;
 		text-align: center;
