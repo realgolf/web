@@ -73,6 +73,14 @@ body[data-theme='system'] {
 	}
 }
 
+body[data-rounded-corners='true'] {
+	--border-radius: 0.25rem;
+}
+
+body[data-rounded-corners='false'] {
+	--border-radius: 0;
+}
+
 body {
 	line-height: 1.5;
 	background-color: var(--background-color);
@@ -112,7 +120,7 @@ input {
 	border: none;
 	font-family: inherit;
 	font-size: inherit;
-	border-radius: 0.25rem;
+	border-radius: var(--border-radius);
 	background: none;
 }
 

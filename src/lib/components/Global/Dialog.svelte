@@ -108,7 +108,7 @@
 		transform: translate(-50%, calc(-50% - 1rem));
 		padding: 1rem;
 		border: none;
-		border-radius: 0.25rem;
+		border-radius: var(--border-radius);
 		box-shadow: 0rem 0rem 1rem #000e;
 		background-color: var(--nav-color);
 		color: var(--font-color);

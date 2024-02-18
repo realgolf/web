@@ -12,6 +12,7 @@ const User_Schema = new mongoose.Schema({
 		last_login_date: { type: Date, require: true },
 		measurement_units: { type: String, required: true, default: 'meters' },
 		theme: { type: String, required: true, default: 'system' },
+		rounded_corners: { type: Boolean, required: true, default: true },
 		handicap: { type: Number, required: true, default: 54 },
 		handicap_updated: { type: Date, required: true, default: new Date() },
 		bio: { type: String },

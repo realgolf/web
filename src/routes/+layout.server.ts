@@ -28,6 +28,7 @@ export const load: LayoutServerLoad = async (event: {
 	}
 
 	const theme = user.user?.theme;
+	const rounded_corners = user.user?.rounded_corners;
 
-	return { name, email, auth, theme, username };
+	return { name, email, auth, theme, rounded_corners, username };
 };

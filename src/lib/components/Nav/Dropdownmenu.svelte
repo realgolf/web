@@ -189,8 +189,8 @@
 
 		border: 2px solid var(--border-color);
 		border-right: none;
-		border-top-left-radius: 0.75rem;
-		border-bottom-left-radius: 0.75rem;
+		border-top-left-radius: calc(var(--border-radius) * 3);
+		border-bottom-left-radius: calc(var(--border-radius) * 3);
 
 		a {
 			text-decoration: none;

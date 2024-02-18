@@ -4,6 +4,7 @@ import {
 	change_measurement,
 	change_name,
 	change_password,
+	change_rounded_corners,
 	change_theme,
 	delete_account
 } from '$lib/server/user/account';
@@ -25,6 +26,7 @@ export const load: PageServerLoad = async (event) => {
 
 	const measurement_unit = user?.user?.measurement_units as string;
 	const theme = user?.user?.theme as string;
+	const rounded_corners = user?.user?.rounded_corners as boolean;
 	const handicap = user?.user?.handicap as number;
 	const handicap_updated = user?.user?.handicap_updated as Date;
 	const id = user?.id as string;
@@ -39,6 +41,7 @@ export const load: PageServerLoad = async (event) => {
 		measurement_unit,
 		id,
 		theme,
+		rounded_corners,
 		handicap,
 		handicap_updated,
 		handicap_history
@@ -181,5 +184,19 @@ export const actions: Actions = {
 				error: 'Error deleting History'
 			};
 		}
+	},
+	rounded_corners: async (event) => {
+		const data = await event.request.formData();
+		const rounded_corners = !!data.get('rounded-corners');
+
+		const update = await change_rounded_corners(event.cookies, rounded_corners);
+
+		if ('error' in update) {
+			return fail(400, { error: update.error });
+		}
+
+		const message = `Your rounded corners settings got changed`;
+
+		return { message, rounded_corners };
 	}
 };

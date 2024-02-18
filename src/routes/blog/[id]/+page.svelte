@@ -141,7 +141,7 @@
 		}
 
 		:global(pre) {
-			border-radius: 0.4rem;
+			border-radius: var(--border-radius);
 			font-size: var(--small-font);
 			padding: 1rem;
 			margin-block: 1rem;
@@ -166,7 +166,7 @@
 			background-color: var(--inline-code-bg-color);
 			padding-inline: 0.5rem;
 			padding-block: 0.05rem;
-			border-radius: 0.2rem;
+			border-radius: var(--border-radius);
 			font-size: var(--small-font);
 			white-space: nowrap;
 		}

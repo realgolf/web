@@ -45,7 +45,7 @@
 		background-color: var(--nav-color);
 		margin-left: 20px;
 		border: 1px solid var(--border-color);
-		border-radius: 5px;
+		border-radius: var(--border-radius);
 
 		& > * {
 			padding: 20px;
