@@ -1,13 +1,11 @@
-import {
-	change_email,
-	change_handicap,
-	change_measurement,
-	change_name,
-	change_password,
-	change_rounded_corners,
-	change_theme,
-	delete_account
-} from '$lib/server/user/account';
+import { change_email } from '$lib/server/user/account/change_email';
+import { change_handicap } from '$lib/server/user/account/change_handicap';
+import { change_name } from '$lib/server/user/account/change_name';
+import { change_password } from '$lib/server/user/account/change_password';
+import { change_rounded_corners } from '$lib/server/user/account/change_rounded_corners';
+import { change_theme } from '$lib/server/user/account/change_theme';
+import { delete_account } from '$lib/server/user/account/delete_account';
+import { change_measurement } from '$lib/server/user/account/hange_measurement';
 import { User_Model } from '$lib/server/user/models';
 import { cookie_options } from '$lib/server/user/utils';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
