@@ -1,3 +1,7 @@
+/**
+ * Connects to the MongoDB database using the provided connection URI.
+ * @returns A Promise that resolves to a Mongoose Connection object.
+ */
 import { SECRET_MONGODB_USERDB_CONNECTION } from '$env/static/private';
 import mongoose from 'mongoose';
 
