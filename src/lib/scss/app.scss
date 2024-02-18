@@ -1,17 +1,29 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	scroll-behavior: smooth;
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+/**
+* Root styles and variables for the entire application.
+*/
 
 :root {
 	--small-font: 1rem;
 	--medium-font: 1.125rem;
 	--tiny-font: 0.8rem;
 }
+
+/**
+* SCSS Reset 
+* Resets the default styles of the browser.
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/**
+* Theme Variables
+*/
 
 body[data-theme='light'] {
 	/* LIGHT COLORS */
@@ -40,6 +52,10 @@ body[data-theme='dark'] {
 	--h2-color: skyblue;
 	--button-color: var(--border-color);
 }
+
+/**
+* System Theme Variables
+*/
 
 body[data-theme='system'] {
 	@media (prefers-color-scheme: dark) {
@@ -73,6 +89,10 @@ body[data-theme='system'] {
 	}
 }
 
+/**
+* Rounded Corners
+*/
+
 body[data-rounded-corners='true'] {
 	--border-radius: 0.25rem;
 }
@@ -81,6 +101,10 @@ body[data-rounded-corners='false'] {
 	--border-radius: 0;
 }
 
+/**
+* Body Styles
+*/
+
 body {
 	line-height: 1.5;
 	background-color: var(--background-color);
@@ -88,6 +112,10 @@ body {
 	font-size: var(--medium-font);
 	transition: background-color 0.2s ease-in-out;
 }
+
+/**
+* Header Styles
+*/
 
 h1 {
 	padding-block: 2rem;
@@ -100,8 +128,11 @@ h2 {
 	font-weight: 600;
 	margin-block: 0.5rem;
 	line-height: 1.2;
-	color: var(--h2-color);
 }
+
+/**
+* Link Styles
+*/
 
 a {
 	color: inherit;
@@ -113,6 +144,10 @@ a:hover,
 a:focus {
 	color: var(--highlight-color);
 }
+
+/**
+* Button and Input Styles
+*/
 
 button,
 input {
@@ -149,6 +184,10 @@ input:focus {
 	border-color: var(--accent-color);
 	outline: 0.1rem solid var(--accent-color);
 }
+
+/**
+* Checkbox Styles
+*/
 
 input[type='checkbox'] {
 	font: inherit;
@@ -192,6 +231,10 @@ input[type='checkbox']:disabled {
 	cursor: not-allowed;
 }
 
+/**
+* Form Styles
+*/
+
 form > * {
 	margin-bottom: 1.5rem;
 }
@@ -204,6 +247,10 @@ label {
 	width: max-content;
 }
 
+/**
+* Error and Success Styles
+*/
+
 .error {
 	color: var(--error-color);
 	font-weight: bold;
@@ -213,9 +260,17 @@ label {
 	color: var(--highlight-color);
 }
 
+/**
+* Paragraph Styles
+*/
+
 p {
 	margin-bottom: 0.5rem;
 }
+
+/**
+* List Styles
+*/
 
 .no-bullets {
 	list-style: none;

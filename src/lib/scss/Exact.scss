@@ -1,7 +1,18 @@
+/**
+* Styles for the Exact component
+*/
+
+/**
+*	Styles the table in the Exact component.
+*/
 table {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+/**
+*	Styles the meters and points classes in the Exact component.
+*/
 
 .meters,
 .points {
@@ -13,14 +24,26 @@ table {
 	text-align: center;
 }
 
+/**
+* Styles the meters class when hovered in the Exact component.
+*/
+
 .meters:hover {
 	cursor: pointer;
 }
+
+/**
+* Styles the buttons in the Exact component.
+*/
 
 button {
 	cursor: pointer;
 	border: 5px solid var(--border-color);
 }
+
+/**
+* Styles the input in the Exact component.
+*/
 
 input {
 	color: var(--font-color);

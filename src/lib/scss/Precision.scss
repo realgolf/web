@@ -1,7 +1,17 @@
+/**
+* Styles for Precision component
+*/
+
+/**
+* Styles the list in the Precision component.
+*/
 ol {
 	list-style: none;
 }
 
+/**
+* Stylws the input and button in the Precision component.
+*/
 input {
 	border: none;
 	background-color: var(--border-color);
