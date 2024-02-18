@@ -150,6 +150,48 @@ input:focus {
 	outline: 0.1rem solid var(--accent-color);
 }
 
+input[type='checkbox'] {
+	font: inherit;
+	appearance: none;
+	-webkit-appearance: none;
+	margin: 0;
+	width: 1em;
+	height: 1em;
+	color: currentColor;
+	border: 0.13em solid currentColor;
+	border-radius: 0.2em;
+	position: relative;
+	cursor: pointer;
+}
+
+input[type='checkbox']:before {
+	content: '';
+	position: absolute;
+	width: 70%;
+	height: 70%;
+	background-color: currentColor;
+	left: 50%;
+	top: 50%;
+	scale: 0;
+	opacity: 0;
+	translate: -50% -50%;
+	transition: scale 100ms ease-out, opacity 100ms ease-out;
+}
+
+input[type='checkbox']:checked:before {
+	scale: 1;
+	opacity: 1;
+}
+
+input[type='checkbox']:focus-visible {
+	outline: 2px solid white;
+}
+
+input[type='checkbox']:disabled {
+	color: #555;
+	cursor: not-allowed;
+}
+
 form > * {
 	margin-bottom: 1.5rem;
 }
@@ -159,6 +201,7 @@ label {
 	font-size: 1rem;
 	color: var(--labelc-color);
 	margin-bottom: 0.2rem;
+	width: max-content;
 }
 
 .error {

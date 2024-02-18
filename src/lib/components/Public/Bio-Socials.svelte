@@ -164,11 +164,16 @@
 		.checkbox {
 			display: flex;
 			flex-direction: row;
-		}
 
-		input[type='checkbox'] {
-			width: max-content;
-			margin-left: 0.5rem;
+			& > label {
+				height: max-content;
+				margin-bottom: 0;
+			}
+
+			input {
+				margin-top: 0.1rem;
+				margin-left: 1rem;
+			}
 		}
 	}
 </style>
