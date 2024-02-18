@@ -8,7 +8,7 @@
 import type { Cookies } from '@sveltejs/kit';
 import { authenticate } from '../authenticate';
 import { User_Model } from '../models';
-import { verify_name } from '../register';
+import { verify_name } from '../verify/verify_name';
 
 export async function change_name(
 	cookies: Cookies,

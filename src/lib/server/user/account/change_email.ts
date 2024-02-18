@@ -8,7 +8,7 @@
 import type { Cookies } from '@sveltejs/kit';
 import { authenticate } from '../authenticate';
 import { User_Model } from '../models';
-import { verify_email } from '../register';
+import { verify_email } from '../verify/verify_email';
 
 export async function change_email(
 	cookies: Cookies,

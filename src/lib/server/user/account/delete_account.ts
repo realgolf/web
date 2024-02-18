@@ -9,7 +9,7 @@ import type { Cookies } from '@sveltejs/kit';
 import bcrypt from 'bcrypt';
 import { authenticate } from '../authenticate';
 import { User_Model } from '../models';
-import { verify_password } from '../register';
+import { verify_password } from '../verify/verify_password';
 
 export async function delete_account(cookies: Cookies, password: string) {
 	const auth = authenticate(cookies);
