@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Dialog, { open_dialog } from '$lib/components/Global/Dialog.svelte';
 	import { capitalizeFirstLetter } from '$lib/shared/utils';
 	import { afterUpdate, onMount } from 'svelte';
 
@@ -126,6 +127,23 @@
 		MetersToPlay = generateRandomNumber();
 	}
 
+	function request_restart_confirmation() {
+		open_dialog({
+			text: 'Are you sure you want to restart the game?',
+			modal: true,
+			confirm: {
+				text: "Yes, I'm sure",
+				action: () => {
+					resetGame();
+				}
+			},
+			cancel: {
+				text: 'No, I want to continue playing',
+				action: () => {}
+			}
+		});
+	}
+
 	onMount(() => {
 		updatePointsDisplay();
 		updateNumberofClicks();
@@ -155,7 +173,7 @@
 	<p id="number_clicks">Number of shots played: {team.shots}</p>
 {/each}
 
-<button on:click={resetGame}>Reset Game</button>
+<button on:click={request_restart_confirmation}>Reset Game</button>
 
 <p>Choose range:</p>
 <input
@@ -193,6 +211,8 @@
 <form action="?/get_add_highscore" method="POST" id="highscore_form">
 	<input type="number" name="shots" id="shots" />
 </form>
+
+<Dialog />
 
 <style lang="scss">
 	@import '$lib/scss/Precision.scss';

@@ -6,6 +6,7 @@
 	import { updatePointsDisplay } from '$lib/scripts/Precision/updatePointsDisplay';
 	import { capitalizeFirstLetter } from '$lib/shared/utils';
 	import { afterUpdate, onMount } from 'svelte';
+	import Dialog, { open_dialog } from '../Global/Dialog.svelte';
 
 	export let teams: Team[];
 	export let point: number;
@@ -56,6 +57,33 @@
 		color = currentTeam.color;
 	}
 
+	function request_restart_confirmation() {
+		open_dialog({
+			text: 'Are you sure you want to restart the game?',
+			modal: true,
+			confirm: {
+				text: "Yes, I'm sure",
+				action: () => {
+					resetGame(
+						teams,
+						point,
+						range,
+						lower_range,
+						upper_range,
+						currentTeamIndex,
+						color,
+						currentTeam,
+						MetersToPlay
+					);
+				}
+			},
+			cancel: {
+				text: 'No, I want to continue playing',
+				action: () => {}
+			}
+		});
+	}
+
 	onMount(() => {
 		updatePointsDisplay(teams);
 	});
@@ -73,20 +101,7 @@
 
 <div id="points_display" />
 
-<button
-	on:click={() =>
-		resetGame(
-			teams,
-			point,
-			range,
-			lower_range,
-			upper_range,
-			currentTeamIndex,
-			color,
-			currentTeam,
-			MetersToPlay
-		)}>Reset Game</button
->
+<button on:click={request_restart_confirmation}>Reset Game</button>
 
 <p>Choose range:</p>
 <input
@@ -134,6 +149,8 @@
 		{/if}
 	{/each}
 </ol>
+
+<Dialog />
 
 <style lang="scss">
 	@import '$lib/scss/Precision.scss';
