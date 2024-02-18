@@ -92,14 +92,14 @@
 							}
 						}
 
-						lastRowNumbers[color] = rowNumber; // Setze lastRowNumber nach der Verarbeitung
+						lastRowNumbers[color] = rowNumber; // set lastRowNumber to current rowNumber
 
-						const storedData = localStorage.getItem(`exact_${teams.length}_teams`);
-						let parsedData = storedData ? JSON.parse(storedData) : {};
+						const storedData = localStorage.getItem(`exact_${teams.length}_teams`); // Get data from localStorage
+						let parsedData = storedData ? JSON.parse(storedData) : {}; // Parse data from localStorage
 
 						parsedData[color] = { points: newPoints, shots: clickedCellsCount };
-						localStorage.setItem(`exact_${teams.length}_teams`, JSON.stringify(parsedData)); // Im localStorage speichern
-						return newPoints;
+						localStorage.setItem(`exact_${teams.length}_teams`, JSON.stringify(parsedData)); // Save data to localStorage
+						return newPoints; // Update pointsByTeam
 					});
 
 					updatePoints(teams);
@@ -110,9 +110,11 @@
 			}
 		}
 
+		// Check if the game ended
 		if (clickedCellsCount === userInput * teams.length) {
 			const winner = findWinner(teams);
 
+			// Open dialog to ask if the user wants to restart the game when nobody won
 			if (winner == 'Tie') {
 				open_dialog({
 					text: 'The Game ended Tie!',
@@ -134,6 +136,7 @@
 					cancel: null
 				});
 			} else {
+				// Open dialog to ask if the user wants to restart the game when a winner is found
 				open_dialog({
 					text: `The winner is ${winner}! Do you want to play again?`,
 					modal: false,
@@ -157,6 +160,7 @@
 		}
 	}
 
+	// Open dialog to ask if the user wants to restart the game
 	function request_restart_confirmation() {
 		open_dialog({
 			text: 'Do you really want to restart the game?',

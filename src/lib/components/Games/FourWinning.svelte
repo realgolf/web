@@ -1,4 +1,5 @@
 <script lang="ts">
+	// Import all the functions and types from the FourWinning folder
 	import { FourTimesWin } from '$lib/scripts/FourWinning/FourTimesWin';
 	import { checkWin } from '$lib/scripts/FourWinning/checkWin';
 	import { restartGame_Btn } from '$lib/scripts/FourWinning/restartGameBtn';
@@ -7,17 +8,19 @@
 	import type { Team } from '$lib/scripts/FourWinning/types';
 	import { updateTeamTurn } from '$lib/scripts/FourWinning/updateTeamTurn';
 	import { winCombinations } from '$lib/scripts/FourWinning/winCombinations';
+// Import the capitalizeFirstLetter function from the shared folder
 	import { capitalizeFirstLetter } from '$lib/shared/utils';
+	// Import onMount from Svelte
 	import { onMount } from 'svelte';
+	// Import the Dialog component and the open_dialog function from the Global folder
 	import Dialog, { open_dialog } from '../Global/Dialog.svelte';
 
-	/**
-	 * Declared all variables
-	 */
-
+	// Define Props
 	export let teams: Team[];
 	export let measurement_unit: string;
 	export let team: string;
+
+	// Define Variables
 	const capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_unit);
 
 	let currentTeamIndex = 0;
@@ -27,6 +30,7 @@
 	let hitCounts: Record<string, number> = {};
 	let numberOfClicks: string;
 
+	// Define Functions
 	function changeTeam(): void {
 		currentTeamIndex = (currentTeamIndex + 1) % teams.length;
 		currentTeam = teams[currentTeamIndex];
@@ -34,12 +38,7 @@
 		updateTeamTurn(color);
 	}
 
-	/**
-	 * This function handles the click event for each field
-	 * @param outerIndex
-	 * @param innerIndex
-	 */
-
+	// Handles clicks on the table cells
 	function HandleEvent(outerIndex: number, innerIndex: number) {
 		const cellId = `row${outerIndex + 1}-${innerIndex}`;
 		const cell = document.getElementById(cellId);
@@ -59,6 +58,7 @@
 				// Update teams in local storage
 				localStorage.setItem(team, JSON.stringify(teams));
 
+				// Check if the current team has won
 				FieldClickedFourTimes(outerIndex, innerIndex);
 				checkWin(
 					winCombinations,
@@ -70,8 +70,10 @@
 					currentTeamIndex,
 					changeTeam
 				);
+				// Change the team
 				changeTeam();
 			} else {
+				// If the cell is already claimed by another team
 				if (cell.style.backgroundColor != currentTeam.color) {
 					open_dialog({
 						text: '<b> Oops! </b> This Field is already claimed by another Team. You can still win by hitting it four times!',
@@ -79,6 +81,7 @@
 						cancel: null
 					});
 				} else {
+					// If the cell is already claimed by the current team
 					FieldClickedFourTimes(outerIndex, innerIndex);
 					checkWin(
 						winCombinations,
@@ -96,12 +99,7 @@
 		}
 	}
 
-	/**
-	 * This function checks if a field got hit four times
-	 * @param outerIndex
-	 * @param innerIndex
-	 */
-
+	// Handles the number of clicks on the table cells
 	function FieldClickedFourTimes(outerIndex: number, innerIndex: number) {
 		const cellId = `row${outerIndex + 1}-${innerIndex}`;
 		const cell = document.getElementById(cellId);
@@ -109,6 +107,7 @@
 			const teamColor = currentTeam.color;
 			const cellKey = `${teamColor}_${cellId}`;
 
+			// Check if the cell has been clicked before
 			if (!hitCounts[cellKey]) {
 				hitCounts[cellKey] = 1;
 				showNumberofClicks(hitCounts, numberOfClicks);
@@ -117,6 +116,7 @@
 				showNumberofClicks(hitCounts, numberOfClicks);
 			}
 
+			// Check if the cell has been clicked four times
 			if (hitCounts[cellKey] === 4) {
 				FourTimesWin(
 					cellId,
@@ -133,10 +133,7 @@
 		}
 	}
 
-	/**
-	 * This function is for the input field, to input the distance.
-	 */
-
+	// Handles the input from the user in the input field
 	function handleInput() {
 		const input = document.getElementById('distance') as HTMLInputElement;
 
@@ -146,6 +143,7 @@
 			if (distanceStr !== '') {
 				const distance = parseFloat(distanceStr);
 
+				// Check if the input is a number and is between 10 and 163
 				if (!isNaN(distance) && distance >= 10 && distance <= 163) {
 					const rowIndex = Math.floor((distance - 10) / 3);
 					const rowId = Math.floor((distance - 10) / 13) + 1;
@@ -173,6 +171,7 @@
 							);
 							changeTeam();
 						} else {
+							// If the cell is already claimed by another team
 							open_dialog({
 								text: 'This field is already claimed by another team.',
 								modal: false,
@@ -181,6 +180,7 @@
 						}
 					}
 				} else {
+					// If the input is not a number or is not between 10 and 163
 					open_dialog({
 						text: 'Invalid input. Please enter a valid number between 10 and 163.',
 						modal: false,
@@ -188,6 +188,7 @@
 					});
 				}
 			} else {
+				// If the input is empty or not a number
 				open_dialog({ text: 'You need to enter a number.', modal: false, cancel: null });
 			}
 		}
@@ -195,6 +196,8 @@
 
 	let isMounted = false;
 
+
+	// Run the code inside the onMount function only once when the component is mounted
 	onMount(() => {
 		if (!isMounted) {
 			const storedTeams = localStorage.getItem(`4winning_${teams.length}_teams`);
@@ -228,6 +231,7 @@
 		}
 	});
 
+	// Ask the user for confirmation before restarting the game
 	function request_confirmation() {
 		open_dialog({
 			text: 'Are you sure you want to restart the game?',

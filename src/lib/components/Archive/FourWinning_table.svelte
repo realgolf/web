@@ -4,21 +4,21 @@
 	import { capitalizeFirstLetter } from '$lib/shared/utils';
 	import { onMount } from 'svelte';
 
-	export let measurement_units;
-	export let data;
+	export let measurement_units; // Input prop for measurement units
+	export let data; // Input prop for game data
 
-	let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_units);
-	let game_data = data;
-	let newRows = rows;
+	let capitalizedMeasurementUnit = capitalizeFirstLetter(measurement_units); // Capitalize the measurement units
+	let game_data = data; // Assign the game data to a local variable
+	let newRows = rows; // Assign the rows to a local variable
 
 	function colorFields() {
-		let gameData: GameData[] = JSON.parse(game_data);
+		let gameData: GameData[] = JSON.parse(game_data); // Parse the game data as an array of GameData objects
 
 		gameData.forEach(({ color, data: colorData }) => {
 			newRows.forEach((row) => {
 				row.data.forEach((field) => {
 					if (colorData.includes(field.id)) {
-						field.color = color;
+						field.color = color; // Set the color of the field if its ID is included in the colorData
 					}
 				});
 			});
@@ -26,13 +26,13 @@
 
 		console.log('newRows after colorization:', newRows);
 
-		newRows = newRows;
+		newRows = newRows; // Update the newRows variable
 
-		setToNewRows(newRows);
+		setToNewRows(newRows); // Update the rows with the newRows
 	}
 
 	onMount(() => {
-		colorFields();
+		colorFields(); // Call the colorFields function on component mount
 	});
 </script>
 
@@ -41,6 +41,7 @@
 		<tbody id={`row${outerIndex + 1}`}>
 			<tr>
 				<td class="points">{side} {capitalizedMeasurementUnit}</td>
+				<!--Display the side and capitalized measurement unit-->
 				{#each data as { value, color }, innerIndex}
 					<td
 						class="meters"
@@ -51,6 +52,7 @@
 					</td>
 				{/each}
 				<td class="points">{side} {capitalizedMeasurementUnit}</td>
+				<!--Display the side and capitalized measurement unit-->
 			</tr>
 		</tbody>
 	{/each}
@@ -69,7 +71,7 @@
 
 	@media only screen and (max-width: 600px) {
 		table {
-			display: none;
+			display: none; /*Hide the table on screens with max-width of 600px*/
 		}
 	}
 </style>
