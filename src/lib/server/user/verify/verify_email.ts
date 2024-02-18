@@ -1,3 +1,9 @@
+/**
+ * Verifies the email address.
+ *
+ * @param email - The email address to be verified.
+ * @returns A promise that resolves to a string indicating the verification result.
+ */
 import { User_Model } from '../models';
 import { email_regexp } from '../utils';
 

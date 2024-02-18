@@ -1,3 +1,16 @@
+/**
+ * Registers a user with the provided information.
+ *
+ * @param email - The email of the user.
+ * @param password - The password of the user.
+ * @param verified_password - The verified password of the user.
+ * @param name - The name of the user.
+ * @param username - The username of the user.
+ * @param handicap - The handicap of the user.
+ * @param handicap_updated - The date when the handicap was last updated.
+ * @param registration_date - The date of user registration.
+ * @returns A promise that resolves to an object containing an error message, if any.
+ */
 import bcrypt from 'bcrypt';
 import type { MongooseError } from 'mongoose';
 import { User_Model } from './models';
