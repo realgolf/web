@@ -1,3 +1,9 @@
+/**
+ * Defines the Mongoose schema for the User model.
+ * @remarks
+ * This schema represents the structure of the User document in the MongoDB database.
+ * It includes fields such as user information, achievements, games, and statistics.
+ */
 import mongoose from 'mongoose';
 import { connect_to_db } from './db';
 
