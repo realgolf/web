@@ -216,13 +216,15 @@
 		Your currently saved Rounded Corners Setting is: {JSON.stringify(data.rounded_corners)}
 	</p>
 	<form action="?/rounded_corners" method="POST" class="rounded-corners-form">
-		<label for="rounded-corners-settings">Select your prefered Rounded Corners Setting:</label>
-		<input
-			type="checkbox"
-			name="rounded-corners"
-			id="rounded-corners"
-			bind:checked={data.rounded_corners}
-		/>
+		<div class="same-line">
+			<label for="rounded-corners-settings">Select your prefered Rounded Corners Setting:</label>
+			<input
+				type="checkbox"
+				name="rounded-corners"
+				id="rounded-corners"
+				bind:checked={data.rounded_corners}
+			/>
+		</div>
 		<br />
 		<button aria-label="update Rounded Corners">Update</button>
 	</form>
@@ -272,6 +274,16 @@
 			border: 3px solid var(--border-color);
 			margin-right: auto;
 			margin-bottom: 20px;
+		}
+	}
+
+	.same-line {
+		display: flex;
+		flex-direction: row;
+
+		input[type='checkbox'] {
+			max-width: max-content;
+			margin-left: 1rem;
 		}
 	}
 
