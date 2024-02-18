@@ -1,3 +1,6 @@
+/**
+ * An array of rows containing side and data information.
+ */
 import type { Row } from './types';
 
 export const rows: Row[] = [
