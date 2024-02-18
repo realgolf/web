@@ -277,6 +277,16 @@
 		}
 	}
 
+	.same-line {
+		display: flex;
+		flex-direction: row;
+
+		input[type='checkbox'] {
+			max-width: max-content;
+			margin-left: 1rem;
+		}
+	}
+
 	.update-form {
 		display: grid;
 		grid-template-columns: 1fr auto;
