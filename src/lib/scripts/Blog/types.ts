@@ -1,3 +1,6 @@
+/**
+ * Represents a blog post.
+ */
 export type posts = {
 	id: string;
 	title: string;
