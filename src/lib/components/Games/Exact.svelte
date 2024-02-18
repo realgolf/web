@@ -157,6 +157,31 @@
 		}
 	}
 
+	function request_restart_confirmation() {
+		open_dialog({
+			text: 'Do you really want to restart the game?',
+			modal: false,
+			confirm: {
+				text: "Yes, I'm sure",
+				action: () => {
+					resetGame(
+						teams,
+						pointsByTeam,
+						userInput,
+						clickedCellsCount,
+						currentTeamIndex,
+						currentTeam,
+						color
+					);
+				}
+			},
+			cancel: {
+				text: 'No, I want to continue playing',
+				action: () => {}
+			}
+		});
+	}
+
 	onMount(() => {
 		updatePointsDisplay(teams);
 		updateTeamTurn(color);
@@ -189,18 +214,7 @@
 </p>
 
 <p id="team_turn_display">Current Team Turn: {currentTeam.color}</p>
-<button
-	on:click={() =>
-		resetGame(
-			teams,
-			pointsByTeam,
-			userInput,
-			clickedCellsCount,
-			currentTeamIndex,
-			currentTeam,
-			color
-		)}>Restart</button
->
+<button on:click={request_restart_confirmation}>Restart</button>
 <button on:click={changeTeam}>Switch Team</button>
 
 <div id="points_display" />
