@@ -216,7 +216,7 @@
 		Your currently saved Rounded Corners Setting is: {JSON.stringify(data.rounded_corners)}
 	</p>
 	<form action="?/rounded_corners" method="POST" class="rounded-corners-form">
-		<div class="same-line">
+		<div class="same-row">
 			<label for="rounded-corners-settings">Select your prefered Rounded Corners Setting:</label>
 			<input
 				type="checkbox"
@@ -293,6 +293,22 @@
 		align-items: end;
 		gap: 1rem;
 	}
+
+	.same-row {
+		display: flex;
+		flex-direction: row;
+
+		& > label {
+			height: max-content;
+			margin-bottom: 0;
+		}
+
+		input {
+			margin-top: 0.1rem;
+			margin-left: 1rem;
+		}
+	}
+
 	.logout-form {
 		margin-top: 1.5rem;
 	}
