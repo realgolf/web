@@ -210,6 +210,22 @@
 		<br />
 		<button aria-label="update Theme">Update</button>
 	</form>
+
+	<h2>Rounded Corners</h2>
+	<p class="underline">
+		Your currently saved Rounded Corners Setting is: {JSON.stringify(data.rounded_corners)}
+	</p>
+	<form action="?/rounded_corners" method="POST" class="rounded-corners-form">
+		<label for="rounded-corners-settings">Select your prefered Rounded Corners Setting:</label>
+		<input
+			type="checkbox"
+			name="rounded-corners"
+			id="rounded-corners"
+			bind:checked={data.rounded_corners}
+		/>
+		<br />
+		<button aria-label="update Rounded Corners">Update</button>
+	</form>
 </div>
 
 <div class="delete-account">

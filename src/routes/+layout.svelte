@@ -15,9 +15,16 @@
 
 		let rounded_corners = data.rounded_corners as boolean;
 		if (rounded_corners === undefined) {
-			rounded_corners = 'true';
+			rounded_corners = true;
 		}
-		localStorage.setItem('rounded_corners', rounded_corners);
+		localStorage.setItem('rounded_corners', JSON.stringify(rounded_corners));
+
+		const body = document.querySelector('body') as HTMLBodyElement;
+		if (rounded_corners === undefined) {
+			body.setAttribute('data-rounded-corners', 'true');
+		} else {
+			body.setAttribute('data-rounded-corners', JSON.stringify(rounded_corners));
+		}
 	});
 </script>
 
