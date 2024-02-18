@@ -5,7 +5,7 @@
 	import { resetGame } from '$lib/scripts/Precision/resetGame';
 	import type { Team } from '$lib/scripts/Precision/types';
 	import { updatePointsDisplay } from '$lib/scripts/Precision/updatePointsDisplay';
-	import { capitalizeFirstLetter } from '$lib/shared/utils';
+	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 // Import onMount and afterUpdate from Svelte
 	import { afterUpdate, onMount } from 'svelte';
 	// Import the Dialog component and the open_dialog function from the Global folder

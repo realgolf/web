@@ -1,6 +1,6 @@
 <script lang="ts">
 	import FourWinningTable from '$lib/components/Archive/FourWinning_table.svelte';
-	import { asignNameToTeam } from '$lib/shared/utils';
+	import { asignNameToTeam } from '$lib/shared/utils/asignNameToTeam';
 
 	// eslint-disable-next-line
 	export let data: any;

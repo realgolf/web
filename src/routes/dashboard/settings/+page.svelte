@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { capitalizeFirstLetter } from '$lib/shared/utils';
+	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import { faEye } from '@fortawesome/free-solid-svg-icons';
 	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa';

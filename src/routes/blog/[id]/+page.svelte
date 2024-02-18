@@ -1,6 +1,6 @@
 <script lang="ts">
 	import GoBack from '$lib/components/Blog/GoBack.svelte';
-	import sanitizeHTML from '$lib/shared/utils.js';
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 
 	//import Controls from "$lib/components/Controls.svelte";
 	//import GoBack from '$lib/components/GoBack.svelte';

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { rows, setToNewRows } from '$lib/scripts/FourWinning_table/rows';
 	import type { GameData } from '$lib/scripts/FourWinning_table/types';
-	import { capitalizeFirstLetter } from '$lib/shared/utils';
+	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import { onMount } from 'svelte';
 
 	export let measurement_units; // Input prop for measurement units

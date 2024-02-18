@@ -9,10 +9,10 @@
 	import { updateTeamTurn } from '$lib/scripts/FourWinning/updateTeamTurn';
 	import { winCombinations } from '$lib/scripts/FourWinning/winCombinations';
 // Import the capitalizeFirstLetter function from the shared folder
-	import { capitalizeFirstLetter } from '$lib/shared/utils';
 	// Import onMount from Svelte
 	import { onMount } from 'svelte';
 	// Import the Dialog component and the open_dialog function from the Global folder
+	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import Dialog, { open_dialog } from '../Global/Dialog.svelte';
 
 	// Define Props
@@ -195,7 +195,6 @@
 	}
 
 	let isMounted = false;
-
 
 	// Run the code inside the onMount function only once when the component is mounted
 	onMount(() => {

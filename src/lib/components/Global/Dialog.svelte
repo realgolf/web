@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	import sanitizeHTML from '$lib/shared/utils';
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import { writable } from 'svelte/store';
 
 	let dialog: HTMLDialogElement;
