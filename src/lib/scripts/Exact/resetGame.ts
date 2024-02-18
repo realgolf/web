@@ -1,3 +1,15 @@
+/**
+ * Resets the game by clearing team data, points, and updating the UI.
+ *
+ * @param teams - An array of teams.
+ * @param pointsByTeam - A record of points by team color.
+ * @param userInput - The user input.
+ * @param clickedCellsCount - The count of clicked cells.
+ * @param currentTeamIndex - The index of the current team.
+ * @param currentTeam - The current team.
+ * @param color - The color of the current team.
+ * @returns An object containing the updated values of userInput, clickedCellsCount, currentTeamIndex, currentTeam, color, and cells.
+ */
 import type { Writable } from 'svelte/store';
 import type { Team } from './types';
 import { updatePointsDisplay } from './updatePointsDisplay';
