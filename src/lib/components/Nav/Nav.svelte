@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import type { User } from '$lib/server/user/types';
 	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import { faHouse, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import Dropdownmenu from './Dropdownmenu.svelte';
+	import Search from './Search.svelte';
 
 	export let auth: string | undefined;
 	export let username: string | undefined;
+	export let all_users: User[];
 
 	type link = {
 		path: string;
@@ -69,6 +72,9 @@
 				<span class="no-line">{@html getPagePath()}</span>
 			</li>
 		{/each}
+		<li>
+			<Search {all_users} />
+		</li>
 		<li>
 			<Dropdownmenu {auth} {username} />
 		</li>

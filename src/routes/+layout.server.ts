@@ -20,6 +20,17 @@ export const load: LayoutServerLoad = async (event: {
 
 	const user = await User_Model?.findOne({ 'user.email': email });
 
+	const database_all_users = await User_Model?.find({});
+	console.log('database_all_users', database_all_users);
+	let all_users = [];
+	if (database_all_users !== undefined && database_all_users !== null) {
+		all_users = database_all_users.map((user) => {
+			const usersCopy = JSON.parse(JSON.stringify(user));
+			delete usersCopy._id; // Remove the _id field
+			return usersCopy;
+		});
+	}
+
 	if (!user) {
 		return {
 			status: 404,
@@ -30,5 +41,7 @@ export const load: LayoutServerLoad = async (event: {
 	const theme = user.user?.theme;
 	const rounded_corners = user.user?.rounded_corners;
 
-	return { name, email, auth, theme, rounded_corners, username };
+	console.log('all_users', all_users);
+
+	return { all_users, name, email, auth, theme, rounded_corners, username };
 };
