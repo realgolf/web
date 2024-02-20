@@ -74,8 +74,6 @@
 		{/each}
 		<li>
 			<Search {all_users} />
-		</li>
-		<li>
 			<Dropdownmenu {auth} {username} />
 		</li>
 	</ul>
