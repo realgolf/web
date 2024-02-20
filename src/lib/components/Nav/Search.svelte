@@ -28,5 +28,5 @@
 {/if}
 
 <style lang="scss">
-	@import '$lib/scss/Search.scss';
+	@import '$lib/scss/Nav/Search.scss';
 </style>
