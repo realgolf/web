@@ -73,8 +73,12 @@
 			</li>
 		{/each}
 		<li>
-			<Search {all_users} />
-			<Dropdownmenu {auth} {username} />
+			<div class="search">
+				<Search {all_users} />
+			</div>
+			<div class="dropdown-menu">
+				<Dropdownmenu {auth} {username} />
+			</div>
 		</li>
 	</ul>
 </nav>

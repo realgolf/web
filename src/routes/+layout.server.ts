@@ -21,7 +21,6 @@ export const load: LayoutServerLoad = async (event: {
 	const user = await User_Model?.findOne({ 'user.email': email });
 
 	const database_all_users = await User_Model?.find({});
-	console.log('database_all_users', database_all_users);
 	let all_users = [];
 	if (database_all_users !== undefined && database_all_users !== null) {
 		all_users = database_all_users.map((user) => {
@@ -40,8 +39,6 @@ export const load: LayoutServerLoad = async (event: {
 
 	const theme = user.user?.theme;
 	const rounded_corners = user.user?.rounded_corners;
-
-	console.log('all_users', all_users);
 
 	return { all_users, name, email, auth, theme, rounded_corners, username };
 };

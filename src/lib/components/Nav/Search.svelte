@@ -9,12 +9,13 @@
 </script>
 
 <div class="search">
-	<button>
+	<button class="search-button">
 		<Fa icon={faMagnifyingGlass} />
+		<span class="description">Search</span>
 	</button>
 </div>
 {#if show_all}
-	<div class="search-results">
+	<div class="search-content">
 		{#if all_users}
 			{#each all_users as user}
 				<div class="search-result">
