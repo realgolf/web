@@ -26,11 +26,14 @@
 	<div class="blurry-background" />
 	<div class="search-content">
 		<button class="close-search" on:click={closeSearch}>x</button>
+		<div class="search">
+			<input type="text" placeholder="Search for users" aria-label="Search for Users" />
+		</div>
 		{#if all_users}
 			<h3>All Users</h3>
 			{#each all_users as user}
 				<div class="search-result">
-					<a href="/{user.user.username}}">
+					<a href="/{user.user.username}">
 						<span>{user.user.username}</span>
 					</a>
 				</div>

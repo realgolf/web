@@ -53,6 +53,9 @@ button :global(svg) {
 
 	background-color: var(--nav-color);
 
+	padding-right: 3rem;
+	padding-left: 2rem;
+
 	height: 100%;
 	overflow-y: auto;
 
@@ -65,7 +68,7 @@ button :global(svg) {
 	border-bottom-left-radius: calc(var(--border-radius) * 3);
 
 	a {
-		text-decoration: none;
+		text-decoration: underline;
 
 		span {
 			margin-right: 0.5rem;
@@ -108,5 +111,10 @@ button :global(svg) {
 	.logged-in {
 		padding-top: 10px;
 		padding-bottom: 10px;
+	}
+
+	.search {
+		padding-top: 0.6rem;
+		padding-bottom: 0.6rem;
 	}
 }
