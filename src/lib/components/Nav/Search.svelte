@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { search_by_term } from '$lib/scripts/Nav/search_by_term';
 	import type { User } from '$lib/server/user/types';
 	import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 	import { afterUpdate } from 'svelte';
@@ -11,15 +12,8 @@
 
 	let filtered_users: User[] = all_users;
 
-	function search_by_term() {
-		// Filter all_users based on search_term
-		return all_users.filter((user) => {
-			return user.user.username.includes(search_term);
-		});
-	}
-
 	afterUpdate(() => {
-		filtered_users = search_by_term();
+		filtered_users = search_by_term(all_users, search_term);
 	});
 
 	function toggleSearch() {
