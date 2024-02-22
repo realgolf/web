@@ -1,11 +1,26 @@
 <script lang="ts">
 	import type { User } from '$lib/server/user/types';
 	import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+	import { afterUpdate } from 'svelte';
 	import Fa from 'svelte-fa';
 
 	export let all_users: User[];
+
 	let show_all = false;
-	console.log(all_users);
+	let search_term = '';
+
+	let filtered_users: User[] = all_users;
+
+	function search_by_term() {
+		// Filter all_users based on search_term
+		return all_users.filter((user) => {
+			return user.user.username.includes(search_term);
+		});
+	}
+
+	afterUpdate(() => {
+		filtered_users = search_by_term();
+	});
 
 	function toggleSearch() {
 		show_all = !show_all;
@@ -27,11 +42,16 @@
 	<div class="search-content">
 		<button class="close-search" on:click={closeSearch}>x</button>
 		<div class="search">
-			<input type="text" placeholder="Search for Users" aria-label="Search for Users" />
+			<input
+				type="text"
+				placeholder="Search for Users"
+				aria-label="Search for Users"
+				bind:value={search_term}
+			/>
 		</div>
-		{#if all_users}
+		{#if filtered_users}
 			<h3>All Users</h3>
-			{#each all_users as user, index}
+			{#each filtered_users as user, index}
 				{#if index < 30}
 					<div class="search-result">
 						<a href="/{user.user.username}">
