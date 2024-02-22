@@ -75,44 +75,6 @@ button :global(svg) {
 		}
 	}
 
-	.search-results {
-		margin-left: 1rem;
-	}
-
-	.underline {
-		text-decoration: underline !important;
-	}
-
-	.close-button {
-		margin: 10px;
-
-		&:hover {
-			background-color: var(--label-color);
-		}
-	}
-
-	.border-bottom {
-		border-bottom: 2px solid var(--border-color);
-	}
-
-	.row {
-		display: flex;
-		flex-direction: column;
-		padding-right: 30px;
-		padding-left: 15px;
-	}
-
-	.home,
-	.external-links,
-	.copyright,
-	.logout,
-	.internal-links,
-	.logged-out,
-	.logged-in {
-		padding-top: 10px;
-		padding-bottom: 10px;
-	}
-
 	.search {
 		padding-top: 0.6rem;
 		padding-bottom: 0.6rem;
