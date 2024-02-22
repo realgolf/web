@@ -27,7 +27,7 @@
 	<div class="search-content">
 		<button class="close-search" on:click={closeSearch}>x</button>
 		<div class="search">
-			<input type="text" placeholder="Search for users" aria-label="Search for Users" />
+			<input type="text" placeholder="Search for Users" aria-label="Search for Users" />
 		</div>
 		{#if all_users}
 			<h3>All Users</h3>
