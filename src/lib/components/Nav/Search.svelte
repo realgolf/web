@@ -4,19 +4,30 @@
 	import Fa from 'svelte-fa';
 
 	export let all_users: User[];
-	let show_all = true;
+	let show_all = false;
 	console.log(all_users);
+
+	function toggleSearch() {
+		show_all = !show_all;
+	}
+
+	function closeSearch() {
+		show_all = false;
+	}
 </script>
 
 <div class="search">
-	<button class="search-button">
+	<button class="search-button" on:click={toggleSearch}>
 		<Fa icon={faMagnifyingGlass} />
 		<span class="description">Search</span>
 	</button>
 </div>
 {#if show_all}
+	<div class="blurry-background" />
 	<div class="search-content">
+		<button class="close-search" on:click={closeSearch}>x</button>
 		{#if all_users}
+			<h3>All Users</h3>
 			{#each all_users as user}
 				<div class="search-result">
 					<a href="/{user.user.username}}">
