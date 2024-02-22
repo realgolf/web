@@ -31,12 +31,14 @@
 		</div>
 		{#if all_users}
 			<h3>All Users</h3>
-			{#each all_users as user}
-				<div class="search-result">
-					<a href="/{user.user.username}">
-						<span>{user.user.username}</span>
-					</a>
-				</div>
+			{#each all_users as user, index}
+				{#if index < 30}
+					<div class="search-result">
+						<a href="/{user.user.username}">
+							<span>{user.user.username}</span>
+						</a>
+					</div>
+				{/if}
 			{/each}
 		{/if}
 	</div>
