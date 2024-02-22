@@ -32,7 +32,7 @@
 					>One Player Precision</a
 				> to get a Highscore before it can be displayed here.
 			</p>
-		{:else}
+		{:else if data.daily.lastUpdated != null}
 			<ul>
 				<li>
 					<b>Today's</b> highscore is: {data.daily.value}, last updated on{' '}

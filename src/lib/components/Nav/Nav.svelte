@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import type { User } from '$lib/server/user/types';
 	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import { faHouse, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import Dropdownmenu from './Dropdownmenu.svelte';
+	import Search from './Search.svelte';
 
 	export let auth: string | undefined;
 	export let username: string | undefined;
+	export let all_users: User[];
 
 	type link = {
 		path: string;
@@ -70,54 +73,16 @@
 			</li>
 		{/each}
 		<li>
-			<Dropdownmenu {auth} {username} />
+			<div class="search">
+				<Search {all_users} />
+			</div>
+			<div class="dropdown-menu">
+				<Dropdownmenu {auth} {username} />
+			</div>
 		</li>
 	</ul>
 </nav>
 
 <style lang="scss">
-	nav {
-		padding-block: 1.25rem;
-		background-color: var(--nav-color);
-
-		@media (max-width: 38rem) {
-			padding-block: 0.5rem;
-		}
-
-		ul {
-			list-style-type: none;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			gap: 1.25rem;
-			margin-right: 20px;
-			margin-left: 20px;
-			a {
-				position: relative;
-				text-decoration: none;
-
-				&::before {
-					content: '';
-					position: absolute;
-					left: 0;
-					bottom: -2px;
-					width: 0;
-					height: 2px;
-					background-color: var(--highlight-color);
-					transition: width 0.3s ease;
-				}
-
-				&:hover::before {
-					width: 100%;
-				}
-			}
-
-			li {
-				span {
-					margin-left: 15px;
-					white-space: nowrap;
-				}
-			}
-		}
-	}
+	@import '$lib/scss/Nav/Nav.scss';
 </style>
