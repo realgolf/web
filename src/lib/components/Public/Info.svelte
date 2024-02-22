@@ -29,9 +29,3 @@
 
 	<OnePlayerPrecisionHighscore {data} />
 </div>
-
-<style lang="scss">
-	.info {
-		margin: 3rem;
-	}
-</style>
