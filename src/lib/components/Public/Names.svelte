@@ -14,7 +14,7 @@
 	<br />
 	<span class="vcard-fullname"
 		>{data.user_name}
-		{#if pronoun != undefined || pronoun == 'dont'}
+		{#if pronoun !== undefined && pronoun !== 'dont'}
 			·
 			{#if pronoun == 'custom' && data.custom_pronoun}
 				{data.custom_pronoun}
