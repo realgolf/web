@@ -36,6 +36,8 @@ export const load: PageServerLoad = async (event) => {
 	const user_games = user.games;
 	const user_bio = user.user?.bio;
 	const total_games = user.total_games;
+	const pronoun = user.user?.pronoun;
+	const custom_pronoun = user.user?.custom_pronoun;
 
 	const user_daily = {
 		value: user_one_player_precision_highscore?.daily?.value,
@@ -105,7 +107,9 @@ export const load: PageServerLoad = async (event) => {
 		badges,
 		achievements,
 		total_games,
-		socials
+		socials,
+		pronoun,
+		custom_pronoun
 	};
 };
 
@@ -117,6 +121,19 @@ export const actions: Actions = {
 		const socials_input = data.get('socials') as string;
 		const socials_input_cleaned = socials_input.replace(/\r/g, '');
 		const email_public = data.get('email_public') === 'on';
+		const user = await User_Model?.findOne({ 'user.email': email });
+		const pronoun = data.get('pronoun') as string;
+		const custom_pronoun = data.get('custom_pronoun') as string;
+
+		if (user?.user) {
+			if (pronoun === 'custom') {
+				user.user.pronoun = pronoun;
+				user.user.custom_pronoun = custom_pronoun;
+			} else {
+				user.user.pronoun = pronoun;
+			}
+			await user.save();
+		}
 
 		updateSocials(email, socials_input_cleaned);
 		displayEmailPublic(email, email_public);
