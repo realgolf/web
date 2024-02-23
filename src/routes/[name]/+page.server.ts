@@ -1,3 +1,6 @@
+import { displayEmailPublic } from '$lib/scripts/Public/display_email_public';
+import { updateBio } from '$lib/scripts/Public/update_bio';
+import { updateSocials } from '$lib/scripts/Public/update_socials';
 import { User_Model } from '$lib/server/user/models';
 import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
@@ -108,37 +111,15 @@ export const load: PageServerLoad = async (event) => {
 
 export const actions: Actions = {
 	edit_profile: async (event) => {
-		const email = event.cookies.get('email');
-		const user = await User_Model?.findOne({ 'user.email': email });
+		const email = event.cookies.get('email') as string;
 		const data = await event.request.formData();
 		const bio = data.get('bio') as string;
 		const socials_input = data.get('socials') as string;
 		const socials_input_cleaned = socials_input.replace(/\r/g, '');
 		const email_public = data.get('email_public') === 'on';
 
-		if (user?.user && socials_input_cleaned) {
-			const socials_array = socials_input_cleaned.split('\n').filter((social) => social.length > 0);
-
-			user.user.socials = socials_array;
-			await user.save();
-		}
-
-		if (user?.user && (user.user.email_public === false || user.user.email_public === true)) {
-			console.log('email_public', email_public);
-			user.user.email_public = email_public;
-			await user.save();
-		}
-
-		if (user?.user) {
-			if (user.user.bio !== bio) {
-				user.user.bio = bio;
-			} else {
-				return {
-					status: 500,
-					error: "The Bio didn't get modified!"
-				};
-			}
-			await user.save();
-		}
+		updateSocials(email, socials_input_cleaned);
+		displayEmailPublic(email, email_public);
+		updateBio(email, bio);
 	}
 };
