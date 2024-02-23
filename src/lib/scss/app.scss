@@ -186,6 +186,31 @@ input:focus {
 }
 
 /**
+ * Styles the select element.
+ */
+
+select {
+	color: var(--font-color);
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	border-radius: var(--border-radius);
+	background: none;
+	margin-bottom: 1.5rem;
+	text-align: center;
+	border: 1px solid var(--border-color);
+
+	padding: 0.2rem 0.4rem;
+	background-color: var(--background-color);
+	cursor: pointer;
+
+	&:focus {
+		outline: 0.1rem solid var(--font-color);
+		outline-offset: 0.2rem;
+	}
+}
+
+/**
 * Checkbox Styles
 */
 
