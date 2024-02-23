@@ -23,6 +23,8 @@ const User_Schema = new mongoose.Schema({
 		handicap_updated: { type: Date, required: true, default: new Date() },
 		bio: { type: String },
 		email_public: { type: Boolean, required: true, default: false },
+		pronoun: { type: String },
+		custom_pronoun: { type: String },
 		badges: [
 			{
 				title: { type: String },
