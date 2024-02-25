@@ -114,7 +114,7 @@
 			<p>© 2024 RealGolf.Games</p>
 			<p>All rights reserved</p>
 			<p>
-				<a class="underline" target="_blank" href="https://github.com/MoinJulian/Golf">GitHub</a>
+				<a class="underline" target="_blank" href="https://github.com/realgolf">GitHub</a>
 			</p>
 		</div>
 		{#if auth}
