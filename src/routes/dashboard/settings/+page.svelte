@@ -307,26 +307,6 @@
 		font-size: var(--medium-font);
 	}
 
-	select {
-		color: var(--font-color);
-		border: none;
-		font-family: inherit;
-		font-size: inherit;
-		border-radius: var(--border-radius);
-		background: none;
-		margin-bottom: 1.5rem;
-		text-align: center;
-
-		padding: 0.4rem 0.8rem;
-		background-color: var(--accent-color);
-		cursor: pointer;
-
-		&:focus {
-			outline: 0.1rem solid var(--font-color);
-			outline-offset: 0.2rem;
-		}
-	}
-
 	.danger-zone {
 		color: red;
 	}
