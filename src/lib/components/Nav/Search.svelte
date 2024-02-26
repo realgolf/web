@@ -44,7 +44,7 @@
 			/>
 		</div>
 		<h3>All Users</h3>
-		{#if filtered_users.length > 0}
+		{#if filtered_users && filtered_users.length > 0}
 			{#each filtered_users as user, index}
 				{#if index < 30}
 					<div class="search-result">
