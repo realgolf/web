@@ -49,7 +49,7 @@
 		"@fortawesome/free-solid-svg-icons": "^6.5.1",
 		"@sveltejs/adapter-node": "^4.0.1",
 		"@types/bcrypt": "^5.0.2",
-		"@types/jsonwebtoken": "^9.0.5",
+		"@types/jsonwebtoken": "^9.0.6",
 		"autoprefixer": "^10.4.17",
 		"bcrypt": "^5.1.1",
 		"dompurify": "^3.0.9",
