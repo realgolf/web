@@ -32,7 +32,9 @@
 				<a href={path} aria-label={title}>
 					<Fa {icon} />
 				</a>
-				<Path />
+				<div class="path">
+					<Path />
+				</div>
 			</li>
 		{/each}
 		<li>

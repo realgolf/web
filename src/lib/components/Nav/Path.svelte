@@ -11,6 +11,5 @@
 <style lang="scss">
 	span {
 		margin-left: 15px;
-		white-space: nowrap;
 	}
 </style>
