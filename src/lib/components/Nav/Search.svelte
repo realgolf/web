@@ -44,7 +44,7 @@
 			/>
 		</div>
 		<h3>All Users</h3>
-		{#if filtered_users.length > 0}
+		{#if filtered_users && filtered_users.length > 0}
 			{#each filtered_users as user, index}
 				{#if index < 30}
 					<div class="search-result">
@@ -56,6 +56,8 @@
 			{/each}
 		{:else}
 			<p>No users found.</p>
+			<p class="success">This may be because you are on a page which got pre-rendered.</p>
+			<p class="success">We apologise, but currently we are unable to fix this issue.</p>
 		{/if}
 	</div>
 {/if}
