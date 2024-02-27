@@ -38,17 +38,16 @@ nav {
 			display: flex;
 			flex-direction: row;
 
-			span {
-				margin-left: 15px;
-				white-space: nowrap;
-			}
-
 			.search {
 				margin-right: 0.5rem;
 			}
 
 			.dropdown-menu {
 				margin-left: 0.5rem;
+			}
+
+			span {
+				margin-left: 15px;
 			}
 		}
 	}
