@@ -69,7 +69,7 @@ export async function register_user(
 
 	if (User_Model) {
 		const user = new User_Model({
-			id: id,
+			id: `user-friendly-${id}`,
 			user: {
 				email,
 				password: hashed_password,
