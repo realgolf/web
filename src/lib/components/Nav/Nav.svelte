@@ -1,10 +1,14 @@
 <script lang="ts">
+	import { page } from '$app/stores';
+	import { getPagePath } from '$lib/scripts/Nav/get_page_path';
 	import type { User } from '$lib/server/user/types';
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import { faHouse, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import Dropdownmenu from './Dropdownmenu.svelte';
-	import Path from './Path.svelte';
 	import Search from './Search.svelte';
+
+	$: currentPagePath = $page.url.pathname;
 
 	export let auth: string | undefined;
 	export let username: string | undefined;
@@ -33,7 +37,7 @@
 					<Fa {icon} />
 				</a>
 				<div class="path">
-					<Path />
+					<span class="no-line" use:sanitizeHTML={[getPagePath(currentPagePath)]} />
 				</div>
 			</li>
 		{/each}
