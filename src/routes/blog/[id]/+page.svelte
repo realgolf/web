@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-	<title>MoinJulian | {title}</title>
+	<title>Real Golf - {title}</title>
 </svelte:head>
 
 <GoBack />
@@ -169,6 +169,11 @@
 			border-radius: var(--border-radius);
 			font-size: var(--small-font);
 			white-space: nowrap;
+		}
+
+		:global(ol) {
+			margin-left: 2rem;
+			margin-bottom: 1rem;
 		}
 	}
 </style>
