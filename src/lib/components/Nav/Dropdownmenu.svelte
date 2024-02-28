@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import {
 		faBars,
 		faBook,
@@ -10,13 +11,13 @@
 		faGear,
 		faHouse,
 		faInfoCircle,
-		faKey,
-		faLock,
 		faQuestionCircle,
 		faSave,
+		faSignInAlt,
 		faSignOutAlt,
 		faTh,
 		faUser,
+		faUserPlus,
 		faWrench
 	} from '@fortawesome/free-solid-svg-icons';
 	import { onDestroy, onMount } from 'svelte';
@@ -34,6 +35,8 @@
 	function closeDropdown() {
 		isOpen = false;
 	}
+
+	let currentPath = $page.url.pathname;
 
 	onMount(() => {
 		window.addEventListener('keypress', (e) => {
@@ -75,11 +78,11 @@
 		<div class="home row border-bottom">
 			<a href="/"><span><Fa icon={faHouse} /></span>Home</a>
 		</div>
-		{#if !auth}
+		{#if !auth && currentPath !== '/blog'}
 			<div class="logged-out row border-bottom">
 				<h3>Sign in</h3>
-				<a href="/register"><span><Fa icon={faLock} /></span>Register</a>
-				<a href="/login"><span><Fa icon={faKey} /></span>Login</a>
+				<a href="/register"><span><Fa icon={faUserPlus} /></span>Register</a>
+				<a href="/login"><span><Fa icon={faSignInAlt} /></span>Login</a>
 			</div>
 		{/if}
 		{#if auth}
