@@ -1,19 +1,13 @@
 <script lang="ts">
-	import { social_links } from '$lib/scripts/social_links.js';
-	import { faEnvelope, faLink, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
+	import { modify_social } from '$lib/scripts/Public/modify_socials';
+	import type { matchedSocials } from '$lib/types/matched_socials';
+	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
 
 	export let data: PageData;
 
 	let editing = false;
-
-	type matchedSocials = {
-		link: string;
-		domain: string;
-		logo: IconDefinition | undefined;
-		username: string;
-	};
 
 	function handleCancel(event: { preventDefault: () => void }) {
 		event.preventDefault();
@@ -22,57 +16,11 @@
 
 	let display_socials = data.socials?.map((social) => `${social}\n`).join('') ?? '';
 
-	function modify_social() {
-		let socials = data.socials;
-		let matchedSocials: matchedSocials[] = [];
-
-		if (socials) {
-			socials.forEach((social) => {
-				let matched = false;
-				for (const social_link of social_links) {
-					let pattern = new RegExp('^' + social_link.domain.replace('*', '.*'));
-					if (pattern.test(social)) {
-						matched = true;
-						let url = new URL(social);
-						let username;
-
-						// Check for Lichess and Chess.com special cases
-						if (social_link.domain === 'https://lichess.org/@/*') {
-							username = url.pathname.split('@/')[1]; // Get the part after '@/'
-						} else if (social_link.domain === 'https://www.chess.com/members/*') {
-							username = url.pathname.split('/')[2]; // Get the part after 'members/'
-						} else {
-							username = url.pathname.substring(1); // Remove the leading slash
-						}
-
-						matchedSocials.push({
-							link: social,
-							domain: social_link.domain,
-							logo: social_link.logo,
-							username: username // Add the username to the object
-						});
-						break; // Break out of the loop once we find a match
-					}
-				}
-				if (!matched) {
-					matchedSocials.push({
-						link: social,
-						domain: social,
-						logo: undefined,
-						username: social
-					});
-				}
-			});
-		}
-
-		return matchedSocials;
-	}
-
 	type socialsRender = matchedSocials[];
 
 	let socials_render: socialsRender = [];
 	// Call modify_social() and assign the result to socials_render
-	socials_render = modify_social();
+	socials_render = modify_social(data);
 </script>
 
 <div class="bio">
@@ -171,30 +119,5 @@
 </div>
 
 <style lang="scss">
-	.bio {
-		padding: 0.5rem 0;
-		max-width: 296px;
-
-		textarea {
-			background-color: var(--background-color);
-			color: var(--font-color);
-			font-size: var(--medium-font);
-			width: 100%;
-		}
-
-		.checkbox {
-			display: flex;
-			flex-direction: row;
-
-			& > label {
-				height: max-content;
-				margin-bottom: 0;
-			}
-
-			input {
-				margin-top: 0.1rem;
-				margin-left: 1rem;
-			}
-		}
-	}
+	@import '$lib/scss/Public/Bio.scss';
 </style>
