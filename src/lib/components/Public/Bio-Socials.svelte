@@ -14,6 +14,8 @@
 		editing = false;
 	}
 
+	console.log(data);
+
 	let display_socials = data.socials?.map((social) => `${social}\n`).join('') ?? '';
 
 	type socialsRender = matchedSocials[];
@@ -59,6 +61,13 @@
 			<div class="social">
 				<label for="socials">Socials (one per line)</label>
 				<textarea bind:value={display_socials} name="socials" id="socials" rows="3" />
+			</div>
+			<div class="status">
+				<label for="status_input">Edit status</label>
+				<input type="text" name="status_text" id="status_text" bind:value={data.user_status.text} />
+				<span
+					><input type="checkbox" name="busy" id="busy" bind:value={data.user_status.busy} /> Busy</span
+				>
 			</div>
 			<button type="submit">Save</button>
 			<button type="button" on:click={handleCancel}>Cancel</button>

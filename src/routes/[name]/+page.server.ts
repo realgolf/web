@@ -38,6 +38,7 @@ export const load: PageServerLoad = async (event) => {
 	const total_games = user.total_games;
 	const pronoun = user.user?.pronoun;
 	const custom_pronoun = user.user?.custom_pronoun;
+	const user_status = user.user?.status;
 
 	const user_daily = {
 		value: user_one_player_precision_highscore?.daily?.value,
@@ -88,6 +89,9 @@ export const load: PageServerLoad = async (event) => {
 		return socialCopy;
 	});
 
+	console.log('user', user);
+	console.log('user_status', user_status);
+
 	return {
 		user_name,
 		user_username,
@@ -109,7 +113,8 @@ export const load: PageServerLoad = async (event) => {
 		total_games,
 		socials,
 		pronoun,
-		custom_pronoun
+		custom_pronoun,
+		user_status
 	};
 };
 
