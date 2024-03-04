@@ -75,6 +75,8 @@
 			} else {
 				// If the cell is already claimed by another team
 				if (cell.style.backgroundColor != currentTeam.color) {
+					FieldClickedFourTimes(outerIndex, innerIndex);
+					changeTeam();
 					open_dialog({
 						text: '<b> Oops! </b> This Field is already claimed by another Team. You can still win by hitting it four times!',
 						modal: false,
