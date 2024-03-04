@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import {
 		faBars,
 		faBook,
@@ -35,8 +34,6 @@
 	function closeDropdown() {
 		isOpen = false;
 	}
-
-	let currentPath = $page.url.pathname;
 
 	onMount(() => {
 		window.addEventListener('keypress', (e) => {
