@@ -56,8 +56,7 @@
 			{/each}
 		{:else}
 			<p>No users found.</p>
-			<p class="success">This may be because you are on a page which got pre-rendered.</p>
-			<p class="success">We apologise, but currently we are unable to fix this issue.</p>
+			<p class="success">You must be loged in to search for other users.</p>
 		{/if}
 	</div>
 {/if}
