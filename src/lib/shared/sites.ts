@@ -1,1 +1,9 @@
-export const sites = ['dashboard', 'faq', 'imprint', 'login', 'logout', 'register'];
+export const sites = [
+	'dashboard',
+	'faq',
+	'imprint',
+	'login',
+	'logout',
+	'register, "blog',
+	'[name]'
+];
