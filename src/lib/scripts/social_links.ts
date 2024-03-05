@@ -36,7 +36,7 @@ export const social_links = [
 	},
 	{
 		logo: faChess,
-		domain: 'https://www.chess.com/members/*'
+		domain: 'https://chess.com/members/*'
 	},
 	{
 		logo: faChessKnight,
