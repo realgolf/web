@@ -20,7 +20,7 @@ export function modify_social(data: PageData) {
 					// Check for Lichess and Chess.com special cases
 					if (social_link.domain === 'https://lichess.org/@/*') {
 						username = url.pathname.split('@/')[1]; // Get the part after '@/'
-					} else if (social_link.domain === 'https://www.chess.com/members/*') {
+					} else if (social_link.domain === 'https://chess.com/members/*') {
 						username = url.pathname.split('/')[2]; // Get the part after 'members/'
 					} else {
 						username = url.pathname.substring(1); // Remove the leading slash
