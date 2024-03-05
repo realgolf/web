@@ -22,6 +22,10 @@
 	});
 </script>
 
+{data.user_status.busy}
+{data.user_status.text}
+{data.user_status.emoji}
+
 <svelte:head>
 	{#if data.user_username == undefined}
 		<title>404 - User/Page Not Found</title>

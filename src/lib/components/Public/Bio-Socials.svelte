@@ -14,13 +14,12 @@
 		editing = false;
 	}
 
-	console.log(data);
-
 	let display_socials = data.socials?.map((social) => `${social}\n`).join('') ?? '';
 
 	type socialsRender = matchedSocials[];
 
 	let socials_render: socialsRender = [];
+
 	// Call modify_social() and assign the result to socials_render
 	socials_render = modify_social(data);
 </script>
@@ -66,13 +65,16 @@
 				<label for="status_input">Edit status</label>
 				<input type="text" name="status_text" id="status_text" bind:value={data.user_status.text} />
 				<span
-					><input type="checkbox" name="busy" id="busy" bind:value={data.user_status.busy} /> Busy</span
+					><input type="checkbox" name="busy" id="busy" bind:checked={data.user_status.busy} /> Busy</span
 				>
 			</div>
 			<button type="submit">Save</button>
 			<button type="button" on:click={handleCancel}>Cancel</button>
 		</form>
 	{:else if data.sameUser}
+		{#if data.user_status.text}
+			<p>{data.user_status.text}</p>
+		{/if}
 		{#if data.user_bio}
 			<p>{data.user_bio}</p>
 		{/if}
