@@ -4,6 +4,7 @@
 	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
+	import Status from './Status.svelte';
 
 	export let data: PageData;
 
@@ -73,7 +74,7 @@
 		</form>
 	{:else if data.sameUser}
 		{#if data.user_status.text}
-			<p>{data.user_status.text}</p>
+			<Status {data} />
 		{/if}
 		{#if data.user_bio}
 			<p>{data.user_bio}</p>
@@ -103,8 +104,13 @@
 				{/each}
 			</div>
 		{/if}
-	{:else if data.user_bio && data.socials && data.user_email_public}
-		<p>{data.user_bio}</p>
+	{:else}
+		{#if data.user_status.text}
+			<Status {data} />
+		{/if}
+		{#if data.user_bio}
+			<p>{data.user_bio}</p>
+		{/if}
 		{#if data.user_email_public == true}
 			<p><Fa icon={faEnvelope} /> <span>{data.user_email}</span></p>
 		{/if}
