@@ -47,7 +47,6 @@
 					<option value="they/them">they/them</option>
 					<option value="custom">Costum</option>
 				</select>
-
 				{#if data.pronoun == 'custom'}
 					<input
 						type="text"
@@ -64,9 +63,10 @@
 			<div class="status">
 				<label for="status_input">Edit status</label>
 				<input type="text" name="status_text" id="status_text" bind:value={data.user_status.text} />
-				<span
-					><input type="checkbox" name="busy" id="busy" bind:checked={data.user_status.busy} /> Busy</span
-				>
+				<div class="checkbox busy">
+					<label for="busy">Busy</label>
+					<input type="checkbox" name="busy" id="busy" bind:checked={data.user_status.busy} />
+				</div>
 			</div>
 			<button type="submit">Save</button>
 			<button type="button" on:click={handleCancel}>Cancel</button>
