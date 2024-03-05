@@ -33,10 +33,10 @@ const User_Schema = new mongoose.Schema({
 			}
 		],
 		socials: { type: Array, default: [] },
-		status: { 
-			emoji: { type: String }, 
-			text: { type: String }, 
-			busy: { type: Boolean } 
+		status: {
+			emoji: { type: String },
+			text: { type: String },
+			busy: { type: Boolean }
 		}
 	},
 	achievements: [
