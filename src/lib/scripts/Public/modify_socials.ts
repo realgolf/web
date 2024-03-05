@@ -10,7 +10,8 @@ export function modify_social(data: PageData) {
 		socials.forEach((social: string) => {
 			let matched = false;
 			for (const social_link of social_links) {
-				const pattern = new RegExp('^' + social_link.domain.replace('*', '.*'));
+				// Escape the wildcard character '*' in the regular expression
+				const pattern = new RegExp('^' + social_link.domain.replace(/\*/g, '.*'));
 				if (pattern.test(social)) {
 					matched = true;
 					const url = new URL(social);
