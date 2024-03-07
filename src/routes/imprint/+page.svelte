@@ -6,7 +6,7 @@
 
 <h2>According to § 5 TMG (German Telemedia Law)</h2>
 
-<p translate="no">MoinJulian</p>
+<p translate="no">RealGolf.Games</p>
 <p>c/o Julian Hammer</p>
 <p>Katrepeler Landstraße 59a</p>
 <p>28357 Bremen</p>
@@ -17,7 +17,7 @@
 
 <h2>Responsible for the content according to § 55 Abs. 2 RStV</h2>
 
-<p translate="no">MoinJulian</p>
+<p translate="no">RealGolf.Games</p>
 <p>c/o Julian Hammer</p>
 <p>Katrepeler Landstraße 59a</p>
 <p>28357 Bremen</p>
@@ -69,7 +69,7 @@
 	soon as we become aware of legal violations, we will remove such content immediately.
 </p>
 
-<p>Copyright © 2023 Julian Hammer</p>
+<p>Copyright © 2024 RealGolf.Games</p>
 <p>All Rights Reserved</p>
 
 <p>Germany 04.07.23</p>
