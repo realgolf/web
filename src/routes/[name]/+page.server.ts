@@ -1,7 +1,9 @@
 import { displayEmailPublic } from '$lib/scripts/Public/display_email_public';
+import { editStatus } from '$lib/scripts/Public/edit_status';
 import { updateBio } from '$lib/scripts/Public/update_bio';
 import { updateSocials } from '$lib/scripts/Public/update_socials';
 import { User_Model } from '$lib/server/user/models';
+import { serializeNonPOJOs } from '$lib/shared/utils/serializeNonPOJOs';
 import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
@@ -88,6 +90,8 @@ export const load: PageServerLoad = async (event) => {
 		return socialCopy;
 	});
 
+	const user_status = serializeNonPOJOs(user.user?.status as object);
+
 	return {
 		user_name,
 		user_username,
@@ -109,7 +113,8 @@ export const load: PageServerLoad = async (event) => {
 		total_games,
 		socials,
 		pronoun,
-		custom_pronoun
+		custom_pronoun,
+		user_status
 	};
 };
 
@@ -124,6 +129,8 @@ export const actions: Actions = {
 		const user = await User_Model?.findOne({ 'user.email': email });
 		const pronoun = data.get('pronoun') as string;
 		const custom_pronoun = data.get('custom_pronoun') as string;
+		const status_text = data.get('status_text') as string;
+		const busy = data.get('busy') === 'on';
 
 		if (user?.user) {
 			if (pronoun === 'custom') {
@@ -135,6 +142,7 @@ export const actions: Actions = {
 			await user.save();
 		}
 
+		editStatus(email, status_text, busy);
 		updateSocials(email, socials_input_cleaned);
 		displayEmailPublic(email, email_public);
 		updateBio(email, bio);

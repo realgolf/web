@@ -2,7 +2,7 @@
 	import type { PageData } from '../../../routes/[name]/$types';
 	import Achievements from './Achievements.svelte';
 	import Badges from './Badges.svelte';
-	import Bio from './Bio-Socials.svelte';
+	import Bio from './Bio.svelte';
 	import Games from './Games.svelte';
 	import Names from './Names.svelte';
 	import OnePlayerPrecisionHighscore from './One_Player_Precision_Highscore.svelte';
