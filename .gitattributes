@@ -10,6 +10,6 @@
 *.scss linguist-detectable=true
 *.scss linguist-language=SCSS
 
-*.sh linguist-detectable=true
+*.sh linguist-detectable=false
 
 pnpm-lock.yaml linguist-vendored
