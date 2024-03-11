@@ -2,7 +2,7 @@
 	import { search_by_term } from '$lib/scripts/Nav/search_by_term';
 	import type { User } from '$lib/server/user/types';
 	import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-	import { afterUpdate } from 'svelte';
+	import { afterUpdate, onDestroy, onMount } from 'svelte';
 	import Fa from 'svelte-fa';
 
 	export let all_users: User[];
@@ -23,6 +23,32 @@
 	function closeSearch() {
 		show_all = false;
 	}
+
+	onMount(() => {
+		window.addEventListener('keypress', (e) => {
+			if (e.key === 'm' && e.ctrlKey) {
+				toggleSearch();
+			}
+		});
+
+		function closeSearchOnClick(event: MouseEvent | TouchEvent): void {
+			if (
+				event.target instanceof Element &&
+				!event.target.closest('.search') &&
+				!event.target.closest('.close-search') &&
+				!event.target.closest('.search-content')
+			) {
+				closeSearch();
+			}
+		}
+
+		window.addEventListener('click', closeSearchOnClick);
+		window.addEventListener('touchend', closeSearchOnClick);
+
+		onDestroy(() => {
+			window.removeEventListener('click', closeSearch);
+		});
+	});
 </script>
 
 <div class="search">
