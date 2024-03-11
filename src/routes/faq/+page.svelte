@@ -257,7 +257,7 @@
 					cursor: pointer;
 
 					&:hover {
-						color: var(--h2-color);
+						color: var(--highlight-color);
 					}
 				}
 
