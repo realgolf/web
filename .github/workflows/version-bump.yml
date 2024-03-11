@@ -19,7 +19,7 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install grunt-bump@^0.8.0 coffeescript@^2.7.0 load-grunt-tasks@^5.1.0
 
       - name: Run Grunt bump
         run: npx grunt bump --gruntfile Gruntfile.js
