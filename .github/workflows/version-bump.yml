@@ -21,8 +21,11 @@ jobs:
       - name: Install dependencies
         run: npm install grunt-bump@^0.8.0 coffeescript@^2.7.0 load-grunt-tasks@^5.1.0
 
+      - name: Install grunt globally 
+        run: npm install -g grunt-cli
+
       - name: Run Grunt bump
-        run: npx grunt bump --gruntfile Gruntfile.js
+        run: grunt bump --gruntfile Gruntfile.js
 
       - name: Commit version bump
         run: |
