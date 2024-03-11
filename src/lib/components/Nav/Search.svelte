@@ -26,7 +26,7 @@
 
 	onMount(() => {
 		window.addEventListener('keypress', (e) => {
-			if (e.key === 'm' && e.ctrlKey) {
+			if (e.key === 's' && e.ctrlKey) {
 				toggleSearch();
 			}
 		});
