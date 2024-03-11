@@ -46,7 +46,8 @@
 		window.addEventListener('touchend', closeSearchOnClick);
 
 		onDestroy(() => {
-			window.removeEventListener('click', closeSearch);
+			window.removeEventListener('click', closeSearchOnClick);
+			window.removeEventListener('touchend', closeSearchOnClick);
 		});
 	});
 </script>

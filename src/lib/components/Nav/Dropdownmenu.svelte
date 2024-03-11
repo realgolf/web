@@ -57,7 +57,8 @@
 		window.addEventListener('touchend', closeDropdownOnClick);
 
 		onDestroy(() => {
-			window.removeEventListener('click', closeDropdown);
+			window.removeEventListener('click', closeDropdownOnClick);
+			window.removeEventListener('touchend', closeDropdownOnClick);
 		});
 	});
 </script>
