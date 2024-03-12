@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 	export let data;
 
-	const all_users = data.all_users;
+	const all_users = data.all_users ?? [];
 
 	onMount(() => {
 		let theme = data.theme as string;
