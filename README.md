@@ -7,7 +7,7 @@
 
 #### **Read this in [other languages](./translation/translations.md).**
 
-<kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](./translation/german/German.md)</kbd>
+<kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](./translation/german/German.md)</kbd> <kbd>[<img title="Español" alt="Español" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/es.svg" width="22">](./translation/spanish/Spanish.md)</kbd>
 
 ## Introduction
 
