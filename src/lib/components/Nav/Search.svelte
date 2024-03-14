@@ -47,6 +47,7 @@
 
 		onDestroy(() => {
 			window.removeEventListener('click', closeSearch);
+			window.removeEventListener('touchend', closeSearch);
 		});
 	});
 </script>
