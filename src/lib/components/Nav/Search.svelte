@@ -2,7 +2,7 @@
 	import { search_by_term } from '$lib/scripts/Nav/search_by_term';
 	import type { User } from '$lib/server/user/types';
 	import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-	import { afterUpdate, onDestroy, onMount } from 'svelte';
+	import { afterUpdate, onDestroy, onMount, tick } from 'svelte';
 	import Fa from 'svelte-fa';
 
 	export let all_users: User[];
@@ -10,9 +10,14 @@
 	let show_all = false;
 	let search_term = '';
 
-	let filtered_users: User[] = all_users;
+	let filtered_users: User[] = all_users || [];
 
-	afterUpdate(() => {
+	$: if (all_users) {
+		filtered_users = search_by_term(all_users, search_term);
+	}
+
+	afterUpdate(async () => {
+		await tick(); // wait for next microtask
 		filtered_users = search_by_term(all_users, search_term);
 	});
 
