@@ -35,7 +35,7 @@
 			if (
 				event.target instanceof Element &&
 				!event.target.closest('.search') &&
-				!event.target.closest('.close-search') &&
+				!event.target.closest('.search-button') &&
 				!event.target.closest('.search-content')
 			) {
 				closeSearch();
@@ -46,8 +46,7 @@
 		window.addEventListener('touchend', closeSearchOnClick);
 
 		onDestroy(() => {
-			window.removeEventListener('click', closeSearchOnClick);
-			window.removeEventListener('touchend', closeSearchOnClick);
+			window.removeEventListener('click', closeSearch);
 		});
 	});
 </script>
