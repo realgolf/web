@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { name } from "$lib/chat/stores";
+	export let username: string;
     import type { user_chat } from "$lib/types/chat";
     import { flip } from 'svelte/animate';
     import { fade } from 'svelte/transition';
@@ -17,8 +17,8 @@
 	</ul>
 	<p>
 		You are logged in as <b
-			>{$name} &ndash;
-			<a href="/" data-sveltekit-reload>Logout</a></b
+			>{username} &ndash;
+			<a href="/dashboard/chat" data-sveltekit-reload>Logout</a></b
 		>
 	</p>
 </aside>

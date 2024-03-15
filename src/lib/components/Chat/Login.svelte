@@ -4,7 +4,8 @@
 	let name_input = '';
 	function handle_login() {
 		$name = name_input;
-		goto('/chat');
+		console.log('name', $name);
+		goto('/dashboard/chat/room');
 	}
 </script>
 
