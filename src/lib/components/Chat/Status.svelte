@@ -1,25 +1,22 @@
 <script lang="ts">
 	export let username: string;
-    import type { user_chat } from "$lib/types/chat";
-    import { flip } from 'svelte/animate';
-    import { fade } from 'svelte/transition';
-	export let users: user_chat[] = [];
+	import type { user_chat } from '$lib/types/chat';
+	import { flip } from 'svelte/animate';
+	import { fade } from 'svelte/transition';
+	export let chat_users: user_chat[] = [];
 </script>
 
 <aside>
 	<ul>
 		<span>Users: </span>
-		{#each users as user (user.id)}
+		{#each chat_users as user (user.id)}
 			<li animate:flip transition:fade>
 				{user.name}
 			</li>
 		{/each}
 	</ul>
 	<p>
-		You are logged in as <b
-			>{username} &ndash;
-			<a href="/dashboard/chat" data-sveltekit-reload>Logout</a></b
-		>
+		You are logged in as <b>{username} </b>
 	</p>
 </aside>
 

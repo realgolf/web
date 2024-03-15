@@ -19,7 +19,7 @@
 	let username: string = data.username as string;
 	let messages: message[] = [];
 	let messages_element: HTMLElement;
-	let users: user_chat[] = [];
+	let chat_users: user_chat[] = [];
 	let text = '';
 	let socket: undefined | Socket<ServerToClientEvents, ClientToServerEvents>;
 
@@ -35,15 +35,17 @@
 		socket = io();
 
 		socket.emit('name', username);
-
+		
 		socket.on('message', async (message: message) => {
 			messages = [...messages, message];
 			scroll_to_bottom();
 		});
-
+		
 		socket.on('users', (_users: user_chat[]) => {
-			users = _users;
+			chat_users = _users;
 		});
+
+		console.log('socket', socket);
 	}
 
 	function send_message() {
@@ -64,7 +66,7 @@
 </script>
 
 {#if username}
-	<Status {users} {username}/>
+	<Status chat_users={chat_users} {username}/>
 	<Messages bind:messages bind:messages_element />
 	<SendForm bind:text {send_message} />
 {:else}

@@ -9,7 +9,7 @@ import type {
 } from './src/lib/types/chat';
 
 export function attach_sockets(server: Server<typeof IncomingMessage, typeof ServerResponse>) {
-	let users: user_chat[] = [];
+	let chat_users: user_chat[] = [];
 
 	const io = new ioServer<
 		ClientToServerEvents,
@@ -28,8 +28,8 @@ export function attach_sockets(server: Server<typeof IncomingMessage, typeof Ser
 				bot: true
 			});
 
-			users.push({ id: socket.id, name: name });
-			io.emit('users', users);
+			chat_users.push({ id: socket.id, name: name });
+			io.emit('users', chat_users);
 		});
 
 		socket.on('message', (message) => {
@@ -37,8 +37,8 @@ export function attach_sockets(server: Server<typeof IncomingMessage, typeof Ser
 		});
 
 		socket.on('disconnect', () => {
-			users = users.filter((user) => user.id != socket.id);
-			io.emit('users', users);
+			chat_users = chat_users.filter((user) => user.id != socket.id);
+			io.emit('users', chat_users);
 			io.emit('message', {
 				author: '',
 				text: `🏃‍♀️ ${socket.data.name} has left the chat`,
