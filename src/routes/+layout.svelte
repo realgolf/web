@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Footer from '$lib/components/Footer.svelte';
 	import LoadProgress from '$lib/components/LoadProgress.svelte';
 	import Nav from '$lib/components/Nav/Nav.svelte';
 	import ScrollUp from '$lib/components/ScrollUp.svelte';
@@ -42,6 +43,8 @@
 <main>
 	<slot />
 </main>
+
+<Footer />
 
 <style>
 	main {
