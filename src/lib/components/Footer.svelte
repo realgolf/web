@@ -43,7 +43,7 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<p>Copyright &copy; 2022 - 2024 <a href="https://realgolf.games">RealGolf.Games</a></p>
+				<p>Copyright &copy; 2021 - 2024 <a href="https://realgolf.games">RealGolf.Games</a></p>
 			</div>
 		</div>
 	</div>
@@ -59,22 +59,36 @@
 		display: flex;
 		justify-content: left;
 
-		.row {
-			width: 50vw;
-
-			.first-row:not(:first-child) {
-				margin: 0 2rem;
+		.container {
+			@media screen and (max-width: 767px) {
+				width: 90vw;
 			}
 
-			.same-line {
-				display: flex !important;
-				flex-wrap: wrap !important;
+			.row {
+				width: 50vw;
 
-				@media only screen and (max-width: 767px) {
-					margin-right: -16px;
-					margin-left: -16px;
-					display: flex;
-					flex-direction: column;
+				@media screen and (max-width: 767px) {
+                    display: flex;
+					align-items: center;
+				}
+
+				.same-line {
+					display: flex !important;
+					flex-wrap: wrap !important;
+
+					@media screen and (min-width: 767px) {
+						.first-row:not(:first-child) {
+							margin: 0 2rem;
+						}
+					}
+
+					@media only screen and (max-width: 767px) {
+						padding: 0 4vw;
+						margin-right: -16px;
+						margin-left: -16px;
+						display: flex;
+						flex-direction: column;
+					}
 				}
 			}
 		}
