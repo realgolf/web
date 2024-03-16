@@ -6,7 +6,7 @@
 	"private": true,
 	"main": "server.js",
 	"scripts": {
-		"start": "concurrently \"node server.js\" \"node build/index.js\"",
+		"start": "node server.js",
 		"dev": "vite dev",
 		"build:kit": "vite build",
 		"build:server": "tsc server.ts --esModuleInterop --target esnext --moduleResolution node",
