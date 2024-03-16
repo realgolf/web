@@ -10,7 +10,6 @@ import type {
 
 export function attach_sockets(server: Server<typeof IncomingMessage, typeof ServerResponse>) {
 	let chat_users: user_chat[] = [];
-	console.log('attaching sockets');
 
 	const io = new ioServer<
 		ClientToServerEvents,
@@ -18,8 +17,6 @@ export function attach_sockets(server: Server<typeof IncomingMessage, typeof Ser
 		InterServerEvents,
 		SocketData
 	>(server);
-
-	console.log('sockets attaching 2');
 
 	io.on('connection', (socket) => {
 		console.log('a user connected');
@@ -36,8 +33,6 @@ export function attach_sockets(server: Server<typeof IncomingMessage, typeof Ser
 			io.emit('users', chat_users);
 		});
 
-		console.log('sockets attaching 3');
-
 		socket.on('message', (message) => {
 			io.emit('message', { ...message, bot: false });
 		});
@@ -51,7 +46,5 @@ export function attach_sockets(server: Server<typeof IncomingMessage, typeof Ser
 				bot: true
 			});
 		});
-
-		console.log('user disconnected');
 	});
 }

@@ -11,6 +11,4 @@ const server = app.listen(PORT, () => {
 
 app.use(handler);
 
-console.log('attaching sockets');
 attach_sockets(server);
-console.log('sockets attached');
