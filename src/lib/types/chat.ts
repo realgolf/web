@@ -11,7 +11,7 @@ export type user_chat = {
 
 export type ServerToClientEvents = {
 	message: (m: message) => void;
-	users: (u: user[]) => void;
+	users: (u: user_chat[]) => void;
 };
 
 export type ClientToServerEvents = {
