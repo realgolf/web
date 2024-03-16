@@ -4,6 +4,9 @@
 # Debugging: Output message to terminal
 echo "Running pre-commit hook..."
 
+# Install dependencies
+pnpm install
+
 # Run build command
 pnpm run build
 
