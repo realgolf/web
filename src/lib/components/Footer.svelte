@@ -42,8 +42,8 @@
 					<p><Fa icon={faBookBookmark} /> <a href="https://rules.realgolf.games">Golfrules</a></p>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<p>Copyright &copy; 2021 - 2024 <a href="https://realgolf.games">RealGolf.Games</a></p>
+			<div class="col-md-6 second-row">
+				<p>&copy; 2021 - 2024 RealGolf.Games</p>
 			</div>
 		</div>
 	</div>
@@ -53,22 +53,26 @@
 	footer {
 		border-top: 2px solid var(--border-color);
 		width: 100vw;
+		height: max-content;
 		margin-top: 5vh;
 		padding: 2vh 3vw;
 		overflow-x: hidden;
 		display: flex;
 		justify-content: left;
+		line-break: none;
 
 		.container {
 			@media screen and (max-width: 767px) {
-				width: 90vw;
+				width: 100vw;
 			}
 
 			.row {
-				width: 50vw;
+				width: 100vw;
+				display: flex;
+				flex-direction: column;
 
 				@media screen and (max-width: 767px) {
-                    display: flex;
+					display: flex;
 					align-items: center;
 				}
 
@@ -89,6 +93,18 @@
 						display: flex;
 						flex-direction: column;
 					}
+				}
+			}
+
+			.second-row {
+				padding-top: 2rem;
+				
+                @media screen and (max-width: 767px){
+                    margin-left: 4rem;
+                }
+
+				p {
+					white-space: nowrap;
 				}
 			}
 		}
