@@ -1,5 +1,4 @@
 <script lang="ts">
-	import FourWinningTable from '$lib/components/Archive/FourWinning_table.svelte';
 	import { slide } from 'svelte/transition';
 	export let data;
 
@@ -63,10 +62,7 @@
 					<p>
 						This game got created at the {new Date(date).toLocaleDateString()}
 					</p>
-					{#if teams.includes('4winning_')}
-						<FourWinningTable measurement_units="yards" {data} />
-					{/if}
-					<br />
+					<p>{data}</p>
 					<button on:click={() => shareGame(id)}>Share Game</button>
 					<button on:click={() => openGame(id)}>Open Game</button>
 				</div>
