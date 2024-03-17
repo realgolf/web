@@ -2,11 +2,8 @@
 	import { enhance } from '$app/forms';
 	import Game from '$lib/components/Archive/Game.svelte';
 	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
-	import { togglePreview } from '$lib/scripts/Archive/togglePreview';
 	import type { Data } from '$lib/scripts/Archive/types';
-	import { faEye } from '@fortawesome/free-regular-svg-icons';
 	import { afterUpdate, onMount } from 'svelte';
-	import Fa from 'svelte-fa';
 	import { teams } from './teams';
 
 	/**
@@ -65,7 +62,6 @@
 <form action="?/delete_all" method="POST" autocomplete="off">
 	<button>Delete All</button>
 </form>
-<button title="Toggle Game Preview" on:click={togglePreview}><Fa icon={faEye} /></button>
 
 {#if showMessage == true && form?.message}
 	<p class="success">{form?.message}</p>
