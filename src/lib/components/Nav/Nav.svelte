@@ -10,8 +10,6 @@
 
 	$: currentPagePath = $page.url.pathname;
 
-	console.log(currentPagePath);
-
 	const isHomePage = currentPagePath === undefined || currentPagePath === '/';
 
 	export let auth: string | undefined;
