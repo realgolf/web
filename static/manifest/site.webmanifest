@@ -3,12 +3,12 @@
 	"short_name": "RealGolf.Games",
 	"icons": [
 		{
-			"src": "/manifest/android-chrome-192x192.png",
+			"src": "/android-chrome-192x192.png",
 			"sizes": "192x192",
 			"type": "image/png"
 		},
 		{
-			"src": "/manifest/android-chrome-512x512.png",
+			"src": "/android-chrome-512x512.png",
 			"sizes": "512x512",
 			"type": "image/png"
 		}
@@ -16,8 +16,10 @@
 	"theme_color": "#131317",
 	"background_color": "#131317",
 	"display": "standalone",
+	"start_url": "realgolf.games",
 	"scope": "/",
-	"start_url": "/",
+	"scope_extensions": [{ "origin": "*.realgolf.games" }],
+	"dir": "auto",
 	"orientation": "any",
 	"lang": "en",
 	"id": "com.realgolf.games",
@@ -29,31 +31,41 @@
 	},
 	"screenshots": [
 		{
-			"src": "/screenshots/start_page.png",
+			"src": "../screenshots/start_page.png",
 			"sizes": "4096x2272",
 			"type": "image/png",
 			"description": "Example of what the Start Page look like"
 		},
 		{
-			"src": "/screenshots/dashboard.png",
+			"src": "../screenshots/dashboard.png",
 			"sizes": "4096x2272",
 			"type": "image/png",
 			"description": "Example of what the Dashboard look likes"
 		},
 		{
-			"src": "/screenshots/games.png",
+			"src": "../screenshots/games.png",
 			"sizes": "4096x2272",
 			"type": "image/png",
 			"description": "Example of what the Games look like"
 		},
 		{
-			"src": "/screenshots/archive.png",
+			"src": "../screenshots/archive.png",
 			"sizes": "4096x2272",
 			"type": "image/png",
 			"description": "Example of what the Archive could look like"
 		},
 
 		{
-			"src": "/screenshots/public_games.png",
+			"src": "../screenshots/public_games.png",
 			"sizes": "4096x2272",
-			"type": "
+			"type": "image/png",
+			"description": "Example of what the Public Games look like"
+		},
+		{
+			"src": "../screenshots/public_profile.png",
+			"sizes": "4096x2272",
+			"type": "image/png",
+			"description": "Example of what the Public Profile look like"
+		}
+	]
+}
