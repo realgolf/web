@@ -28,5 +28,44 @@
 	"categories": ["entertainment", "fitness", "games", "sports"],
 	"launch_handler": {
 		"client_mode": ["focus-existing", "auto"]
-	}
+	},
+	"screenshots": [
+		{
+			"src": "/screenshots/start_page.png",
+			"sizes": "4096x2272",
+			"type": "image/png",
+			"description": "Example of what the Start Page look like"
+		},
+		{
+			"src": "/screenshots/dashboard.png",
+			"sizes": "4096x2272",
+			"type": "image/png",
+			"description": "Example of what the Dashboard look likes"
+		},
+		{
+			"src": "/screenshots/games.png",
+			"sizes": "4096x2272",
+			"type": "image/png",
+			"description": "Example of what the Games look like"
+		},
+		{
+			"src": "/screenshots/archive.png",
+			"sizes": "4096x2272",
+			"type": "image/png",
+			"description": "Example of what the Archive could look like"
+		},
+
+		{
+			"src": "/screenshots/public_games.png",
+			"sizes": "4096x2272",
+			"type": "image/png",
+			"description": "Example of what the Public Games look like"
+		},
+		{
+			"src": "/screenshots/public_profile.png",
+			"sizes": "4096x2272",
+			"type": "image/png",
+			"description": "Example of what the Public Profile look like"
+		}
+	]
 }
