@@ -52,7 +52,6 @@
 <style lang="scss">
 	footer {
 		border-top: 2px solid var(--border-color);
-		width: 100vw;
 		height: max-content;
 		margin-top: 5vh;
 		padding: 2vh 3vw;
@@ -62,12 +61,7 @@
 		line-break: none;
 
 		.container {
-			@media screen and (max-width: 767px) {
-				width: 100vw;
-			}
-
 			.row {
-				width: 100vw;
 				display: flex;
 				flex-direction: column;
 
@@ -98,10 +92,10 @@
 
 			.second-row {
 				padding-top: 2rem;
-				
-                @media screen and (max-width: 767px){
-                    margin-left: 4rem;
-                }
+
+				@media screen and (max-width: 767px) {
+					margin-left: 4rem;
+				}
 
 				p {
 					white-space: nowrap;
