@@ -65,7 +65,6 @@
 <div class="dropdown">
 	<button class="dropdown-button" on:click|stopPropagation={toggleDropdown}>
 		<Fa icon={faBars} />
-		<span class="description">Menu</span>
 	</button>
 </div>
 {#if isOpen}

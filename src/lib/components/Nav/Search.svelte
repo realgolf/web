@@ -28,7 +28,6 @@
 <div class="search">
 	<button class="search-button" on:click={toggleSearch}>
 		<Fa icon={faMagnifyingGlass} />
-		<span class="description">Search</span>
 	</button>
 </div>
 {#if show_all}
