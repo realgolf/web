@@ -16,7 +16,7 @@
 	"theme_color": "#131317",
 	"background_color": "#131317",
 	"display": "standalone",
-	"start_url": "realgolf.games",
+	"start_url": "https://realgolf.games/",
 	"scope": "/",
 	"scope_extensions": [{ "origin": "*.realgolf.games" }],
 	"dir": "auto",
