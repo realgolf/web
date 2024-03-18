@@ -6,7 +6,6 @@
 	<section class="hero">
 		<div class="hero-content">
 			<img src="/home_page/banner.png" alt="RealGolf.Games Banner" />
-			<h1>Welcome to Real Golf</h1>
 			<p>Your ultimate destination for challenging and immersive golf experiences.</p>
 			<a href="/register" class="btn">Get Started</a>
 		</div>
