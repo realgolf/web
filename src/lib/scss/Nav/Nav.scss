@@ -52,3 +52,29 @@ nav {
 		}
 	}
 }
+
+.home-page {
+	display: flex;
+	flex-direction: row;
+
+	.sign-in {
+		margin-right: 1.5rem;
+	}
+
+	.sign-up {
+		padding: 1px 4px;
+		border: 1px solid var(--font-color);
+		border-radius: 0.25rem;
+	}
+
+	a {
+		&:hover {
+			text-decoration: none !important;
+			color: var(--label-color) !important;
+		}
+
+		&:hover::before {
+			width: 0% !important;
+		}
+	}
+}
