@@ -5,6 +5,7 @@
 		faBookBookmark,
 		faBookOpenReader,
 		faChartLine,
+		faDownload,
 		faGamepad,
 		faGavel,
 		faGear,
@@ -73,6 +74,7 @@
 		<button class="close-button" on:click={closeDropdown}>x</button>
 		<div class="home row border-bottom">
 			<a href="/"><span><Fa icon={faHouse} /></span>Home</a>
+			<a href="/download"><span><Fa icon={faDownload} /></span>Download</a>
 		</div>
 		{#if !auth}
 			<div class="logged-out row border-bottom">
