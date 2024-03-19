@@ -25,6 +25,7 @@
 	</section>
 
 	<section class="testimonial">
+		<h2>What our Users say</h2>
 		<blockquote>
 			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
 			labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco
