@@ -7,7 +7,7 @@
 		<div class="hero-content">
 			<img src="/home_page/banner.png" alt="RealGolf.Games Banner" />
 			<p>Your ultimate destination for challenging and immersive golf experiences.</p>
-			<a href="/register" class="btn">Get Started</a>
+			<a href="/register" class="btn">Sign Up for RealGolf.Games</a>
 		</div>
 	</section>
 
@@ -56,7 +56,11 @@
 
 	<section class="cta">
 		<h2>Ready to take your golf game to the next level?</h2>
-		<a href="/register" class="btn">Sign Up Now</a>
+		<p>
+			Whether you want to have a challange during training or just want to be more motivated going
+			onto the Range and hit some Balls, RealGolf.Games is your place to go.
+		</p>
+		<a href="/register" class="btn">Sign Up for RealGolf.Games</a>
 	</section>
 </main>
 
