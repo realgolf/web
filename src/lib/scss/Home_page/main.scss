@@ -1,0 +1,29 @@
+.hero {
+	margin-top: 1.5rem;
+
+	img {
+		width: 30rem;
+		height: max-content;
+	}
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.3rem 1rem;
+	background-color: var(--accent-color);
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+
+	&:hover {
+		background-color: #ff4c2f;
+		box-shadow: 0 4px 7px var(--shadow-color);
+	}
+}
+
+.cta {
+	p {
+		color: var(--label-color) !important;
+	}
+}

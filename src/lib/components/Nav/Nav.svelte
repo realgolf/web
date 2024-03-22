@@ -10,6 +10,8 @@
 
 	$: currentPagePath = $page.url.pathname;
 
+	const isHomePage = currentPagePath === undefined || currentPagePath === '/';
+
 	export let auth: string | undefined;
 	export let username: string | undefined;
 	export let all_users: User[];
@@ -42,12 +44,23 @@
 			</li>
 		{/each}
 		<li>
-			<div class="search">
-				<Search {all_users} />
-			</div>
-			<div class="dropdown-menu">
-				<Dropdownmenu {auth} {username} />
-			</div>
+			{#if isHomePage}
+				<div class="home-page">
+					<div class="sign-in">
+						<a href="/login">Sign In</a>
+					</div>
+					<div class="sign-up">
+						<a href="/register">Sign Up</a>
+					</div>
+				</div>
+			{:else}
+				<div class="search">
+					<Search {all_users} />
+				</div>
+				<div class="dropdown-menu">
+					<Dropdownmenu {auth} {username} />
+				</div>
+			{/if}
 		</li>
 	</ul>
 </nav>
