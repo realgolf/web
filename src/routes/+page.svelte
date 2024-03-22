@@ -27,13 +27,9 @@
 	<section class="testimonial">
 		<h2>What our Users say</h2>
 		<blockquote>
-			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-			labore et dolore magna aliqua. Ut enim ad minim veniam. Quis nostrud exercitation ullamco
-			laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-			voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-			non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			"I just signed up for RealGolf.Games, and I can already tell it's going to revolutionize how I enjoy practicing on the range. It's like unlocking a whole new level of fun!"
 		</blockquote>
-		<cite>- Max Musterman, first user</cite>
+		<cite>- <a href="/Thorsten">Thorsten Hammer</a>, first user</cite>
 	</section>
 
 	<section class="cta">
