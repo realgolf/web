@@ -2,8 +2,12 @@
 	margin-top: 1.5rem;
 
 	img {
-		width: 30rem;
+		width: 90vw;
 		height: max-content;
+
+		@media screen and (min-width: 768px) {
+			width: 30rem;
+		}
 	}
 }
 
