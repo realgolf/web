@@ -4,14 +4,12 @@
 	// Importing the Dialog component from the specified file
 	import Dialog from '../Global/Dialog.svelte';
 	// Importing the FourWinningTable component from the specified file
-	import FourWinningTable from './FourWinning_table.svelte';
-
+	
 	// Exporting the following variables as props
 	export let name: string;
 	export let date: string;
 	export let id: string;
 	export let teams: string;
-	export let measurement_units: string;
 	export let data: string;
 </script>
 
@@ -30,9 +28,6 @@
 	</form>
 	<p>Created at the {new Date(date).toLocaleDateString()}</p>
 	{#if teams.includes('4winning')}
-		<div class="table_previews" style="display: none;">
-			<FourWinningTable {measurement_units} {data} />
-		</div>
 		<p>{data}</p>
 	{:else}
 		<p>{data}</p>

@@ -28,6 +28,8 @@
 				team_data.value = JSON.stringify(teams);
 			}
 
+			localStorage.removeItem('exact_3_teams');
+
 			// Das Formular absenden
 			const form = document.querySelector('form') as HTMLFormElement;
 			form.submit();

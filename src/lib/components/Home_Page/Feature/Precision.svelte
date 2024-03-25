@@ -1,0 +1,14 @@
+<div class="feature">
+	<h3>Precision</h3>
+	<p>
+		Precision is the third game I have developed. The objective of the game is to get as close to
+		the targets as possible. For every meter you miss the target, you will receive a deduction of
+		one point. The winner of the game is the player with the highest points at the end. The game
+		concludes when only one player has points remaining. You can observe the distance you need to
+		shoot and the current team, along with the remaining points for each team.
+	</p>
+</div>
+
+<style lang="scss">
+	@import '$lib/scss/Home_page/feature.scss';
+</style>

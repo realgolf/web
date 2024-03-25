@@ -1,35 +1,47 @@
+<script>
+	import Exact from '$lib/components/Home_Page/Feature/Exact.svelte';
+	import FourWinning from '$lib/components/Home_Page/Feature/FourWinning.svelte';
+	import Precision from '$lib/components/Home_Page/Feature/Precision.svelte';
+</script>
+
 <svelte:head>
 	<title>Real Golf</title>
 </svelte:head>
 
-<h1>Real Golf</h1>
-
 <main>
-	<p>
-		<b>
-			Welcome to "Real Golf" - your ultimate destination for golf challenges! Discover "4 Winning",
-			"Exact", and "Precision" - captivating golf experiences tested with trainers.
-		</b>
-	</p>
-	<br />
+	<section class="hero">
+		<div class="hero-content">
+			<img src="/home_page/banner.png" alt="RealGolf.Games Banner" />
+			<p>Your ultimate destination for challenging and immersive golf experiences.</p>
+			<a href="/register" class="btn">Sign Up for RealGolf.Games</a>
+		</div>
+	</section>
 
-	<p>
-		If you don't have an account, that is no problem you can easily create one <a href="/register"
-			>here</a
-		>.
-	</p>
-	<br />
-	<p>
-		If you already got an account you can log in <a href="/login">here</a>.
-	</p>
-	<br />
+	<section class="features">
+		<h2>Features</h2>
+		<FourWinning />
+		<Exact />
+		<Precision />
+	</section>
 
-	<p>
-		If you have any questions, please visit our <a target="_blank" href="https://realgolf.games/faq"
-			>FAQ</a
-		>
-		section first to see if your question has already been answered. If you cannot find a solution or
-		answer to your question, please do not hesitate to contact us by sending an email to
-		<a href="mailto:support@moinjulian.com">support@moinjulian.com</a>.
-	</p>
+	<section class="testimonial">
+		<h2>What our Users say</h2>
+		<blockquote>
+			"I just signed up for RealGolf.Games, and I can already tell it's going to revolutionize how I enjoy practicing on the range. It's like unlocking a whole new level of fun!"
+		</blockquote>
+		<cite>- <a href="/Thorsten">Thorsten Hammer</a>, first user</cite>
+	</section>
+
+	<section class="cta">
+		<h2>Ready to take your golf game to the next level?</h2>
+		<p>
+			Whether you want to have a challange during training or just want to be more motivated going
+			onto the Range and hit some Balls, RealGolf.Games is your place to go.
+		</p>
+		<a href="/register" class="btn">Sign Up for RealGolf.Games</a>
+	</section>
 </main>
+
+<style lang="scss">
+	@import '$lib/scss/Home_page/main.scss';
+</style>
