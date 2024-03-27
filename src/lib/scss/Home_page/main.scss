@@ -1,5 +1,13 @@
+section {
+	margin-top: 2rem;
+
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
 .hero {
-	margin-top: 1.5rem;
+	margin-top: 1.5rem !important;
 
 	img {
 		width: 90vw;
