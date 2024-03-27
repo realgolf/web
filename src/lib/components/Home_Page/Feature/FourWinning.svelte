@@ -7,6 +7,8 @@
 		right and full left, which just show the lateral deviation you are allowed to play in one of the
 		diffrent modes you can play the game in.
 	</p>
+
+	<img src="/home_page/4Winning.png" alt="4Winning Red Team has won">
 </div>
 
 <style lang="scss">

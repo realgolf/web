@@ -4,4 +4,12 @@
 	&:last-child {
 		margin-bottom: 2rem;
 	}
+
+	img {
+		width: 100vw;
+
+		@media screen and (min-width: 768px) {
+			width: 30rem;
+		}
+	}
 }
