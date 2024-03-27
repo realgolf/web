@@ -7,6 +7,8 @@
 		concludes when only one player has points remaining. You can observe the distance you need to
 		shoot and the current team, along with the remaining points for each team.
 	</p>
+
+	<img src="/home_page/Precision.png" alt="Precision game" />
 </div>
 
 <style lang="scss">
