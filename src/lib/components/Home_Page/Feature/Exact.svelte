@@ -5,6 +5,8 @@
 		tens give 3 points and all numbers with twice the same number are giving 3 Points, 100 meters
 		gives 5 points, everything above 100 and below 5 gives -1 Points.
 	</p>
+
+	<img src="/home_page/Exact.png" alt="All teams are tie in Exact">
 </div>
 
 <style lang="scss">
