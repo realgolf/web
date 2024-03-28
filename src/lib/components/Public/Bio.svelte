@@ -84,15 +84,15 @@
 		{#if data.user_bio}
 			<p>{data.user_bio}</p>
 		{/if}
-		{#if data.followers && data.following}
+		{#if data.followers && data.following && data.user_username}
 			<Followers {data} />
-			{#if !data.serialiezed_cookie_user.user.following.list.includes( { username: data?.username || '' } )}
-				<form action="?/follow" method="POST">
-					<button type="submit">Follow</button>
-				</form>
-			{:else if data.serialiezed_cookie_user.user.following.list.includes( { username: data?.username || '' } )}
+			{#if data.serialiezed_cookie_user.user.following.list.some((username) => username?.username === data.user_username)}
 				<form action="?/unfollow" method="POST">
 					<button type="submit">Unfollow</button>
+				</form>
+			{:else}
+				<form action="?/follow" method="POST">
+					<button type="submit">Follow</button>
 				</form>
 			{/if}
 		{/if}

@@ -5,7 +5,7 @@ import { updateSocials } from '$lib/scripts/Public/update_socials';
 import { User_Model } from '$lib/server/user/models';
 import type { Followers, Following, Status, User } from '$lib/server/user/types';
 import { serializeNonPOJOs } from '$lib/shared/utils/serializeNonPOJOs';
-import type { Actions } from '@sveltejs/kit';
+import { redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -141,6 +141,7 @@ export const actions: Actions = {
 		const custom_pronoun = data.get('custom_pronoun') as string;
 		const status_text = data.get('status_text') as string;
 		const busy = data.get('busy') === 'on';
+		const username = user?.user?.username;
 
 		if (user?.user) {
 			if (pronoun === 'custom') {
@@ -156,6 +157,7 @@ export const actions: Actions = {
 		updateSocials(email, socials_input_cleaned);
 		displayEmailPublic(email, email_public);
 		updateBio(email, bio);
+		throw redirect(301, `/${username}`);
 	},
 	follow: async (event) => {
 		const email = event.cookies.get('email') as string;
@@ -177,6 +179,36 @@ export const actions: Actions = {
 			user_to_follow.user.followers.list.push({ username: user_username });
 			await user.save();
 			await user_to_follow.save();
+			throw redirect(301, `/${username}`);
+		}
+	},
+	unfollow: async (event) => {
+		const email = event.cookies.get('email') as string;
+		const username = event.params.name;
+		const user = await User_Model?.findOne({ 'user.email': email });
+		const user_to_unfollow = await User_Model?.findOne({ 'user.username': username });
+
+		const user_username = user?.user?.username;
+
+		if (
+			user?.user &&
+			user_to_unfollow?.user &&
+			user.user.following &&
+			user_to_unfollow.user.followers
+		) {
+			user.user.following.count -= 1;
+			/* eslint-disable */
+			user.user.following.list = user.user.following.list.filter(
+				(following) => following.username !== username
+			) as any;
+			user_to_unfollow.user.followers.count -= 1;
+			user_to_unfollow.user.followers.list = user_to_unfollow.user.followers.list.filter(
+				(follower) => follower.username !== user_username
+			) as any;
+			/* eslint-enable */
+			await user.save();
+			await user_to_unfollow.save();
+			throw redirect(301, `/${username}`);
 		}
 	}
 };
