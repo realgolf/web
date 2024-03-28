@@ -1,14 +1,14 @@
 <div class="feature">
 	<h3>4 Winning</h3>
 	<p>
-		4 Winning is like four in a row, with some modification, the first modifaction is, that the game
-		board has more columns and rows then a normal four in row, a normal four in row has a game board
-		of 4x4, my version of four in a row has 8 columns and 9 rows, including the columns at the full
-		right and full left, which just show the lateral deviation you are allowed to play in one of the
-		diffrent modes you can play the game in.
+		In 4Winning, the objective is to strategically connect four pieces in a row. Our version of the
+		game features a larger board than the standard 4x4 layout, with 8 columns and 9 rows. The
+		additional columns on each side introduce a challenge: players must hit a specific distance
+		within the lateral deviation. This aspect becomes more pronounced in Silver Mode and above,
+		adding complexity and requiring players to carefully consider their moves.
 	</p>
 
-	<img src="/home_page/4Winning.png" alt="4Winning Red Team has won">
+	<img src="/home_page/4Winning.png" alt="4Winning Red Team has won" />
 </div>
 
 <style lang="scss">
