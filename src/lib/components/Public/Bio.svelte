@@ -5,6 +5,7 @@
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
 	import Pronoun from './Bio/Pronoun.svelte';
+	import Socials from './Bio/Socials.svelte';
 	import Status from './Status.svelte';
 
 	export let data: PageData;
@@ -41,10 +42,7 @@
 				/>
 			</div>
 			<Pronoun {data} />
-			<div class="social">
-				<label for="socials">Socials (one per line)</label>
-				<textarea bind:value={display_socials} name="socials" id="socials" rows="3" />
-			</div>
+			<Socials {display_socials} />
 			<div class="status">
 				<label for="status_input">Edit status</label>
 				<input type="text" name="status_text" id="status_text" bind:value={data.user_status.text} />
