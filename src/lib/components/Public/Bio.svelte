@@ -6,6 +6,7 @@
 	import type { PageData } from '../../../routes/[name]/$types';
 	import Pronoun from './Bio/Pronoun.svelte';
 	import Socials from './Bio/Socials.svelte';
+	import Status_Edit from './Bio/Status.svelte';
 	import Status from './Status.svelte';
 
 	export let data: PageData;
@@ -43,14 +44,7 @@
 			</div>
 			<Pronoun {data} />
 			<Socials {display_socials} />
-			<div class="status">
-				<label for="status_input">Edit status</label>
-				<input type="text" name="status_text" id="status_text" bind:value={data.user_status.text} />
-				<div class="checkbox busy">
-					<label for="busy">Busy</label>
-					<input type="checkbox" name="busy" id="busy" bind:checked={data.user_status.busy} />
-				</div>
-			</div>
+			<Status_Edit {data} />
 			<button type="submit">Save</button>
 			<button type="button" on:click={handleCancel}>Cancel</button>
 		</form>
