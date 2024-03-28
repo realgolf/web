@@ -60,11 +60,41 @@ button :global(svg) {
 	border-top-left-radius: calc(var(--border-radius) * 3);
 	border-bottom-left-radius: calc(var(--border-radius) * 3);
 
-	a {
+	a,
+	.link {
 		text-decoration: none;
 
 		span {
 			margin-right: 0.5rem;
+		}
+	}
+
+	.link {
+		width: max-content !important;
+		color: inherit !important;
+		text-underline-offset: 0.2rem !important;
+		outline: none !important;
+		margin-bottom: 0 !important;
+
+		display: flex;
+		flex-direction: row;
+
+		&:hover,
+		&:focus {
+			color: var(--highlight-color) !important;
+			cursor: pointer;
+
+			:global(svg) {
+				color: var(--highlight-color) !important;
+			}
+		}
+
+		span {
+			margin-right: 0.5rem;
+		}
+
+		:global(svg):hover {
+			color: var(--highlight-color) !important;
 		}
 	}
 
