@@ -4,6 +4,7 @@
 	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
+	import Pronoun from './Bio/Pronoun.svelte';
 	import Status from './Status.svelte';
 
 	export let data: PageData;
@@ -39,24 +40,7 @@
 					bind:checked={data.user_email_public}
 				/>
 			</div>
-			<div class="pronoun">
-				<label for="pronouns">Pronouns</label>
-				<select name="pronoun" id="pronoun" bind:value={data.pronoun}>
-					<option value="dont">Don't specify</option>
-					<option value="he/him">he/him</option>
-					<option value="she/her">she/her</option>
-					<option value="they/them">they/them</option>
-					<option value="custom">Costum</option>
-				</select>
-				{#if data.pronoun == 'custom'}
-					<input
-						type="text"
-						name="custom_pronoun"
-						id="custom_pronoun"
-						bind:value={data.custom_pronoun}
-					/>
-				{/if}
-			</div>
+			<Pronoun {data} />
 			<div class="social">
 				<label for="socials">Socials (one per line)</label>
 				<textarea bind:value={display_socials} name="socials" id="socials" rows="3" />
