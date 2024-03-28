@@ -17,6 +17,24 @@ export type User = {
 		handicap_updated: Date;
 		bio?: string;
 		badges?: { title: string; description: string; color: string }[];
+		socials: string[];
+		status: {
+			emoji: string;
+			text: string;
+			busy: boolean;
+		};
+		followers: {
+			count: number;
+			list: {
+				username: string;
+			}[];
+		};
+		following: {
+			count: number;
+			list: {
+				username: string;
+			}[];
+		};
 	};
 	achievements: Achievements[];
 	games: {

@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { modify_social } from '$lib/scripts/Public/modify_socials';
 	import type { matchedSocials } from '$lib/types/matched_socials';
-	import { faEnvelope, faLink, faUsers } from '@fortawesome/free-solid-svg-icons';
+	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
 	import EmailPublic from './Bio/Email_Public.svelte';
+	import Followers from './Bio/Followers.svelte';
 	import Pronoun from './Bio/Pronoun.svelte';
 	import Socials from './Bio/Socials.svelte';
 	import Status_Edit from './Bio/Status.svelte';
@@ -49,10 +50,7 @@
 			<p>{data.user_bio}</p>
 		{/if}
 		{#if data.followers && data.following}
-			<p class="followers">
-				<span><Fa icon={faUsers} /></span>
-				{data.followers.count} Followers · {data.following.count} Following
-			</p>
+			<Followers {data} />
 		{/if}
 		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}>Edit profile</button>
 		<br />
@@ -87,10 +85,16 @@
 			<p>{data.user_bio}</p>
 		{/if}
 		{#if data.followers && data.following}
-			<p class="followers">
-				<span><Fa icon={faUsers} /></span>
-				{data.followers.count} Followers · {data.following.count} Following
-			</p>
+			<Followers {data} />
+			{#if !data.serialiezed_cookie_user.user.following.list.includes( { username: data?.username || '' } )}
+				<form action="?/follow" method="POST">
+					<button type="submit">Follow</button>
+				</form>
+			{:else if data.serialiezed_cookie_user.user.following.list.includes( { username: data?.username || '' } )}
+				<form action="?/unfollow" method="POST">
+					<button type="submit">Unfollow</button>
+				</form>
+			{/if}
 		{/if}
 		{#if data.user_email_public == true}
 			<p><Fa icon={faEnvelope} /> <span>{data.user_email}</span></p>

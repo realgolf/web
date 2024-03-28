@@ -3,7 +3,7 @@ import { editStatus } from '$lib/scripts/Public/edit_status';
 import { updateBio } from '$lib/scripts/Public/update_bio';
 import { updateSocials } from '$lib/scripts/Public/update_socials';
 import { User_Model } from '$lib/server/user/models';
-import type { Followers, Following, Status } from '$lib/server/user/types';
+import type { Followers, Following, Status, User } from '$lib/server/user/types';
 import { serializeNonPOJOs } from '$lib/shared/utils/serializeNonPOJOs';
 import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
@@ -14,7 +14,10 @@ export const load: PageServerLoad = async (event) => {
 	const user = await User_Model?.findOne({
 		'user.username': { $regex: new RegExp(param_name, 'i') }
 	});
+
 	const cookie_username = event.cookies.get('username');
+
+	const cookie_user = await User_Model?.findOne({ 'user.username': cookie_username });
 
 	let sameUser: boolean;
 
@@ -94,6 +97,7 @@ export const load: PageServerLoad = async (event) => {
 	const user_status: Status = serializeNonPOJOs(user.user?.status as object);
 	const followers: Followers = serializeNonPOJOs(user.user?.followers as object);
 	const following: Following = serializeNonPOJOs(user.user?.following as object);
+	const serialiezed_cookie_user: User = serializeNonPOJOs(cookie_user as object);
 
 	return {
 		user_name,
@@ -119,7 +123,8 @@ export const load: PageServerLoad = async (event) => {
 		custom_pronoun,
 		user_status,
 		followers,
-		following
+		following,
+		serialiezed_cookie_user
 	};
 };
 
