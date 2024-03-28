@@ -49,7 +49,10 @@
 			<p>{data.user_bio}</p>
 		{/if}
 		{#if data.followers && data.following}
-			<p class="followers"><span><Fa icon={faUsers}/></span> {data.followers.count} Followers · {data.following.count} Following</p>
+			<p class="followers">
+				<span><Fa icon={faUsers} /></span>
+				{data.followers.count} Followers · {data.following.count} Following
+			</p>
 		{/if}
 		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}>Edit profile</button>
 		<br />
@@ -82,6 +85,12 @@
 		{/if}
 		{#if data.user_bio}
 			<p>{data.user_bio}</p>
+		{/if}
+		{#if data.followers && data.following}
+			<p class="followers">
+				<span><Fa icon={faUsers} /></span>
+				{data.followers.count} Followers · {data.following.count} Following
+			</p>
 		{/if}
 		{#if data.user_email_public == true}
 			<p><Fa icon={faEnvelope} /> <span>{data.user_email}</span></p>
