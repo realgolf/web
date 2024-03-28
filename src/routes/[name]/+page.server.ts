@@ -156,5 +156,27 @@ export const actions: Actions = {
 		updateSocials(email, socials_input_cleaned);
 		displayEmailPublic(email, email_public);
 		updateBio(email, bio);
+	},
+	follow: async (event) => {
+		const email = event.cookies.get('email') as string;
+		const username = event.params.name;
+		const user = await User_Model?.findOne({ 'user.email': email });
+		const user_to_follow = await User_Model?.findOne({ 'user.username': username });
+
+		const user_username = user?.user?.username;
+
+		if (
+			user?.user &&
+			user_to_follow?.user &&
+			user.user.following &&
+			user_to_follow.user.followers
+		) {
+			user.user.following.count += 1;
+			user.user.following.list.push({ username: username });
+			user_to_follow.user.followers.count += 1;
+			user_to_follow.user.followers.list.push({ username: user_username });
+			await user.save();
+			await user_to_follow.save();
+		}
 	}
 };
