@@ -4,6 +4,7 @@
 	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
+	import EmailPublic from './Bio/Email_Public.svelte';
 	import Pronoun from './Bio/Pronoun.svelte';
 	import Socials from './Bio/Socials.svelte';
 	import Status_Edit from './Bio/Status.svelte';
@@ -33,15 +34,7 @@
 		<form action="?/edit_profile" method="POST">
 			<label for="bio">Bio</label>
 			<textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
-			<div class="checkbox">
-				<label for="email_public">Display Email Public</label>
-				<input
-					type="checkbox"
-					name="email_public"
-					id="email_public"
-					bind:checked={data.user_email_public}
-				/>
-			</div>
+			<EmailPublic {data} />
 			<Pronoun {data} />
 			<Socials {display_socials} />
 			<Status_Edit {data} />
