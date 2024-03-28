@@ -120,7 +120,9 @@
 		</div>
 		{#if auth}
 			<div class="border-bottom logout row">
-				<a href="/logout"><span><Fa icon={faSignOutAlt} /></span>Sign Out</a>
+				<form action="/logout" method="POST" class="logout-form">
+					<button class="link"><span><Fa class="Fa" icon={faSignOutAlt} /></span>Sign out</button>
+				</form>
 			</div>
 		{/if}
 	</div>

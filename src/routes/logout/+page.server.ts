@@ -1,21 +1,20 @@
-import { cookie_options } from '$lib/server/user/utils';
-import { redirect, type Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import { redirect } from '@sveltejs/kit';
+import type { Actions } from './$types';
 
-export const load: PageServerLoad = async (event) => {
-	event.cookies.delete('auth-token', cookie_options);
-	event.cookies.delete('email', cookie_options);
-	event.cookies.delete('name', cookie_options);
-	event.cookies.delete('username', cookie_options);
+export async function load(event): Promise<unknown> {
+	console.log('logout');
+	event.cookies.delete('auth-token', { path: '/' });
+	event.cookies.delete('email', { path: '/' });
+	event.cookies.delete('name', { path: '/' });
 	throw redirect(301, '/');
-};
+}
 
 export const actions: Actions = {
 	default: async (event) => {
-		event.cookies.delete('auth-token', cookie_options);
-		event.cookies.delete('email', cookie_options);
-		event.cookies.delete('name', cookie_options);
-		event.cookies.delete('username', cookie_options);
+		console.log('logout');
+		event.cookies.delete('auth-token', { path: '/' });
+		event.cookies.delete('email', { path: '/' });
+		event.cookies.delete('name', { path: '/' });
 		throw redirect(301, '/');
 	}
 };
