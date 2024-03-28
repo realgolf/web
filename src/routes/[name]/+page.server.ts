@@ -3,6 +3,7 @@ import { editStatus } from '$lib/scripts/Public/edit_status';
 import { updateBio } from '$lib/scripts/Public/update_bio';
 import { updateSocials } from '$lib/scripts/Public/update_socials';
 import { User_Model } from '$lib/server/user/models';
+import type { Followers, Following, Status } from '$lib/server/user/types';
 import { serializeNonPOJOs } from '$lib/shared/utils/serializeNonPOJOs';
 import type { Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
@@ -90,7 +91,9 @@ export const load: PageServerLoad = async (event) => {
 		return socialCopy;
 	});
 
-	const user_status = serializeNonPOJOs(user.user?.status as object);
+	const user_status: Status = serializeNonPOJOs(user.user?.status as object);
+	const followers: Followers = serializeNonPOJOs(user.user?.followers as object);
+	const following: Following = serializeNonPOJOs(user.user?.following as object);
 
 	return {
 		user_name,
@@ -114,7 +117,9 @@ export const load: PageServerLoad = async (event) => {
 		socials,
 		pronoun,
 		custom_pronoun,
-		user_status
+		user_status,
+		followers,
+		following
 	};
 };
 

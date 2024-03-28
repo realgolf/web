@@ -32,3 +32,23 @@ export type User = {
 	golf_round: GolfRound[];
 	handicap_history: HandicapHistory[];
 };
+
+export type Followers = {
+	count: number;
+	list: {
+		username: string;
+	}[];
+};
+
+export type Following = {
+	count: number;
+	list: {
+		username: string;
+	}[];
+};
+
+export type Status = {
+	emoji: string;
+	text: string;
+	busy: boolean;
+};

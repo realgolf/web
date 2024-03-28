@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { modify_social } from '$lib/scripts/Public/modify_socials';
 	import type { matchedSocials } from '$lib/types/matched_socials';
-	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
+	import { faEnvelope, faLink, faUsers } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
 	import EmailPublic from './Bio/Email_Public.svelte';
@@ -48,6 +48,9 @@
 		{#if data.user_bio}
 			<p>{data.user_bio}</p>
 		{/if}
+		{#if data.followers && data.following}
+			<p class="followers"><span><Fa icon={faUsers}/></span> {data.followers.count} Followers · {data.following.count} Following</p>
+		{/if}
 		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}>Edit profile</button>
 		<br />
 		{#if data.user_email_public}
@@ -74,7 +77,7 @@
 			</div>
 		{/if}
 	{:else}
-		{#if data.user_status.text}
+		{#if data.user_status && data.user_status.text}
 			<Status {data} />
 		{/if}
 		{#if data.user_bio}
