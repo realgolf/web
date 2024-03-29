@@ -100,6 +100,7 @@ export const load: PageServerLoad = async (event) => {
 	const serialiezed_cookie_user: User = serializeNonPOJOs(cookie_user as object);
 
 	return {
+		param_name,
 		user_name,
 		user_username,
 		user_email,

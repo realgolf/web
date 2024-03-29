@@ -9,6 +9,12 @@
 {#if data.followers && data.following}
 	<p class="followers">
 		<span><Fa icon={faUsers} /></span>
-		{data.followers.count} Followers · {data.following.count} Following
+		<a href='/{data.param_name}/followers'>{data.followers.count} Followers</a> · {data.following.count} Following
 	</p>
 {/if}
+
+<style lang="scss">
+	a {
+		text-decoration: none !important;
+	}
+</style>
