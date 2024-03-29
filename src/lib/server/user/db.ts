@@ -14,7 +14,7 @@ const connection_options = {
 
 export async function connect_to_db() {
 	try {
-		return mongoose.createConnection(database_URI, connection_options);
+		return mongoose.connect(database_URI, connection_options);
 	} catch (err) {
 		console.log(err);
 	}
