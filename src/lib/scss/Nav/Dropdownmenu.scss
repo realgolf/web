@@ -17,11 +17,6 @@ button {
 	box-shadow: none !important;
 }
 
-button :global(svg) {
-	transition: opacity 250ms linear, rotate 250ms linear;
-	color: var(--font-color);
-}
-
 .blurry-background {
 	position: fixed;
 	top: 0;
