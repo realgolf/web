@@ -3,8 +3,9 @@ import { editStatus } from '$lib/scripts/Public/edit_status';
 import { updateBio } from '$lib/scripts/Public/update_bio';
 import { updateSocials } from '$lib/scripts/Public/update_socials';
 import { User_Model } from '$lib/server/user/models';
+import type { Followers, Following, Status, User } from '$lib/server/user/types';
 import { serializeNonPOJOs } from '$lib/shared/utils/serializeNonPOJOs';
-import type { Actions } from '@sveltejs/kit';
+import { redirect, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -13,7 +14,10 @@ export const load: PageServerLoad = async (event) => {
 	const user = await User_Model?.findOne({
 		'user.username': { $regex: new RegExp(param_name, 'i') }
 	});
+
 	const cookie_username = event.cookies.get('username');
+
+	const cookie_user = await User_Model?.findOne({ 'user.username': cookie_username });
 
 	let sameUser: boolean;
 
@@ -90,9 +94,13 @@ export const load: PageServerLoad = async (event) => {
 		return socialCopy;
 	});
 
-	const user_status = serializeNonPOJOs(user.user?.status as object);
+	const user_status: Status = serializeNonPOJOs(user.user?.status as object);
+	const followers: Followers = serializeNonPOJOs(user.user?.followers as object);
+	const following: Following = serializeNonPOJOs(user.user?.following as object);
+	const serialiezed_cookie_user: User = serializeNonPOJOs(cookie_user as object);
 
 	return {
+		param_name,
 		user_name,
 		user_username,
 		user_email,
@@ -114,7 +122,10 @@ export const load: PageServerLoad = async (event) => {
 		socials,
 		pronoun,
 		custom_pronoun,
-		user_status
+		user_status,
+		followers,
+		following,
+		serialiezed_cookie_user
 	};
 };
 
@@ -131,6 +142,7 @@ export const actions: Actions = {
 		const custom_pronoun = data.get('custom_pronoun') as string;
 		const status_text = data.get('status_text') as string;
 		const busy = data.get('busy') === 'on';
+		const username = user?.user?.username;
 
 		if (user?.user) {
 			if (pronoun === 'custom') {
@@ -146,5 +158,58 @@ export const actions: Actions = {
 		updateSocials(email, socials_input_cleaned);
 		displayEmailPublic(email, email_public);
 		updateBio(email, bio);
+		throw redirect(301, `/${username}`);
+	},
+	follow: async (event) => {
+		const email = event.cookies.get('email') as string;
+		const username = event.params.name;
+		const user = await User_Model?.findOne({ 'user.email': email });
+		const user_to_follow = await User_Model?.findOne({ 'user.username': username });
+
+		const user_username = user?.user?.username;
+
+		if (
+			user?.user &&
+			user_to_follow?.user &&
+			user.user.following &&
+			user_to_follow.user.followers
+		) {
+			user.user.following.count += 1;
+			user.user.following.list.push({ username: username });
+			user_to_follow.user.followers.count += 1;
+			user_to_follow.user.followers.list.push({ username: user_username });
+			await user.save();
+			await user_to_follow.save();
+			throw redirect(301, `/${username}`);
+		}
+	},
+	unfollow: async (event) => {
+		const email = event.cookies.get('email') as string;
+		const username = event.params.name;
+		const user = await User_Model?.findOne({ 'user.email': email });
+		const user_to_unfollow = await User_Model?.findOne({ 'user.username': username });
+
+		const user_username = user?.user?.username;
+
+		if (
+			user?.user &&
+			user_to_unfollow?.user &&
+			user.user.following &&
+			user_to_unfollow.user.followers
+		) {
+			user.user.following.count -= 1;
+			/* eslint-disable */
+			user.user.following.list = user.user.following.list.filter(
+				(following) => following.username !== username
+			) as any;
+			user_to_unfollow.user.followers.count -= 1;
+			user_to_unfollow.user.followers.list = user_to_unfollow.user.followers.list.filter(
+				(follower) => follower.username !== user_username
+			) as any;
+			/* eslint-enable */
+			await user.save();
+			await user_to_unfollow.save();
+			throw redirect(301, `/${username}`);
+		}
 	}
 };

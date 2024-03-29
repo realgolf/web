@@ -17,6 +17,24 @@ export type User = {
 		handicap_updated: Date;
 		bio?: string;
 		badges?: { title: string; description: string; color: string }[];
+		socials: string[];
+		status: {
+			emoji: string;
+			text: string;
+			busy: boolean;
+		};
+		followers: {
+			count: number;
+			list: {
+				username: string;
+			}[];
+		};
+		following: {
+			count: number;
+			list: {
+				username: string;
+			}[];
+		};
 	};
 	achievements: Achievements[];
 	games: {
@@ -31,4 +49,24 @@ export type User = {
 	one_player_precision_history: { value: number; lastUpdated: Date }[];
 	golf_round: GolfRound[];
 	handicap_history: HandicapHistory[];
+};
+
+export type Followers = {
+	count: number;
+	list: {
+		username: string;
+	}[];
+};
+
+export type Following = {
+	count: number;
+	list: {
+		username: string;
+	}[];
+};
+
+export type Status = {
+	emoji: string;
+	text: string;
+	busy: boolean;
 };

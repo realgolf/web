@@ -3,6 +3,9 @@
 	 * VSC Essentials Config
 	 */
 	"editor.tabCompletion": "on",
+	"svelte.plugin.svelte.compilerWarnings": {
+		"css-unused-selector": "ignore"
+	},
 	"editor.showDeprecated": true,
 	"workbench.iconTheme": "material-icon-theme",
 	"git.enableSmartCommit": true,

@@ -37,6 +37,22 @@ const User_Schema = new mongoose.Schema({
 			emoji: { type: String },
 			text: { type: String },
 			busy: { type: Boolean }
+		},
+		followers: {
+			count: { type: Number, default: 0 },
+			list: [
+				{
+					username: { type: String }
+				}
+			]
+		},
+		following: {
+			count: { type: Number, default: 0 },
+			list: [
+				{
+					username: { type: String }
+				}
+			]
 		}
 	},
 	achievements: [
