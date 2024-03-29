@@ -33,3 +33,12 @@ textarea {
 .followers {
 	font-size: var(--tiny-font);
 }
+
+.bio-text {
+	text-decoration: none !important;
+
+	:global(.user-mention) {
+		text-decoration: none !important;
+		font-weight: 600;
+	}
+}

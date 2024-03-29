@@ -34,7 +34,7 @@
 	{#if editing}
 		<form action="?/edit_profile" method="POST">
 			<label for="bio">Bio</label>
-			<textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
+			<textarea bind:value={data.edit_bio} name="bio" id="bio" rows="3" />
 			<EmailPublic {data} />
 			<Pronoun {data} />
 			<Socials {display_socials} />
@@ -47,7 +47,8 @@
 			<Status {data} />
 		{/if}
 		{#if data.user_bio}
-			<p>{data.user_bio}</p>
+			<!--eslint-disable-next-line -->
+			<p class="bio-text">{@html data.user_bio}</p>
 		{/if}
 		{#if data.followers && data.following}
 			<Followers {data} />

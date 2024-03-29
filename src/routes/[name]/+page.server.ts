@@ -1,5 +1,6 @@
 import { displayEmailPublic } from '$lib/scripts/Public/display_email_public';
 import { editStatus } from '$lib/scripts/Public/edit_status';
+import { extractMentions } from '$lib/scripts/Public/extract_mentions';
 import { updateBio } from '$lib/scripts/Public/update_bio';
 import { updateSocials } from '$lib/scripts/Public/update_socials';
 import { User_Model } from '$lib/server/user/models';
@@ -31,6 +32,26 @@ export const load: PageServerLoad = async (event) => {
 		sameUser = false;
 	}
 
+	function replaceMentionsWithLinks(
+		bio: string | null | undefined,
+		mentions: string[] | null | undefined[]
+	): string | undefined {
+		let modifiedBio = bio;
+
+		if (modifiedBio && mentions) {
+			mentions.forEach((mention) => {
+				const mentionRegex = new RegExp(`@${mention}(?=[ ,.!?:;"§$%&/()=*+'#-_]|$)`, 'g');
+				const newBio = modifiedBio?.replace(
+					mentionRegex,
+					`<a class="user-mention" href="/${mention}">@${mention}</a>`
+				);
+				modifiedBio = newBio;
+			});
+		}
+
+		return modifiedBio;
+	}
+
 	const user_name = user.user?.name;
 	const user_email = user.user?.email;
 	const user_email_public = user.user?.email_public;
@@ -40,7 +61,15 @@ export const load: PageServerLoad = async (event) => {
 	const user_handicap = user.user?.handicap;
 	const user_one_player_precision_highscore = user.one_player_precision_highscore;
 	const user_games = user.games;
-	const user_bio = user.user?.bio;
+	const edit_bio = user.user?.bio;
+	let user_bio: string | null | undefined = user.user?.bio;
+
+	const mentions = extractMentions(user_bio);
+
+	if (mentions.length > 0) {
+		user_bio = replaceMentionsWithLinks(user_bio, mentions);
+	}
+
 	const total_games = user.total_games;
 	const pronoun = user.user?.pronoun;
 	const custom_pronoun = user.user?.custom_pronoun;
@@ -115,6 +144,7 @@ export const load: PageServerLoad = async (event) => {
 		user_all_time,
 		games,
 		user_bio,
+		edit_bio,
 		sameUser,
 		badges,
 		achievements,
