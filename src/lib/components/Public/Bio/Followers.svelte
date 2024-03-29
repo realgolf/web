@@ -9,7 +9,8 @@
 {#if data.followers && data.following}
 	<p class="followers">
 		<span><Fa icon={faUsers} /></span>
-		<a href='/{data.param_name}/followers'>{data.followers.count} Followers</a> · {data.following.count} Following
+		<a href="/{data.param_name}/followers">{data.followers.count} Followers</a> ·
+		<a href="/{data.param_name}/following">{data.following.count} Following</a>
 	</p>
 {/if}
 
