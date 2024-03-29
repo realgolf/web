@@ -17,11 +17,6 @@ button {
 	box-shadow: none !important;
 }
 
-button :global(svg) {
-	transition: opacity 250ms linear, rotate 250ms linear;
-	color: var(--font-color);
-}
-
 .blurry-background {
 	position: fixed;
 	top: 0;
@@ -42,6 +37,20 @@ button :global(svg) {
 	right: 0;
 	top: 0;
 	left: auto;
+
+	@keyframes slide-in {
+		from {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	animation: slide-in var(--animation-time) forwards;
 
 	font-size: var(--small-font);
 

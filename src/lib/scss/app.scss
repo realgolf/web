@@ -102,6 +102,17 @@ body[data-rounded-corners='false'] {
 }
 
 /**
+* Animation True / False
+*/
+body[data-animation='true'] {
+	--animation-time: 0.3s;
+}
+
+body[data-animation='false'] {
+	--animation-time: 0s;
+}
+
+/**
 * Body Styles
 */
 

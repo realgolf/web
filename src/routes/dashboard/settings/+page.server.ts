@@ -1,3 +1,4 @@
+import { change_animation } from '$lib/server/user/account/change_animation';
 import { change_email } from '$lib/server/user/account/change_email';
 import { change_handicap } from '$lib/server/user/account/change_handicap';
 import { change_name } from '$lib/server/user/account/change_name';
@@ -196,5 +197,19 @@ export const actions: Actions = {
 		const message = `Your rounded corners settings got changed`;
 
 		return { message, rounded_corners };
+	},
+	animation: async (event) => {
+		const data = await event.request.formData();
+		const animation = !!data.get('animation');
+
+		const update = await change_animation(event.cookies, animation);
+
+		if ('error' in update) {
+			return fail(400, { error: update.error });
+		}
+
+		const message = `Your animation settings got changed`;
+
+		return { message, animation };
 	}
 };

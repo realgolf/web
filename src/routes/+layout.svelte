@@ -10,6 +10,8 @@
 	const all_users = data.all_users;
 
 	onMount(() => {
+		const body = document.querySelector('body') as HTMLBodyElement;
+
 		let theme = data.theme as string;
 		if (theme === undefined) {
 			theme = 'system';
@@ -22,11 +24,22 @@
 		}
 		localStorage.setItem('rounded_corners', JSON.stringify(rounded_corners));
 
-		const body = document.querySelector('body') as HTMLBodyElement;
 		if (rounded_corners === undefined) {
 			body.setAttribute('data-rounded-corners', 'true');
 		} else {
 			body.setAttribute('data-rounded-corners', JSON.stringify(rounded_corners));
+		}
+
+		let animation = data.animation as boolean;
+		if (animation === undefined) {
+			animation = true;
+		}
+		localStorage.setItem('animation', JSON.stringify(animation));
+
+		if (animation === undefined) {
+			body.setAttribute('data-animation', 'true');
+		} else {
+			body.setAttribute('data-animation', JSON.stringify(animation));
 		}
 	});
 </script>
