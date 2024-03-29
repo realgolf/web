@@ -50,7 +50,7 @@ button {
 		}
 	}
 
-	animation: slide-in 0.5s forwards;
+	animation: slide-in var(--animation-time) forwards;
 
 	font-size: var(--small-font);
 
