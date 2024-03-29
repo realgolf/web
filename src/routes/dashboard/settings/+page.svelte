@@ -228,6 +228,19 @@
 		<br />
 		<button aria-label="update Rounded Corners">Update</button>
 	</form>
+
+	<h2>Animations</h2>
+	<p class="underline">
+		Your currently saved Animation Setting is: {JSON.stringify(data.animation)}
+	</p>
+	<form action="?/animation" method="POST" class="animation-form">
+		<div class="same-row">
+			<label for="animation-settings">Select your prefered Animation Setting:</label>
+			<input type="checkbox" name="animation" id="animation" bind:checked={data.animation} />
+		</div>
+		<br />
+		<button aria-label="update Animation">Update</button>
+	</form>
 </div>
 
 <div class="delete-account">
