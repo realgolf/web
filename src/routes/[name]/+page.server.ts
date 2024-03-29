@@ -38,10 +38,9 @@ export const load: PageServerLoad = async (event) => {
 	): string | undefined {
 		let modifiedBio = bio;
 
-		const mentionRegex = /@([\w:]+)(?=[ ,.!?:;"§$%&/()=*+'#-_]|$)/g;
-
 		if (modifiedBio && mentions) {
 			mentions.forEach((mention) => {
+				const mentionRegex = new RegExp(`@${mention}(?=[ ,.!?:;"§$%&/()=*+'#-_]|$)`, 'g');
 				const newBio = modifiedBio?.replace(
 					mentionRegex,
 					`<a class="user-mention" href="/${mention}">@${mention}</a>`
