@@ -9,6 +9,8 @@ const Course_Schema = new mongoose.Schema({
 	name: { type: String, require: true, unique: true },
 	location: { type: String, require: true },
 	par: { type: Number, require: true },
+	out_par: { type: Number, require: true },
+	in_par: { type: Number, require: true },
 	tees: [
 		{
 			color: { type: String, require: true },
@@ -20,6 +22,8 @@ const Course_Schema = new mongoose.Schema({
 					hcp: { type: Number, require: true }
 				}
 			],
+			out_distance: { type: Number, require: true },
+			in_distance: { type: Number, require: true },
 			total_distance: { type: Number, require: true }
 		}
 	],
