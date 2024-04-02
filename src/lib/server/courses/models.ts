@@ -23,8 +23,24 @@ const Course_Schema = new mongoose.Schema({
 			total_distance: { type: Number, require: true }
 		}
 	],
-	rating: [{ type: Number, require: true }],
-	slope: [{ type: Number, require: true }]
+	rating: [
+		{
+			men: [
+				{
+					tee: { type: String },
+					course: { type: Number },
+					slope: { type: Number }
+				}
+			],
+			ladies: [
+				{
+					tee: { type: String },
+					course: { type: Number },
+					slope: { type: Number }
+				}
+			]
+		}
+	]
 });
 
 const course_model = await connect_to_db();
