@@ -52,7 +52,7 @@
 		border-radius: 50%;
 		display: grid;
 		place-content: center;
-		background-color: var(--accent-color);
+		background: var(--accent-color);
 		color: var(--inverted-font-color);
 		box-shadow: none !important;
 	}
