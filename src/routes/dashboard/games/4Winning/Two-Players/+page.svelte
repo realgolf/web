@@ -54,6 +54,8 @@
 					team_data.value = JSON.stringify(new_teams);
 				}
 
+				localStorage.removeItem('4winning_2_teams');
+
 				// Das Formular absenden
 				const form = document.querySelector('form') as HTMLFormElement;
 				form.submit();

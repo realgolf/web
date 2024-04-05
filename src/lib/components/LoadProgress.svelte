@@ -12,7 +12,7 @@
 		top: 0;
 		left: 0;
 		height: 0.5rem;
-		background-color: var(--accent-color);
+		background: var(--accent-color);
 		z-index: 10;
 		animation: grow 12s 200ms ease-out forwards;
 	}
@@ -25,7 +25,8 @@
 			width: 90%;
 		}
 		100% {
-			width: 95%;
+			width: 100%;
+			opacity: 0; /* Add opacity property */
 		}
 	}
 </style>

@@ -15,10 +15,6 @@ button {
 	background-color: var(--nav-color) !important;
 	border: none !important;
 	box-shadow: none !important;
-
-	span .description {
-		font-size: var(--tiny-font);
-	}
 }
 
 button :global(svg) {
@@ -46,6 +42,20 @@ button :global(svg) {
 	right: 0;
 	top: 0;
 	left: auto;
+
+	@keyframes slide-in {
+		from {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	animation: slide-in var(--animation-time) forwards;
 
 	font-size: var(--small-font);
 

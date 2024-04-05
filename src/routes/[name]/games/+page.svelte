@@ -1,9 +1,20 @@
 <script lang="ts">
-	import FourWinningTable from '$lib/components/Archive/FourWinning_table.svelte';
+	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
-	export let data;
+	import type { PageData } from './$types.js';
+	export let data: PageData;
 
-	let user_games = data.games;
+	// eslint-disable-next-line
+	let user_games: games[] | any[] = [];
+
+	onMount(() => {
+		if (data.games) {
+			user_games = data.games.reverse();
+			console.log(user_games);
+		}
+	});
+
+	console.log(user_games);
 	let show_confirmation = false;
 
 	function extractDomain(url: string): string | null {
@@ -63,10 +74,7 @@
 					<p>
 						This game got created at the {new Date(date).toLocaleDateString()}
 					</p>
-					{#if teams.includes('4winning_')}
-						<FourWinningTable measurement_units="yards" {data} />
-					{/if}
-					<br />
+					<p>{data}</p>
 					<button on:click={() => shareGame(id)}>Share Game</button>
 					<button on:click={() => openGame(id)}>Open Game</button>
 				</div>

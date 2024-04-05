@@ -12,7 +12,7 @@
 			<div class="course">
 				<p><span>Name:</span> {course.name}</p>
 				<p><span>Location:</span> {course.location}</p>
-				<p><span>Par:</span> {course.par}</p>
+				<p><span>Par:</span> {course.total_par}</p>
 			</div>
 		{/each}
 	</div>

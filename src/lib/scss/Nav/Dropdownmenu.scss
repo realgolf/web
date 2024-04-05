@@ -15,15 +15,6 @@ button {
 	background-color: var(--nav-color) !important;
 	border: none !important;
 	box-shadow: none !important;
-
-	span .description {
-		font-size: var(--tiny-font);
-	}
-}
-
-button :global(svg) {
-	transition: opacity 250ms linear, rotate 250ms linear;
-	color: var(--font-color);
 }
 
 .blurry-background {
@@ -47,6 +38,20 @@ button :global(svg) {
 	top: 0;
 	left: auto;
 
+	@keyframes slide-in {
+		from {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	animation: slide-in var(--animation-time) forwards;
+
 	font-size: var(--small-font);
 
 	box-shadow: 0px 0px 10px var(--shadow-color);
@@ -64,11 +69,41 @@ button :global(svg) {
 	border-top-left-radius: calc(var(--border-radius) * 3);
 	border-bottom-left-radius: calc(var(--border-radius) * 3);
 
-	a {
+	a,
+	.link {
 		text-decoration: none;
 
 		span {
 			margin-right: 0.5rem;
+		}
+	}
+
+	.link {
+		width: max-content !important;
+		color: inherit !important;
+		text-underline-offset: 0.2rem !important;
+		outline: none !important;
+		margin-bottom: 0 !important;
+
+		display: flex;
+		flex-direction: row;
+
+		&:hover,
+		&:focus {
+			color: var(--highlight-color) !important;
+			cursor: pointer;
+
+			:global(svg) {
+				color: var(--highlight-color) !important;
+			}
+		}
+
+		span {
+			margin-right: 0.5rem;
+		}
+
+		:global(svg):hover {
+			color: var(--highlight-color) !important;
 		}
 	}
 

@@ -4,6 +4,11 @@
 	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { PageData } from '../../../routes/[name]/$types';
+	import EmailPublic from './Bio/Email_Public.svelte';
+	import Followers from './Bio/Followers.svelte';
+	import Pronoun from './Bio/Pronoun.svelte';
+	import Socials from './Bio/Socials.svelte';
+	import Status_Edit from './Bio/Status.svelte';
 	import Status from './Status.svelte';
 
 	export let data: PageData;
@@ -29,46 +34,11 @@
 	{#if editing}
 		<form action="?/edit_profile" method="POST">
 			<label for="bio">Bio</label>
-			<textarea bind:value={data.user_bio} name="bio" id="bio" rows="3" />
-			<div class="checkbox">
-				<label for="email_public">Display Email Public</label>
-				<input
-					type="checkbox"
-					name="email_public"
-					id="email_public"
-					bind:checked={data.user_email_public}
-				/>
-			</div>
-			<div class="pronoun">
-				<label for="pronouns">Pronouns</label>
-				<select name="pronoun" id="pronoun" bind:value={data.pronoun}>
-					<option value="dont">Don't specify</option>
-					<option value="he/him">he/him</option>
-					<option value="she/her">she/her</option>
-					<option value="they/them">they/them</option>
-					<option value="custom">Costum</option>
-				</select>
-				{#if data.pronoun == 'custom'}
-					<input
-						type="text"
-						name="custom_pronoun"
-						id="custom_pronoun"
-						bind:value={data.custom_pronoun}
-					/>
-				{/if}
-			</div>
-			<div class="social">
-				<label for="socials">Socials (one per line)</label>
-				<textarea bind:value={display_socials} name="socials" id="socials" rows="3" />
-			</div>
-			<div class="status">
-				<label for="status_input">Edit status</label>
-				<input type="text" name="status_text" id="status_text" bind:value={data.user_status.text} />
-				<div class="checkbox busy">
-					<label for="busy">Busy</label>
-					<input type="checkbox" name="busy" id="busy" bind:checked={data.user_status.busy} />
-				</div>
-			</div>
+			<textarea bind:value={data.edit_bio} name="bio" id="bio" rows="3" />
+			<EmailPublic {data} />
+			<Pronoun {data} />
+			<Socials {display_socials} />
+			<Status_Edit {data} />
 			<button type="submit">Save</button>
 			<button type="button" on:click={handleCancel}>Cancel</button>
 		</form>
@@ -77,7 +47,11 @@
 			<Status {data} />
 		{/if}
 		{#if data.user_bio}
-			<p>{data.user_bio}</p>
+			<!--eslint-disable-next-line -->
+			<p class="bio-text">{@html data.user_bio}</p>
+		{/if}
+		{#if data.followers && data.following}
+			<Followers {data} />
 		{/if}
 		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}>Edit profile</button>
 		<br />
@@ -105,11 +79,23 @@
 			</div>
 		{/if}
 	{:else}
-		{#if data.user_status.text}
+		{#if data.user_status && data.user_status.text}
 			<Status {data} />
 		{/if}
 		{#if data.user_bio}
 			<p>{data.user_bio}</p>
+		{/if}
+		{#if data.followers && data.following && data.user_username}
+			<Followers {data} />
+			{#if data.serialiezed_cookie_user.user.following.list.some((username) => username?.username === data.user_username)}
+				<form action="?/unfollow" method="POST">
+					<button type="submit">Unfollow</button>
+				</form>
+			{:else}
+				<form action="?/follow" method="POST">
+					<button type="submit">Follow</button>
+				</form>
+			{/if}
 		{/if}
 		{#if data.user_email_public == true}
 			<p><Fa icon={faEnvelope} /> <span>{data.user_email}</span></p>

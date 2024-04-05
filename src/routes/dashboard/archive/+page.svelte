@@ -2,11 +2,8 @@
 	import { enhance } from '$app/forms';
 	import Game from '$lib/components/Archive/Game.svelte';
 	import { applyFilters } from '$lib/scripts/Archive/applyFilters';
-	import { togglePreview } from '$lib/scripts/Archive/togglePreview';
 	import type { Data } from '$lib/scripts/Archive/types';
-	import { faEye } from '@fortawesome/free-regular-svg-icons';
 	import { afterUpdate, onMount } from 'svelte';
-	import Fa from 'svelte-fa';
 	import { teams } from './teams';
 
 	/**
@@ -15,19 +12,19 @@
 	export let data: Data;
 	export let form;
 
-	let measurement_units: string = data.measurement_units;
-
 	/**
 	 * STATE
 	 */
 	let selectedTeam = '';
 	let searchTerm = '';
+
 	// eslint-disable-next-line
 	let filteredGames: games[] | any[] = [];
 
 	// ON COMPONENT MOUNT
 	onMount(() => {
-		filteredGames = data.games;
+		filteredGames = data.games.reverse();
+		console.log(filteredGames);
 	});
 
 	/**
@@ -35,6 +32,7 @@
 	 */
 	afterUpdate(() => {
 		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
+		filteredGames = filteredGames.reverse();
 	});
 
 	/**
@@ -42,6 +40,7 @@
 	 */
 	function handleTeamChange() {
 		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
+		filteredGames = filteredGames.reverse();
 	}
 
 	let showMessage = true;
@@ -65,7 +64,6 @@
 <form action="?/delete_all" method="POST" autocomplete="off">
 	<button>Delete All</button>
 </form>
-<button title="Toggle Game Preview" on:click={togglePreview}><Fa icon={faEye} /></button>
 
 {#if showMessage == true && form?.message}
 	<p class="success">{form?.message}</p>
@@ -92,7 +90,7 @@
 
 {#if filteredGames.length > 0}
 	{#each filteredGames as { name, teams, data, id, date }}
-		<Game {name} {teams} {data} {id} {date} {measurement_units} />
+		<Game {name} {teams} {data} {id} {date} />
 	{/each}
 {:else}
 	<p class="error">No games found for this search.</p>

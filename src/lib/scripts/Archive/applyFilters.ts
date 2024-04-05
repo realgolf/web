@@ -30,7 +30,6 @@ export function applyFilters(
 		filteredGames = data.games;
 	}
 
-	console.log(filteredGames);
-
+	filteredGames = filteredGames.reverse();
 	return filteredGames;
 }

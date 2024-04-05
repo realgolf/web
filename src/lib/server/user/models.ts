@@ -19,6 +19,7 @@ const User_Schema = new mongoose.Schema({
 		measurement_units: { type: String, required: true, default: 'meters' },
 		theme: { type: String, required: true, default: 'system' },
 		rounded_corners: { type: Boolean, required: true, default: true },
+		animation: { type: Boolean, required: true, default: true },
 		handicap: { type: Number, required: true, default: 54 },
 		handicap_updated: { type: Date, required: true, default: new Date() },
 		bio: { type: String },
@@ -37,6 +38,22 @@ const User_Schema = new mongoose.Schema({
 			emoji: { type: String },
 			text: { type: String },
 			busy: { type: Boolean }
+		},
+		followers: {
+			count: { type: Number, default: 0 },
+			list: [
+				{
+					username: { type: String }
+				}
+			]
+		},
+		following: {
+			count: { type: Number, default: 0 },
+			list: [
+				{
+					username: { type: String }
+				}
+			]
 		}
 	},
 	achievements: [

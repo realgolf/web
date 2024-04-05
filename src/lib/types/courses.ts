@@ -3,7 +3,7 @@ export type Course_Data = {
 		id: string;
 		name: string;
 		location: string;
-		par: number;
+		total_par: number;
 		tees: {
 			color: string;
 			holes: {
