@@ -14,7 +14,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"prepare": "husky",
-		"run:precommit": ".husky/pre-commit"
+		"precommit": ".husky/pre-commit"
 	},
 	"hooks": {
 		"pre-commit": "pnpm run build && pnpm run format && pnpm run lint"
