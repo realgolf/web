@@ -4,14 +4,14 @@
 	import type { PageData } from './$types.js';
 	export let data: PageData;
 
+	// eslint-disable-next-line
 	let user_games: games[] | any[] = [];
 
 	onMount(() => {
-		if (!data.games) {
-			return;
+		if (data.games) {
+			user_games = data.games.reverse();
+			console.log(user_games);
 		}
-		user_games = data.games.reverse();
-		console.log(user_games);
 	});
 
 	console.log(user_games);
