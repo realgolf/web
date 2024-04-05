@@ -6,18 +6,19 @@
 	"private": true,
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js",
+		"server": "node server.js",
 		"dev": "vite dev",
 		"build:kit": "vite build",
 		"build:server": "tsc server.ts --esModuleInterop --target esnext --moduleResolution node",
-		"build": "npm run build:kit && npm run build:server",
+		"build": "pnpm run build:kit && pnpm run build:server",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"prepare": "husky",
-		"precommit": ".husky/pre-commit"
+		"precommit": ".husky/pre-commit",
+		"start": "pnpm run build && pnpm run server"
 	},
 	"hooks": {
 		"pre-commit": "pnpm run build && pnpm run format && pnpm run lint"
