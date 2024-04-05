@@ -12,19 +12,19 @@
 	export let data: Data;
 	export let form;
 
-	let measurement_units: string = data.measurement_units;
-
 	/**
 	 * STATE
 	 */
 	let selectedTeam = '';
 	let searchTerm = '';
+
 	// eslint-disable-next-line
 	let filteredGames: games[] | any[] = [];
 
 	// ON COMPONENT MOUNT
 	onMount(() => {
-		filteredGames = data.games;
+		filteredGames = data.games.reverse();
+		console.log(filteredGames);
 	});
 
 	/**
@@ -32,6 +32,7 @@
 	 */
 	afterUpdate(() => {
 		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
+		filteredGames = filteredGames.reverse();
 	});
 
 	/**
@@ -39,6 +40,7 @@
 	 */
 	function handleTeamChange() {
 		filteredGames = applyFilters(searchTerm, filteredGames, data, selectedTeam);
+		filteredGames = filteredGames.reverse();
 	}
 
 	let showMessage = true;
@@ -88,7 +90,7 @@
 
 {#if filteredGames.length > 0}
 	{#each filteredGames as { name, teams, data, id, date }}
-		<Game {name} {teams} {data} {id} {date} {measurement_units} />
+		<Game {name} {teams} {data} {id} {date} />
 	{/each}
 {:else}
 	<p class="error">No games found for this search.</p>
