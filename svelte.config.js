@@ -11,6 +11,9 @@ export default {
 		handler(warning);
 	},
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+		csrf: {
+			checkOrigin: false
+		}
 	}
 };
