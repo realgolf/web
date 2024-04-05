@@ -1,8 +1,20 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
-	export let data;
+	import type { PageData } from './$types.js';
+	export let data: PageData;
 
-	let user_games = data.games;
+	// eslint-disable-next-line
+	let user_games: games[] | any[] = [];
+
+	onMount(() => {
+		if (data.games) {
+			user_games = data.games.reverse();
+			console.log(user_games);
+		}
+	});
+
+	console.log(user_games);
 	let show_confirmation = false;
 
 	function extractDomain(url: string): string | null {

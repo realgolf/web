@@ -65,6 +65,7 @@
 				<FourWinningTable measurement_units={data.measurement_units} data={data.game.data} />
 			{/if}
 			<p>Name of the Game: {data.game.name}</p>
+			<p>Date of play: {new Date(data.game.date).toLocaleDateString()}</p>
 			<p>
 				Team the game is associated with: {asignNameToTeam(data.game.teams)}
 			</p>
