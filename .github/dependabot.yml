@@ -9,7 +9,6 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
-      time: '00:00'
     reviewers:
       - '@MoinJulian'
     labels:
