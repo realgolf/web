@@ -1,6 +1,5 @@
 /**
  * Displays a modal with a message and three buttons: Yes, Save, and No.
- *
  * @param message - The message to be displayed in the modal.
  * @param yesCallback - The callback function to be executed when the Yes button is clicked.
  * @param saveCallback - The callback function to be executed when the Save button is clicked.
