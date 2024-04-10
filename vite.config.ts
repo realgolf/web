@@ -1,12 +1,12 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { IncomingMessage, Server, ServerResponse } from 'http';
 import type { UserConfig, ViteDevServer } from 'vite';
-import { attach_sockets } from './sockets';
+import { handle_sockets } from './server/sockets';
 
 const socket_io_plugin = {
 	name: 'socket.io plugin',
 	configureServer(server: ViteDevServer) {
-		attach_sockets(server.httpServer as Server<typeof IncomingMessage, typeof ServerResponse>);
+		handle_sockets(server.httpServer as Server<typeof IncomingMessage, typeof ServerResponse>);
 	}
 };
 
