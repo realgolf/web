@@ -1,3 +1,6 @@
+import type { Team } from './types';
+import { updateTeamTurn } from './updateTeamTurn';
+
 /**
  * Restarts the game when the User clicks the Restart Game Button by resetting the necessary variables and elements.
  * @param teams - An array of teams.
@@ -8,9 +11,6 @@
  * @param color - The color of the current team.
  * @returns An object containing the updated hitCounts, numberOfClicks, currentTeamIndex, currentTeam, and color.
  */
-import type { Team } from './types';
-import { updateTeamTurn } from './updateTeamTurn';
-
 export function restartGame_Btn(
 	teams: Team[],
 	hitCounts: Record<string, number>,
