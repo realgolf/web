@@ -1,3 +1,7 @@
+import { open_dialog } from '$lib/components/Global/Dialog.svelte';
+import { restartGame } from './restartGame';
+import type { Team, winCombination } from './types';
+
 /**
  * Checks if any of the win combinations are achieved by the current team.
  * If a win combination is found, it opens a dialog to restart the game.
@@ -12,10 +16,6 @@
  * @param changeTeam - A function to change the current team.
  * @returns `false` indicating that no win combination was found.
  */
-import { open_dialog } from '$lib/components/Global/Dialog.svelte';
-import { restartGame } from './restartGame';
-import type { Team, winCombination } from './types';
-
 export function checkWin(
 	winCombinations: winCombination[],
 	currentTeam: Team,

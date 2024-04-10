@@ -1,3 +1,5 @@
+import type { winCombination } from './types';
+
 /**
  * Generates an array of win combinations for a game board.
  * Each win combination is represented by an array of cells,
@@ -5,8 +7,6 @@
  *
  * @returns An array of win combinations.
  */
-import type { winCombination } from './types';
-
 function generateWinCombinations(): {
 	cells: { outerIndex: number; innerIndex: number }[];
 }[] {

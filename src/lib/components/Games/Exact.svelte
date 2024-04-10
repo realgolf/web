@@ -12,7 +12,6 @@
 
 	export let teams: Team[];
 
-	// eslint-disable-next-line
 	let pointsByTeam: Record<string, Writable<number>> = {};
 	let shotsPlayed: number = 0;
 
@@ -43,6 +42,10 @@
 	let currentTeam = teams[currentTeamIndex];
 	let color = currentTeam.color;
 
+	/**
+	 * Changes the current team to the next team in the list
+	 * @returns void
+	 */
 	function changeTeam() {
 		currentTeamIndex = (currentTeamIndex + 1) % teams.length;
 		currentTeam = teams[currentTeamIndex];
@@ -52,6 +55,19 @@
 
 	let lastRowNumbers: Record<string, number | null> = {};
 
+	/**
+	 * Handles the click event on the field. 
+	 * Colors the clicked cell in the color of the current Team and updates the points. 
+	 * Also doubles the points if the last row number is the same as the current row number. 
+	 * Updates the points in the localStorage. 
+	 * Updates the pointsByTeam and the points display. 
+	 * Increases the clickedCellsCount. 
+	 * Changes the current team. 
+	 * Checks if the game ended and opens a dialog if it did.
+	 * @returns {number} newPoints
+	 * @param {MouseEvent} event - The mouse event
+	 * @returns void
+	 */
 	function handleClick(event: MouseEvent) {
 		const targetId = (event.target as HTMLElement).id;
 		const match = targetId.match(/row(\d+)-(\d+)/);
@@ -160,7 +176,10 @@
 		}
 	}
 
-	// Open dialog to ask if the user wants to restart the game
+	/**
+	 * Requests a confirmation dialog to restart the game
+	 * @returns void
+	 */
 	function request_restart_confirmation() {
 		open_dialog({
 			text: 'Do you really want to restart the game?',

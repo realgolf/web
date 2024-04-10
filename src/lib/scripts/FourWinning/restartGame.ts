@@ -1,3 +1,6 @@
+import type { Team } from './types';
+import { updateTeamTurn } from './updateTeamTurn';
+
 /**
  * Restarts the game by resetting various game-related variables and elements.
  * @param teams - An array of Team objects representing the teams in the game.
@@ -9,9 +12,6 @@
  * @param changeTeam - A function to change the current team.
  * @returns An object containing the updated hitCounts, numberOfClicks, currentTeamIndex, currentTeam, and color.
  */
-import type { Team } from './types';
-import { updateTeamTurn } from './updateTeamTurn';
-
 export function restartGame(
 	teams: Team[],
 	hitCounts: number | Record<string, number>,

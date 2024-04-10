@@ -1,5 +1,11 @@
 import type { User } from '$lib/server/user/types';
 
+/**
+ * Search for users by username.
+ * @param all_users An array of all users.
+ * @param search_term The search term.
+ * @returns An array of users that match the search term.
+ */
 export function search_by_term(all_users: User[], search_term: string) {
 	// Filter all_users based on search_term
 	if (!Array.isArray(all_users)) {

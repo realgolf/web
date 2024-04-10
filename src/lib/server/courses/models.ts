@@ -1,9 +1,9 @@
-/**
- * Represents the schema for a golf course in the database.
- */
 import mongoose from 'mongoose';
 import { connect_to_db } from './db';
 
+/**
+ * Represents the schema for a golf course in the database.
+ */
 const Course_Schema = new mongoose.Schema({
 	id: { type: String, require: true, unique: true },
 	name: { type: String, require: true, unique: true },

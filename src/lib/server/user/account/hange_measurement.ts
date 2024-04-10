@@ -1,3 +1,7 @@
+import type { Cookies } from '@sveltejs/kit';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+
 /**
  * Changes the measurement unit for a user.
  *
@@ -5,10 +9,6 @@
  * @param measurement_unit - The new measurement unit to set for the user.
  * @returns An object with the updated measurement unit or an error message.
  */
-import type { Cookies } from '@sveltejs/kit';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-
 export async function change_measurement(cookies: Cookies, measurement_unit: string) {
 	const auth = authenticate(cookies);
 

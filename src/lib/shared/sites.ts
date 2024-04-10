@@ -1,3 +1,6 @@
+/**
+ * All Internal sites that can't be used as a username
+ */
 export const sites = [
 	'dashboard',
 	'faq',

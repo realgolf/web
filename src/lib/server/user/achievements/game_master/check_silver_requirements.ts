@@ -1,3 +1,6 @@
+import type { Achievements } from '../../interface/Achievements';
+
+//! Requires 128 played games
 /**
  * Checks if the silver requirements for the "Game Master" achievement are met.
  *
@@ -5,9 +8,6 @@
  * @param achievements The list of achievements.
  * @param gameId The ID of the game.
  */
-import type { Achievements } from '../../interface/Achievements';
-
-//! Requires 128 played games
 export function check_silver_requirements(
 	total_games: number,
 	achievements: Achievements[],

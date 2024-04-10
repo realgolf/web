@@ -1,11 +1,11 @@
+import type { Team } from './types';
+
 /**
  * Updates the points display on the webpage with the points of each team.
  *
  * @param teams - An array of team objects.
  * @returns The innerHTML of the points display element.
  */
-import type { Team } from './types';
-
 export function updatePointsDisplay(teams: Team[]) {
 	const display = document.querySelector('#points_display');
 	if (display) {

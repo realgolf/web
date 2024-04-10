@@ -1,3 +1,12 @@
+import bcrypt from 'bcrypt';
+import type { MongooseError } from 'mongoose';
+import { User_Model } from './models';
+import { verify_email } from './verify/verify_email';
+import { verify_handicap } from './verify/verify_handicap';
+import { verify_name } from './verify/verify_name';
+import { verify_password } from './verify/verify_password';
+import { verify_username } from './verify/verify_username';
+
 /**
  * Registers a user with the provided information.
  *
@@ -11,15 +20,6 @@
  * @param registration_date - The date of user registration.
  * @returns A promise that resolves to an object containing an error message, if any.
  */
-import bcrypt from 'bcrypt';
-import type { MongooseError } from 'mongoose';
-import { User_Model } from './models';
-import { verify_email } from './verify/verify_email';
-import { verify_handicap } from './verify/verify_handicap';
-import { verify_name } from './verify/verify_name';
-import { verify_password } from './verify/verify_password';
-import { verify_username } from './verify/verify_username';
-
 export async function register_user(
 	email: string,
 	password: string,

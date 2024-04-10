@@ -1,8 +1,9 @@
-/**
- * Represents an array of rows, each containing points and data.
- */
 import type { Row } from './types';
 
+/**
+ * Represents an array of rows, each containing points and data.
+ * @type {Row[]}
+ */
 export const rows: Row[] = [
 	{
 		points: '1 Point',

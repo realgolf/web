@@ -1,3 +1,7 @@
+import type { Cookies } from '@sveltejs/kit';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+
 /**
  * Changes the value of the animation property for a user.
  *
@@ -5,10 +9,6 @@
  * @param animation - The new value for the animation property.
  * @returns An object with the updated animation value or an error message.
  */
-import type { Cookies } from '@sveltejs/kit';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-
 export async function change_animation(cookies: Cookies, animation: boolean) {
 	const auth = authenticate(cookies);
 

@@ -1,3 +1,9 @@
+import type { Cookies } from '@sveltejs/kit';
+import bcrypt from 'bcrypt';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+import { verify_password } from '../verify/verify_password';
+
 /**
  * Deletes a user account.
  *
@@ -5,12 +11,6 @@
  * @param password - The password provided by the user to verify the account deletion.
  * @returns An object with either an error message or a success message indicating whether the account was deleted.
  */
-import type { Cookies } from '@sveltejs/kit';
-import bcrypt from 'bcrypt';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-import { verify_password } from '../verify/verify_password';
-
 export async function delete_account(cookies: Cookies, password: string) {
 	const auth = authenticate(cookies);
 	const verified_password = password;

@@ -9,6 +9,9 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faChess, faChessKnight } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * All social links that are supported by our software
+ */
 export const social_links = [
 	{
 		logo: faGithub,

@@ -1,11 +1,11 @@
+import { redirect } from './redirect';
+
 /**
  * Fills the local storage with game data and redirects the user based on the teams parameter.
  *
- * @param teams - The teams parameter indicating the number of teams.
- * @param gameData - The game data to be stored in the local storage.
+ * @param {string} teams - The teams parameter indicating the number of teams.
+ * @param {string} gameData - The game data to be stored in the local storage.
  */
-import { redirect } from './redirect';
-
 export function fillLocalStorageAndRedirectUser(teams: string, gameData: string) {
 	localStorage.setItem(teams, gameData);
 	if (teams == '4winning_2_teams') {

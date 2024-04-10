@@ -5,6 +5,7 @@ import type { Row } from './types';
 
 /**
  * The array of rows in the FourWinning table.
+ * @type {Row[]}
  */
 export let rows: Row[] = [
 	{

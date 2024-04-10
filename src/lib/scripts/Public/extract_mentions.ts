@@ -1,3 +1,9 @@
+/**
+ * Extracts mentions from a string.
+ * The mentions are prefixed with '@' and are ended by a space, comma, period, exclamation mark, or question mark.
+ * @param text
+ * @returns mentions
+ */
 export function extractMentions(text: string | null | undefined): string[] | undefined[] {
 	const mentions: string[] = [];
 	let currentMention = '';

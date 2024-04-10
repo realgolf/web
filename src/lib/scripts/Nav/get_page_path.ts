@@ -1,5 +1,10 @@
 import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 
+/**
+ * Get the breadcrumb path for the current page
+ * @param currentPagePath The current page path
+ * @returns The breadcrumb path
+ */
 export function getPagePath(currentPagePath: string) {
 	const path = currentPagePath;
 

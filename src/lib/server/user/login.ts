@@ -1,14 +1,14 @@
+import { SECRET_JWT_KEY } from '$env/static/private';
+import jwt from 'jsonwebtoken';
+import { get_user } from './login/get_user';
+import { User_Model } from './models';
+
 /**
  * Logs in a user with the provided email and password.
  * @param email - The email of the user.
  * @param password - The password of the user.
  * @returns An object containing the JWT token and the user information if the login is successful, or an error object if there is an error.
  */
-import { SECRET_JWT_KEY } from '$env/static/private';
-import jwt from 'jsonwebtoken';
-import { get_user } from './login/get_user';
-import { User_Model } from './models';
-
 export async function login_user(email: string, password: string) {
 	const user = await get_user(email, password);
 

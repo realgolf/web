@@ -1,3 +1,6 @@
+import type { Achievements } from '../../interface/Achievements';
+
+//! Requires 1024 played games
 /**
  * Checks if the gold requirements for the "Game Master" achievement are met.
  *
@@ -5,9 +8,6 @@
  * @param achievements The list of achievements.
  * @param gameId The ID of the game.
  */
-import type { Achievements } from '../../interface/Achievements';
-
-//! Requires 1024 played games
 export function check_gold_requirements(
 	total_games: number,
 	achievements: Achievements[],

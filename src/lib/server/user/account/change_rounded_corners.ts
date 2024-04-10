@@ -1,3 +1,7 @@
+import type { Cookies } from '@sveltejs/kit';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+
 /**
  * Changes the value of the rounded_corners property for a user.
  *
@@ -5,10 +9,6 @@
  * @param rounded_corners - The new value for the rounded_corners property.
  * @returns An object with the updated rounded_corners value or an error message.
  */
-import type { Cookies } from '@sveltejs/kit';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-
 export async function change_rounded_corners(cookies: Cookies, rounded_corners: boolean) {
 	const auth = authenticate(cookies);
 

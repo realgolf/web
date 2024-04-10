@@ -1,8 +1,9 @@
-/**
- * An array of rows containing side and data information.
- */
 import type { Row } from './types';
 
+/**
+ * An array of rows containing side and data information.
+ * @type {Row[]}
+ */
 export const rows: Row[] = [
 	{
 		side: '1',
