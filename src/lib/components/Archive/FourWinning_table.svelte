@@ -11,6 +11,10 @@
 	let game_data = data; // Assign the game data to a local variable
 	let newRows = rows; // Assign the rows to a local variable
 
+	/**
+	 * Colorize the fields based on the game data
+	 * @returns void
+	 */
 	function colorFields() {
 		let gameData: GameData[] = JSON.parse(game_data); // Parse the game data as an array of GameData objects
 
