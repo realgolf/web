@@ -1,3 +1,8 @@
+import type { Writable } from 'svelte/store';
+import type { Team } from './types';
+import { updatePointsDisplay } from './updatePointsDisplay';
+import { updateTeamTurn } from './updateTeamTurn';
+
 /**
  * Resets the game by clearing team data, points, and updating the UI.
  *
@@ -10,11 +15,6 @@
  * @param color - The color of the current team.
  * @returns An object containing the updated values of userInput, clickedCellsCount, currentTeamIndex, currentTeam, color, and cells.
  */
-import type { Writable } from 'svelte/store';
-import type { Team } from './types';
-import { updatePointsDisplay } from './updatePointsDisplay';
-import { updateTeamTurn } from './updateTeamTurn';
-
 export function resetGame(
 	teams: Team[],
 	pointsByTeam: Record<string, Writable<number>>,

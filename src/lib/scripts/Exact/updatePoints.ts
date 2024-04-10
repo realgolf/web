@@ -1,3 +1,5 @@
+import type { Team } from './types';
+
 /**
  * Updates the points of each team in the given array based on the stored data in localStorage.
  * If the stored data is available for a team's color, the points are updated from the stored data.
@@ -6,8 +8,6 @@
  * @param teams - An array of Team objects representing the teams to update the points for.
  * @returns The updated array of Team objects with the points updated.
  */
-import type { Team } from './types';
-
 export function updatePoints(teams: Team[]) {
 	let points;
 	teams.map((team) => {
