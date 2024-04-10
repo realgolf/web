@@ -1,7 +1,3 @@
-/**
- * Connects to the MongoDB database using the provided connection URI.
- * @returns A Promise that resolves to a Mongoose Connection object.
- */
 import { SECRET_MONGODB_USERDB_CONNECTION } from '$env/static/private';
 import mongoose from 'mongoose';
 
@@ -12,18 +8,13 @@ const connection_options = {
 	maxPoolSize: 300
 };
 
+/**
+ * Connects to the MongoDB database using the provided connection URI.
+ * @returns A Promise that resolves to a Mongoose Connection object.
+ */
 export async function connect_to_db() {
 	try {
 		return mongoose.connect(database_URI, connection_options);
-	} catch (err) {
-		console.log(err);
-	}
-}
-
-export async function disconnect_from_db() {
-	try {
-		console.log('Disconnecting from the database...');
-		return mongoose.disconnect();
 	} catch (err) {
 		console.log(err);
 	}

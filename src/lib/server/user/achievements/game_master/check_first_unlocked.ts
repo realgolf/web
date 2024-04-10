@@ -1,3 +1,6 @@
+import type { Achievements } from '../../interface/Achievements';
+
+//! Requires 2 played games
 /**
  * Checks if the user has played two games and unlocks the "Game Master" achievement if true.
  * @param total_games The total number of games played by the user.
@@ -6,9 +9,6 @@
  * @param gameId The ID of the game.
  * @returns The updated array of achievements if the user has played two games, otherwise an empty string.
  */
-import type { Achievements } from '../../interface/Achievements';
-
-//! Requires 2 played games
 export function check_first_unlock(
 	total_games: number,
 	achievements: Achievements[],

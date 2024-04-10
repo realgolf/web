@@ -1,3 +1,8 @@
+import type { Cookies } from '@sveltejs/kit';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+import { verify_name } from '../verify/verify_name';
+
 /**
  * Changes the name of a user account.
  *
@@ -5,11 +10,6 @@
  * @param name - The new name to be set for the user account.
  * @returns A promise that resolves to an object with either an error message or the updated name.
  */
-import type { Cookies } from '@sveltejs/kit';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-import { verify_name } from '../verify/verify_name';
-
 export async function change_name(
 	cookies: Cookies,
 	name: string

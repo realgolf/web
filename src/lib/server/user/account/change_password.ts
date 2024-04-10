@@ -1,3 +1,9 @@
+import type { Cookies } from '@sveltejs/kit';
+import bcrypt from 'bcrypt';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+import { verify_password } from '../verify/verify_password';
+
 /**
  * Changes the password for a user account.
  *
@@ -7,12 +13,6 @@
  * @param verified_password - The verified new password to confirm the change.
  * @returns A promise that resolves to an object with either an error message or the new password.
  */
-import type { Cookies } from '@sveltejs/kit';
-import bcrypt from 'bcrypt';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-import { verify_password } from '../verify/verify_password';
-
 export async function change_password(
 	cookies: Cookies,
 	current_password: string,

@@ -1,12 +1,12 @@
+import { sites } from '$lib/shared/sites';
+import { User_Model } from '../models';
+
 /**
  * Verifies if a username is valid.
  *
  * @param username - The username to be verified.
  * @returns A promise that resolves to an error message if the username is invalid, or an empty string if the username is valid.
  */
-import { sites } from '$lib/shared/sites';
-import { User_Model } from '../models';
-
 export async function verify_username(username: string): Promise<string> {
 	if (!username) {
 		return 'Username is required.';

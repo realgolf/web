@@ -1,14 +1,14 @@
+import bcrypt from 'bcrypt';
+import type { ErrorResponse, SuccessResponse } from '../interface/login';
+import { User_Model } from '../models';
+import { email_regexp } from '../utils';
+
 /**
  * Retrieves a user based on their email and password.
  * @param email - The user's email.
  * @param password - The user's password.
  * @returns A promise that resolves to an ErrorResponse object if there is an error, or a SuccessResponse object if the user is found and the password is correct.
  */
-import bcrypt from 'bcrypt';
-import type { ErrorResponse, SuccessResponse } from '../interface/login';
-import { User_Model } from '../models';
-import { email_regexp } from '../utils';
-
 export async function get_user(
 	email: string,
 	password: string

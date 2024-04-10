@@ -1,3 +1,7 @@
+import type { Cookies } from '@sveltejs/kit';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+
 /**
  * Changes the handicap of a user.
  *
@@ -5,10 +9,6 @@
  * @param handicap - The new handicap value to set for the user.
  * @returns An object with the updated handicap value or an error message.
  */
-import type { Cookies } from '@sveltejs/kit';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-
 export async function change_handicap(cookies: Cookies, handicap: number) {
 	const auth = authenticate(cookies);
 

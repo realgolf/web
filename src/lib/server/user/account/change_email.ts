@@ -1,3 +1,8 @@
+import type { Cookies } from '@sveltejs/kit';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+import { verify_email } from '../verify/verify_email';
+
 /**
  * Changes the email address of a user.
  *
@@ -5,11 +10,6 @@
  * @param email - The new email address to be set.
  * @returns A promise that resolves to an object with the new email address if successful, or an error message if unsuccessful.
  */
-import type { Cookies } from '@sveltejs/kit';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-import { verify_email } from '../verify/verify_email';
-
 export async function change_email(
 	cookies: Cookies,
 	email: string

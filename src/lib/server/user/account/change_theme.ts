@@ -1,3 +1,7 @@
+import type { Cookies } from '@sveltejs/kit';
+import { authenticate } from '../authenticate';
+import { User_Model } from '../models';
+
 /**
  * Changes the theme of a user's account.
  *
@@ -5,10 +9,6 @@
  * @param theme - The new theme to be set for the user's account.
  * @returns An object with the updated theme or an error message.
  */
-import type { Cookies } from '@sveltejs/kit';
-import { authenticate } from '../authenticate';
-import { User_Model } from '../models';
-
 export async function change_theme(cookies: Cookies, theme: string) {
 	const auth = authenticate(cookies);
 
