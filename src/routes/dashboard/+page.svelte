@@ -14,15 +14,12 @@
 	<h2>Dashboard</h2>
 
 	<p>
-		<b>
-			Welcome to "Real Golf" {data.name} - your ultimate destination for golf challenges! Discover "4
-			Winning", "Exact", and "Precision" - captivating golf experiences tested with trainers.
-		</b>
+		Welcome to "Real Golf" {data.name} - your ultimate destination for golf challenges! Discover "4 Winning",
+		"Exact", and "Precision" - captivating golf experiences tested with trainers.
+		<br>
+		You can also save your games in the Database and view them in the <a href="/dashboard/archive">Archive</a>.
+		So enjoy practicing and improving your golf skills!
 	</p>
-
-	<p class="success">The navigation can be found in the dropdown menu.</p>
-
-	<h3>But most important enjoy the games and have fun!</h3>
 
 	<div class="card">
 		<h2>One Player Precision Highscore</h2>
