@@ -1,3 +1,6 @@
+import { resetGame } from './resetGame';
+import type { Team } from './types';
+
 /**
  * Checks if there is a winner among the teams based on their points.
  * If there is only one team with points, it prompts a confirmation message
@@ -13,9 +16,6 @@
  * @param currentTeam - The current team object.
  * @param MetersToPlay - The number of meters to play.
  */
-import { resetGame } from './resetGame';
-import type { Team } from './types';
-
 export function checkWinner(
 	teams: Team[],
 	point: number,

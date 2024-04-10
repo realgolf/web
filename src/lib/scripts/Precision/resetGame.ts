@@ -1,3 +1,6 @@
+import { generateRandomNumber } from './generateRandomNumber';
+import type { Team } from './types';
+
 /**
  * Resets the game by updating the teams' points, current team index, color, current team, and meters to play.
  *
@@ -12,9 +15,6 @@
  * @param MetersToPlay - The number of meters to play.
  * @returns An object containing the updated values of range, currentTeamIndex, color, currentTeam, and MetersToPlay.
  */
-import { generateRandomNumber } from './generateRandomNumber';
-import type { Team } from './types';
-
 export function resetGame(
 	teams: Team[],
 	point: number,

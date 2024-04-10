@@ -1,3 +1,6 @@
+import { checkWinner } from './checkWinner';
+import type { Team } from './types';
+
 /**
  * Deducts points from the current team based on the difference between the meters to play and the current team's distance.
  * @param MetersToPlay The total meters to play.
@@ -12,9 +15,6 @@
  * @param color The color value.
  * @returns An object containing the difference, points deducted, and the updated current team.
  */
-import { checkWinner } from './checkWinner';
-import type { Team } from './types';
-
 export function deductPoints(
 	MetersToPlay: number,
 	currentTeam: Team,
