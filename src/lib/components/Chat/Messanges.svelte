@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { get_timestamp } from '$lib/shared/utils/getTimestamp';
 	import type { message } from '$lib/types/chat';
 	export let messages: message[] = [];
 	export let messages_element: HTMLElement;
@@ -9,7 +10,7 @@
 		{#each messages as message}
 			<li class:bot={message.bot}>
 				{#if !message.bot}
-					<span class="author">{message.author}:</span>
+					<span class="author">{message.author} <small id="grey">- {get_timestamp()}</small>:</span>
 				{/if}
 				<span>{message.text}</span>
 			</li>
@@ -38,5 +39,9 @@
 
 	.bot {
 		font-weight: bold;
+	}
+
+	small#grey {
+		color: grey;
 	}
 </style>
