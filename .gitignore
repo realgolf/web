@@ -15,6 +15,7 @@ vite.config.ts.timestamp-*
 server.js
 sockets.js
 chat.js
+app.js
 
 # Local Netlify folder
 .netlify

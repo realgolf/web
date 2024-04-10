@@ -1,7 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { IncomingMessage, Server, ServerResponse } from 'http';
 import type { UserConfig, ViteDevServer } from 'vite';
-import { attach_sockets } from './sockets';
+import { attach_sockets } from './server/sockets';
 
 const socket_io_plugin = {
 	name: 'socket.io plugin',

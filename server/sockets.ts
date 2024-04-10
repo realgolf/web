@@ -6,7 +6,7 @@ import type {
 	ServerToClientEvents,
 	SocketData,
 	user_chat
-} from './src/lib/types/chat';
+} from '../src/lib/types/chat';
 
 export function attach_sockets(server: Server<typeof IncomingMessage, typeof ServerResponse>) {
 	let chat_users: user_chat[] = [];
