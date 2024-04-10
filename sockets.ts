@@ -34,6 +34,7 @@ export function attach_sockets(server: Server<typeof IncomingMessage, typeof Ser
 		});
 
 		socket.on('message', (message) => {
+			console.log('message:', message);
 			io.emit('message', { ...message, bot: false });
 		});
 
