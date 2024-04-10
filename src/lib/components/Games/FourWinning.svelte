@@ -30,7 +30,9 @@
 	let hitCounts: Record<string, number> = {};
 	let numberOfClicks: string;
 
-	// Define Functions
+	/**
+	 * Changes the current team to the next team in the list
+	 */
 	function changeTeam(): void {
 		currentTeamIndex = (currentTeamIndex + 1) % teams.length;
 		currentTeam = teams[currentTeamIndex];
@@ -38,7 +40,17 @@
 		updateTeamTurn(color);
 	}
 
-	// Handles clicks on the table cells
+	/**
+	 * Handles the click event on the field.
+	 * Colors the clicked cell in the color of the current Team and updates the points.
+	 * Updates the local storage with the current team data.
+	 * Checks if the current team has won.
+	 * Updates the current team data.
+	 * Displays a message if the field is already claimed by another team.
+	 * Increases the number of clicks on the field.
+	 * @param outerIndex
+	 * @param innerIndex
+	 */
 	function HandleEvent(outerIndex: number, innerIndex: number) {
 		const cellId = `row${outerIndex + 1}-${innerIndex}`;
 		const cell = document.getElementById(cellId);
