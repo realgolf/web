@@ -14,8 +14,10 @@ const connection_options = {
  */
 export async function connect_to_db() {
 	try {
+		if (!database_URI) throw new Error('No database URI provided.');
 		return mongoose.connect(database_URI, connection_options);
 	} catch (err) {
+		console.log('Could not connect to the database.');
 		console.log(err);
 	}
 }
