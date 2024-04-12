@@ -10,7 +10,7 @@
 		ServerToClientEvents,
 		user_chat
 	} from '$lib/types/chat';
-	import { io, Socket } from 'socket.io-client';
+	import { io, type Socket } from 'socket.io-client';
 	import { tick } from 'svelte';
 	import type { PageData } from './$types';
 
