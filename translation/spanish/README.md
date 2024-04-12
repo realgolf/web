@@ -16,7 +16,7 @@ RealGolf.Games Web es una plataforma basada en web que mejora tu experiencia de 
 
 ## Arquitectura de Producción
 
-![Arquitectura de Producción](../../img/architecture_es.png)
+![Arquitectura de Producción](../../img/architecture.png)
 
 ## Insignias
 
