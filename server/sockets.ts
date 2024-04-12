@@ -1,20 +1,22 @@
 import type { IncomingMessage, Server, ServerResponse } from 'http';
-import { Socket, Server as ioServer } from 'socket.io';
+import { Server as ioServer } from 'socket.io';
 import type {
 	ClientToServerEvents,
 	InterServerEvents,
 	ServerToClientEvents,
 	SocketData,
-	message,
 	user_chat
 } from '../src/lib/types/chat';
+import { handle_disconnection } from './chat/disconnection.js';
+import { handle_message } from './chat/message.js';
+import { handle_name } from './chat/name.js';
 
 /**
  * Handles the sockets and events.
  * @param server
  */
 export function handle_sockets(server: Server<typeof IncomingMessage, typeof ServerResponse>) {
-	let chat_users: user_chat[] = [];
+	const chat_users: user_chat[] = [];
 
 	const io = new ioServer<
 		ClientToServerEvents,
@@ -28,53 +30,13 @@ export function handle_sockets(server: Server<typeof IncomingMessage, typeof Ser
 	 */
 	io.on('connection', (socket) => {
 		socket.on('name', async (name) => {
-			handle_name(socket, name);
+			handle_name(socket, name, io, chat_users);
 		});
 		socket.on('message', (message) => {
-			handle_message(message);
+			handle_message(message, io);
 		});
 		socket.on('disconnect', () => {
-			handle_disconnection(socket);
+			handle_disconnection(socket, chat_users, io);
 		});
 	});
-
-	/**
-	 * Handles the event if a new user joins the chat.
-	 * Sends a message to all users and adds the user to the chat_users array.
-	 * @param socket
-	 * @param name
-	 */
-	function handle_name(socket: Socket<ClientToServerEvents, ServerToClientEvents>, name: string) {
-		socket.data.name = name;
-		io.emit('message', {
-			author: '',
-			text: `👋 ${name} has entered the chat`,
-			bot: true
-		});
-		chat_users.push({ id: socket.id, name: name });
-		io.emit('users', chat_users);
-	}
-
-	/**
-	 * Handles the event if a user sends a message.
-	 * @param message
-	 */
-	function handle_message(message: message) {
-		console.log('message:', message);
-		io.emit('message', { ...message, bot: false });
-	}
-
-	/**
-	 * Handles the event if a user disconnects.
-	 * @param socket
-	 */
-	function handle_disconnection(socket: Socket<ClientToServerEvents, ServerToClientEvents>) {
-		chat_users = chat_users.filter((user) => user.id != socket.id);
-		io.emit('users', chat_users);
-		io.emit('message', {
-			author: '',
-			text: `🏃‍♀️ ${socket.data.name} has left the chat`,
-			bot: true
-		});
-	}
 }

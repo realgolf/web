@@ -16,6 +16,9 @@ server.js
 sockets.js
 chat.js
 app.js
+disconnection.js
+message.js
+name.js
 
 # Local Netlify folder
 .netlify
