@@ -16,7 +16,7 @@ RealGolf.Games Web ist eine webbasierte Plattform, die Ihr Golftrainingserlebnis
 
 ## Produktionsarchitektur
 
-![Produktionsarchitektur](../../img/architecture.png)
+![RealGolf server site production architecture diagram](https://raw.githubusercontent.com/realgolf/web/main/img/architecture.png)
 
 ## Abzeichen
 
