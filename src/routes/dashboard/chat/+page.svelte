@@ -23,8 +23,6 @@
 	let text = '';
 	let socket: undefined | Socket<ServerToClientEvents, ClientToServerEvents>;
 
-	console.log('name', username);
-
 	if (browser && !username) {
 		goto('/dashboard/chat');
 	} else {
@@ -60,6 +58,12 @@
 		}
 	}
 </script>
+
+<svelte:head>
+	<title>Real Golf - Chat</title>
+</svelte:head>
+
+<h1>Chat</h1>
 
 {#if username}
 	<Status {chat_users} {username} />
