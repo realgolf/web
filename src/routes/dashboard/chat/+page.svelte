@@ -32,6 +32,8 @@
 	function setup_socket() {
 		socket = io();
 
+		socket.emit('name', username);
+
 		socket.on('message', async (message: message) => {
 			messages = [...messages, message];
 			scroll_to_bottom();

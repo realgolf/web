@@ -14,7 +14,6 @@ import type {
  * @param server
  */
 export function handle_sockets(server: Server<typeof IncomingMessage, typeof ServerResponse>) {
-	// eslint-disable-next-line prefer-const
 	let chat_users: user_chat[] = [];
 
 	const io = new ioServer<
@@ -61,7 +60,7 @@ export function handle_sockets(server: Server<typeof IncomingMessage, typeof Ser
 	 * @param message
 	 */
 	function handle_message(message: message) {
-		console.log('message:', message); // Gives us the message in the console
+		console.log('message:', message);
 		io.emit('message', { ...message, bot: false });
 	}
 
