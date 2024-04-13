@@ -10,7 +10,7 @@
 		ServerToClientEvents,
 		user_chat
 	} from '$lib/types/chat';
-	import { io, Socket } from 'socket.io-client';
+	import { io, type Socket } from 'socket.io-client';
 	import { tick } from 'svelte';
 	import type { PageData } from './$types';
 
@@ -23,8 +23,6 @@
 	let text = '';
 	let socket: undefined | Socket<ServerToClientEvents, ClientToServerEvents>;
 
-	console.log('name', username);
-
 	if (browser && !username) {
 		goto('/dashboard/chat');
 	} else {
@@ -35,17 +33,15 @@
 		socket = io();
 
 		socket.emit('name', username);
-		
+
 		socket.on('message', async (message: message) => {
 			messages = [...messages, message];
 			scroll_to_bottom();
 		});
-		
+
 		socket.on('users', (_users: user_chat[]) => {
 			chat_users = _users;
 		});
-
-		console.log('socket', socket);
 	}
 
 	function send_message() {
@@ -65,8 +61,14 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Real Golf - Chat</title>
+</svelte:head>
+
+<h1>Chat</h1>
+
 {#if username}
-	<Status chat_users={chat_users} {username}/>
+	<Status {chat_users} {username} />
 	<Messages bind:messages bind:messages_element />
 	<SendForm bind:text {send_message} />
 {:else}
