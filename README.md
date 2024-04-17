@@ -3,11 +3,11 @@
 ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/feature) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/bug) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/game)
 [![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) [![Codespell](https://github.com/realgolf/web/actions/workflows/codespell.yml/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/codespell.yml) ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web) [![Lines of code](https://tokei.rs/b1/github/realgolf/web)](https://github.com/XAMPPRocky/tokei) [![wakatime](https://wakatime.com/badge/github/realgolf/web.svg)](https://wakatime.com/badge/github/realgolf/web) ![GitHub package.json version](https://img.shields.io/github/package-json/v/realgolf/web)
 
-![RealGolf.Games Banner](./img/logo_banner.PNG)
+![RealGolf.Games Banner](https://raw.githubusercontent.com/realgolf/web/main/img/logo_banner.PNG)
 
 #### **Read this in [other languages](./translation/translations.md).**
 
-<kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](./translation/german/German.md)</kbd> <kbd>[<img title="Español" alt="Español" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/es.svg" width="22">](./translation/spanish/Spanish.md)</kbd>
+<kbd>[<img title="Deutsch" alt="Deutsch" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/de.svg" width="22">](./translation/german/German.md)</kbd> <kbd>[<img title="Español" alt="Español" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/es.svg" width="22">](./translation/spanish/Spanish.md)</kbd> <kbd>[<img title="Français" alt="Français" src="https://cdn.statically.io/gh/hjnilsson/country-flags/master/svg/fr.svg" width="22">](./translation/french/French.md)</kbd>
 
 ## Introduction
 

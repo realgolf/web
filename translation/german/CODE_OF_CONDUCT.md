@@ -64,7 +64,7 @@ oder Offline-Veranstaltung.
 ## Durchsetzung
 
 Fälle von missbräuchlichem, belästigendem oder anderweitig inakzeptablem
-Verhalten können unter [KONTAKTMETHODE EINFÜGEN] der für die Durchsetzung
+Verhalten können unter <suppoert@realgolf.games> der für die Durchsetzung
 zuständigen Gemeinschaftsleitung gemeldet werden. Alle Beschwerden werden
 zeitnah und fair geprüft und ermittelt.
 
