@@ -15,6 +15,7 @@ jobs:
     env:
       SECRET_MONGODB_USERDB_CONNECTION: ${{ secrets.SECRET_MONGODB_USERDB_CONNECTION }}
       SECRET_MONGODB_COURSEDB_CONNECTION: ${{ secrets.SECRET_MONGODB_COURSEDB_CONNECTION }}
+      SECRET_JWT_KEY: ${{ secrets.SECRET_JWT_KEY }}
 
     steps:
       - name: Checkout repository
