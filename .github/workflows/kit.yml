@@ -12,6 +12,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      SECRET_MONGODB_USERDB_CONNECTION: ${{ secrets.SECRET_MONGODB_USERDB_CONNECTION }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
