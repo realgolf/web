@@ -1,8 +1,5 @@
 # [RealGolf.Games](https://realgolf.games)
 
-![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/feature) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/bug) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/game)
-[![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) [![Codespell](https://github.com/realgolf/web/actions/workflows/codespell.yml/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/codespell.yml) [![Build Kit](https://github.com/realgolf/web/actions/workflows/kit.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/kit.yml) [![Build Server](https://github.com/realgolf/web/actions/workflows/server.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/server.yml) ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web) [![Lines of code](https://tokei.rs/b1/github/realgolf/web)](https://github.com/XAMPPRocky/tokei) [![wakatime](https://wakatime.com/badge/github/realgolf/web.svg)](https://wakatime.com/badge/github/realgolf/web) ![GitHub package.json version](https://img.shields.io/github/package-json/v/realgolf/web)
-
 ![RealGolf.Games Banner](https://raw.githubusercontent.com/realgolf/web/main/img/logo_banner.PNG)
 
 #### **Read this in [other languages](./translation/translations.md).**
@@ -14,6 +11,12 @@
 Welcome to the RealGolf.Games website repository! This project serves as the hub for RealGolf's training platform. Whether you're a developer, contributor, or user, this README provides essential information to get you started.
 
 You can visit the live website at [realgolf.games](https://realgolf.games).
+
+|        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| CI/CD  | ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) [![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) [![Codespell](https://github.com/realgolf/web/actions/workflows/codespell.yml/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/codespell.yml) [![Build Kit](https://github.com/realgolf/web/actions/workflows/kit.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/kit.yml) [![Build Server](https://github.com/realgolf/web/actions/workflows/server.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/server.yml) |
+| Issues | ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/feature) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/bug) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/game)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Stats  | ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web) [![Lines of code](https://tokei.rs/b1/github/realgolf/web)](https://github.com/XAMPPRocky/tokei) [![wakatime](https://wakatime.com/badge/github/realgolf/web.svg)](https://wakatime.com/badge/github/realgolf/web) ![GitHub package.json version](https://img.shields.io/github/package-json/v/realgolf/web)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Project Overview
 
@@ -55,19 +58,19 @@ RealGolf.Games Web offers the following features:
 
 In 4Winning, the objective is to strategically connect four pieces in a row. Our version of the game features a larger board than the standard 4x4 layout, with 8 columns and 9 rows. The additional columns on each side introduce a challenge: players must hit a specific distance within the lateral deviation. This aspect becomes more pronounced in Silver Mode and above, adding complexity and requiring players to carefully consider their moves.
 
-![4Winning Game](https://raw.githubusercontent.com/realgolf/web/main/img/4Winning.PNG)
+![4Winning Game](./img/4Winning.PNG)
 
 ### Exact
 
 Exact is a game where the objective is to hit 100 or below while scoring the most points. Players earn points based on the following criteria: Achieving exactly 100 meters awards 5 points, hitting multiples of ten earns 3 points, numbers with repeating digits score 2 points. Additionally, hitting the same row doubles the points earned. However, any other number exceeding 100 or falling below 5 results in a deduction of 1 point. Every other number between 5 and 100 scores 1 point. The challenge lies in balancing accuracy with maximizing points to achieve the highest score.
 
-![Exact Game](https://raw.githubusercontent.com/realgolf/web/main/img/Exact.PNG)
+![Exact Game](./img/Exact.PNG)
 
 ### Precision
 
 Precision is a game where the objective is to get as close to the targets as possible. For every meter you miss the target, you will receive a deduction of one point. The winner of the game is the player with the highest points at the end. The game concludes until only one player has points remaining. You can observe the distance you need to shoot and the current team, along with the remaining points for each team.
 
-![Precision Game](https://raw.githubusercontent.com/realgolf/web/main/img/Precision.PNG)
+![Precision Game](./img/Precision.PNG)
 
 </details>
 

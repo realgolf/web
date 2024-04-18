@@ -1,8 +1,5 @@
 # [RealGolf.Games](https://realgolf.games)
 
-![Badge JSON dynamique](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) ![Problèmes GitHub par étiquette](https://img.shields.io/github/issues/realgolf/web/feature) ![Problèmes GitHub par étiquette](https://img.shields.io/github/issues/realgolf/web/bug) ![Problèmes GitHub par étiquette](https://img.shields.io/github/issues/realgolf/web/game)
-[![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) [![Codespell](https://github.com/realgolf/web/actions/workflows/codespell.yml/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/codespell.yml) [![Build Kit](https://github.com/realgolf/web/actions/workflows/kit.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/kit.yml) [![Build Server](https://github.com/realgolf/web/actions/workflows/server.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/server.yml) ![Taille du dépôt GitHub](https://img.shields.io/github/repo-size/realgolf/web) [![Lignes de code](https://tokei.rs/b1/github/realgolf/web)](https://github.com/XAMPPRocky/tokei) [![wakatime](https://wakatime.com/badge/github/realgolf/web.svg)](https://wakatime.com/badge/github/realgolf/web) ![Version de package.json GitHub](https://img.shields.io/github/package-json/v/realgolf/web)
-
 ![Bannière RealGolf.Games](https://raw.githubusercontent.com/realgolf/web/main/img/logo_banner.PNG)
 
 ## Introduction
@@ -10,6 +7,12 @@
 Bienvenue dans le dépôt du site Web RealGolf.Games ! Ce projet sert de centre pour la plateforme d'entraînement de RealGolf. Que vous soyez développeur, contributeur ou utilisateur, ce README fournit des informations essentielles pour vous aider à démarrer.
 
 Vous pouvez visiter le site web en direct sur [realgolf.games](https://realgolf.games).
+
+|        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| CI/CD  | ![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) [![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) [![Codespell](https://github.com/realgolf/web/actions/workflows/codespell.yml/badge.svg?branch=main)](https://github.com/realgolf/web/actions/workflows/codespell.yml) [![Build Kit](https://github.com/realgolf/web/actions/workflows/kit.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/kit.yml) [![Build Server](https://github.com/realgolf/web/actions/workflows/server.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/server.yml) |
+| Issues | ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/feature) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/bug) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/game)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Stats  | ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web) [![Lines of code](https://tokei.rs/b1/github/realgolf/web)](https://github.com/XAMPPRocky/tokei) [![wakatime](https://wakatime.com/badge/github/realgolf/web.svg)](https://wakatime.com/badge/github/realgolf/web) ![GitHub package.json version](https://img.shields.io/github/package-json/v/realgolf/web)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Aperçu du projet
 
@@ -51,19 +54,19 @@ RealGolf.Games Web propose les fonctionnalités suivantes :
 
 Dans 4Winning, l'objectif est de connecter stratégiquement quatre pièces en ligne. Notre version du jeu présente un plateau plus grand que la disposition standard 4x4, avec 8 colonnes et 9 rangées. Les colonnes supplémentaires de chaque côté introduisent un défi : les joueurs doivent frapper à une distance spécifique dans la déviation latérale. Cet aspect devient plus prononcé en mode Argent et supérieur, ajoutant de la complexité et obligeant les joueurs à réfléchir soigneusement à leurs mouvements.
 
-![Jeu 4Winning](https://raw.githubusercontent.com/realgolf/web/main/img/4Winning.PNG)
+![Jeu 4Winning](../../img/4Winning.PNG)
 
 ### Exact
 
 Exact est un jeu où l'objectif est d'atteindre 100 ou moins tout en marquant le plus de points possible. Les joueurs gagnent des points en fonction des critères suivants : Atteindre exactement 100 mètres accorde 5 points, frapper des multiples de dix rapporte 3 points, les nombres avec des chiffres répétés marquent 2 points. De plus, frapper la même rangée double les points gagnés. Cependant, tout autre nombre dépassant 100 ou tombant en dessous de 5 entraîne une déduction d'1 point. Tout autre nombre entre 5 et 100 marque 1 point. Le défi réside dans l'équilibre entre la précision et la maximisation des points pour atteindre le score le plus élevé.
 
-![Jeu Exact](https://raw.githubusercontent.com/realgolf/web/main/img/Exact.PNG)
+![Jeu Exact](../../img/Exact.PNG)
 
 ### Précision
 
 Précision est un jeu où l'objectif est de se rapprocher le plus possible des cibles. Pour chaque mètre où vous manquez la cible, vous recevez une déduction d'un point. Le gagnant du jeu est le joueur ayant le plus de points à la fin. Le jeu se termine lorsque seul un joueur a des points. Vous pouvez observer la distance que vous devez tirer, l'équipe actuelle ainsi que les points restants pour chaque équipe.
 
-![Jeu Précision](https://raw.githubusercontent.com/realgolf/web/main/img/Precision.PNG)
+![Jeu Précision](../../img/Precision.PNG)
 
 </details>
 
