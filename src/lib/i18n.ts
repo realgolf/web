@@ -9,5 +9,5 @@ register('pt', () => import('../locales/pt.json'));
 
 init({
 	fallbackLocale: 'en',
-	initialLocale: 'es'
+	initialLocale: 'en'
 });
