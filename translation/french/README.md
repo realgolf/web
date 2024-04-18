@@ -54,19 +54,19 @@ RealGolf.Games Web propose les fonctionnalités suivantes :
 
 Dans 4Winning, l'objectif est de connecter stratégiquement quatre pièces en ligne. Notre version du jeu présente un plateau plus grand que la disposition standard 4x4, avec 8 colonnes et 9 rangées. Les colonnes supplémentaires de chaque côté introduisent un défi : les joueurs doivent frapper à une distance spécifique dans la déviation latérale. Cet aspect devient plus prononcé en mode Argent et supérieur, ajoutant de la complexité et obligeant les joueurs à réfléchir soigneusement à leurs mouvements.
 
-![Jeu 4Winning](../../img/4Winning.PNG)
+![Jeu 4Winning](https://raw.githubusercontent.com/realgolf/web/main/img/4Winning.png)
 
 ### Exact
 
 Exact est un jeu où l'objectif est d'atteindre 100 ou moins tout en marquant le plus de points possible. Les joueurs gagnent des points en fonction des critères suivants : Atteindre exactement 100 mètres accorde 5 points, frapper des multiples de dix rapporte 3 points, les nombres avec des chiffres répétés marquent 2 points. De plus, frapper la même rangée double les points gagnés. Cependant, tout autre nombre dépassant 100 ou tombant en dessous de 5 entraîne une déduction d'1 point. Tout autre nombre entre 5 et 100 marque 1 point. Le défi réside dans l'équilibre entre la précision et la maximisation des points pour atteindre le score le plus élevé.
 
-![Jeu Exact](../../img/Exact.PNG)
+![Jeu Exact](https://raw.githubusercontent.com/realgolf/web/main/img/Exact.png)
 
 ### Précision
 
 Précision est un jeu où l'objectif est de se rapprocher le plus possible des cibles. Pour chaque mètre où vous manquez la cible, vous recevez une déduction d'un point. Le gagnant du jeu est le joueur ayant le plus de points à la fin. Le jeu se termine lorsque seul un joueur a des points. Vous pouvez observer la distance que vous devez tirer, l'équipe actuelle ainsi que les points restants pour chaque équipe.
 
-![Jeu Précision](../../img/Precision.PNG)
+![Jeu Précision](https://raw.githubusercontent.com/realgolf/web/main/img/Precision.png)
 
 </details>
 
