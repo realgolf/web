@@ -11,4 +11,4 @@
 *.scss linguist-language=SCSS
 
 pnpm-lock.yaml linguist-vendored
-src/locales linguist-vendored
+src/locales/*.json linguist-vendored
