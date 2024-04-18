@@ -5,9 +5,13 @@
 	import ScrollUp from '$lib/components/ScrollUp.svelte';
 	import '$lib/scss/app.scss';
 	import { onMount } from 'svelte';
+
+	import '$lib/i18n';
+	import type { User } from '$lib/server/user/types.js';
+
 	export let data;
 
-	const all_users = data.all_users;
+	const all_users: User[] = data.all_users as User[];
 
 	onMount(() => {
 		const body = document.querySelector('body') as HTMLBodyElement;
@@ -59,7 +63,7 @@
 
 <Footer />
 
-<style>
+<style lang="scss">
 	main {
 		max-width: 40rem;
 		/* margin-inline: auto; */
