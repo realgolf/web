@@ -37,6 +37,35 @@ RealGolf.Games Web ofrece las siguientes características:
 - Funcionalidad multijugador local para que los usuarios jueguen entre sí en el mismo dispositivo.
 - Se ha planteado el problema de función [#160](https://github.com/realgolf/web/issues/160) para implementar multijugador remoto, permitiendo a los usuarios competir entre sí en línea.
 
+## Juegos
+
+- 4Winning
+- Exact
+- Precision
+
+<details>
+  <summary>Ver información sobre todos los juegos</summary>
+
+### 4Winning
+
+En 4Winning, el objetivo es conectar estratégicamente cuatro piezas en línea. Nuestra versión del juego presenta un tablero más grande que el diseño estándar de 4x4, con 8 columnas y 9 filas. Las columnas adicionales a cada lado introducen un desafío: los jugadores deben golpear una distancia específica dentro de la desviación lateral. Este aspecto se vuelve más pronunciado en el Modo Plata y superior, añadiendo complejidad y requiriendo que los jugadores consideren cuidadosamente sus movimientos.
+
+![Juego 4Winning](https://raw.githubusercontent.com/realgolf/web/main/img/4Winning.PNG)
+
+### Exact
+
+Exact es un juego donde el objetivo es alcanzar 100 o menos mientras se obtienen la mayor cantidad de puntos. Los jugadores ganan puntos según los siguientes criterios: Alcanzar exactamente 100 metros otorga 5 puntos, golpear múltiplos de diez otorga 3 puntos, los números con dígitos repetidos suman 2 puntos. Además, golpear la misma fila duplica los puntos obtenidos. Sin embargo, cualquier otro número que exceda 100 o caiga por debajo de 5 resulta en una deducción de 1 punto. Cualquier otro número entre 5 y 100 suma 1 punto. El desafío radica en equilibrar la Precision con la maximización de puntos para alcanzar la puntuación más alta.
+
+![Juego Exact](https://raw.githubusercontent.com/realgolf/web/main/img/Exact.PNG)
+
+### Precision
+
+Precision es un juego donde el objetivo es acercarse lo más posible a los objetivos. Por cada metro que falles en el objetivo, recibirás una deducción de un punto. El ganador del juego es el jugador con más puntos al final. El juego concluye cuando solo un jugador tiene puntos restantes. Puedes observar la distancia que necesitas disparar, el equipo actual y los puntos restantes para cada equipo.
+
+![Juego Precision](https://raw.githubusercontent.com/realgolf/web/main/img/Precision.PNG)
+
+</details>
+
 ## Licencia
 
 Este proyecto está licenciado bajo la [Licencia de Todos los Derechos Reservados](LICENSE.md).

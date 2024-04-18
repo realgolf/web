@@ -42,6 +42,35 @@ RealGolf.Games Web offers the following features:
 - Local multiplayer functionality for users to play against each other on the same device.
 - Feature issue [#160](https://github.com/realgolf/web/issues/160) raised for implementing remote multiplayer, enabling users to compete against each other online.
 
+## Games
+
+- 4Winning
+- Exact
+- Precision
+
+<details>
+  <summary>View information about all the games</summary>
+
+### 4Winning
+
+In 4Winning, the objective is to strategically connect four pieces in a row. Our version of the game features a larger board than the standard 4x4 layout, with 8 columns and 9 rows. The additional columns on each side introduce a challenge: players must hit a specific distance within the lateral deviation. This aspect becomes more pronounced in Silver Mode and above, adding complexity and requiring players to carefully consider their moves.
+
+![4Winning Game](https://raw.githubusercontent.com/realgolf/web/main/img/4Winning.PNG)
+
+### Exact
+
+Exact is a game where the objective is to hit 100 or below while scoring the most points. Players earn points based on the following criteria: Achieving exactly 100 meters awards 5 points, hitting multiples of ten earns 3 points, numbers with repeating digits score 2 points. Additionally, hitting the same row doubles the points earned. However, any other number exceeding 100 or falling below 5 results in a deduction of 1 point. Every other number between 5 and 100 scores 1 point. The challenge lies in balancing accuracy with maximizing points to achieve the highest score.
+
+![Exact Game](https://raw.githubusercontent.com/realgolf/web/main/img/Exact.PNG)
+
+### Precision
+
+Precision is a game where the objective is to get as close to the targets as possible. For every meter you miss the target, you will receive a deduction of one point. The winner of the game is the player with the highest points at the end. The game concludes until only one player has points remaining. You can observe the distance you need to shoot and the current team, along with the remaining points for each team.
+
+![Precision Game](https://raw.githubusercontent.com/realgolf/web/main/img/Precision.PNG)
+
+</details>
+
 ## License
 
 This project is licensed under the [All Rights Reserved License](LICENSE.md).
