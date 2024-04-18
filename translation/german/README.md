@@ -1,8 +1,8 @@
-# RealGolf.Games Web
+# [RealGolf.Games](https://realgolf.games)
 
-![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/feature) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/bug) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/game) [![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web) [![Lines of code](https://tokei.rs/b1/github/realgolf/web)](https://github.com/XAMPPRocky/tokei) [![wakatime](https://wakatime.com/badge/github/realgolf/web.svg)](https://wakatime.com/badge/github/realgolf/web)
+![Dynamic JSON Badge](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Frender-deploy-status-vwj3.onrender.com%2Fsrv-cn12obocmk4c73di1vg0&query=status&style=flat-square&logo=render&label=Render) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/feature) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/bug) ![GitHub issues by-label](https://img.shields.io/github/issues/realgolf/web/game) [![CodeQL](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/realgolf/web/actions/workflows/github-code-scanning/codeql) [![Codespell](https://github.com/realgolf/web/actions/workflows/codespell.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/codespell.yml) [![Build Kit](https://github.com/realgolf/web/actions/workflows/kit.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/kit.yml) [![Build Server](https://github.com/realgolf/web/actions/workflows/server.yml/badge.svg)](https://github.com/realgolf/web/actions/workflows/server.yml) ![GitHub repo size](https://img.shields.io/github/repo-size/realgolf/web) [![Lines of code](https://tokei.rs/b1/github/realgolf/web)](https://github.com/XAMPPRocky/tokei) [![wakatime](https://wakatime.com/badge/github/realgolf/web.svg)](https://wakatime.com/badge/github/realgolf/web)
 
-![RealGolf.Games Banner](../../img/logo_banner.PNG)
+![RealGolf.Games Banner](https://raw.githubusercontent.com/realgolf/web/main/img/logo_banner.PNG)
 
 ## Einleitung
 
@@ -16,7 +16,7 @@ RealGolf.Games Web ist eine webbasierte Plattform, die Ihr Golftrainingserlebnis
 
 ## Produktionsarchitektur
 
-![Produktionsarchitektur](../../img/architecture_de.png)
+![RealGolf server site production architecture diagram](https://raw.githubusercontent.com/realgolf/web/main/img/architecture.png)
 
 ## Abzeichen
 

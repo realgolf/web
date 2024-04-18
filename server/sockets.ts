@@ -1,5 +1,5 @@
 import type { IncomingMessage, Server, ServerResponse } from 'http';
-import { Socket, Server as ioServer } from 'socket.io';
+import { Server as ioServer, type Socket } from 'socket.io';
 import type {
 	ClientToServerEvents,
 	InterServerEvents,
