@@ -45,12 +45,10 @@
 
 		<main class="question">
 			<details>
-				<summary>Are the games free to play?</summary>
+				<summary>{$_('faq_question_2_title')}</summary>
 				<div>
 					<p>
-						Absolutely! Our games are completely free to play. All you need to do is create an
-						account, and you'll have access to all the exciting challenges and fun that Real Golf
-						has to offer. Get started today and enjoy the games without any cost.
+						{$_('faq_answer_2_content')}
 					</p>
 				</div>
 			</details>
