@@ -1,8 +1,15 @@
 import { authenticate } from '$lib/server/user/authenticate';
 import { cookie_options } from '$lib/server/user/utils';
 import { redirect, type Handle } from '@sveltejs/kit';
+import { locale } from 'svelte-i18n';
 
 export const handle: Handle = async ({ event, resolve }) => {
+	const lang = event.request.headers.get('accept-language')?.split(',')[0];
+
+	if (lang) {
+		locale.set(lang);
+	}
+
 	const is_protected =
 		event.url.pathname.startsWith('/dashboard') || event.url.pathname.startsWith('/account');
 

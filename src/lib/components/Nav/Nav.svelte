@@ -6,6 +6,7 @@
 	import { faHouse, type IconDefinition } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import Dropdownmenu from './Dropdownmenu.svelte';
+	import LanguageSwitcher from './LanguageSwitcher.svelte';
 	import Search from './Search.svelte';
 
 	$: currentPagePath = $page.url.pathname;
@@ -56,6 +57,9 @@
 			{:else}
 				<div class="search">
 					<Search {all_users} />
+				</div>
+				<div class="language_switcher">
+					<LanguageSwitcher />
 				</div>
 				<div class="dropdown-menu">
 					<Dropdownmenu {auth} {username} />
