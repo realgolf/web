@@ -13,5 +13,5 @@ register('pt', () => import('../../locales/pt.json'));
 
 init({
 	fallbackLocale: defaultLocale,
-	initialLocale: browser ? window.navigator.language : defaultLocale
+	initialLocale: browser ? window.navigator.language.split('-')[0] : defaultLocale
 });
