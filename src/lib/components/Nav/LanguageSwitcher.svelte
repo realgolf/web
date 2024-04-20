@@ -22,10 +22,15 @@
 		locale.set(newLocale);
 	}
 
-    // Function to get the Native name of the language
-    function getNativeLang(lang: string) {
-        return capitalizeFirstLetter((isoLangs as Record<string, { name: string; nativeName: string }>)[lang].nativeName.split(',')[0].trim().replace(/\s/g, ''));
-    }
+	// Function to get the Native name of the language
+	function getNativeLang(lang: string) {
+		return capitalizeFirstLetter(
+			(isoLangs as Record<string, { name: string; nativeName: string }>)[lang].nativeName
+				.split(',')[0]
+				.trim()
+				.replace(/\s/g, '')
+		);
+	}
 
 	// onMount(() => {
 	// 	window.addEventListener('keypress', (e) => {
@@ -64,21 +69,16 @@
 	<div class="language-switcher-content">
 		<button class="close-button" on:click={closeLanguageSelector}>x</button>
 		{#each $locales as lang}
-			<button id={`language-button-${lang}`} class="language-selector-btn" on:click={() => changeLocale(lang)}>{getNativeLang(lang)}</button>
+			<button
+				id={`language-button-${lang}`}
+				class:current={lang === $locale}
+				class="language-selector-btn"
+				on:click={() => changeLocale(lang)}>{getNativeLang(lang)}</button
+			>
 		{/each}
 	</div>
 {/if}
 
 <style lang="scss">
 	@import '$lib/scss/Nav/LanguageSwitcher.scss';
-
-    .language-selector-btn {
-        background-color: transparent;
-        border: 1px solid var(--border-color) !important;
-        color: inherit;
-        cursor: pointer;
-        font-size: 1rem;
-        margin: 0.5rem;
-        padding: 0.5rem;
-    }
 </style>
