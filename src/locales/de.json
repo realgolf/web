@@ -74,5 +74,14 @@
 	"faq_answer_10_steps": "Selbstverständlich. Wir nehmen die Sicherheit und den Schutz Ihrer persönlichen Daten ernst. <br> So stellen wir sicher, dass Ihre Daten sicher sind:",
 	"faq_answer_10_steps_1": "<strong>Passwortschutz:</strong> Ihr Passwort wird nicht im Klartext auf unseren Servern gespeichert. Es ist sicher gehasht, um seine Vertraulichkeit zu schützen.",
 	"faq_answer_10_steps_2": "<strong>Begrenzter Zugang:</strong> Ihr Passwort und Ihre persönlichen Daten sind von keinem Teammitglied einsehbar. Wir führen strenge Zugangskontrollen durch, um sicherzustellen, dass nur autorisiertes Personal mit sensiblen Daten umgehen kann.",
-	"faq_answer_10_conclusion": "Wir verpflichten uns, die höchsten Sicherheitsstandards zu wahren, um Ihre persönlichen Daten zu schützen."
+	"faq_answer_10_conclusion": "Wir verpflichten uns, die höchsten Sicherheitsstandards zu wahren, um Ihre persönlichen Daten zu schützen.",
+	"download_description": "Here we will explain how to add the site as a Progressive Web App (PWA) on your device.",
+	"installation_steps_for_safari": "To install this site as a PWA on Safari for iOS:",
+	"instalation_safari_step_1": "Tap the Share icon (the square with an arrow pointing up) at the bottom of the screen.",
+	"instalation_safari_step_2": "Scroll down and tap \"Add to Home Screen\".",
+	"instalation_safari_step_3": "Confirm by tapping \"Add\".",
+	"installation_steps_for_chrome": "To install this site as a PWA on Chrome for Android:",
+	"instalation_chrome_step_1": "Tap the three-dot menu icon at the top right corner of the screen.",
+	"instalation_chrome_step_2": "Select \"Add to Home screen\" from the menu.",
+	"instalation_chrome_step_3": "Review the details and tap \"Add\"."
 }
