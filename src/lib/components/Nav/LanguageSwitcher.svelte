@@ -2,6 +2,7 @@
 	import { isoLangs } from '$lib/i18n/ISO_639-1';
 	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+	import Cookies from 'js-cookie';
 	import Fa from 'svelte-fa';
 	import { locale, locales } from 'svelte-i18n';
 
@@ -20,6 +21,7 @@
 	// Function to handle changing the locale
 	function changeLocale(newLocale: string) {
 		locale.set(newLocale);
+		Cookies.set('selectedLanguage', newLocale, { expires: 365 });
 	}
 
 	// Function to get the Native name of the language
