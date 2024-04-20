@@ -4,7 +4,9 @@
 	import Nav from '$lib/components/Nav/Nav.svelte';
 	import ScrollUp from '$lib/components/ScrollUp.svelte';
 	import '$lib/scss/app.scss';
+	import Cookies from 'js-cookie';
 	import { onMount } from 'svelte';
+	import { locale } from 'svelte-i18n';
 
 	import '$lib/i18n';
 	import type { User } from '$lib/server/user/types.js';
@@ -14,6 +16,13 @@
 	const all_users: User[] = data.all_users as User[];
 
 	onMount(() => {
+		const selectedLanguage = Cookies.get('selectedLanguage');
+
+		if (selectedLanguage) {
+			// Set the language when the component mounts
+			locale.set(selectedLanguage);
+		}
+
 		const body = document.querySelector('body') as HTMLBodyElement;
 
 		let theme = data.theme as string;
@@ -58,6 +67,7 @@
 <Nav auth={data.auth} username={data.username} {all_users} />
 
 <main>
+	{$locale}
 	<slot />
 </main>
 
