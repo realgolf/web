@@ -1,6 +1,7 @@
 <script lang="ts">
 	import FourWinningTable from '$lib/components/Archive/FourWinning_table.svelte';
 	import { asignNameToTeam } from '$lib/shared/utils/asignNameToTeam';
+	import { _, isLoading } from 'svelte-i18n';
 
 	// eslint-disable-next-line
 	export let data: any;
@@ -10,73 +11,94 @@
 	<title>Real Golf - Dashboard</title>
 </svelte:head>
 
-<main>
-	<h2>Dashboard</h2>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<main>
+		<h2>Dashboard</h2>
 
-	<p>
-		Welcome to "Real Golf" {data.name} - your ultimate destination for golf challenges! Discover "4 Winning",
-		"Exact", and "Precision" - captivating golf experiences tested with trainers.
-		<br>
-		You can also save your games in the Database and view them in the <a href="/dashboard/archive">Archive</a>.
-		So enjoy practicing and improving your golf skills!
-	</p>
+		<p>
+			{@html $_('dashboard_welcome', {
+				values: {
+					user_name: data.name
+				}
+			})}
+		</p>
 
-	<div class="card">
-		<h2>One Player Precision Highscore</h2>
-		{#if data.daily.lastUpdated == null}
-			<p>
-				Please first play a round of <a href="/dashboard/games/Precision/One-Player"
-					>One Player Precision</a
-				> to get a Highscore before it can be displayed here.
-			</p>
-		{:else if data.daily.lastUpdated != null}
-			<ul>
-				<li>
-					<b>Today's</b> highscore is: {data.daily.value}, last updated on{' '}
-					{new Date(data.daily.lastUpdated).toLocaleDateString()}.
-				</li>
-				<li>
-					<b>This Week's</b> highscore is: {data.weekly.value}, last updated on{' '}
-					{new Date(data.weekly.lastUpdated).toLocaleDateString()}.
-				</li>
-				<li>
-					<b>This Month's</b> highscore is: {data.monthly.value}, last updated on{' '}
-					{new Date(data.monthly.lastUpdated).toLocaleDateString()}.
-				</li>
-				<li>
-					<b>This Year's</b> highscore is: {data.yearly.value}, last updated on{' '}
-					{new Date(data.yearly.lastUpdated).toLocaleDateString()}.
-				</li>
-			</ul>
-			<p>
-				Your all-time highscore is <b>{data.all_time.value}</b>, last exceeded on{' '}
-				{new Date(data.all_time.lastUpdated).toLocaleDateString()}.
-			</p>
-		{/if}
-	</div>
-
-	<div class="card">
-		<h2>The last game you have saved in the Database</h2>
-		{#if !data.error}
-			{#if data.game.teams.includes('4winning')}
-				<FourWinningTable measurement_units={data.measurement_units} data={data.game.data} />
+		<div class="card">
+			<h2>{$_('one_player_precision_highscore_title')}</h2>
+			{#if data?.daily?.lastUpdated == null}
+				<p>
+					{@html $_('no_highscore_yet')}
+				</p>
+			{:else if data?.daily?.lastUpdated != null}
+				<ul>
+					<li>
+						{@html $_('daily_highscore', {
+							values: {
+								dailyValue: data?.daily?.value,
+								lastUpdatedDate: new Date(data?.daily?.lastUpdated).toLocaleDateString()
+							}
+						})}
+					</li>
+					<li>
+						{@html $_('weekly_highscore', {
+							values: {
+								weeklyValue: data?.weekly?.value,
+								lastUpdatedDate: new Date(data?.weekly?.lastUpdated).toLocaleDateString()
+							}
+						})}
+					</li>
+					<li>
+						{@html $_('monthly_highscore', {
+							values: {
+								monthlyValue: data?.monthly?.value,
+								lastUpdatedDate: new Date(data?.monthly?.lastUpdated).toLocaleDateString()
+							}
+						})}
+					</li>
+					<li>
+						{@html $_('yearly_highscore', {
+							values: {
+								yearlyValue: data?.yearly?.value,
+								lastUpdatedDate: new Date(data?.yearly?.lastUpdated).toLocaleDateString()
+							}
+						})}
+					</li>
+				</ul>
+				<p>
+					{@html $_('all_time_highscore', {
+						values: {
+							allTimeValue: data?.all_time?.value,
+							lastUpdatedDate: new Date(data?.all_time?.lastUpdated).toLocaleDateString()
+						}
+					})}
+				</p>
 			{/if}
-			<p>Name of the Game: {data.game.name}</p>
-			<p>Date of play: {new Date(data.game.date).toLocaleDateString()}</p>
-			<p>
-				Team the game is associated with: {asignNameToTeam(data.game.teams)}
-			</p>
-			<p>
-				You can see all your games in the <a href="/dashboard/archive">Archive</a>.
-			</p>
-		{:else}
-			<p class="error">
-				You don't have any games saved, play a <a href="/dashboard/games">Game</a> and save it in the
-				Database to see it here
-			</p>
-		{/if}
-	</div>
-</main>
+		</div>
+
+		<div class="card">
+			<h2>{$_('latest_game_saved')}</h2>
+			{#if !data?.error}
+				{#if data?.game?.teams.includes('4winning')}
+					<FourWinningTable measurement_units={data?.measurement_units} data={data?.game?.data} />
+				{/if}
+				<p>{$_('name_of_game')}: {data?.game?.name}</p>
+				<p>{$_('date_of_play')}: {new Date(data?.game?.date).toLocaleDateString()}</p>
+				<p>
+					{$_('game_associated_with')}: {asignNameToTeam(data?.game?.teams)}
+				</p>
+				<p>
+					{@html $_('see_all_games')}
+				</p>
+			{:else}
+				<p class="error">
+					{@html $_('error_loading_latest_game')}
+				</p>
+			{/if}
+		</div>
+	</main>
+{/if}
 
 <style lang="scss">
 	.card {

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Exact from '$lib/components/Home_Page/Feature/Exact.svelte';
 	import FourWinning from '$lib/components/Home_Page/Feature/FourWinning.svelte';
 	import Precision from '$lib/components/Home_Page/Feature/Precision.svelte';
