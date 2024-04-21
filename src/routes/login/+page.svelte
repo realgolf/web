@@ -3,6 +3,7 @@
 	import { faEye } from '@fortawesome/free-solid-svg-icons';
 	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa';
+	import { _, isLoading } from 'svelte-i18n';
 	import type { ActionData } from './$types';
 
 	export let form: ActionData;
@@ -38,32 +39,36 @@
 </script>
 
 <svelte:head>
-	<title>Real Golf - Login</title>
+	<title>Real Golf - {$_('login')}</title>
 </svelte:head>
 
-<h1>Login</h1>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<h1>{$_('login')}</h1>
 
-<form method="POST" autocomplete="off">
-	<div>
-		<label for="email_input">Email</label>
-		<input type="email" id="email_input" name="email" value={form?.email ?? ''} />
-	</div>
-	<div>
-		<label for="password_input">Password</label>
-		<input type="password" id="password_input" name="password" />
-		<button id="toggle_password" type="button"><Fa id="eye_icon" icon={faEye} /></button>
-	</div>
-	<button>Login</button>
-</form>
+	<form method="POST" autocomplete="off">
+		<div>
+			<label for="email_input">{$_('email')}</label>
+			<input type="email" id="email_input" name="email" value={form?.email ?? ''} />
+		</div>
+		<div>
+			<label for="password_input">{$_('password')}</label>
+			<input type="password" id="password_input" name="password" />
+			<button id="toggle_password" type="button"><Fa id="eye_icon" icon={faEye} /></button>
+		</div>
+		<button>{$_('login')}</button>
+	</form>
 
-{#if form?.user}
-	<p class="success">Redirecting...</p>
-{/if}
+	{#if form?.user}
+		<p class="success">{$_('redirecting')}...</p>
+	{/if}
 
-{#if form?.error}
-	<p class="error">
-		{form.error}
-	</p>
+	{#if form?.error}
+		<p class="error">
+			{form.error}
+		</p>
+	{/if}
 {/if}
 
 <style>

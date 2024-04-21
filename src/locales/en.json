@@ -106,5 +106,7 @@
 	"username": "Username",
 	"handicap": "Handicap",
 	"might_have_successfully_registered": "You can still try to login here: <a href=\"/login\">Login</a>, or open the <a href=\"/dashboard\">Dashboard</a>",
-	"successfully_registered": "Welcome {name}! You can now open the <a href=\"/dashboard\">Dashboard</a>."
+	"successfully_registered": "Welcome {name}! You can now open the <a href=\"/dashboard\">Dashboard</a>.",
+	"login": "Login",
+	"redirecting": "Redirecting"
 }
