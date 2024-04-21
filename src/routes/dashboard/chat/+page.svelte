@@ -12,6 +12,7 @@
 	} from '$lib/types/chat';
 	import { io, type Socket } from 'socket.io-client';
 	import { tick } from 'svelte';
+	import { _, isLoading } from 'svelte-i18n';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -62,17 +63,21 @@
 </script>
 
 <svelte:head>
-	<title>Real Golf - Chat</title>
+	<title>Real Golf - {$_("chat")}</title>
 </svelte:head>
 
-<h1>Chat</h1>
-
-{#if username}
-	<Status {chat_users} {username} />
-	<Messages bind:messages bind:messages_element />
-	<SendForm bind:text {send_message} />
+{#if $isLoading}
+	<p>Loading...</p>
 {:else}
-	<p>You are not logged in.</p>
+	<h1>{$_("chat")}</h1>
+
+	{#if username}
+		<Status {chat_users} {username} />
+		<Messages bind:messages bind:messages_element />
+		<SendForm bind:text {send_message} />
+	{:else}
+		<p>{$_('you_are_not_loged_in')}</p>
+	{/if}
 {/if}
 
 <style>
