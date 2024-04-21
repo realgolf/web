@@ -1,15 +1,24 @@
+<script lang="ts">
+	import { _, isLoading } from 'svelte-i18n';
+</script>
+
 <svelte:head>
-	<title>Tools</title>
+	<title>{$_('tools')}</title>
 </svelte:head>
 
-<h1>Tools</h1>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<h1>{$_('tools')}</h1>
 
-<p class="success">
-	This shows a few examples for material you can you use to determine the exact length.
-</p>
+	<p class="success">
+		{$_("tools_description")}
+	</p>
 
-<ol class="no-bullets">
-	<li>Trackman</li>
-	<li>Arccos Smart Sensors</li>
-	<li>And any kind of simulator</li>
-</ol>
+	<ol class="no-bullets">
+		<li>Trackman</li>
+		<li>Arccos Smart Sensors</li>
+		<li>Garmin Apprach R10</li>
+		<li>{$_("any_simulator")}</li>
+	</ol>
+{/if}

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { _, isLoading } from 'svelte-i18n';
 	import { slide } from 'svelte/transition';
 	import type { PageData } from './$types.js';
 	export let data: PageData;
@@ -55,35 +56,45 @@
 </script>
 
 <svelte:head>
-	<title>{data.user_username} - Games</title>
+	<title>{data.user_username} - {$_('games')}</title>
 </svelte:head>
 
-<h2>Games played by {data.user_username}:</h2>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<h2>
+		{$_('public_profile_games_by', {
+			values: {
+				username: data.user_username
+			}
+		})}:
+	</h2>
 
-{#if show_confirmation}
-	<div class="success" transition:slide={{ duration: 150 }}>Copied URL to clipboard!</div>
-{/if}
-
-<div class="user_games">
-	{#if user_games}
-		{#if user_games.length > 0}
-			{#each user_games as { name, teams, data, date, id }}
-				<div class="games">
-					<p>{name}</p>
-					<p>{teams}</p>
-					<p>
-						This game got created at the {new Date(date).toLocaleDateString()}
-					</p>
-					<p>{data}</p>
-					<button on:click={() => shareGame(id)}>Share Game</button>
-					<button on:click={() => openGame(id)}>Open Game</button>
-				</div>
-			{/each}
-		{:else}
-			<p class="error">No games found for this user.</p>
-		{/if}
+	{#if show_confirmation}
+		<div class="success" transition:slide={{ duration: 150 }}>{$_("copy_successful")}</div>
 	{/if}
-</div>
+
+	<div class="user_games">
+		{#if user_games}
+			{#if user_games.length > 0}
+				{#each user_games as { name, teams, data, date, id }}
+					<div class="games">
+						<p>{name}</p>
+						<p>{teams}</p>
+						<p>
+							{$_("date_of_play")}: {new Date(date).toLocaleDateString()}
+						</p>
+						<p>{data}</p>
+						<button on:click={() => shareGame(id)}>{$_("share_game")}</button>
+						<button on:click={() => openGame(id)}>{$_("open_game")}</button>
+					</div>
+				{/each}
+			{:else}
+				<p class="error">{$_("no_games_found_for_user")}</p>
+			{/if}
+		{/if}
+	</div>
+{/if}
 
 <style lang="scss">
 	.user_games {

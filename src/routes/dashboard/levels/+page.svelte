@@ -1,48 +1,54 @@
 <script lang="ts">
+	import { _, isLoading } from 'svelte-i18n';
+
 	export let data;
 	let measurement_unit = data.measurement_unit;
 </script>
 
 <svelte:head>
-	<title>Real Golf - Levels</title>
+	<title>Real Golf - {$_('levels')}</title>
 </svelte:head>
 
-<h1>Levels</h1>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<h1>{$_('levels')}</h1>
 
-<main>
-	<p class="success">Please read the levels.</p>
-	<p class="success">To play with the levels is optional.</p>
+	<main>
+		<p class="success">{$_('play_with_levels')}</p>
+		<p class="success">{$_('read_carefully')}</p>
 
-	<details>
-		<summary>Table of Contains</summary>
-		<ul class="no-bullets">
-			<li><a href="#4-winning">4 Winning</a></li>
-			<li><a href="#exact">Exact</a></li>
-		</ul>
-	</details>
+		<details>
+			<summary>{$_('toc')}</summary>
+			<ul class="no-bullets">
+				<li><a href="#4-winning">4 Winning</a></li>
+				<li><a href="#exact">Exact</a></li>
+			</ul>
+		</details>
 
-	<h2 id="4-winning">4 Winning</h2>
+		<h2 id="4-winning">4 Winning</h2>
 
-	<ol class="no-bullets">
-		<li><b>Bronze:</b> Only the length of the shot applies</li>
-		<li>
-			<b>Silver:</b> The number of {measurement_unit} and the lateral deviation apply.
-		</li>
-		<li><b>Gold:</b> Fields can only be played after prior announcement.</li>
-		<li><b>Platinum:</b> Like gold, all with a club.</li>
-	</ol>
+		<ol class="no-bullets">
+			<li><b>{$_('bronze')}:</b> {$_('level_bronze')}</li>
+			<li>
+				<b>{$_('silver')}:</b>
+				{$_('level_silver', { values: { measurement_unit: measurement_unit } })}
+			</li>
+			<li><b>{$_('gold')}:</b> {$_("level_gold")}</li>
+			<li><b>{$_('platinum')}:</b> {$_("level_platinum")}</li>
+		</ol>
 
-	<h2 id="exact">Exact</h2>
+		<h2 id="exact">Exact</h2>
 
-	<ol class="no-bullets">
-		<li><b>Bronze:</b> Only the lenght of the shot applies</li>
-		<li>
-			<b>Silver:</b> The number of {measurement_unit} and the lateral deviation apply. - lateral deviation
-			gets choosed by the players
-		</li>
-		<li>
-			<b>Gold:</b> Fields can only be played after prior announcement. The rest is like Silver
-		</li>
-		<li><b>Platinum:</b> Like gold, all with a club.</li>
-	</ol>
-</main>
+		<ol class="no-bullets">
+			<li><b>{$_('bronze')}:</b> {$_("level_bronze")}</li>
+			<li>
+				<b>{$_('silver')}:</b> {$_('level_silver', { values: { measurement_unit: measurement_unit } })} - {$_('level_silver_exact')}
+			</li>
+			<li>
+				<b>{$_('gold')}:</b> {$_("level_gold")}
+			</li>
+			<li><b>{$_('platinum')}:</b> {$_("level_platinum")}</li>
+		</ol>
+	</main>
+{/if}
