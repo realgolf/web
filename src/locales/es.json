@@ -83,5 +83,19 @@
 	"installation_steps_for_chrome": "To install this site as a PWA on Chrome for Android:",
 	"instalation_chrome_step_1": "Tap the three-dot menu icon at the top right corner of the screen.",
 	"instalation_chrome_step_2": "Select \"Add to Home screen\" from the menu.",
-	"instalation_chrome_step_3": "Review the details and tap \"Add\"."
+	"instalation_chrome_step_3": "Review the details and tap \"Add\".",
+	"dashboard_welcome": "Welcome to \"Real Golf\" {user_name} - your ultimate destination for golf challenges! Discover \"4 Winning\", \"Exact\", and \"Precision\" - captivating golf experiences tested with trainers. <br> You can also save your games in the Database and view them in the <a href=\"/dashboard/archive\">Archive</a>. So enjoy practicing and improving your golf skills!",
+	"one_player_precision_highscore_title": "One Player Precision Highscore",
+	"no_highscore_yet": "Please first play a round of <a href=\"/dashboard/games/Precision/One-Player\">One Player Precision</a> to get a Highscore before it can be displayed here.",
+	"daily_highscore": "<b>Today's</b> highscore is: {dailyValue}, last updated on the {lastUpdatedDate}.",
+	"weekly_highscore": "<b>This Week's</b> highscore is: {weeklyValue}, last updated on the {lastUpdatedDate}.",
+	"monthly_highscore": "<b>This Month's</b> highscore is: {monthlyValue}, last updated on the {lastUpdatedDate}.",
+	"yearly_highscore": "<b>This Year's</b> highscore is: {yearlyValue}, last updated on the {lastUpdatedDate}.",
+	"all_time_highscore": "Your all-time highscore is <b>{allTimeValue}</b>, last exceeded on the {lastUpdatedDate}.",
+	"latest_game_saved": "The last game you have saved in the Database",
+	"name_of_game": "Name of the Game",
+	"date_of_play": "Date of play",
+	"game_associated_with": "Team the game is associated with",
+	"see_all_games": "You can see all your games in the <a href=\"/dashboard/archive\">Archive</a>.",
+	"error_loading_latest_game": "You don't have any games saved, play a <a href=\"/dashboard/games\">Game</a> and save it in the Database to see it here"
 }
