@@ -67,7 +67,6 @@
 <Nav auth={data.auth} username={data.username} {all_users} />
 
 <main>
-	{$locale}
 	<slot />
 </main>
 
