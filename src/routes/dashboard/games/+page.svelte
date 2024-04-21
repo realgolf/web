@@ -1,114 +1,146 @@
 <script lang="ts">
-	import Card from "$lib/components/Global/Card.svelte";
-
-
-	let fourwinning = [
-		{
-			link: '/dashboard/games/4Winning/Two-Players',
-			title: 'Two Players',
-			description: 'This version of 4Winning can be played with Two Players,  Red and  Blue'
-		},
-		{
-			link: '/dashboard/games/4Winning/Three-Players',
-			title: 'Three Players',
-			description: 'This version of 4Winning can be played with Three Players, Red, Blue and Green'
-		},
-		{
-			link: '/dashboard/games/4Winning/Four-Players',
-			title: 'Four Players',
-			description:
-				'This version of 4Winning can be played with Four Players, Red, Blue, Green and Orange'
-		}
-	];
-
-	let exact = [
-		{
-			link: '/dashboard/games/Exact/Two-Players',
-			title: 'Two Players',
-			description: 'This version of Exact can be played with Two Players,  Red and  Blue'
-		},
-		{
-			link: '/dashboard/games/Exact/Three-Players',
-			title: 'Three Players',
-			description: 'This version of Exact can be played with Three Players, Red, Blue and Green'
-		},
-		{
-			link: '/dashboard/games/Exact/Four-Players',
-			title: 'Four Players',
-			description:
-				'This version of Exact can be played with Four Players, Red, Blue, Green and Orange'
-		}
-	];
-
-	let precision = [
-		{
-			link: '/dashboard/games/Precision/One-Player',
-			title: 'One Player',
-			description: 'This version of Precision can be played with One Player, Red'
-		},
-		{
-			link: '/dashboard/games/Precision/Two-Players',
-			title: 'Two Players',
-			description: 'This version of Precision can be played with Two Players, Red, Blue '
-		},
-		{
-			link: '/dashboard/games/Precision/Three-Players',
-			title: 'Three Players',
-			description: 'This version of Precision can be played with Three Players, Red, Blue and Green'
-		},
-		{
-			link: '/dashboard/games/Precision/Four-Players',
-			title: 'Four Players',
-			description:
-				'This version of Precision can be played with Four Players, Red, Blue, Green and Orange'
-		}
-	];
+	import { _, isLoading } from 'svelte-i18n';
 </script>
 
 <svelte:head>
-	<title>Real Golf - Games</title>
+	<title>Real Golf - {$_('games')}</title>
 </svelte:head>
 
-<h1>Games</h1>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<h1>{$_('games')}</h1>
 
-<main>
-	<p class="success">Here you can find the different modi you can play the Games in.</p>
+	<main>
+		<p class="success">{$_('different_modis')}</p>
 
-	<details>
-		<summary>Table of Contains</summary>
-		<ul class="no-bullets">
-			<li><a href="#4-winning">4 Winning</a></li>
-			<li><a href="#exact">Exact</a></li>
-			<li><a href="#precision">Precision</a></li>
-		</ul>
-	</details>
+		<details>
+			<summary>{$_('toc')}</summary>
+			<ul class="no-bullets">
+				<li><a href="#4-winning">4 Winning</a></li>
+				<li><a href="#exact">Exact</a></li>
+				<li><a href="#precision">Precision</a></li>
+			</ul>
+		</details>
 
-	<div class="games">
-		<h2 id="4-winning">4 Winning</h2>
+		<div class="games">
+			<h2 id="4-winning">4 Winning</h2>
 
-		<div class="gamess">
-			{#each fourwinning as { link, title, description }}
-				<Card {link} {title} {description} />
-			{/each}
+			<div class="gamess">
+				<div class="card">
+					<a href="/dashboard/games/4Winning/Two-Players" class="card_normal">
+						<div>
+							<h3>{$_('two_players')}</h3>
+							<p class="description">
+								{$_('two_players_description', { values: { game_name: '4Winning' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/dashboard/games/4Winning/Three-Players" class="card_normal">
+						<div>
+							<h3>{$_('three_players')}</h3>
+							<p class="description">
+								{$_('three_players_description', { values: { game_name: '4Winning' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/dashboard/games/4Winning/Four-Players" class="card_normal">
+						<div>
+							<h3>{$_('four_players')}</h3>
+							<p class="description">
+								{$_('four_players_description', { values: { game_name: '4Winning' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<h2 id="exact">Exact</h2>
+
+			<div class="gamess">
+				<div class="card">
+					<a href="/dashboard/games/Exact/Two-Players" class="card_normal">
+						<div>
+							<h3>{$_('two_players')}</h3>
+							<p class="description">
+								{$_('two_players_description', { values: { game_name: 'Exact' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/dashboard/games/Exact/Three-Players" class="card_normal">
+						<div>
+							<h3>{$_('three_players')}</h3>
+							<p class="description">
+								{$_('three_players_description', { values: { game_name: 'Exact' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/dashboard/games/Exact/Four-Players" class="card_normal">
+						<div>
+							<h3>{$_('four_players')}</h3>
+							<p class="description">
+								{$_('four_players_description', { values: { game_name: 'Exact' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<h2 id="precision">Precision</h2>
+
+			<div class="gamess">
+				<div class="card">
+					<a href="/dashboard/games/Precision/One-Player" class="card_normal">
+						<div>
+							<h3>{$_('one_player')}</h3>
+							<p class="description">
+								{$_('one_player_description', { values: { game_name: 'Precision' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/dashboard/games/Precision/Two-Players" class="card_normal">
+						<div>
+							<h3>{$_('two_players')}</h3>
+							<p class="description">
+								{$_('two_players_description', { values: { game_name: 'Precision' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/dashboard/games/Precision/Three-Players" class="card_normal">
+						<div>
+							<h3>{$_('three_players')}</h3>
+							<p class="description">
+								{$_('three_players_description', { values: { game_name: 'Precision' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="card">
+					<a href="/dashboard/games/Precision/Four-Players" class="card_normal">
+						<div>
+							<h3>{$_('four_players')}</h3>
+							<p class="description">
+								{$_('four_players_description', { values: { game_name: 'Precision' } })}
+							</p>
+						</div>
+					</a>
+				</div>
+			</div>
 		</div>
-
-		<h2 id="exact">Exact</h2>
-
-		<div class="gamess">
-			{#each exact as { link, title, description }}
-				<Card {link} {title} {description} />
-			{/each}
-		</div>
-
-		<h2 id="precision">Precision</h2>
-
-		<div class="gamess">
-			{#each precision as { link, title, description }}
-				<Card {link} {title} {description} />
-			{/each}
-		</div>
-	</div>
-</main>
+	</main>
+{/if}
 
 <style lang="scss">
 	.games {
@@ -129,6 +161,52 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
+		}
+
+		.card {
+			background-color: var(--nav-color);
+			padding: 50px 50px;
+			border-radius: var(--border-radius);
+			border: 1px solid var(--border-color);
+			margin: 15px;
+			text-align: center;
+			text-decoration: none !important;
+
+			.card_normal {
+				text-decoration: none !important;
+			}
+
+			&:hover {
+				cursor: pointer;
+				box-shadow: 10px 10px 20px var(--border-color);
+			}
+			h3 {
+				text-align: center;
+				text-decoration: underline !important;
+			}
+
+			.description {
+				text-align: center;
+				width: 50%;
+				margin: 0 auto;
+				text-decoration: none !important;
+			}
+
+			/* On Desktop: Cards are 40vw */
+			@media (min-width: 768px) {
+				width: calc(40vw);
+			}
+
+			/* On phone: Cards are 80vw */
+			@media (max-width: 767px) {
+				width: 80vw;
+
+				.description {
+					text-align: center;
+					width: 100%;
+					margin: 0 auto;
+				}
+			}
 		}
 	}
 </style>
