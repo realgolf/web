@@ -121,5 +121,8 @@
   "who_user_follows": "Who {username} is Following",
   "user_follows_no_one": "{username} is not following anyone.",
   "users_followers": "{user_name}'s Follower",
-  "user_has_no_followers": "{user_name} has no followers."
+  "user_has_no_followers": "{user_name} has no followers.",
+  "tools": "Tools",
+  "tools_description": "This shows a few examples for material you can you use to determine the exact length.",
+  "any_simulator": "And any kind of simulator"
 }
