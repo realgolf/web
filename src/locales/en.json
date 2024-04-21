@@ -127,5 +127,15 @@
   "any_simulator": "And any kind of simulator",
   "info": "Info",
   "info_text": "The games are for golfers who want to train a different way, you only need a kind of trackman or a simulator to determine the exact length. After you have determined the length with your trackman (or the like). You can click the Field with number you played or enter the number in the input Field. <br /> <b>Have fun playing!</b>",
-  "link_to_tools": "A list of some things that can be used can be found <a href=\"/dashboard/tools\">here</a>."
+  "link_to_tools": "A list of some things that can be used can be found <a href=\"/dashboard/tools\">here</a>.",
+  "rules": "Rules",
+  "all_rules": "This are all rules for all three games.",
+  "read_carefully": "Please read them carefully.",
+  "toc": "Table of Contains",
+  "4_winning_rules": "The rules of the game are quite simple—it's essentially a variation of four-in-a-row. You click on the button corresponding to the field you want from a distance. After the first team's turn, the second team takes its turn and clicks on a field, regardless of whether it has been chosen by another team before. The current team is indicated at the top of the game interface. The game proceeds with each team taking turns until one team successfully forms four squares in a row or column. If you click on the same field four times in a row, a message will appear notifying you of this. When a team wins, the values of the fields reset, and a new round begins automatically, with the teams alternating. These rules apply universally to all games.",
+  "exact_rule_1": "It is played alternately",
+  "exact_rule_2": "Click the Field you hit",
+  "exact_rule_3": "Respect the levels",
+  "exact_rule_4": "Only the intger number applies",
+  "precision_rules": "The aim of this golf game \"Precision\" is to retain as many points as possible out of the initial 100 points by executing precise shots. For each shot, the deviation of the ball from the target distance is measured. <br /> <br /> Precision is measured by the deviation in {measurement_unit} from the target distance. The closer the ball is to the specified distance, the fewer points will be deducted. It follows a deduction of 1 point per {measurement_unit_without_last_symbol} deviation from the target. <br /> <br /> At the end of the game, the player who has retained the highest score out of the initial 100 points is declared the winner. This means that the individual with the highest score due to deductions emerges as the victor! Fairness and respect towards other players are paramount. Be sure to adhere to the rules and etiquette of the game, as well as the guidelines of the club. <br /> <br /> You can make the game more interesting by introducing additional challenges, such as playing in different weather conditions or on various terrains. Whether you are a novice or an experienced golfer, \"Precision\" offers an exciting opportunity to demonstrate your skills and precision. Enjoy the game and the company of your fellow players! <br /> <br /> Are you ready to perfect your golf swings and retain as many points as possible? Let's play \"Precision\" and find out who achieves the highest score at the end!"
 }
