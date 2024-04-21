@@ -97,5 +97,14 @@
 	"date_of_play": "Date of play",
 	"game_associated_with": "Team the game is associated with",
 	"see_all_games": "You can see all your games in the <a href=\"/dashboard/archive\">Archive</a>.",
-	"error_loading_latest_game": "You don't have any games saved, play a <a href=\"/dashboard/games\">Game</a> and save it in the Database to see it here"
+	"error_loading_latest_game": "You don't have any games saved, play a <a href=\"/dashboard/games\">Game</a> and save it in the Database to see it here",
+	"register": "Register",
+	"email": "E-Mail",
+	"password": "Password",
+	"verify_password": "Verify Password",
+	"name": "Name",
+	"username": "Username",
+	"handicap": "Handicap",
+	"might_have_successfully_registered": "You can still try to login here: <a href=\"/login\">Login</a>, or open the <a href=\"/dashboard\">Dashboard</a>",
+	"successfully_registered": "Welcome {name}! You can now open the <a href=\"/dashboard\">Dashboard</a>."
 }
