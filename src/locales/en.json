@@ -117,5 +117,7 @@
   "no_games_found_for_user": "No games found for this user.",
   "public_game_from": "{game_name} from {user_name}",
   "game_not_found": "Game not found",
-  "public_game": "{game_name} saved on the {game_date}"
+  "public_game": "{game_name} saved on the {game_date}",
+  "who_user_follows": "Who {username} is Following",
+  "user_follows_no_one": "{username} is not following anyone."
 }
