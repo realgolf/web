@@ -1,30 +1,36 @@
 <script lang="ts">
+	import { _, isLoading } from 'svelte-i18n';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 </script>
 
 <svelte:head>
-	<title>Who {data.username} is Followering</title>
+	<title>{$_('who_user_follows', { values: { username: data.username } })}</title>
 </svelte:head>
 
-<h1>Who {data.username} is Followering</h1>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<h1>{$_('who_user_follows', { values: { username: data.username } })}</h1>
 
-<div class="followers">
-	{#if data.followingDetails.length > 0}
-		{#each data.followingDetails as following}
-			<div class="follower">
-				<a href={`/${following.username}`}>{following.name} <small>{following.username}</small></a>
-				{#if following.bio}
-					<br />
-					<small class="bio">{following.bio}</small>
-				{/if}
-			</div>
-		{/each}
-	{:else}
-		<p>{data.username} has no followers.</p>
-	{/if}
-</div>
+	<div class="followers">
+		{#if data.followingDetails.length > 0}
+			{#each data.followingDetails as following}
+				<div class="follower">
+					<a href={`/${following.username}`}>{following.name} <small>{following.username}</small></a
+					>
+					{#if following.bio}
+						<br />
+						<small class="bio">{following.bio}</small>
+					{/if}
+				</div>
+			{/each}
+		{:else}
+			<p>{$_('user_follows_no_one', { values: { username: data.username } })}</p>
+		{/if}
+	</div>
+{/if}
 
 <style lang="scss">
 	.followers {
