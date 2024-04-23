@@ -210,5 +210,11 @@
 	"danger_zone": "Danger Zone",
 	"account_will_be_gone": "Your Account will be lost forever! (a long time!)",
 	"delete_account": "Delete Account",
-	"sign_out": "Sign out"
+	"sign_out": "Sign out",
+	"contact_us": "Contact Us",
+	"follow_us": "Follow Us",
+	"explore_more": "Explore More",
+	"blog": "Blog",
+	"documentation": "Documentation",
+	"golfrules": "Golfrules"
 }

@@ -7,47 +7,53 @@
 		faEnvelope
 	} from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
+
+	import { _, isLoading } from 'svelte-i18n';
 </script>
 
-<footer>
-	<div class="container">
-		<div class="row">
-			<div class="same-line">
-				<div class="col-md-6 first-row">
-					<h3>Contact Us</h3>
-					<p>
-						<Fa icon={faEnvelope} /> Email:
-						<a href="mailto:info@realgolf.games">info@realgolf.games</a>
-					</p>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="same-line">
+					<div class="col-md-6 first-row">
+						<h3>{$_("contact_us")}</h3>
+						<p>
+							<Fa icon={faEnvelope} /> {$_("email")}:
+							<a href="mailto:info@realgolf.games">info@realgolf.games</a>
+						</p>
+					</div>
+					<div class="col-md-6 first-row">
+						<h3>{$_("follow_us")}</h3>
+						<p>
+							<Fa icon={faXTwitter} /> Twitter:
+							<a href="https://twitter.com/realgolfgames">@RealGolfGames</a>
+						</p>
+						<p>
+							<Fa icon={faInstagram} /> Instagram:
+							<a href="https://instagram.com/realgolfgames">@RealGolfGames</a>
+						</p>
+						<p>
+							<Fa icon={faYoutube} /> YouTube:
+							<a href="https://www.youtube.com/@realgolfgames">RealGolfGames</a>
+						</p>
+					</div>
+					<div class="col-md-6 first-row">
+						<h3>{$_("explore_more")}</h3>
+						<p><Fa icon={faBookOpenReader} /> <a href="https://blog.realgolf.games">{$_("blog")}</a></p>
+						<p><Fa icon={faBook} /> <a href="https://docs.realgolf.games">{$_("documentation")}</a></p>
+						<p><Fa icon={faBookBookmark} /> <a href="https://rules.realgolf.games">{$_("golfrules")}</a></p>
+					</div>
 				</div>
-				<div class="col-md-6 first-row">
-					<h3>Follow Us</h3>
-					<p>
-						<Fa icon={faXTwitter} /> Twitter:
-						<a href="https://twitter.com/realgolfgames">@RealGolfGames</a>
-					</p>
-					<p>
-						<Fa icon={faInstagram} /> Instagram:
-						<a href="https://instagram.com/realgolfgames">@RealGolfGames</a>
-					</p>
-					<p>
-						<Fa icon={faYoutube} /> YouTube:
-						<a href="https://www.youtube.com/@realgolfgames">RealGolfGames</a>
-					</p>
+				<div class="col-md-6 second-row">
+					<p>&copy; 2021 - {new Date().getFullYear()} RealGolf.Games</p>
 				</div>
-				<div class="col-md-6 first-row">
-					<h3>Explore More</h3>
-					<p><Fa icon={faBookOpenReader} /> <a href="https://blog.realgolf.games">Blog</a></p>
-					<p><Fa icon={faBook} /> <a href="https://docs.realgolf.games">Documentation</a></p>
-					<p><Fa icon={faBookBookmark} /> <a href="https://rules.realgolf.games">Golfrules</a></p>
-				</div>
-			</div>
-			<div class="col-md-6 second-row">
-				<p>&copy; 2021 - 2024 RealGolf.Games</p>
 			</div>
 		</div>
-	</div>
-</footer>
+	</footer>
+{/if}
 
 <style lang="scss">
 	footer {
