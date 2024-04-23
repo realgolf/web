@@ -27,7 +27,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.2.0",
-		"@sveltejs/kit": "^2.5.6",
+		"@sveltejs/kit": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^3.1.0",
 		"@types/bcrypt": "^5.0.2",
 		"@types/dompurify": "^3.0.5",
@@ -50,7 +50,7 @@
 		"svelte-fa": "^4.0.2",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.5",
-		"vite": "^5.2.9"
+		"vite": "^5.2.10"
 	},
 	"type": "module",
 	"dependencies": {
