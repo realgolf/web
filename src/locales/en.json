@@ -194,5 +194,21 @@
 	"clear_history": "Clear History",
 	"measurement_unit": "Measurement Unit",
 	"current_measurement_unit": "Your current measurement unit is",
-	"select_measurement_unit": "Select your prefered Measurement Unit"
+	"select_measurement_unit": "Select your prefered Measurement Unit",
+	"appearance": "Appearance",
+	"current_theme": "Your currently saved Theme is",
+	"select_your_theme": "Select your prefered Theme Setting",
+	"dark": "Dark",
+	"light": "Light",
+	"system": "System",
+	"rounded_corners": "Rounded Corners",
+	"current_rounded_corner": "Your currently saved Rounded Corners Setting is",
+	"select_prefered_rounded_corners": "Select your prefered Rounded Corners Setting",
+	"animations": "Animations",
+	"current_animation_setting": "Your currently saved Animation Setting is",
+	"select_prefered_animation_setting": "Select your prefered Animation Setting",
+	"danger_zone": "Danger Zone",
+	"account_will_be_gone": "Your Account will be lost forever! (a long time!)",
+	"delete_account": "Delete Account",
+	"sign_out": "Sign out"
 }

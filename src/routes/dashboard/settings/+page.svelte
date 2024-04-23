@@ -199,28 +199,28 @@
 	</div>
 
 	<div id="preferences">
-		<h2>Appearence</h2>
+		<h2>{$_("appearance")}</h2>
 		<p class="underline">
-			Your currently saved Theme is: {capitalizeFirstLetter(data.theme)}
+			{$_("current_theme")}: {capitalizeFirstLetter(data.theme)}
 		</p>
 		<form action="?/theme" method="POST" class="theme-form">
-			<label for="theme-settings">Select your prefered Theme Setting:</label>
+			<label for="theme-settings">{$_("select_your_theme")}:</label>
 			<select id="theme-settings" name="theme-settings" bind:value={data.theme}>
-				<option value="dark">Dark</option>
-				<option value="light">Light</option>
-				<option value="system">System</option>
+				<option value="dark">{$_("dark")}</option>
+				<option value="light">{$_("light")}</option>
+				<option value="system">{$_("system")}</option>
 			</select>
 			<br />
 			<button aria-label="update Theme">{$_('update')}</button>
 		</form>
 
-		<h2>Rounded Corners</h2>
+		<h2>{$_("rounded_corners")}</h2>
 		<p class="underline">
-			Your currently saved Rounded Corners Setting is: {JSON.stringify(data.rounded_corners)}
+			{$_("current_rounded_corner")}: {JSON.stringify(data.rounded_corners)}
 		</p>
 		<form action="?/rounded_corners" method="POST" class="rounded-corners-form">
 			<div class="same-row">
-				<label for="rounded-corners-settings">Select your prefered Rounded Corners Setting:</label>
+				<label for="rounded-corners-settings">{$_("select_prefered_rounded_corners")}:</label>
 				<input
 					type="checkbox"
 					name="rounded-corners"
@@ -232,13 +232,13 @@
 			<button aria-label="update Rounded Corners">{$_('update')}</button>
 		</form>
 
-		<h2>Animations</h2>
+		<h2>{$_("animations")}</h2>
 		<p class="underline">
-			Your currently saved Animation Setting is: {JSON.stringify(data.animation)}
+			{$_("current_animation_setting")}: {JSON.stringify(data.animation)}
 		</p>
 		<form action="?/animation" method="POST" class="animation-form">
 			<div class="same-row">
-				<label for="animation-settings">Select your prefered Animation Setting:</label>
+				<label for="animation-settings">{$_("select_prefered_animation_setting")}:</label>
 				<input type="checkbox" name="animation" id="animation" bind:checked={data.animation} />
 			</div>
 			<br />
@@ -247,11 +247,11 @@
 	</div>
 
 	<div class="delete-account">
-		<h2 class="danger-zone">Danger Zone</h2>
-		<h2 class="error">Your Account will be lost forever! (a long time!)</h2>
+		<h2 class="danger-zone">{$_("danger_zone")}</h2>
+		<h2 class="error">{$_("account_will_be_gone")}</h2>
 		<form action="?/delete_account" method="POST" class="delete_account_form">
 			<div>
-				<label for="delete_account_password_input">Password</label>
+				<label for="delete_account_password_input">{$_("password")}</label>
 				<input
 					type="password"
 					id="delete_account_password_input"
@@ -259,12 +259,12 @@
 					value=""
 				/>
 			</div>
-			<button aria-label="delete Account">Delete Account</button>
+			<button aria-label="delete Account">{$_("delete_account")}</button>
 		</form>
 	</div>
 
 	<form action="/logout" method="POST" class="logout-form">
-		<button>Sign out</button>
+		<button>{$_("sign_out")}</button>
 	</form>
 {/if}
 
