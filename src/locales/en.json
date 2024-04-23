@@ -168,5 +168,12 @@
   "search_games_description": "You can search by dates by the following terms: DD/MM/YYYY or just by Year, Month or Day, to get all values with this parameters",
   "select_team": "Select a Team",
   "all_teams": "All Teams",
-  "no_games_found": "No games found for this search."
+  "no_games_found": "No games found for this search.",
+  "welcome_to_course_tracker": "Welcome to our Real Golf Score Tracker {user_name}. <br /> Your current Handicap is: <b>{handicap}</b>",
+  "site_under_development": "This site is currently under development please come back later. 🏗️🚧",
+  "back_to_dashboard": "Back to your Dashboard",
+  "play": "Play",
+  "location": "Location",
+  "par": "Par",
+  "course": "Course"
 }
