@@ -1,21 +1,30 @@
 <script lang="ts">
 	import type { Course_Data } from '$lib/types/courses';
+	import { _, isLoading } from 'svelte-i18n';
 
 	export let data: Course_Data;
 </script>
 
-<h1>Course</h1>
+<svelte:head>
+	<title>Real Golf - {$_("course")}</title>
+</svelte:head>
 
-{#if data.courses}
-	<div class="courses">
-		{#each data.courses as course}
-			<div class="course">
-				<p><span>Name:</span> {course.name}</p>
-				<p><span>Location:</span> {course.location}</p>
-				<p><span>Par:</span> {course.total_par}</p>
-			</div>
-		{/each}
-	</div>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<h1>{$_("course")}</h1>
+
+	{#if data.courses}
+		<div class="courses">
+			{#each data.courses as course}
+				<div class="course">
+					<p><span>{$_("name")}:</span> {course.name}</p>
+					<p><span>{$_("location")}:</span> {course.location}</p>
+					<p><span>{$_("par")}:</span> {course.total_par}</p>
+				</div>
+			{/each}
+		</div>
+	{/if}
 {/if}
 
 <style lang="scss">

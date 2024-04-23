@@ -1,28 +1,34 @@
 <script lang="ts">
-		import type { PageData } from "./$types";
-
+	import { _, isLoading } from 'svelte-i18n';
+	import type { PageData } from './$types';
 	export let data: PageData;
+
+	let user_name = data.name;
+	let handicap = data.handicap;
 </script>
 
 <svelte:head>
 	<title>Score Tracker</title>
 </svelte:head>
 
-<h1>Score Tracker</h1>
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<h1>Score Tracker</h1>
 
-<!-- <main>
+	<main>
 	<div class="heading">
 		<p>
-			Welcome to our Real Golf Score Tracker {data.name}. <br /> Your current Handicap is:
-			<b>{data.handicap}</b>
+			{$_('welcome_to_course_tracker', { values: { user_name, handicap } })}
 		</p>
 
-		<a href="/dashboard/courses/play">Play</a>
+		<a href="/dashboard/courses/play">{$_("play")}</a>
 	</div>
-</main> -->
-
-<main>
-	<h4>Welcome to the Real Golf Games Score Tracker {data.name}</h4>
-	<p class="error">This site is currently under development please come back later. 🏗️🚧</p>
-	<a href="/dashboard"><b>Back to your Dashboard</b></a>
 </main>
+
+	<main>
+		<h4>{$_('welcome_to_course_tracker', { values: { user_name } })}</h4>
+		<p class="error">{$_("site_under_development")}</p>
+		<a href="/dashboard"><b>{$_("back_to_dashboard")}</b></a>
+	</main>
+{/if}
