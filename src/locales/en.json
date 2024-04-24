@@ -216,5 +216,9 @@
 	"explore_more": "Explore More",
 	"blog": "Blog",
 	"documentation": "Documentation",
-	"golfrules": "Golfrules"
+	"golfrules": "Golfrules",
+	"public_games_link": "{username} has saved {games_length, plural, =0 {games} one {1 game} other {# games}}. You can find all of their games <a href=\"/{username}/games\">here</a>.",
+	"public_user_never_played_ine_player_precision": "<p>{username} has never played One Player Precision</p>",
+	"registration_date": "{username} joined RealGolf.Games on {date}.",
+	"public_user_all_time_highscore": "{username}'s all-time highscore is <b>{allTimeValue}</b>, last exceeded on {lastUpdatedDate}."
 }
