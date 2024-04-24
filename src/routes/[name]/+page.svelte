@@ -22,11 +22,7 @@
 </script>
 
 <svelte:head>
-	{#if data.user_username == undefined}
-		<title>404 - User/Page Not Found</title>
-	{:else}
-		<title>{data.user_username} ({data.user_name})</title>
-	{/if}
+	<title>{data.user_username} ({data.user_name})</title>
 </svelte:head>
 
 <Info {data} />
