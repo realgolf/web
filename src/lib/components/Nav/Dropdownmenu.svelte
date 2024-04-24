@@ -87,7 +87,7 @@
 		{#if auth}
 			<div class="logged-in row border-bottom">
 				<h3>Account</h3>
-				<a href="/{username}"><span><Fa icon={faUser} /></span>Your Profile</a>
+				<a href="/{username}"><span><Fa icon={faUser} /></span>{username}</a>
 				<a href="/dashboard"><span><Fa icon={faTh} /></span>Dashboard</a>
 				<a href="/dashboard/settings"><span><Fa icon={faGear} /></span>Settings</a>
 				<a href="/dashboard/chat"><span><Fa icon={faMessage} /></span>Chat</a>
