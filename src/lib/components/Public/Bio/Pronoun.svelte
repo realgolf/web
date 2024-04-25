@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { PageData } from '../../../../routes/[name]/$types';
 
 	export let data: PageData;
 </script>
 
 <div class="pronoun">
-	<label for="pronouns">Pronouns</label>
+	<label for="pronouns">{$_("pronouns")}</label>
 	<select name="pronoun" id="pronoun" bind:value={data.pronoun}>
 		<option value="dont">Don't specify</option>
 		<option value="he/him">he/him</option>
