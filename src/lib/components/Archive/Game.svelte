@@ -11,6 +11,7 @@
 	export let id: string;
 	export let teams: string;
 	export let data: string;
+	export let is_over: boolean;
 </script>
 
 <div class="game">
@@ -27,10 +28,13 @@
 		<button>{$_("update_name")}</button>
 	</form>
 	<p>{$_("created_at", {values: {date: new Date(date).toLocaleDateString()}})}</p>
-	{#if teams.includes('4winning')}
 		<p>{data}</p>
+	{#if is_over == true}
+		<p>{name} has been finished</p>
+	{:else if is_over == false}
+		<p>{name} can still be continued</p>
 	{:else}
-		<p>{data}</p>
+		<p>No game state available</p>
 	{/if}
 	<button on:click={() => openGame(data, teams)}>{$_("open_game")}</button>
 	<form action="?/delete_game" method="POST" autocomplete="off">
