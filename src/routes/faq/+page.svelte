@@ -1,4 +1,5 @@
 <script lang="ts">
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import { _, isLoading } from 'svelte-i18n';
 
 	let github_link = `<a href="https://github.com/realgolf/web/issues">GitHub</a>`;
@@ -9,14 +10,14 @@
 </script>
 
 <svelte:head>
-	<title>Real Golf - {$_("faq")}</title>
+	<title>Real Golf - {$_('faq')}</title>
 </svelte:head>
 
 {#if $isLoading}
 	<p>Loading...</p>
 {:else}
 	<main class="wrapper">
-		<h1>{$_("faq")}</h1>
+		<h1>{$_('faq')}</h1>
 		<main class="question">
 			<details>
 				<summary>{$_('faq_question_1_title')}</summary>
@@ -70,16 +71,22 @@
 					<ul class="faq-list">
 						<li>
 							<strong>{$_('faq_answer_3_step_1_title')}:</strong>
-							{@html $_('faq_answer_3_step_1_description', { values: { github_link } })}
+							<p
+								use:sanitizeHTML={[
+									$_('faq_answer_3_step_1_description', { values: { github_link } })
+								]}
+							/>
 						</li>
 						<li>
 							<strong>{$_('faq_answer_3_step_2_title')}:</strong>
-							{@html $_('faq_answer_3_step_2_description', { values: { support_email } })}
+							<p
+								use:sanitizeHTML={[
+									$_('faq_answer_3_step_2_description', { values: { support_email } })
+								]}
+							/>
 						</li>
 					</ul>
-					<p>
-						{@html $_('faq_answer_3_conclusion', { values: { contributors } })}
-					</p>
+					<p use:sanitizeHTML={[$_('faq_answer_3_conclusion', { values: { contributors } })]} />
 				</div>
 			</details>
 		</main>
@@ -88,12 +95,16 @@
 			<details>
 				<summary>{$_('faq_question_4_title')}</summary>
 				<div>
-					<p>
-						{@html $_('faq_answer_4_content_1')}
-					</p>
-					<p>
-						{@html $_('faq_answer_4_content_2')}
-					</p>
+					<p
+						use:sanitizeHTML={[
+							$_('faq_answer_4_content_1', { values: { github_link, support_email } })
+						]}
+					/>
+					<p
+						use:sanitizeHTML={[
+							$_('faq_answer_4_content_2', { values: { github_link, support_email } })
+						]}
+					/>
 				</div>
 			</details>
 		</main>
@@ -102,9 +113,7 @@
 			<details>
 				<summary>{$_('faq_question_5_title')}</summary>
 				<div>
-					<p>
-						{@html $_('faq_answer_5_content')}
-					</p>
+					<p use:sanitizeHTML={[$_('faq_answer_5_content')]} />
 				</div>
 			</details>
 		</main>
@@ -137,12 +146,8 @@
 				<div>
 					<p>{$_('faq_answer_8_technologies')}</p>
 					<ul class="faq-list">
-						<li>
-							{@html $_('faq_answer_8_sveltekit', { values: { svelte_kit } })}
-						</li>
-						<li>
-							{@html $_('faq_answer_8_mongodb', { values: { mongodb } })}
-						</li>
+						<li use:sanitizeHTML={[$_('faq_answer_8_sveltekit', { values: { svelte_kit } })]} />
+						<li use:sanitizeHTML={[$_('faq_answer_8_mongodb', { values: { mongodb } })]} />
 					</ul>
 					<p>
 						{$_('faq_answer_8_conclusion')}
@@ -159,15 +164,9 @@
 						{$_('faq_answer_9_steps')}
 					</p>
 					<ol class="faq-list">
-						<li>
-							{@html $_('faq_answer_9_steps_1')}
-						</li>
-						<li>
-							{@html $_('faq_answer_9_steps_2')}
-						</li>
-						<li>
-							{@html $_('faq_answer_9_steps_3')}
-						</li>
+						<li use:sanitizeHTML={[$_('faq_answer_9_steps_1')]} />
+						<li use:sanitizeHTML={[$_('faq_answer_9_steps_2')]} />
+						<li use:sanitizeHTML={[$_('faq_answer_9_steps_3')]} />
 					</ol>
 					<p>
 						{$_('faq_answer_9_conclusion')}
@@ -180,16 +179,10 @@
 			<details>
 				<summary>{$_('faq_question_10_title')}</summary>
 				<div>
-					<p>
-						{@html $_('faq_answer_10_steps')}
-					</p>
+					<p use:sanitizeHTML={[$_('faq_answer_10_steps')]} />
 					<ul class="faq-list">
-						<li>
-							{@html $_('faq_answer_10_steps_1')}
-						</li>
-						<li>
-							{@html $_('faq_answer_10_steps_2')}
-						</li>
+						<li use:sanitizeHTML={[$_('faq_answer_10_steps_1')]} />
+						<li use:sanitizeHTML={[$_('faq_answer_10_steps_2')]} />
 					</ul>
 					<p>
 						{$_('faq_answer_10_conclusion')}
@@ -202,9 +195,9 @@
 			<details>
 				<summary>{$_('faq_further_questions')}</summary>
 				<div>
-					<p>
-						{@html $_('faq_further_questions_content')}
-					</p>
+					<p
+						use:sanitizeHTML={[$_('faq_further_questions_content', { values: { support_email } })]}
+					/>
 				</div>
 			</details>
 		</main>

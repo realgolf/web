@@ -1,6 +1,7 @@
 <script lang="ts">
 	import FourWinningTable from '$lib/components/Archive/FourWinning_table.svelte';
 	import { asignNameToTeam } from '$lib/shared/utils/asignNameToTeam';
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import { _, isLoading } from 'svelte-i18n';
 
 	// eslint-disable-next-line
@@ -8,72 +9,82 @@
 </script>
 
 <svelte:head>
-	<title>Real Golf - {$_("dashboard")}</title>
+	<title>Real Golf - {$_('dashboard')}</title>
 </svelte:head>
 
 {#if $isLoading}
 	<p>Loading...</p>
 {:else}
 	<main>
-		<h2>{$_("dashboard")}</h2>
+		<h2>{$_('dashboard')}</h2>
 
-		<p>
-			{@html $_('dashboard_welcome', {
-				values: {
-					user_name: data.name
-				}
-			})}
-		</p>
+		<p
+			use:sanitizeHTML={[
+				$_('dashboard_welcome', {
+					values: {
+						user_name: data.name
+					}
+				})
+			]}
+		/>
 
 		<div class="card">
 			<h2>{$_('one_player_precision_highscore_title')}</h2>
 			{#if data?.daily?.lastUpdated == null}
-				<p>
-					{@html $_('no_highscore_yet')}
-				</p>
+				<p use:sanitizeHTML={[$_('no_highscore_yet')]} />
 			{:else if data?.daily?.lastUpdated != null}
 				<ul>
-					<li>
-						{@html $_('daily_highscore', {
-							values: {
-								dailyValue: data?.daily?.value,
-								lastUpdatedDate: new Date(data?.daily?.lastUpdated).toLocaleDateString()
-							}
-						})}
-					</li>
-					<li>
-						{@html $_('weekly_highscore', {
-							values: {
-								weeklyValue: data?.weekly?.value,
-								lastUpdatedDate: new Date(data?.weekly?.lastUpdated).toLocaleDateString()
-							}
-						})}
-					</li>
-					<li>
-						{@html $_('monthly_highscore', {
-							values: {
-								monthlyValue: data?.monthly?.value,
-								lastUpdatedDate: new Date(data?.monthly?.lastUpdated).toLocaleDateString()
-							}
-						})}
-					</li>
-					<li>
-						{@html $_('yearly_highscore', {
-							values: {
-								yearlyValue: data?.yearly?.value,
-								lastUpdatedDate: new Date(data?.yearly?.lastUpdated).toLocaleDateString()
-							}
-						})}
-					</li>
+					<li
+						use:sanitizeHTML={[
+							$_('daily_highscore', {
+								values: {
+									dailyValue: data?.daily?.value,
+									lastUpdatedDate: new Date(data?.daily?.lastUpdated).toLocaleDateString()
+								}
+							})
+						]}
+					/>
+					<li
+						use:sanitizeHTML={[
+							$_('weekly_highscore', {
+								values: {
+									weeklyValue: data?.weekly?.value,
+									lastUpdatedDate: new Date(data?.weekly?.lastUpdated).toLocaleDateString()
+								}
+							})
+						]}
+					/>
+					<li
+						use:sanitizeHTML={[
+							$_('monthly_highscore', {
+								values: {
+									monthlyValue: data?.monthly?.value,
+									lastUpdatedDate: new Date(data?.monthly?.lastUpdated).toLocaleDateString()
+								}
+							})
+						]}
+					/>
+					<li
+						use:sanitizeHTML={[
+							$_('yearly_highscore', {
+								values: {
+									yearlyValue: data?.yearly?.value,
+									lastUpdatedDate: new Date(data?.yearly?.lastUpdated).toLocaleDateString()
+								}
+							})
+						]}
+					/>
 				</ul>
-				<p>
-					{@html $_('all_time_highscore', {
-						values: {
-							allTimeValue: data?.all_time?.value,
-							lastUpdatedDate: new Date(data?.all_time?.lastUpdated).toLocaleDateString()
-						}
-					})}
-				</p>
+				<p
+					use:sanitizeHTML={[
+						$_('all_time_highscore', {
+							values: {
+								allTimeValue: data?.all_time?.value,
+								lastUpdatedDate: new Date(data?.all_time?.lastUpdated).toLocaleDateString()
+							}
+						})
+					]}
+				/>
 			{/if}
 		</div>
 
@@ -88,13 +99,9 @@
 				<p>
 					{$_('game_associated_with')}: {asignNameToTeam(data?.game?.teams)}
 				</p>
-				<p>
-					{@html $_('see_all_games')}
-				</p>
+				<p use:sanitizeHTML={[$_('see_all_games')]} />
 			{:else}
-				<p class="error">
-					{@html $_('error_loading_latest_game')}
-				</p>
+				<p class="error" use:sanitizeHTML={[$_('error_loading_latest_game')]} />
 			{/if}
 		</div>
 	</main>

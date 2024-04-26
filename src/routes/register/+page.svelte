@@ -1,4 +1,5 @@
 <script lang="ts">
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import { faEye } from '@fortawesome/free-solid-svg-icons';
 	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa';
@@ -89,12 +90,13 @@
 				{form?.error}
 			{:else}
 				{form?.error}
-				{@html $_('might_have_successfully_registered')}
+				<p use:sanitizeHTML={[$_('might_have_successfully_registered')]} />
 			{/if}
 		</p>
 	{:else if form?.user?.name}
-		<p class="success">
-			{@html ($_('successfully_registered'), { values: { name: form?.user?.name } })}
-		</p>
+		<p
+			class="success"
+			use:sanitizeHTML={[$_('successfully_registered', { values: { name: form?.user?.name } })]}
+		/>
 	{/if}
 {/if}
