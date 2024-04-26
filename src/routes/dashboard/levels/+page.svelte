@@ -21,12 +21,12 @@
 		<details>
 			<summary>{$_('toc')}</summary>
 			<ul class="no-bullets">
-				<li><a href="#4-winning">4 Winning</a></li>
-				<li><a href="#exact">Exact</a></li>
+				<li><a href="#4-winning">{$_("4_winning")}</a></li>
+				<li><a href="#exact">{$_("exact")}</a></li>
 			</ul>
 		</details>
 
-		<h2 id="4-winning">4 Winning</h2>
+		<h2 id="4-winning">{$_("4_winning")}</h2>
 
 		<ol class="no-bullets">
 			<li><b>{$_('bronze')}:</b> {$_('level_bronze')}</li>
@@ -38,7 +38,7 @@
 			<li><b>{$_('platinum')}:</b> {$_("level_platinum")}</li>
 		</ol>
 
-		<h2 id="exact">Exact</h2>
+		<h2 id="exact">{$_("exact")}</h2>
 
 		<ol class="no-bullets">
 			<li><b>{$_('bronze')}:</b> {$_("level_bronze")}</li>

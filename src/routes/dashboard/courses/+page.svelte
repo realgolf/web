@@ -8,13 +8,13 @@
 </script>
 
 <svelte:head>
-	<title>Score Tracker</title>
+	<title>{$_("score_tracker")}</title>
 </svelte:head>
 
 {#if $isLoading}
 	<p>Loading...</p>
 {:else}
-	<h1>Score Tracker</h1>
+	<h1>{$_("score_tracker")}</h1>
 
 	<main>
 	<div class="heading">

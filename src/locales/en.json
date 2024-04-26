@@ -254,5 +254,11 @@
 	"delete_game": "Delete Game",
 	"users": "Users:",
 	"logged_in_as": "You are logged in as <b>{username}</b>",
-	"send_message": "Send message"
+	"send_message": "Send message",
+	"copy_id": "Copy ID",
+	"4_winning": "4 Winning",
+	"exact": "Exact",
+	"precision": "Precision",
+	"save": "Save",
+	"score_tracker": "Score Tracker"
 }

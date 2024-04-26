@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import Exact from '$lib/components/Games/Exact.svelte';
+	import { _, isLoading } from 'svelte-i18n';
 
 	interface Team {
 		color: string;
@@ -37,15 +38,19 @@
 	}
 </script>
 
-<Exact {teams} />
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<Exact {teams} />
 
-<div class="database">
-	<br />
-	<form method="POST" autocomplete="off" use:enhance>
-		<input type="text" name="team_data" id="team_data" value={JSON.stringify(teams)} />
-	</form>
-</div>
-<button on:click={saveToDatabaseAndSubmitForm}>Push to Database</button>
+	<div class="database">
+		<br />
+		<form method="POST" autocomplete="off" use:enhance>
+			<input type="text" name="team_data" id="team_data" value={JSON.stringify(teams)} />
+		</form>
+	</div>
+	<button on:click={saveToDatabaseAndSubmitForm}>{$_('save')}</button>
+{/if}
 
 <style lang="scss">
 	.database {
