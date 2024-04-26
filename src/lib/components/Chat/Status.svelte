@@ -1,6 +1,7 @@
 <script lang="ts">
 	export let username: string;
 	import type { user_chat } from '$lib/types/chat';
+	import { _ } from 'svelte-i18n';
 	import { flip } from 'svelte/animate';
 	import { fade } from 'svelte/transition';
 	export let chat_users: user_chat[] = [];
@@ -8,7 +9,7 @@
 
 <aside>
 	<ul>
-		<span>Users: </span>
+		<span>{$_('users')} </span>
 		{#each chat_users as user (user.id)}
 			<li animate:flip transition:fade>
 				{user.name}
@@ -16,7 +17,7 @@
 		{/each}
 	</ul>
 	<p>
-		You are logged in as <b>{username} </b>
+		{@html $_('logged_in_as', { values: { username: username } })}
 	</p>
 </aside>
 

@@ -251,5 +251,7 @@
 	"must_be_logged_in_to_see_other_users": "You must be logged in to search for other users.",
 	"update_name": "Update Name",
 	"created_at": "Created at the {date}",
-	"delete_game": "Delete Game"
+	"delete_game": "Delete Game",
+	"users": "Users:",
+	"logged_in_as": "You are logged in as <b>{username}</b>"
 }
