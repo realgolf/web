@@ -82,8 +82,9 @@
 		<form method="POST" autocomplete="off" use:enhance>
 			<input type="text" name="team_data" id="team_data" value={JSON.stringify(teams)} />
 		</form>
+		<br />
+		<button on:click={saveToDatabaseAndSubmitForm}>{$_('save')}</button>
 	</div>
-	<button on:click={saveToDatabaseAndSubmitForm}>{$_('save')}</button>
 
 	<Dialog />
 {/if}
