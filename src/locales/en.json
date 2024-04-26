@@ -234,5 +234,15 @@
 	"pronouns": "Pronouns",
 	"socials_one_per_line": "Socials (one per line)",
 	"edit_status": "Edit status",
-	"busy": "Busy"
+	"busy": "Busy",
+	"home": "Home",
+	"download": "Download",
+	"dashboard": "Dashboard",
+	"faq": "FAQ",
+	"legal": "Legal",
+	"all_rights_reserved": "All rights reserved",
+	"github": "GitHub",
+	"sign_in": "Sign in",
+	"internal_links": "Internal Links",
+	"external_sites": "External Sites"
 }
