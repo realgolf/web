@@ -2,9 +2,9 @@
 	// Importing the openGame function from the specified file
 	import { openGame } from '$lib/scripts/Archive/openGame';
 	// Importing the Dialog component from the specified file
-	import { _ } from "svelte-i18n";
+	import { _ } from 'svelte-i18n';
 	import Dialog from '../Global/Dialog.svelte';
-	
+
 	// Exporting the following variables as props
 	export let name: string;
 	export let date: string;
@@ -25,21 +25,21 @@
 			aria-label="Name of the Game"
 		/>
 		<input class="hidden" type="text" name="id" value={id} />
-		<button>{$_("update_name")}</button>
+		<button>{$_('update_name')}</button>
 	</form>
-	<p>{$_("created_at", {values: {date: new Date(date).toLocaleDateString()}})}</p>
-		<p>{data}</p>
+	<p>{$_('created_at', { values: { date: new Date(date).toLocaleDateString() } })}</p>
+	<p>{data}</p>
 	{#if is_over == true}
-		<p>{name} has been finished</p>
+		<p>{$_('game_has_finished', { values: { name } })}</p>
 	{:else if is_over == false}
-		<p>{name} can still be continued</p>
+		<p>{$_('game_can_continue', { values: { name } })}</p>
 	{:else}
-		<p>No game state available</p>
+		<p>{$_('no_game_state')}</p>
 	{/if}
-	<button on:click={() => openGame(data, teams)}>{$_("open_game")}</button>
+	<button on:click={() => openGame(data, teams)}>{$_('open_game')}</button>
 	<form action="?/delete_game" method="POST" autocomplete="off">
 		<input class="hidden" type="text" name="id" value={id} />
-		<button>{$_("delete_game")}</button>
+		<button>{$_('delete_game')}</button>
 	</form>
 </div>
 

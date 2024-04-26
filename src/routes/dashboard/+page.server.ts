@@ -24,7 +24,8 @@ export async function load(event): Promise<unknown> {
 					name: newest_game.name,
 					teams: newest_game.teams,
 					date: newest_game.date,
-					data: newest_game.data
+					data: newest_game.data,
+					is_over: newest_game.is_over
 				};
 			}
 		} else {

@@ -279,5 +279,8 @@
 	"number_of_shots_played": "Number of shots played: {shots}",
 	"exact_players": "Exact - {teams_length} Players",
 	"number_of_shots_per_teams": "Enter the amount of shots per team:",
-	"exact_shots_left": "You have played {clickedCellsCount} of {total_shots} shots, so you have {shots_left} shots left."
+	"exact_shots_left": "You have played {clickedCellsCount} of {total_shots} shots, so you have {shots_left} shots left.",
+	"game_has_finished": "{name} has been finished",
+	"game_can_continue": "{name} can still be continued",
+	"no_game_state": "No game state available"
 }

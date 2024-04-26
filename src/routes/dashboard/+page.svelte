@@ -93,8 +93,17 @@
 			{#if !data?.error}
 				{#if data?.game?.teams.includes('4winning')}
 					<FourWinningTable measurement_units={data?.measurement_units} data={data?.game?.data} />
+				{:else}
+					<p>{data.game.data}</p>
 				{/if}
 				<p>{$_('name_of_game')}: {data?.game?.name}</p>
+				{#if data.game.is_over == true}
+					<p>{$_('game_has_finished', { values: { name: data.game.name } })}</p>
+				{:else if data.game.is_over == false}
+					<p>{$_('game_can_continue', { values: { name: data.game.name } })}</p>
+				{:else}
+					<p>{$_('no_game_state')}</p>
+				{/if}
 				<p>{$_('date_of_play')}: {new Date(data?.game?.date).toLocaleDateString()}</p>
 				<p>
 					{$_('game_associated_with')}: {asignNameToTeam(data?.game?.teams)}
