@@ -6,6 +6,7 @@
 	import type { Team } from '$lib/scripts/Precision/types';
 	import { updatePointsDisplay } from '$lib/scripts/Precision/updatePointsDisplay';
 	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
+	import { _ } from 'svelte-i18n';
 // Import onMount and afterUpdate from Svelte
 	import { afterUpdate, onMount } from 'svelte';
 	// Import the Dialog component and the open_dialog function from the Global folder
@@ -102,16 +103,16 @@
 </script>
 
 <svelte:head>
-	<title>Precision - {teams.length} Players</title>
+	<title>{$_('precision_players', { values: { teams_length: teams.length } })}</title>
 </svelte:head>
 
-<h1>{teams.length} Players</h1>
+<h1>{$_('precision_players', { values: { teams_length: teams.length } })}</h1>
 
 <div id="points_display" />
 
-<button on:click={request_restart_confirmation}>Reset Game</button>
+<button on:click={request_restart_confirmation}>{$_('reset_game')}</button>
 
-<p>Choose range:</p>
+<p>{$_("choose_range")}</p>
 <input
 	type="text"
 	name="combined_range"
@@ -122,10 +123,12 @@
 <button
 	on:click={() => {
 		MetersToPlay = generateRandomNumber(range, lower_range, upper_range);
-	}}>Generate Number when range change</button
+	}}>{$_('generate_new_random_number')}</button
 >
 
-<p>{capitalizedMeasurementUnit} to play:</p>
+<p>
+	{$_('distance_to_play', { values: { capitalizedMeasurementUnit: capitalizedMeasurementUnit } })}
+</p>
 <ol>
 	<li class="success">{MetersToPlay}</li>
 </ol>
@@ -133,7 +136,7 @@
 <ol>
 	{#each teams as t}
 		{#if t === currentTeam}
-			<p>Distance Played by {t.color}:</p>
+			<p>{$_('distance_played_by', { values: { color: t.color } })}</p>
 			<input
 				placeholder="Please enter the distance you have played as a number"
 				type="number"
@@ -152,7 +155,7 @@
 						upper_range,
 						currentTeamIndex,
 						color
-					)}>Enter</button
+					)}>{$_("enter")}</button
 			>
 		{/if}
 	{/each}
