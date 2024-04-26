@@ -2,6 +2,7 @@
 	import Dialog, { open_dialog } from '$lib/components/Global/Dialog.svelte';
 	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter.js';
 	import { afterUpdate, onMount } from 'svelte';
+	import { _ } from 'svelte-i18n';
 
 	export let data;
 	export let form;
@@ -156,10 +157,10 @@
 </script>
 
 <svelte:head>
-	<title>Precision - {teams.length} Player</title>
+	<title>{$_('precision_players', { values: { teams_length: teams.length } })}</title>
 </svelte:head>
 
-<h1>{teams.length} Player</h1>
+<h1>{$_('precision_players', { values: { teams_length: teams.length } })}</h1>
 
 {#if form?.error}
 	<p class="error">
@@ -170,12 +171,12 @@
 <div id="points_display" />
 
 {#each teams as team}
-	<p id="number_clicks">Number of shots played: {team.shots}</p>
+	<p id="number_clicks">{$_('number_of_shots_played', { values: { shots: team.shots } })}</p>
 {/each}
 
-<button on:click={request_restart_confirmation}>Reset Game</button>
+<button on:click={request_restart_confirmation}>{$_('reset_game')}</button>
 
-<p>Choose range:</p>
+<p>{$_("choose_range")}</p>
 <input
 	type="text"
 	name="combined_range"
@@ -186,10 +187,10 @@
 <button
 	on:click={() => {
 		MetersToPlay = generateRandomNumber();
-	}}>Generate Number when range change</button
+	}}>{$_('generate_new_random_number')}</button
 >
 
-<p>{capitalizedMeasurementUnit} to play:</p>
+<p>{$_('distance_to_play', { values: { capitalizedMeasurementUnit: capitalizedMeasurementUnit } })}</p>
 <ol>
 	<li class="success">{MetersToPlay}</li>
 </ol>
@@ -197,13 +198,13 @@
 <ol>
 	{#each teams as t}
 		{#if t === currentTeam}
-			<p>Distance Played by {t.color}:</p>
+			<p>{$_('distance_played_by', { values: { color: t.color } })}</p>
 			<input
 				placeholder="Please enter the distance you have played as a number"
 				type="number"
 				bind:value={t.distance}
 			/>
-			<button on:click={deductPoints}>Enter</button>
+			<button on:click={deductPoints}>{$_('enter')}</button>
 		{/if}
 	{/each}
 </ol>

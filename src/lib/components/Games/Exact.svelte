@@ -7,6 +7,7 @@
 	import { updatePointsDisplay } from '$lib/scripts/Exact/updatePointsDisplay';
 	import { updateTeamTurn } from '$lib/scripts/Exact/updateTeamTurn';
 	import { afterUpdate, onMount } from 'svelte';
+	import { _ } from "svelte-i18n";
 	import { writable, type Writable } from 'svelte/store';
 	import Dialog, { open_dialog } from '../Global/Dialog.svelte';
 
@@ -216,13 +217,13 @@
 </script>
 
 <svelte:head>
-	<title>Exact - {teams.length} Players</title>
+	<title>{$_("exact_players", {values: {teams_length: teams.length}})}</title>
 </svelte:head>
 
-<h1>{teams.length} Players</h1>
+<h1>{$_("exact_players", {values: {teams_length: teams.length}})}</h1>
 
 <p>
-	Enter the amount of shots per team: <input
+	{$_("number_of_shots_per_teams")} <input
 		aria-label="Number of shots per Team"
 		bind:value={userInput}
 		type="number"
@@ -232,13 +233,12 @@
 </p>
 
 <p>
-	You have played {clickedCellsCount} of {userInput * teams.length} shots, so you have
-	{userInput * teams.length - clickedCellsCount} shots left.
+	{$_("exact_shots_left", {values: {shots_left: userInput * teams.length - clickedCellsCount, clickedCellsCount, total_shots: userInput * teams.length}})}
 </p>
 
-<p id="team_turn_display">Current Team Turn: {currentTeam.color}</p>
-<button on:click={request_restart_confirmation}>Restart</button>
-<button on:click={changeTeam}>Switch Team</button>
+<p id="team_turn_display">{$_("current_team_turn", {values: {currentTeam_color: currentTeam.color}})}</p>
+<button on:click={changeTeam}>{$_("switch_team")}</button>
+<button on:click={request_restart_confirmation}>{$_("reset_game")}</button>
 
 <div id="points_display" />
 
