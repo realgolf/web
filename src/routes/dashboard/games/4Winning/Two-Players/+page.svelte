@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import FourWinning from '$lib/components/Games/FourWinning.svelte';
 	import Dialog, { open_dialog } from '$lib/components/Global/Dialog.svelte';
+	import { _, isLoading } from 'svelte-i18n';
 
 	// eslint-disable-next-line
 	export let data: any;
@@ -71,17 +72,21 @@
 	}
 </script>
 
-<FourWinning {teams} {team} {measurement_unit} />
+{#if $isLoading}
+	<p>Loading...</p>
+{:else}
+	<FourWinning {teams} {team} {measurement_unit} />
 
-<div class="database">
-	<br />
-	<form method="POST" autocomplete="off" use:enhance>
-		<input type="text" name="team_data" id="team_data" value={JSON.stringify(teams)} />
-	</form>
-</div>
-<button on:click={saveToDatabaseAndSubmitForm}>Save to Database</button>
+	<div class="database">
+		<br />
+		<form method="POST" autocomplete="off" use:enhance>
+			<input type="text" name="team_data" id="team_data" value={JSON.stringify(teams)} />
+		</form>
+	</div>
+	<button on:click={saveToDatabaseAndSubmitForm}>{$_('save')}</button>
 
-<Dialog />
+	<Dialog />
+{/if}
 
 <style lang="scss">
 	.database {

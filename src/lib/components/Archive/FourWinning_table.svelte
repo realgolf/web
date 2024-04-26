@@ -28,8 +28,6 @@
 			});
 		});
 
-		console.log('newRows after colorization:', newRows);
-
 		newRows = newRows; // Update the newRows variable
 
 		setToNewRows(newRows); // Update the rows with the newRows

@@ -33,32 +33,6 @@
 				.replace(/\s/g, '')
 		);
 	}
-
-	// onMount(() => {
-	// 	window.addEventListener('keypress', (e) => {
-	// 		if (e.key === 'l' && e.ctrlKey) {
-	// 			toggleLanguageSelector();
-	// 		}
-	// 	});
-
-	// 	function closeLanguageSelectorOnClick(event: MouseEvent | TouchEvent): void {
-	// 		if (
-	// 			event.target instanceof Element &&
-	// 			!event.target.closest('.language-switcher') &&
-	// 			!event.target.closest('.language-switcher-button') &&
-	// 			!event.target.closest('.language-switcher-content')
-	// 		) {
-	// 			closeLanguageSelector();
-	// 		}
-	// 	}
-
-	// 	window.addEventListener('click', closeLanguageSelectorOnClick);
-	// 	window.addEventListener('touchend', closeLanguageSelectorOnClick);
-
-	// 	onDestroy(() => {
-	// 		window.removeEventListener('click', closeLanguageSelector);
-	// 	});
-	// });
 </script>
 
 <div class="language-switcher">

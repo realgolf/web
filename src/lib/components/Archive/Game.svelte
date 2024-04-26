@@ -2,8 +2,8 @@
 	// Importing the openGame function from the specified file
 	import { openGame } from '$lib/scripts/Archive/openGame';
 	// Importing the Dialog component from the specified file
+	import { _ } from "svelte-i18n";
 	import Dialog from '../Global/Dialog.svelte';
-	// Importing the FourWinningTable component from the specified file
 	
 	// Exporting the following variables as props
 	export let name: string;
@@ -24,18 +24,18 @@
 			aria-label="Name of the Game"
 		/>
 		<input class="hidden" type="text" name="id" value={id} />
-		<button>Update Name</button>
+		<button>{$_("update_name")}</button>
 	</form>
-	<p>Created at the {new Date(date).toLocaleDateString()}</p>
+	<p>{$_("created_at", {values: {date: new Date(date).toLocaleDateString()}})}</p>
 	{#if teams.includes('4winning')}
 		<p>{data}</p>
 	{:else}
 		<p>{data}</p>
 	{/if}
-	<button on:click={() => openGame(data, teams)}>Open Game</button>
+	<button on:click={() => openGame(data, teams)}>{$_("open_game")}</button>
 	<form action="?/delete_game" method="POST" autocomplete="off">
 		<input class="hidden" type="text" name="id" value={id} />
-		<button>Delete Game</button>
+		<button>{$_("delete_game")}</button>
 	</form>
 </div>
 

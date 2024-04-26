@@ -9,14 +9,14 @@
 </script>
 
 <svelte:head>
-	<title>Real Golf - FAQ</title>
+	<title>Real Golf - {$_("faq")}</title>
 </svelte:head>
 
 {#if $isLoading}
 	<p>Loading...</p>
 {:else}
 	<main class="wrapper">
-		<h1>FAQ</h1>
+		<h1>{$_("faq")}</h1>
 		<main class="question">
 			<details>
 				<summary>{$_('faq_question_1_title')}</summary>

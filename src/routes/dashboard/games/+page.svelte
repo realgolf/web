@@ -17,14 +17,14 @@
 		<details>
 			<summary>{$_('toc')}</summary>
 			<ul class="no-bullets">
-				<li><a href="#4-winning">4 Winning</a></li>
-				<li><a href="#exact">Exact</a></li>
-				<li><a href="#precision">Precision</a></li>
+				<li><a href="#4-winning">{$_("4_winning")}</a></li>
+				<li><a href="#exact">{$_("exact")}</a></li>
+				<li><a href="#precision">{$_("precision")}</a></li>
 			</ul>
 		</details>
 
 		<div class="games">
-			<h2 id="4-winning">4 Winning</h2>
+			<h2 id="4-winning">{$_("4_winning")}</h2>
 
 			<div class="gamess">
 				<div class="card">
@@ -59,7 +59,7 @@
 				</div>
 			</div>
 
-			<h2 id="exact">Exact</h2>
+			<h2 id="exact">{$_("exact")}</h2>
 
 			<div class="gamess">
 				<div class="card">
@@ -94,7 +94,7 @@
 				</div>
 			</div>
 
-			<h2 id="precision">Precision</h2>
+			<h2 id="precision">{$_("precision")}</h2>
 
 			<div class="gamess">
 				<div class="card">

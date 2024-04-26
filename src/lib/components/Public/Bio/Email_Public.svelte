@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { PageData } from '../../../../routes/[name]/$types';
 
 	export let data: PageData;
 </script>
 
 <div class="checkbox">
-	<label for="email_public">Display Email Public</label>
+	<label for="email_public">{$_("display_email_public")}</label>
 	<input
 		type="checkbox"
 		name="email_public"

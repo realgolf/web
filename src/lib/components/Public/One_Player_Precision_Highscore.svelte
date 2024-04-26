@@ -2,40 +2,57 @@
 	import type { PageData } from '../../../routes/[name]/$types';
 
 	export let data: PageData;
+
+	import { _ } from 'svelte-i18n';
 </script>
 
 <div id="one_player_precision">
-	<h2>One Player Precision Highscore</h2>
-	{#if data.user_daily?.lastUpdated === null}
-		<p>{data.user_username} has never played One Player Precision</p>
-	{:else}
+	<h2>{$_('one_player_precision_highscore_title')}</h2>
+	{#if data?.user_daily?.lastUpdated == null}
+		{$_("public_user_never_played_ine_player_precision", {values: {username: data.user_username}})}
+	{:else if data?.user_daily?.lastUpdated != null && data?.user_weekly?.lastUpdated != null && data?.user_monthly?.lastUpdated != null && data?.user_yearly?.lastUpdated != null && data?.user_all_time?.lastUpdated != null}
 		<ul>
 			<li>
-				<b>Today's</b> highscore is: {data.user_daily?.value}, last updated on{' '}
-				{data.user_daily?.lastUpdated &&
-					new Date(data.user_daily.lastUpdated).toLocaleDateString()}.
+				{@html $_('daily_highscore', {
+					values: {
+						dailyValue: data.user_daily?.value,
+						lastUpdatedDate: new Date(data.user_daily.lastUpdated).toLocaleDateString()
+					}
+				})}
 			</li>
 			<li>
-				<b>This Week's</b> highscore is: {data.user_weekly?.value}, last updated on{' '}
-				{data.user_weekly?.lastUpdated &&
-					new Date(data.user_weekly.lastUpdated).toLocaleDateString()}.
+				{@html $_('weekly_highscore', {
+					values: {
+						weeklyValue: data.user_weekly?.value,
+						lastUpdatedDate: new Date(data.user_weekly.lastUpdated).toLocaleDateString()
+					}
+				})}
 			</li>
 			<li>
-				<b>This Month's</b> highscore is: {data.user_monthly?.value}, last updated on{' '}
-				{data.user_monthly?.lastUpdated &&
-					new Date(data.user_monthly.lastUpdated).toLocaleDateString()}.
+				{@html $_('monthly_highscore', {
+					values: {
+						monthlyValue: data?.user_monthly?.value,
+						lastUpdatedDate: new Date(data?.user_monthly?.lastUpdated).toLocaleDateString()
+					}
+				})}
 			</li>
 			<li>
-				<b>This Year's</b> highscore is: {data.user_yearly?.value}, last updated on{' '}
-				{data.user_yearly?.lastUpdated &&
-					new Date(data.user_yearly.lastUpdated).toLocaleDateString()}.
+				{@html $_('yearly_highscore', {
+					values: {
+						yearlyValue: data?.user_yearly?.value,
+						lastUpdatedDate: new Date(data?.user_yearly?.lastUpdated).toLocaleDateString()
+					}
+				})}
 			</li>
 		</ul>
 		<p>
-			{data.user_username}'s all-time highscore is
-			<b>{data.user_all_time?.value}</b>, last exceeded on{' '}
-			{data.user_all_time?.lastUpdated &&
-				new Date(data.user_all_time.lastUpdated).toLocaleDateString()}.
+			{@html $_('public_user_all_time_highscore', {
+				values: {
+					username: data.user_username,
+					allTimeValue: data?.user_all_time?.value,
+					lastUpdatedDate: new Date(data?.user_all_time?.lastUpdated).toLocaleDateString()
+				}
+			})}
 		</p>
 	{/if}
 </div>
