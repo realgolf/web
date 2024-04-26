@@ -245,5 +245,8 @@
 	"sign_in": "Sign in",
 	"internal_links": "Internal Links",
 	"external_sites": "External Sites",
-	"sign_up": "Sign Up"
+	"sign_up": "Sign Up",
+	"all_users": "All Users",
+	"no_user_found": "No users found.",
+	"must_be_logged_in_to_see_other_users": "You must be logged in to search for other users."
 }
