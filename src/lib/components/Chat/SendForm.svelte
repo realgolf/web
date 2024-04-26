@@ -1,11 +1,12 @@
 <script lang="ts">
 	export let text = '';
 	export let send_message = () => {};
+	import { _ } from "svelte-i18n";
 </script>
 
 <form on:submit|preventDefault={send_message}>
 	<input aria-label="message" type="text" bind:value={text} />
-	<button>Send message</button>
+	<button>{$_("send_message")}</button>
 </form>
 
 <style>

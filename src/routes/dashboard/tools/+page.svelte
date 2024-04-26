@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>{$_('tools')}</title>
+	<title>Real Golf - {$_('tools')}</title>
 </svelte:head>
 
 {#if $isLoading}

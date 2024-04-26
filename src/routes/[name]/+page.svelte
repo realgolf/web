@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ErrorPage from '$lib/components/Public/Error_Page.svelte';
 	import Info from '$lib/components/Public/Info.svelte';
 	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
@@ -23,15 +22,7 @@
 </script>
 
 <svelte:head>
-	{#if data.user_username == undefined}
-		<title>404 - User/Page Not Found</title>
-	{:else}
-		<title>{data.user_username} ({data.user_name})</title>
-	{/if}
+	<title>{data.user_username} ({data.user_name})</title>
 </svelte:head>
 
-{#if data.user_username == undefined}
-	<ErrorPage bind:path />
-{:else}
-	<Info {data} />
-{/if}
+<Info {data} />

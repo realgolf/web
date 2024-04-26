@@ -8,14 +8,14 @@
 </script>
 
 <svelte:head>
-	<title>Real Golf - Dashboard</title>
+	<title>Real Golf - {$_("dashboard")}</title>
 </svelte:head>
 
 {#if $isLoading}
 	<p>Loading...</p>
 {:else}
 	<main>
-		<h2>Dashboard</h2>
+		<h2>{$_("dashboard")}</h2>
 
 		<p>
 			{@html $_('dashboard_welcome', {

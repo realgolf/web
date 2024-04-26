@@ -90,7 +90,7 @@
 
 		<div class="id">
 			<p>{$_('your_id')}: {data.id}</p>
-			<button on:click={() => copy_to_clipboard(data.id)}>Copy ID</button>
+			<button on:click={() => copy_to_clipboard(data.id)}>{$_("copy_id")}</button>
 			<p>
 				{$_('your_id_info')}
 			</p>

@@ -5,6 +5,7 @@
 		platinum_color,
 		silver_color
 	} from '$lib/scripts/achievement_color_codes';
+	import { _ } from 'svelte-i18n';
 	import type { PageData } from '../../../routes/[name]/$types';
 
 	export let data: PageData;
@@ -19,7 +20,7 @@
 
 {#if data.achievements && data.achievements.length > 0}
 	<div class="achievements">
-		<h3>Achievements</h3>
+		<h3>{$_("achievements")}</h3>
 		{#each data.achievements as achievement, index}
 			<div class="achievement">
 				<div
@@ -51,7 +52,7 @@
 						<p>{achievement.description}</p>
 					</div>
 					<div class="history">
-						<p>History</p>
+						<p>{$_("history")}</p>
 						<ul>
 							<li>
 								{new Date(achievement.history.first_unlocked_date).toLocaleDateString()}

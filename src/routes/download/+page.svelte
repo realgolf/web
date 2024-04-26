@@ -3,13 +3,13 @@
 </script>
 
 <svelte:head>
-	<title>Real Golf - Download</title>
+	<title>Real Golf - {$_("download")}</title>
 </svelte:head>
 
 {#if $isLoading}
 	<p>Loading...</p>
 {:else}
-	<h1>Download</h1>
+	<h1>{$_("download")}</h1>
 	
 	<p>{$_("download_description")}</p>
 	

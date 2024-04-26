@@ -1,18 +1,17 @@
 <script lang="ts">
+	import { _ } from 'svelte-i18n';
 	import type { PageData } from '../../../routes/[name]/$types';
 
 	export let data: PageData;
 
 	let user_games = data.games;
+	let user_games_length = user_games?.length;
 </script>
 
 <div class="games">
 	<p>
-		{user_games?.length === 1
-			? `They have 1 saved game.`
-			: `They have ${user_games?.length} saved games.`}
-
-		You can find all of their games
-		<a href={`/${data.user_username}/games`}>here</a>.
+		{@html $_('public_games_link', {
+			values: { username: data.user_username, games_length: user_games_length }
+		})}
 	</p>
 </div>

@@ -3,6 +3,7 @@
 	import type { matchedSocials } from '$lib/types/matched_socials';
 	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
+	import { _ } from "svelte-i18n";
 	import type { PageData } from '../../../routes/[name]/$types';
 	import EmailPublic from './Bio/Email_Public.svelte';
 	import Followers from './Bio/Followers.svelte';
@@ -33,7 +34,7 @@
 <div class="bio">
 	{#if editing}
 		<form action="?/edit_profile" method="POST">
-			<label for="bio">Bio</label>
+			<label for="bio">{$_("bio")}</label>
 			<textarea bind:value={data.edit_bio} name="bio" id="bio" rows="3" />
 			<EmailPublic {data} />
 			<Pronoun {data} />
@@ -53,7 +54,7 @@
 		{#if data.followers && data.following}
 			<Followers {data} />
 		{/if}
-		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}>Edit profile</button>
+		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}>{$_("edit_profile")}</button>
 		<br />
 		{#if data.user_email_public}
 			<a href="mailto:{data.user_email}"><Fa icon={faEnvelope} /> <span>{data.user_email}</span></a>
@@ -89,11 +90,11 @@
 			<Followers {data} />
 			{#if data.serialiezed_cookie_user.user.following.list.some((username) => username?.username === data.user_username)}
 				<form action="?/unfollow" method="POST">
-					<button type="submit">Unfollow</button>
+					<button type="submit">{$_("un_follow")}</button>
 				</form>
 			{:else}
 				<form action="?/follow" method="POST">
-					<button type="submit">Follow</button>
+					<button type="submit">{$_("follow")}</button>
 				</form>
 			{/if}
 		{/if}
