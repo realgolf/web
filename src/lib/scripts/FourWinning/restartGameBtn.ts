@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import type { Team } from './types';
 import { updateTeamTurn } from './updateTeamTurn';
 
@@ -19,6 +20,7 @@ export function restartGame_Btn(
 	currentTeam: Team,
 	color: string
 ) {
+	Cookies.remove('game_over');
 	const input = document.getElementById('distance') as HTMLInputElement;
 
 	if (input) {
