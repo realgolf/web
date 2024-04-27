@@ -44,7 +44,10 @@ export function checkWin(
 		}
 		if (isWinningCombination) {
 			gameIsOver = true;
-			Cookies.set('', JSON.stringify(gameIsOver), { expires: 1, path: '/' });
+			Cookies.set(`game_over_4winning_${teams.length}_teams`, JSON.stringify(gameIsOver), {
+				expires: 1,
+				path: '/'
+			});
 			open_dialog({
 				text: `Team ${currentTeam.color} wins! Do you want to restart the game?`,
 				modal: true,
