@@ -10,9 +10,9 @@
 <div id="one_player_precision">
 	<h2>{$_('one_player_precision_highscore_title')}</h2>
 	{#if data?.user_daily?.lastUpdated == null}
-		{$_('public_user_never_played_ine_player_precision', {
+		<p>{$_('public_user_never_played_one_player_precision', {
 			values: { username: data.user_username }
-		})}
+		})}</p>
 	{:else if data?.user_daily?.lastUpdated != null && data?.user_weekly?.lastUpdated != null && data?.user_monthly?.lastUpdated != null && data?.user_yearly?.lastUpdated != null && data?.user_all_time?.lastUpdated != null}
 		<ul>
 			<li
