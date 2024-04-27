@@ -4,6 +4,7 @@
 	import Messages from '$lib/components/Chat/Messanges.svelte';
 	import SendForm from '$lib/components/Chat/SendForm.svelte';
 	import Status from '$lib/components/Chat/Status.svelte';
+	import { redirect } from '$lib/scripts/Archive/redirect';
 	import type {
 		ClientToServerEvents,
 		message,
@@ -43,6 +44,11 @@
 		socket.on('users', (_users: user_chat[]) => {
 			chat_users = _users;
 		});
+
+		socket.on('redirect', (url: string) => {
+			console.log('redirect', url);
+			redirect(url);
+		});
 	}
 
 	function send_message() {
@@ -63,13 +69,13 @@
 </script>
 
 <svelte:head>
-	<title>Real Golf - {$_("chat")}</title>
+	<title>Real Golf - {$_('chat')}</title>
 </svelte:head>
 
 {#if $isLoading}
 	<p>Loading...</p>
 {:else}
-	<h1>{$_("chat")}</h1>
+	<h1>{$_('chat')}</h1>
 
 	{#if username}
 		<Status {chat_users} {username} />
