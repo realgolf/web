@@ -3,4 +3,4 @@ services:
     name: realgolf
     env: node
     buildCommand: pnpm install && pnpm run build
-    startCommand: pnpm run start
+    startCommand: pnpm run server
