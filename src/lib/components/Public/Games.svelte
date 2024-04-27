@@ -1,4 +1,5 @@
 <script lang="ts">
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import { _ } from 'svelte-i18n';
 	import type { PageData } from '../../../routes/[name]/$types';
 
@@ -9,9 +10,11 @@
 </script>
 
 <div class="games">
-	<p>
-		{@html $_('public_games_link', {
-			values: { username: data.user_username, games_length: user_games_length }
-		})}
-	</p>
+	<p
+		use:sanitizeHTML={[
+			$_('public_games_link', {
+				values: { username: data.user_username, games_length: user_games_length }
+			})
+		]}
+	/>
 </div>

@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import type { Team } from './types';
 
 /**
@@ -10,9 +11,12 @@ import type { Team } from './types';
 export function findWinner(teams: Team[]): string {
 	let maxPoints = -Infinity;
 	let winner = 'Tie';
+	let gameIsOver: boolean = false;
 
 	for (const team of teams) {
 		if (team.points > maxPoints) {
+			gameIsOver = true;
+			Cookies.set(`game_over_exact_${teams.length}_teams`, JSON.stringify(gameIsOver));
 			maxPoints = team.points;
 			winner = team.color;
 		} else if (team.points === maxPoints) {

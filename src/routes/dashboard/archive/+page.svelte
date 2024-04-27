@@ -65,10 +65,10 @@
 {:else}
 	<h1>{$_('archive')}</h1>
 
-	<h2>{$_("total_users_games", {values: {games_length}})}</h2>
+	<h2>{$_('total_users_games', { values: { games_length } })}</h2>
 
 	<form action="?/delete_all" method="POST" autocomplete="off">
-		<button>{$_("delete_all")}</button>
+		<button>{$_('delete_all')}</button>
 	</form>
 
 	{#if showMessage == true && form?.message}
@@ -79,26 +79,26 @@
 		<p class="error">{form?.error}</p>
 	{/if}
 
-	<label for="search">{$_("search_for_games")}:</label>
+	<label for="search">{$_('search_for_games')}:</label>
 	<input type="search" id="search" bind:value={searchTerm} />
 	<p class="error">
-		{$_("search_games_description")}
+		{$_('search_games_description')}
 	</p>
 
-	<label for="teamSelect">{$_("select_team")}:</label>
+	<label for="teamSelect">{$_('select_team')}:</label>
 	<select id="teamSelect" bind:value={selectedTeam} on:change={handleTeamChange}>
-		<option value="">{$_("all_teams")}</option>
+		<option value="">{$_('all_teams')}</option>
 		{#each teams as team}
 			<option value={team.teams}>{team.name}</option>
 		{/each}
 	</select>
 
 	{#if filteredGames.length > 0}
-		{#each filteredGames as { name, teams, data, id, date }}
-			<Game {name} {teams} {data} {id} {date} />
+		{#each filteredGames as { name, teams, data, id, date, is_over }}
+			<Game {name} {teams} {data} {id} {date} {is_over} />
 		{/each}
 	{:else}
-		<p class="error">{$_("no_games_found")}</p>
+		<p class="error">{$_('no_games_found')}</p>
 	{/if}
 
 	<form

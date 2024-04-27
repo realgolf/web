@@ -1,4 +1,5 @@
 import { open_dialog } from '$lib/components/Global/Dialog.svelte';
+import Cookies from 'js-cookie';
 import { restartGame } from './restartGame';
 import type { Team, winCombination } from './types';
 
@@ -30,6 +31,7 @@ export function checkWin(
 		const { cells } = combination;
 		const teamData = currentTeam.data;
 		let isWinningCombination = true;
+		let gameIsOver: boolean = false;
 
 		for (const cell of cells) {
 			const { outerIndex, innerIndex } = cell;
@@ -40,8 +42,12 @@ export function checkWin(
 				break;
 			}
 		}
-
 		if (isWinningCombination) {
+			gameIsOver = true;
+			Cookies.set(`game_over_4winning_${teams.length}_teams`, JSON.stringify(gameIsOver), {
+				expires: 1,
+				path: '/'
+			});
 			open_dialog({
 				text: `Team ${currentTeam.color} wins! Do you want to restart the game?`,
 				modal: true,

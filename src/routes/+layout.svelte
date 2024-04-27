@@ -9,7 +9,7 @@
 	import { locale } from 'svelte-i18n';
 
 	import '$lib/i18n';
-	import type { User } from '$lib/server/user/types.js';
+	import type { User } from '$lib/server/user/types';
 
 	export let data;
 

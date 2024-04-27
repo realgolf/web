@@ -8,7 +8,7 @@
 	import type { Team } from '$lib/scripts/FourWinning/types';
 	import { updateTeamTurn } from '$lib/scripts/FourWinning/updateTeamTurn';
 	import { winCombinations } from '$lib/scripts/FourWinning/winCombinations';
-	import { _ } from "svelte-i18n";
+	import { _ } from 'svelte-i18n';
 // Import the capitalizeFirstLetter function from the shared folder
 	// Import onMount from Svelte
 	import { onMount } from 'svelte';
@@ -270,36 +270,38 @@
 
 <h1>{$_('4_winning_players', { values: { teams_length: teams.length } })}</h1>
 
-<p id="team_turn_display">{$_("current_team_turn", {values: {currentTeam_color: currentTeam.color}})}</p>
+<p id="team_turn_display">
+	{$_('current_team_turn', { values: { currentTeam_color: currentTeam.color } })}
+</p>
 
-<button on:click={changeTeam}>{$_("switch_team")}</button>
+<button on:click={changeTeam}>{$_('switch_team')}</button>
 <button
 	on:click={() => {
 		request_confirmation();
-	}}>{$_("reset_game")}</button
+	}}>{$_('reset_game')}</button
 >
 
-<p>{$_("enter_distance")}</p>
+<p>{$_('enter_distance')}</p>
 <input
 	type="number"
 	name="distance"
 	id="distance"
 	aria-label="You can also enter the Distance here"
 />
-<button on:click={handleInput}>{$_("enter")}</button>
+<button on:click={handleInput}>{$_('enter')}</button>
 
 <table>
 	<thead style="display: none;" aria-hidden="false">
 		<tr>
-			<th>{$_("lateral_deviation")}</th>
-			<th>{$_("distance")}</th>
-			<th>{$_("distance")}</th>
-			<th>{$_("distance")}</th>
-			<th>{$_("distance")}</th>
-			<th>{$_("distance")}</th>
-			<th>{$_("distance")}</th>
-			<th>{$_("distance")}</th>
-			<th>{$_("lateral_deviation")}</th>
+			<th>{$_('lateral_deviation')}</th>
+			<th>{$_('distance')}</th>
+			<th>{$_('distance')}</th>
+			<th>{$_('distance')}</th>
+			<th>{$_('distance')}</th>
+			<th>{$_('distance')}</th>
+			<th>{$_('distance')}</th>
+			<th>{$_('distance')}</th>
+			<th>{$_('lateral_deviation')}</th>
 		</tr>
 	</thead>
 	{#each rows as { side, data }, outerIndex}
@@ -322,9 +324,9 @@
 </table>
 
 <details>
-	<summary>{$_("number_of_clicks_per_field")}</summary>
+	<summary>{$_('number_of_clicks_per_field')}</summary>
 	{#if numberOfClicks == undefined}
-		<p>{$_("first_need_to_hit_a_field")}</p>
+		<p>{$_('first_need_to_hit_a_field')}</p>
 	{:else}
 		{numberOfClicks}
 	{/if}

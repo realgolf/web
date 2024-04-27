@@ -87,7 +87,8 @@ const User_Schema = new mongoose.Schema({
 			name: { type: String },
 			teams: { type: String },
 			date: { type: String },
-			data: { type: String }
+			data: { type: String },
+			is_over: { type: Boolean, default: false }
 		}
 	],
 	total_games: { type: Number, default: 0 },

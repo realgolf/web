@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { _, isLoading } from 'svelte-i18n';
 	import { slide } from 'svelte/transition';
-	import type { PageData } from './$types.js';
+	import type { PageData } from './$types';
 	export let data: PageData;
 
 	// eslint-disable-next-line

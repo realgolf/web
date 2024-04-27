@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import type { Writable } from 'svelte/store';
 import type { Team } from './types';
 import { updatePointsDisplay } from './updatePointsDisplay';
@@ -24,6 +25,7 @@ export function resetGame(
 	currentTeam: Team,
 	color: string
 ) {
+	Cookies.remove(`game_over_exact_${teams.length}_teams`);
 	localStorage.removeItem(`exact_${teams.length}_teams`);
 	for (const team of teams) {
 		team.data = [];

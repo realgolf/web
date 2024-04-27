@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { removeLastSymbol } from '$lib/shared/utils/removeLastSymbol.js';
+	import { removeLastSymbol } from '$lib/shared/utils/removeLastSymbol';
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import { _, isLoading } from 'svelte-i18n';
 
 	export let data;
@@ -46,13 +47,15 @@
 
 		<h2 id="precision">Precision</h2>
 
-		<p>
-			{@html $_('precision_rules', {
-				values: {
-					measurement_unit: measurement_unit,
-					measurement_unit_without_last_symbol: measurement_unit_without_last_symbol
-				}
-			})}
-		</p>
+		<p
+			use:sanitizeHTML={[
+				$_('precision_rules', {
+					values: {
+						measurement_unit: measurement_unit,
+						measurement_unit_without_last_symbol: measurement_unit_without_last_symbol
+					}
+				})
+			]}
+		/>
 	</main>
 {/if}

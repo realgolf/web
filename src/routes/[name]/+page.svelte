@@ -7,10 +7,7 @@
 
 	let hasRedirected = false;
 
-	let path: string;
-
 	onMount(() => {
-		path = location.pathname;
 		const correctCasedUrl = `/${data.user_username}`;
 
 		if (data.user_username == undefined) return;

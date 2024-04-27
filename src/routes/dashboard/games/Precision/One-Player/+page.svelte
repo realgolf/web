@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Dialog, { open_dialog } from '$lib/components/Global/Dialog.svelte';
-	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter.js';
+	import { capitalizeFirstLetter } from '$lib/shared/utils/capitalizeFirstLetter';
 	import { afterUpdate, onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 

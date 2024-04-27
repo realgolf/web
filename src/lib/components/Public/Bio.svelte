@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { modify_social } from '$lib/scripts/Public/modify_socials';
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import type { matchedSocials } from '$lib/types/matched_socials';
 	import { faEnvelope, faLink } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
-	import { _ } from "svelte-i18n";
+	import { _ } from 'svelte-i18n';
 	import type { PageData } from '../../../routes/[name]/$types';
 	import EmailPublic from './Bio/Email_Public.svelte';
 	import Followers from './Bio/Followers.svelte';
@@ -34,7 +35,7 @@
 <div class="bio">
 	{#if editing}
 		<form action="?/edit_profile" method="POST">
-			<label for="bio">{$_("bio")}</label>
+			<label for="bio">{$_('bio')}</label>
 			<textarea bind:value={data.edit_bio} name="bio" id="bio" rows="3" />
 			<EmailPublic {data} />
 			<Pronoun {data} />
@@ -48,13 +49,14 @@
 			<Status {data} />
 		{/if}
 		{#if data.user_bio}
-			<!--eslint-disable-next-line -->
-			<p class="bio-text">{@html data.user_bio}</p>
+			<p class="bio-text" use:sanitizeHTML={[data.user_bio]} />
 		{/if}
 		{#if data.followers && data.following}
 			<Followers {data} />
 		{/if}
-		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}>{$_("edit_profile")}</button>
+		<button style="margin-bottom: 1rem;" on:click={() => (editing = true)}
+			>{$_('edit_profile')}</button
+		>
 		<br />
 		{#if data.user_email_public}
 			<a href="mailto:{data.user_email}"><Fa icon={faEnvelope} /> <span>{data.user_email}</span></a>
@@ -90,11 +92,11 @@
 			<Followers {data} />
 			{#if data.serialiezed_cookie_user.user.following.list.some((username) => username?.username === data.user_username)}
 				<form action="?/unfollow" method="POST">
-					<button type="submit">{$_("un_follow")}</button>
+					<button type="submit">{$_('un_follow')}</button>
 				</form>
 			{:else}
 				<form action="?/follow" method="POST">
-					<button type="submit">{$_("follow")}</button>
+					<button type="submit">{$_('follow')}</button>
 				</form>
 			{/if}
 		{/if}

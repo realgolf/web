@@ -20,6 +20,10 @@ export const load: PageServerLoad = async (event) => {
 export const actions: Actions = {
 	default: async (event) => {
 		const data = await event.request.formData();
+
+		const game_over_cookie = event.cookies.get('game_over_4winning_2_teams');
+		const gameIsOver = game_over_cookie === 'true' ? true : false;
+
 		const raw_team_data = data.get('team_data') as string;
 
 		let team_data;
@@ -62,7 +66,8 @@ export const actions: Actions = {
 					name: '4 Winning 2 Teams',
 					teams: '4winning_2_teams',
 					date: formattedDate,
-					data: JSON.stringify(team_data)
+					data: JSON.stringify(team_data),
+					is_over: gameIsOver
 				});
 
 				user.total_games += 1;
@@ -72,6 +77,8 @@ export const actions: Actions = {
 
 			// Save the user with the new game
 			await user.save();
+
+			event.cookies.delete('game_over_4winning_2_teams', { path: '/' });
 
 			return {
 				status: 200,

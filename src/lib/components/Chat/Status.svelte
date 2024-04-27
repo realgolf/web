@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let username: string;
+	import sanitizeHTML from '$lib/shared/utils/sanitizeHTML';
 	import type { user_chat } from '$lib/types/chat';
 	import { _ } from 'svelte-i18n';
 	import { flip } from 'svelte/animate';
@@ -16,9 +17,7 @@
 			</li>
 		{/each}
 	</ul>
-	<p>
-		{@html $_('logged_in_as', { values: { username: username } })}
-	</p>
+	<p use:sanitizeHTML={[$_('logged_in_as', { values: { username: username } })]} />
 </aside>
 
 <style>

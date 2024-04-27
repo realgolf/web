@@ -14,6 +14,7 @@ declare global {
 		name: string | null | undefined;
 		teams: string | null | undefined;
 		data: string | null | undefined;
+		is_over: boolean | null | undefined;
 	};
 }
 

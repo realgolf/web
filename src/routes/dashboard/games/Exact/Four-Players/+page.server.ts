@@ -1,12 +1,17 @@
 import { check_achievement } from '$lib/server/user/achievements/achievements';
 import { User_Model } from '$lib/server/user/models';
 import type { User } from '$lib/server/user/types';
+import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
 	default: async (event) => {
 		const data = await event.request.formData();
+
+		const game_over_cookie = event.cookies.get('game_over_exact_3_teams');
+		const gameIsOver = game_over_cookie === 'true' ? true : false;
+
 		const raw_team_data = data.get('team_data') as string;
 
 		let team_data;
@@ -49,7 +54,8 @@ export const actions: Actions = {
 					name: 'Exact 4 Teams',
 					teams: 'exact_4_teams',
 					date: formattedDate,
-					data: JSON.stringify(team_data)
+					data: JSON.stringify(team_data),
+					is_over: gameIsOver
 				});
 
 				user.total_games += 1;
@@ -59,6 +65,8 @@ export const actions: Actions = {
 
 			// Save the user with the new game
 			await user.save();
+
+			Cookies.remove(`game_over_exact_3_teams`);
 
 			return {
 				status: 200,
