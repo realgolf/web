@@ -20,7 +20,7 @@ export function restartGame_Btn(
 	currentTeam: Team,
 	color: string
 ) {
-	Cookies.remove('game_over');
+	Cookies.remove(`game_over_4winning_${teams.length}_teams`);
 	const input = document.getElementById('distance') as HTMLInputElement;
 
 	if (input) {

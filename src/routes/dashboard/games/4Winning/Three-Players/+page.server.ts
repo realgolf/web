@@ -21,7 +21,7 @@ export const actions: Actions = {
 	default: async (event) => {
 		const data = await event.request.formData();
 
-		const game_over_cookie = event.cookies.get('game_over');
+		const game_over_cookie = event.cookies.get('game_over_4winning_3_teams');
 		const gameIsOver = game_over_cookie === 'true' ? true : false;
 
 		const raw_team_data = data.get('team_data') as string;
@@ -78,7 +78,7 @@ export const actions: Actions = {
 			// Save the user with the new game
 			await user.save();
 
-			event.cookies.delete('game_over', { path: '/' });
+			event.cookies.delete('game_over_4winning_3_teams', { path: '/' });
 
 			return {
 				status: 200,
