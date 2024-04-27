@@ -12,11 +12,13 @@ export type user_chat = {
 export type ServerToClientEvents = {
 	message: (m: message) => void;
 	users: (u: user_chat[]) => void;
+	redirect: (url: string) => void;
 };
 
 export type ClientToServerEvents = {
 	name: (n: string) => void;
 	message: (m: message) => void;
+	redirect: (url: string) => void;
 };
 
 export type InterServerEvents = object;

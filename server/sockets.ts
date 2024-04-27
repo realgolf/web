@@ -15,6 +15,7 @@ import type {
  */
 export function handle_sockets(server: Server<typeof IncomingMessage, typeof ServerResponse>) {
 	let chat_users: user_chat[] = [];
+	const SOCKET_TIMEOUT = 1000 * 60 * 10; // 10 minutes
 
 	const io = new ioServer<
 		ClientToServerEvents,
@@ -27,14 +28,31 @@ export function handle_sockets(server: Server<typeof IncomingMessage, typeof Ser
 	 * Handles a socket.io connection.
 	 */
 	io.on('connection', (socket) => {
+		let activityTimer: NodeJS.Timeout;
+
+		// Function to reset the activity timer
+		const resetActivityTimer = () => {
+			clearTimeout(activityTimer);
+			activityTimer = setTimeout(() => {
+				const redirectUrl = '/dashboard';
+				socket.emit('redirect', redirectUrl);
+				socket.disconnect(true); // Disconnect socket after timeout
+			}, SOCKET_TIMEOUT);
+		};
+
 		socket.on('name', async (name) => {
 			handle_name(socket, name);
+			resetActivityTimer();
 		});
+
 		socket.on('message', (message) => {
 			handle_message(message);
+			resetActivityTimer();
 		});
+
 		socket.on('disconnect', () => {
 			handle_disconnection(socket);
+			clearTimeout(activityTimer);
 		});
 	});
 
