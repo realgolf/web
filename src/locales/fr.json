@@ -218,7 +218,6 @@
 	"documentation": "Documentation",
 	"golfrules": "Golfrules",
 	"public_games_link": "{username} has saved {games_length, plural, =0 {games} one {1 game} other {# games}}. You can find all of their games <a href=\"/{username}/games\">here</a>.",
-	"public_user_never_played_ine_player_precision": "<p>{username} has never played One Player Precision</p>",
 	"registration_date": "{username} joined RealGolf.Games on {date}.",
 	"public_user_all_time_highscore": "{username}'s all-time highscore is <b>{allTimeValue}</b>, last exceeded on {lastUpdatedDate}.",
 	"bio": "Bio",
@@ -279,5 +278,9 @@
 	"number_of_shots_played": "Number of shots played: {shots}",
 	"exact_players": "Exact - {teams_length} Players",
 	"number_of_shots_per_teams": "Enter the amount of shots per team:",
-	"exact_shots_left": "You have played {clickedCellsCount} of {total_shots} shots, so you have {shots_left} shots left."
+	"exact_shots_left": "You have played {clickedCellsCount} of {total_shots} shots, so you have {shots_left} shots left.",
+	"game_has_finished": "{name} has been finished",
+	"game_can_continue": "{name} can still be continued",
+	"no_game_state": "No game state available",
+	"public_user_never_played_one_player_precision": "{username} has never played One Player Precision"
 }
