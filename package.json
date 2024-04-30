@@ -67,7 +67,7 @@
 		"js-cookie": "^3.0.5",
 		"jsonwebtoken": "^9.0.2",
 		"lint": "^1.1.2",
-		"mongoose": "^8.3.2",
+		"mongoose": "^8.3.3",
 		"nanoid": "^5.0.7",
 		"postcss": "^8.4.38",
 		"postcss-safe-parser": "^7.0.0",
