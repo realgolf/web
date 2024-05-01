@@ -10,7 +10,7 @@
 	import Followers from './Bio/Followers.svelte';
 	import Pronoun from './Bio/Pronoun.svelte';
 	import Socials from './Bio/Socials.svelte';
-	import Status_Edit from './Bio/Status.svelte';
+	import Status_Edit from './Bio/Status/Status.svelte';
 	import Status from './Status.svelte';
 
 	export let data: PageData;
