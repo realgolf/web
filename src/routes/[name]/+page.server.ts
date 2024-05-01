@@ -171,6 +171,7 @@ export const actions: Actions = {
 		const pronoun = data.get('pronoun') as string;
 		const custom_pronoun = data.get('custom_pronoun') as string;
 		const status_text = data.get('status_text') as string;
+		const status_emoji = data.get('status_emoji') as string;
 		const busy = data.get('busy') === 'on';
 		const username = user?.user?.username;
 
@@ -184,7 +185,7 @@ export const actions: Actions = {
 			await user.save();
 		}
 
-		editStatus(email, status_text, busy);
+		editStatus(email, status_text, busy, status_emoji);
 		updateSocials(email, socials_input_cleaned);
 		displayEmailPublic(email, email_public);
 		updateBio(email, bio);

@@ -38,9 +38,14 @@
 		selectedCategory = category;
 	}
 
-	function addEmoji(emoji: string) {
+	function addEmoji(emoji: string, HTMLInputElement: HTMLInputElement) {
 		selectedEmoji = emoji;
-		HTMLInputElement.value = selectedEmoji;
+		console.log(selectedEmoji);
+		if (HTMLInputElement) {
+			HTMLInputElement.value = selectedEmoji;
+		} else {
+			console.error('HTMLInputElement is null or undefined.');
+		}
 	}
 </script>
 
@@ -65,7 +70,7 @@
 			{#each emojisByCategory[selectedCategory] as emoji}
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
-				<span on:click={() => addEmoji(emoji.emoji)}>{emoji.emoji}</span>
+				<span on:click={() => addEmoji(emoji.emoji, HTMLInputElement)}>{emoji.emoji}</span>
 			{/each}
 		{:else}
 			<p>No emojis available for this category.</p>
