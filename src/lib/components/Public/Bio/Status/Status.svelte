@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
-	import type { PageData } from '../../../../routes/[name]/$types';
+	import type { PageData } from '../../../../../routes/[name]/$types';
 
 	export let data: PageData;
 </script>
