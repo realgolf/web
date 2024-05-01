@@ -2,14 +2,16 @@
 	import { emojis, type Emoji } from '$lib/scripts/emojis';
 	import { fly } from 'svelte/transition';
 
-	const emojiIcon = emojis[1].emoji;
+	export let HTMLInputElement: HTMLInputElement;
+
+	const emojiIcon = emojis[141].emoji;
 	let modalOpen = false;
 	let selectedEmoji = '';
 
 	// Define emoji categories and icons
 	let emojiHeaderSet = [
-		{ name: 'Animals & Nature', icon: '🐶' },
 		{ name: 'Smileys & People', icon: '😀' },
+		{ name: 'Animals & Nature', icon: '🐶' },
 		{ name: 'Travel & Places', icon: '✈️' },
 		{ name: 'Flags', icon: '🇩🇪' },
 		{ name: 'Objects', icon: '⌚' },
@@ -38,7 +40,7 @@
 
 	function addEmoji(emoji: string) {
 		selectedEmoji = emoji;
-		console.log(selectedEmoji);
+		HTMLInputElement.value = selectedEmoji;
 	}
 </script>
 
@@ -75,18 +77,22 @@
 	#emoji-cont {
 		max-width: 300px;
 		max-height: 248px;
-		overflow-x: scroll;
+		overflow-y: scroll;
+		overflow-x: hidden;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		margin-left: 10px;
+		background-color: var(--nav-color);
+		z-index: 200;
+		border: 1px solid var(--border-color);
 
 		header {
-			width: 98%;
+			width: 100%;
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
-			border: 1px solid gray;
+			border: 1px solid var(--border-color);
 
 			div {
 				cursor: pointer;
@@ -102,12 +108,12 @@
 		span {
 			font-size: 1.5rem;
 			padding: 0.3rem;
-			border: 1px solid gray;
-			background: #eee;
+			border: 1px solid var(--border-color);
+			background: var(--nav-color);
 			cursor: pointer;
 
 			&:active {
-				background: #fff;
+				background: var(--nav-color);
 			}
 		}
 	}
