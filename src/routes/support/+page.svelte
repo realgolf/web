@@ -4,7 +4,7 @@
 
 <h1>Support</h1>
 
-<form action="?/support" method="POST" autocomplete="off">
+<form method="POST" autocomplete="off">
 	<label for="name">Name</label>
 	<input type="text" id="name" name="name" />
 	<label for="email">Your Email</label>
