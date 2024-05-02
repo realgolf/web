@@ -282,5 +282,14 @@
 	"game_has_finished": "{name} has been finished",
 	"game_can_continue": "{name} can still be continued",
 	"no_game_state": "No game state available",
-	"public_user_never_played_one_player_precision": "{username} has never played One Player Precision"
+	"public_user_never_played_one_player_precision": "{username} has never played One Player Precision",
+	"support": "Support",
+	"your_email": "Your Email",
+	"subject": "Subject",
+	"other": "Other",
+	"technical": "Technical",
+	"bug": "Bug",
+	"feature_request": "Feature",
+	"message": "Message",
+	"submit": "Submit"
 }
