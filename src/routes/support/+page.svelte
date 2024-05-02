@@ -13,6 +13,8 @@
 	<input type="text" id="name" name="name" />
 	<label for="email">{$_("your_email")}</label>
 	<input type="text" id="email" name="email" />
+	<!--Honeypot Field-->
+	<input type="text" name="honeypot" style="display:none">
 	<label for="subject">{$_("subject")}</label>
 	<select name="subject" id="subject">
 		<option value="other">{$_("other")}</option>

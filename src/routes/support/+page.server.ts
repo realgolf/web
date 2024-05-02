@@ -11,6 +11,15 @@ export const actions: Actions = {
 		const email = (data.get('email') as string)?.toLowerCase()?.trim();
 		const subject = data.get('subject') as string;
 		const message = data.get('message') as string;
+		const honeypot = data.get('honeypot') as string;
+
+		if (honeypot !== '') {
+			// If the honeypot field is not empty, it's likely a bot submission
+			return {
+				status: 400,
+				body: { error: 'Possible spam submission detected' }
+			};
+		}
 
 		console.log(name, email, subject, message);
 
