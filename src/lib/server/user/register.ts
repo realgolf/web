@@ -1,6 +1,8 @@
 import bcrypt from 'bcrypt';
 import type { MongooseError } from 'mongoose';
 import { User_Model } from './models';
+import { generateVerificationCode } from './verify/verification_code';
+import { sendVerificationEmail } from './verify/verification_email';
 import { verify_email } from './verify/verify_email';
 import { verify_handicap } from './verify/verify_handicap';
 import { verify_name } from './verify/verify_name';
@@ -65,6 +67,8 @@ export async function register_user(
 	const saltRounds = 10;
 	const hashed_password = await bcrypt.hash(password, saltRounds);
 
+	const verification_code = generateVerificationCode();
+
 	let id = Math.random().toString(36).slice(2);
 
 	if (User_Model) {
@@ -75,6 +79,8 @@ export async function register_user(
 				password: hashed_password,
 				name,
 				username,
+				verified: false,
+				verification_code,
 				handicap,
 				handicap_updated,
 				registration_date
@@ -85,6 +91,7 @@ export async function register_user(
 
 		while (continueLoop) {
 			try {
+				await sendVerificationEmail(email, verification_code);
 				await user.save();
 				continueLoop = false;
 			} catch (err) {

@@ -1,4 +1,3 @@
-import { login_user } from '$lib/server/user/login';
 import { register_user } from '$lib/server/user/register';
 import { cookie_options } from '$lib/server/user/utils';
 import { fail } from '@sveltejs/kit';
@@ -32,20 +31,7 @@ export const actions: Actions = {
 		if (error) {
 			return fail(400, { error, user });
 		} else {
-			const user_data = await login_user(email, password);
-
-			if ('error' in user_data) {
-				return fail(400, { email, error: user_data.error });
-			} else {
-				const { token, user } = user_data;
-
-				event.cookies.set('auth-token', token, cookie_options);
-				event.cookies.set('email', user.email, cookie_options);
-				event.cookies.set('name', user.name, cookie_options);
-				event.cookies.set('username', user.username, cookie_options);
-
-				return { email, user, username };
-			}
+			event.cookies.set('email', email, cookie_options);
 		}
 	}
 };
