@@ -1,27 +1,31 @@
+<script lang="ts">
+    import { _ } from "svelte-i18n";
+</script>
+
 <svelte:head>
-	<title>Real Golf - Support</title>
+	<title>Real Golf - {$_("support")}</title>
 </svelte:head>
 
-<h1>Support</h1>
+<h1>{$_("support")}</h1>
 
 <form method="POST" autocomplete="off">
-	<label for="name">Name</label>
+	<label for="name">{$_("name")}</label>
 	<input type="text" id="name" name="name" />
-	<label for="email">Your Email</label>
+	<label for="email">{$_("your_email")}</label>
 	<input type="text" id="email" name="email" />
-	<label for="subject">Subject</label>
+	<label for="subject">{$_("subject")}</label>
 	<select name="subject" id="subject">
-		<option value="other">Other</option>
-		<option value="account">Account</option>
+		<option value="other">{$_("other")}</option>
+		<option value="account">{$_("account")}</option>
 		<!-- <option value="payment">Payment</option> -->
-		<option value="technical">Technical</option>
-		<option value="bug">Bug</option>
-		<option value="feature">Feature Request</option>
+		<option value="technical">{$_("technical")}</option>
+		<option value="bug">{$_("bug")}</option>
+		<option value="feature">{$_("feature_request")}</option>
 	</select>
-	<label for="message">Message</label>
+	<label for="message">{$_("message")}</label>
 	<textarea name="message" id="message" cols="30" rows="10" />
 	<br />
-	<button type="submit">Submit</button>
+	<button type="submit">{$_("submit")}</button>
 </form>
 
 <style lang="scss">
