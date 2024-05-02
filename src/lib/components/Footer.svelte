@@ -4,7 +4,8 @@
 		faBook,
 		faBookBookmark,
 		faBookOpenReader,
-		faEnvelope
+		faEnvelope,
+		faUsers
 	} from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 
@@ -23,6 +24,10 @@
 						<p>
 							<Fa icon={faEnvelope} /> {$_("email")}:
 							<a href="mailto:info@realgolf.games">info@realgolf.games</a>
+						</p>
+						<p>
+							<Fa icon={faUsers} /> <a href="/support">{$_("support")}</a>
+							
 						</p>
 					</div>
 					<div class="col-md-6 first-row">

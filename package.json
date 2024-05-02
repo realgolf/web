@@ -1,6 +1,6 @@
 {
 	"name": "@realgolf/web",
-	"version": "3.5.1",
+	"version": "3.6.0",
 	"author": "RealGolf.Games",
 	"license": "All-Rights-Reserved",
 	"private": true,
@@ -35,6 +35,7 @@
 		"@types/js-cookie": "^3.0.6",
 		"@types/jsonwebtoken": "^9.0.6",
 		"@types/node": "^20.12.8",
+		"@types/nodemailer": "^6.4.14",
 		"@types/uuid": "^9.0.8",
 		"@typescript-eslint/eslint-plugin": "^7.8.0",
 		"concurrently": "^8.2.2",
@@ -69,6 +70,7 @@
 		"lint": "^1.1.2",
 		"mongoose": "^8.3.3",
 		"nanoid": "^5.0.7",
+		"nodemailer": "^6.9.13",
 		"postcss": "^8.4.38",
 		"postcss-safe-parser": "^7.0.0",
 		"sass": "^1.76.0",
