@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import type { MongooseError } from 'mongoose';
 import { User_Model } from './models';
 import { generateVerificationCode } from './verify/verification_code';
-import { sendVerificationEmail } from './verify/verification_email';
 import { verify_email } from './verify/verify_email';
 import { verify_handicap } from './verify/verify_handicap';
 import { verify_name } from './verify/verify_name';
@@ -91,7 +90,6 @@ export async function register_user(
 
 		while (continueLoop) {
 			try {
-				await sendVerificationEmail(email, verification_code);
 				await user.save();
 				continueLoop = false;
 			} catch (err) {
