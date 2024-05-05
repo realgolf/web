@@ -15,11 +15,18 @@
 
 	const dataObj = JSON.parse(data);
 
-	const flattenedData = Object.entries(dataObj).map(([key, value]) => {
-		return { key, value };
-	});
+	// Separate data arrays for each color
+	const redData = dataObj.find((obj: { color: string; }) => obj.color === 'red')?.data || [];
+	const blueData = dataObj.find((obj: { color: string; }) => obj.color === 'blue')?.data || [];
 
-	console.log(flattenedData);
+	// Interleave the data arrays
+	const interleavedData: string[] = [];
+	for (let i = 0; i < Math.max(redData.length, blueData.length); i++) {
+		if (i < redData.length) interleavedData.push(redData[i]);
+		if (i < blueData.length) interleavedData.push(blueData[i]);
+	}
+
+	console.log(interleavedData);
 </script>
 
 <div class="game">
