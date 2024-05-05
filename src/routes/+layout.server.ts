@@ -21,7 +21,7 @@ export const load: LayoutServerLoad = async (event: {
 
 	const user = await User_Model?.findOne({ 'user.email': email });
 
-	await deleteOldUsersIfNeeded();
+	// await deleteOldUsersIfNeeded();
 
 	const database_all_users = await User_Model?.find({});
 	let all_users = [];
