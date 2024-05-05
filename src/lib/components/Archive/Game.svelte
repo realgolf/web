@@ -12,6 +12,14 @@
 	export let teams: string;
 	export let data: string;
 	export let is_over: boolean;
+
+	const dataObj = JSON.parse(data);
+
+	const flattenedData = Object.entries(dataObj).map(([key, value]) => {
+		return { key, value };
+	});
+
+	console.log(flattenedData);
 </script>
 
 <div class="game">
