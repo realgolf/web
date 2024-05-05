@@ -14,9 +14,6 @@ server.js
 sockets.js
 chat.js
 app.js
-db.js
-models.js
-users.js
 
 # Local Netlify folder
 .netlify
