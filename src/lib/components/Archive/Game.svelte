@@ -16,14 +16,14 @@
 	const dataObj = JSON.parse(data);
 
 	// Separate data arrays for each color
-	const redData = dataObj.find((obj: { color: string; }) => obj.color === 'red')?.data || [];
-	const blueData = dataObj.find((obj: { color: string; }) => obj.color === 'blue')?.data || [];
+	const redData = dataObj.find((obj: { color: string }) => obj.color === 'red')?.data || [];
+	const blueData = dataObj.find((obj: { color: string }) => obj.color === 'blue')?.data || [];
 
 	// Interleave the data arrays
-	const interleavedData: string[] = [];
+	const interleavedData: { color: string; value: string }[] = [];
 	for (let i = 0; i < Math.max(redData.length, blueData.length); i++) {
-		if (i < redData.length) interleavedData.push(redData[i]);
-		if (i < blueData.length) interleavedData.push(blueData[i]);
+		if (i < redData.length) interleavedData.push({ color: 'red', value: redData[i] });
+		if (i < blueData.length) interleavedData.push({ color: 'blue', value: blueData[i] });
 	}
 
 	console.log(interleavedData);
@@ -43,7 +43,11 @@
 		<button>{$_('update_name')}</button>
 	</form>
 	<p>{$_('created_at', { values: { date: new Date(date).toLocaleDateString() } })}</p>
-	<p>{data}</p>
+	<ul>
+		{#each interleavedData as data}
+			<li class="{data.color} hit">{data.color} - {data.value}</li>
+		{/each}
+	</ul>
 	{#if is_over == true}
 		<p>{$_('game_has_finished', { values: { name } })}</p>
 	{:else if is_over == false}
@@ -60,6 +64,31 @@
 
 <Dialog />
 
-<style lang="sass">
-    @import "$lib/scss/Archive/game.scss"
+<style lang="scss">
+	.red {
+		color: red;
+	}
+
+	.blue {
+		color: blue;
+	}
+
+	.green {
+		color: green;
+	}
+
+	.orange {
+		color: orange;
+	}
+
+	.hit {
+		margin-left: 1rem;
+	}
+
+	li::marker {
+		margin-left: 1rem;
+		padding-right: 0.5rem;
+	}
+
+	@import '$lib/scss/Archive/game.scss';
 </style>
