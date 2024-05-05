@@ -88,6 +88,7 @@
 	li::marker {
 		margin-left: 1rem;
 		padding-right: 0.5rem;
+		color: var(--font-color);
 	}
 
 	@import '$lib/scss/Archive/game.scss';
