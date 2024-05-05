@@ -12,7 +12,7 @@ export const load: PageServerLoad = async (event: { params: { name: string } }) 
 		return { status: 404, error: 'User could not be found' };
 	}
 
-	const user_username = user.user?.username;
+	const user_username = user.user.username;
 	const user_games = user.games;
 
 	const games = user_games.map((game) => {
