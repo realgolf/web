@@ -90,7 +90,7 @@
 
 		<div class="id">
 			<p>{$_('your_id')}: {data.id}</p>
-			<button on:click={() => copy_to_clipboard(data.id)}>{$_("copy_id")}</button>
+			<button on:click={() => copy_to_clipboard(data.id)}>{$_('copy_id')}</button>
 			<p>
 				{$_('your_id_info')}
 			</p>
@@ -139,6 +139,18 @@
 				<button aria-label="update password">{$_('update')}</button>
 			</div>
 		</form>
+
+		<form action="?/verify" method="POST" autocomplete="off" class="update-form">
+			<div>
+				<label for="verification">Enter your email to verify</label>
+				<div>
+					<label for="email_input">{$_('email')}</label>
+					<input type="email" id="email_input" name="email" />
+				</div>
+			</div>
+
+			<button>Send</button>
+		</form>
 	</div>
 
 	<div class="handicap">
@@ -153,12 +165,12 @@
 			})}
 		</p>
 		<p>
-			{$_("when_handicap_changed")}
+			{$_('when_handicap_changed')}
 		</p>
 
 		<div id="update-handicap">
 			<form action="?/handicap" method="POST" class="handicap-form">
-				<label for="handicap">{$_("enter_new_handicap")}</label>
+				<label for="handicap">{$_('enter_new_handicap')}</label>
 				<input type="string" name="handicap" id="handicap" bind:value={data.handicap} />
 				<button aria-label="Update Handicap">{$_('update')}</button>
 			</form>
@@ -167,15 +179,15 @@
 		{#if handicap_history && handicap_history.length > 0}
 			<div class="handicap_history">
 				<details>
-					<summary>{$_("handicap_hstory")}</summary>
+					<summary>{$_('handicap_hstory')}</summary>
 					{#each handicap_history.slice().reverse() as handicap}
 						<div>
-							<p>{$_("handicap")}: {handicap.handicap}</p>
-							<p>{$_("updated_at_the")}: {new Date(handicap.date).toLocaleString()}</p>
+							<p>{$_('handicap')}: {handicap.handicap}</p>
+							<p>{$_('updated_at_the')}: {new Date(handicap.date).toLocaleString()}</p>
 						</div>
 					{/each}
 					<form action="?/clear_handicap_history" method="POST">
-						<button>{$_("clear_history")}</button>
+						<button>{$_('clear_history')}</button>
 					</form>
 				</details>
 			</div>
@@ -183,12 +195,12 @@
 	</div>
 
 	<div class="measurement">
-		<h2>{$_("measurement_unit")}</h2>
+		<h2>{$_('measurement_unit')}</h2>
 		<p class="underline">
-			{$_("current_measurement_unit")}: {capitalizeFirstLetter(data.measurement_unit)}
+			{$_('current_measurement_unit')}: {capitalizeFirstLetter(data.measurement_unit)}
 		</p>
 		<form action="?/measurement" method="POST" class="measurement-form">
-			<label for="measurement-unit">{$_("select_measurement_unit")}:</label>
+			<label for="measurement-unit">{$_('select_measurement_unit')}:</label>
 			<select id="measurement-unit" name="measurement-unit" bind:value={data.measurement_unit}>
 				<option value="yards">Yards</option>
 				<option value="meters">Meters</option>
@@ -199,28 +211,28 @@
 	</div>
 
 	<div id="preferences">
-		<h2>{$_("appearance")}</h2>
+		<h2>{$_('appearance')}</h2>
 		<p class="underline">
-			{$_("current_theme")}: {capitalizeFirstLetter(data.theme)}
+			{$_('current_theme')}: {capitalizeFirstLetter(data.theme)}
 		</p>
 		<form action="?/theme" method="POST" class="theme-form">
-			<label for="theme-settings">{$_("select_your_theme")}:</label>
+			<label for="theme-settings">{$_('select_your_theme')}:</label>
 			<select id="theme-settings" name="theme-settings" bind:value={data.theme}>
-				<option value="dark">{$_("dark")}</option>
-				<option value="light">{$_("light")}</option>
-				<option value="system">{$_("system")}</option>
+				<option value="dark">{$_('dark')}</option>
+				<option value="light">{$_('light')}</option>
+				<option value="system">{$_('system')}</option>
 			</select>
 			<br />
 			<button aria-label="update Theme">{$_('update')}</button>
 		</form>
 
-		<h2>{$_("rounded_corners")}</h2>
+		<h2>{$_('rounded_corners')}</h2>
 		<p class="underline">
-			{$_("current_rounded_corner")}: {JSON.stringify(data.rounded_corners)}
+			{$_('current_rounded_corner')}: {JSON.stringify(data.rounded_corners)}
 		</p>
 		<form action="?/rounded_corners" method="POST" class="rounded-corners-form">
 			<div class="same-row">
-				<label for="rounded-corners-settings">{$_("select_prefered_rounded_corners")}:</label>
+				<label for="rounded-corners-settings">{$_('select_prefered_rounded_corners')}:</label>
 				<input
 					type="checkbox"
 					name="rounded-corners"
@@ -232,13 +244,13 @@
 			<button aria-label="update Rounded Corners">{$_('update')}</button>
 		</form>
 
-		<h2>{$_("animations")}</h2>
+		<h2>{$_('animations')}</h2>
 		<p class="underline">
-			{$_("current_animation_setting")}: {JSON.stringify(data.animation)}
+			{$_('current_animation_setting')}: {JSON.stringify(data.animation)}
 		</p>
 		<form action="?/animation" method="POST" class="animation-form">
 			<div class="same-row">
-				<label for="animation-settings">{$_("select_prefered_animation_setting")}:</label>
+				<label for="animation-settings">{$_('select_prefered_animation_setting')}:</label>
 				<input type="checkbox" name="animation" id="animation" bind:checked={data.animation} />
 			</div>
 			<br />
@@ -247,11 +259,11 @@
 	</div>
 
 	<div class="delete-account">
-		<h2 class="danger-zone">{$_("danger_zone")}</h2>
-		<h2 class="error">{$_("account_will_be_gone")}</h2>
+		<h2 class="danger-zone">{$_('danger_zone')}</h2>
+		<h2 class="error">{$_('account_will_be_gone')}</h2>
 		<form action="?/delete_account" method="POST" class="delete_account_form">
 			<div>
-				<label for="delete_account_password_input">{$_("password")}</label>
+				<label for="delete_account_password_input">{$_('password')}</label>
 				<input
 					type="password"
 					id="delete_account_password_input"
@@ -259,12 +271,12 @@
 					value=""
 				/>
 			</div>
-			<button aria-label="delete Account">{$_("delete_account")}</button>
+			<button aria-label="delete Account">{$_('delete_account')}</button>
 		</form>
 	</div>
 
 	<form action="/logout" method="POST" class="logout-form">
-		<button>{$_("sign_out")}</button>
+		<button>{$_('sign_out')}</button>
 	</form>
 {/if}
 
