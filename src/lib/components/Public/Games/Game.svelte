@@ -1,9 +1,5 @@
 <script lang="ts">
-	// Importing the openGame function from the specified file
-	import { openGame } from '$lib/scripts/Archive/openGame';
-	// Importing the Dialog component from the specified file
 	import { _ } from 'svelte-i18n';
-	import Dialog from '../Global/Dialog.svelte';
 
 	// Exporting the following variables as props
 	export let name: string;
@@ -11,7 +7,8 @@
 	export let id: string;
 	export let teams: string;
 	export let data: string;
-	export let is_over: boolean;
+	export let show_confirmation: boolean;
+	export let user_username: string | null | undefined;
 
 	const dataObj = JSON.parse(data);
 
@@ -27,44 +24,66 @@
 	}
 
 	console.log(interleavedData);
+
+	function extractDomain(url: string): string | null {
+		try {
+			const parsedUrl = new URL(url);
+			// Check if the port is specified, and include it in the domain
+			const domainWithPort = parsedUrl.port
+				? `${parsedUrl.hostname}:${parsedUrl.port}`
+				: parsedUrl.hostname;
+			return domainWithPort;
+		} catch (error) {
+			// URL parsing failed
+			return null;
+		}
+	}
+
+	async function shareGame(id: string) {
+		const user = user_username;
+		const domain = extractDomain(window.location.href);
+
+		const url = `${domain}/${user}/games/${id}`;
+
+		console.log(url);
+
+		await window.navigator.clipboard.writeText(url);
+		show_confirmation = true;
+		setTimeout(() => {
+			show_confirmation = false;
+		}, 1500);
+	}
+
+	function openGame(id: string) {
+		const user = user_username;
+
+		const url = `/${user}/games/${id}`;
+		window.location.href = url;
+	}
 </script>
 
-<div class="game">
-	<form action="?/rename" method="POST">
-		<input
-			type="text"
-			name="name"
-			id="name"
-			class="headline"
-			bind:value={name}
-			aria-label="Name of the Game"
-		/>
-		<input class="hidden" type="text" name="id" value={id} />
-		<button>{$_('update_name')}</button>
-	</form>
-	<p>{$_('created_at', { values: { date: new Date(date).toLocaleDateString() } })}</p>
+<div class="games">
+	<p>{name}</p>
+	<p>{teams}</p>
+	<p>
+		{$_('date_of_play')}: {new Date(date).toLocaleDateString()}
+	</p>
 	<ul>
 		{#each interleavedData as data}
 			<li class="{data.color} hit">{data.color} - {data.value}</li>
 		{/each}
 	</ul>
-	{#if is_over == true}
-		<p>{$_('game_has_finished', { values: { name } })}</p>
-	{:else if is_over == false}
-		<p>{$_('game_can_continue', { values: { name } })}</p>
-	{:else}
-		<p>{$_('no_game_state')}</p>
-	{/if}
-	<button on:click={() => openGame(data, teams)}>{$_('open_game')}</button>
-	<form action="?/delete_game" method="POST" autocomplete="off">
-		<input class="hidden" type="text" name="id" value={id} />
-		<button>{$_('delete_game')}</button>
-	</form>
+	<button on:click={() => shareGame(id)}>{$_('share_game')}</button>
+	<button on:click={() => openGame(id)}>{$_('open_game')}</button>
 </div>
 
-<Dialog />
-
 <style lang="scss">
+	.games {
+		margin: 10px;
+		padding: 10px;
+		border: 1px solid #ccc;
+	}
+
 	.red {
 		color: red;
 	}

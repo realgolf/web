@@ -14,7 +14,6 @@ export function applyFilters(
 	data: Data,
 	selectedTeam: string
 ) {
-	console.log('Run');
 	if (searchTerm !== '') {
 		filteredGames = data.games.filter((game) => {
 			if (game.name) {
