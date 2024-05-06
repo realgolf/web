@@ -10,8 +10,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		locale.set(lang);
 	}
 
-	const is_protected =
-		event.url.pathname.startsWith('/dashboard') || event.url.pathname.startsWith('/account');
+	const is_protected = event.url.pathname.startsWith('/dashboard');
 
 	const auth = authenticate(event.cookies);
 
