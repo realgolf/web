@@ -10,14 +10,14 @@
 	export let show_confirmation: boolean;
 	export let user_username: string | null | undefined;
 
+	// Interleave the data arrays
+	let interleavedData: { color: string; value: string }[] = [];
 	const dataObj = JSON.parse(data);
 
 	// Separate data arrays for each color
 	const redData = dataObj.find((obj: { color: string }) => obj.color === 'red')?.data || [];
 	const blueData = dataObj.find((obj: { color: string }) => obj.color === 'blue')?.data || [];
 
-	// Interleave the data arrays
-	const interleavedData: { color: string; value: string }[] = [];
 	for (let i = 0; i < Math.max(redData.length, blueData.length); i++) {
 		if (i < redData.length) interleavedData.push({ color: 'red', value: redData[i] });
 		if (i < blueData.length) interleavedData.push({ color: 'blue', value: blueData[i] });

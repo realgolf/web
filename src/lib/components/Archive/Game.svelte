@@ -20,7 +20,7 @@
 	const blueData = dataObj.find((obj: { color: string }) => obj.color === 'blue')?.data || [];
 
 	// Interleave the data arrays
-	const interleavedData: { color: string; value: string }[] = [];
+	let interleavedData: { color: string; value: string }[] = [];
 	for (let i = 0; i < Math.max(redData.length, blueData.length); i++) {
 		if (i < redData.length) interleavedData.push({ color: 'red', value: redData[i] });
 		if (i < blueData.length) interleavedData.push({ color: 'blue', value: blueData[i] });
