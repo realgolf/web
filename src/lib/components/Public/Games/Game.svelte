@@ -10,20 +10,23 @@
 	export let show_confirmation: boolean;
 	export let user_username: string | null | undefined;
 
-	// Interleave the data arrays
-	let interleavedData: { color: string; value: string }[] = [];
 	const dataObj = JSON.parse(data);
+	let interleavedData: { color: string; value: string }[] = [];
 
-	// Separate data arrays for each color
-	const redData = dataObj.find((obj: { color: string }) => obj.color === 'red')?.data || [];
-	const blueData = dataObj.find((obj: { color: string }) => obj.color === 'blue')?.data || [];
+	// Check if "4winning" is not included in teams
+	if (teams.includes('4winning')) {
+		// Separate data arrays for each color
+		const redData = dataObj.find((obj: { color: string }) => obj.color === 'red')?.data || [];
+		const blueData = dataObj.find((obj: { color: string }) => obj.color === 'blue')?.data || [];
 
-	for (let i = 0; i < Math.max(redData.length, blueData.length); i++) {
-		if (i < redData.length) interleavedData.push({ color: 'red', value: redData[i] });
-		if (i < blueData.length) interleavedData.push({ color: 'blue', value: blueData[i] });
+		// Interleave the data arrays
+		for (let i = 0; i < Math.max(redData.length, blueData.length); i++) {
+			if (i < redData.length) interleavedData.push({ color: 'red', value: redData[i] });
+			if (i < blueData.length) interleavedData.push({ color: 'blue', value: blueData[i] });
+		}
+
+		console.log(interleavedData);
 	}
-
-	console.log(interleavedData);
 
 	function extractDomain(url: string): string | null {
 		try {
