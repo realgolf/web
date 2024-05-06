@@ -244,7 +244,7 @@ export const actions: Actions = {
 							Your verification code is: ${verification_code} <br/>
 		
 							Please enter this code in the verification form to complete your registration. <br/>
-							<a href="https://realgolf.games/verify">Click here to verify your account</a>
+							<a href="https://realgolf.games/dashboard/verify">Click here to verify your account</a>
 						`
 				});
 
