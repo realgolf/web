@@ -13,19 +13,25 @@
 	export let data: string;
 	export let is_over: boolean;
 
-	const dataObj = JSON.parse(data);
+const dataObj = JSON.parse(data);
 
-	// Separate data arrays for each color
-	const redData = dataObj.find((obj: { color: string }) => obj.color === 'red')?.data || [];
-	const blueData = dataObj.find((obj: { color: string }) => obj.color === 'blue')?.data || [];
+// Check if "4winning" is not included in teams
+if (!teams.includes("4winning")) {
+    // Return early if "4winning" is not included
+    return;
+} 
 
-	// Interleave the data arrays
-	let interleavedData: { color: string; value: string }[] = [];
-	for (let i = 0; i < Math.max(redData.length, blueData.length); i++) {
-		if (i < redData.length) interleavedData.push({ color: 'red', value: redData[i] });
-		if (i < blueData.length) interleavedData.push({ color: 'blue', value: blueData[i] });
-	}
+// Separate data arrays for each color
+const redData = dataObj.find((obj: { color: string }) => obj.color === 'red')?.data || [];
+const blueData = dataObj.find((obj: { color: string }) => obj.color === 'blue')?.data || [];
 
+// Interleave the data arrays
+let interleavedData: { color: string; value: string }[] = [];
+for (let i = 0; i < Math.max(redData.length, blueData.length); i++) {
+    if (i < redData.length) interleavedData.push({ color: 'red', value: redData[i] });
+    if (i < blueData.length) interleavedData.push({ color: 'blue', value: blueData[i] });
+}
+	
 	console.log(interleavedData);
 </script>
 
