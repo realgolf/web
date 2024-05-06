@@ -12,6 +12,8 @@ const User_Schema = new mongoose.Schema({
 	user: {
 		email: { type: String, require: true, unique: true },
 		password: { type: String, require: true },
+		verified: { type: Boolean, require: true },
+		verification_code: { type: String, require: true },
 		name: { type: String, require: true },
 		username: { type: String, require: true, unique: true },
 		registration_date: { type: Date, require: true },

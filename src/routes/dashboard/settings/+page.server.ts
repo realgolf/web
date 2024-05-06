@@ -1,3 +1,4 @@
+import { SECRET_NOREPLY_EMAIL_PASSWORD } from '$env/static/private';
 import { change_animation } from '$lib/server/user/account/change_animation';
 import { change_email } from '$lib/server/user/account/change_email';
 import { change_handicap } from '$lib/server/user/account/change_handicap';
@@ -11,6 +12,7 @@ import { User_Model } from '$lib/server/user/models';
 import { cookie_options } from '$lib/server/user/utils';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
 import type { Types } from 'mongoose';
+import nodemailer from 'nodemailer';
 import type { PageServerLoad } from '../$types';
 
 interface HandicapHistory {
@@ -211,5 +213,53 @@ export const actions: Actions = {
 		const message = `Your animation settings got changed`;
 
 		return { message, animation };
+	},
+	verify: async (event) => {
+		const data = await event.request.formData();
+		const email = (data.get('email') as string)?.toLowerCase()?.trim();
+
+		const user = await User_Model?.findOne({ 'user.email': email });
+
+		const verification_code = user?.user?.verification_code as string;
+		const name = user?.user?.name;
+
+		const transporter = nodemailer.createTransport({
+			host: 'mail.privateemail.com',
+			port: 465,
+			secure: true,
+			auth: {
+				user: 'noreply@realgolf.games',
+				pass: `${SECRET_NOREPLY_EMAIL_PASSWORD}`
+			}
+		});
+
+		async function sendEmail() {
+			try {
+				// send mail with defined transport object
+				const info = await transporter.sendMail({
+					from: 'RealGolf.Games <noreply@realgolf.games>',
+					to: `'${name}' <${email}>`,
+					subject: 'Verification Code for RealGolf.Games Account',
+					html: `
+							Your verification code is: ${verification_code} <br/>
+		
+							Please enter this code in the verification form to complete your registration. <br/>
+							<a href="https://realgolf.games/dashboard/verify">Click here to verify your account</a>
+						`
+				});
+
+				console.log('Message sent: %s', info.messageId);
+
+				const message = 'Email sent succesfully';
+
+				return { message };
+			} catch (error) {
+				console.error('Error sending email:', error);
+
+				return { error };
+			}
+		}
+
+		await sendEmail();
 	}
 };

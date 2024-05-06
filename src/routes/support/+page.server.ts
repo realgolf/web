@@ -1,4 +1,4 @@
-import { SECRET_EMAIL_PASSWORD } from '$env/static/private';
+import { SECRET_SUPPORT_EMAIL_PASSWORD } from '$env/static/private';
 import { checkEmailExists } from '$lib/server/user/email_exists';
 import type { Actions } from '@sveltejs/kit';
 import nodemailer from 'nodemailer';
@@ -38,7 +38,7 @@ export const actions: Actions = {
 			secure: true,
 			auth: {
 				user: 'support@realgolf.games',
-				pass: `${SECRET_EMAIL_PASSWORD}`
+				pass: `${SECRET_SUPPORT_EMAIL_PASSWORD}`
 			}
 		});
 
@@ -53,7 +53,6 @@ export const actions: Actions = {
 				});
 
 				console.log('Message sent: %s', info.messageId);
-				console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 			} catch (error) {
 				console.error('Error sending email:', error);
 			}
